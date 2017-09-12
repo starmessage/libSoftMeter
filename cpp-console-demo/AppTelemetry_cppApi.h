@@ -33,7 +33,8 @@ extern "C" {
 
 	typedef const char* (*appTelemetryGetVersion_t)(void);
 	typedef const char* (*appTelemetryGetLogFilename_t)(void);
-	typedef void (*appTelemetryEnableLogfile_t)(const bool);
+	typedef void (*appTelemetryEnableLogfile_t)(const char *, const char *);
+	typedef void (*appTelemetryDisableLogfile_t)(void);
 	typedef bool (*appTelemetryInit_t)(const char *, const char *, const char *);
 	typedef void (*appTelemetryFree_t)(void);
 	typedef bool (*appTelemetryAddPageview_t)(const char *, const char *);
@@ -53,6 +54,7 @@ private:
 	appTelemetryGetVersion_t		appTelemetryGetVersion_ptr = NULL;
 	appTelemetryGetLogFilename_t	appTelemetryGetLogFilename_ptr = NULL;
 	appTelemetryEnableLogfile_t		appTelemetryEnableLogfile_ptr = NULL;
+	appTelemetryDisableLogfile_t	appTelemetryDisableLogfile_ptr = NULL;
 	appTelemetryInit_t				appTelemetryInit_ptr = NULL;
 	appTelemetryFree_t				appTelemetryFree_ptr = NULL;
 	appTelemetryAddPageview_t		appTelemetryAddPageview_ptr = NULL;
@@ -112,10 +114,16 @@ public:
 		return appTelemetryGetLogFilename_ptr();
 	}
 
-	void		appTelemetryEnableLogfile(const bool enable)
+	void		appTelemetryEnableLogfile(const char *appName, const char *macBundleId)
 	{
 		if (appTelemetryEnableLogfile_ptr)
-			appTelemetryEnableLogfile_ptr(enable);
+			appTelemetryEnableLogfile_ptr(appName, macBundleId);
+	}
+
+	void		appTelemetryDisableLogfile(void)
+	{
+		if (appTelemetryEnableLogfile_ptr)
+			appTelemetryDisableLogfile_ptr();
 	}
 
 	bool		appTelemetryInit(const char *appName, const char *appVersion, const char *propertyID)
@@ -149,7 +157,7 @@ public:
 
 // If you want a global object of the appTelemetry, so you can use it from different parts of your program,
 // implement (define) somewhere in your source code (.cpp file) this function
-extern AppTelemetry_cppApi &appTelem(void);
+// extern AppTelemetry_cppApi &appTelem(void);
 /* e.g. as singleton:
 
 	#include "AppTelemetry_cppApi..h"

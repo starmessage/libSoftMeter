@@ -31,7 +31,8 @@ begin
 end;
 
 
-const   programVer = '1.2';
+const   programName = 'console_demo_delphi10';
+		programVer = '1.3';
         DLLfilename =  'libAppTelemetry.dll';
 
 var     appTelemetryDll:TDllAppTelemetry;
@@ -40,11 +41,11 @@ var     appTelemetryDll:TDllAppTelemetry;
 begin
 
   try
-    writeln('console_demo_delphi10 v'+ programVer +' started.');
+    writeln(programName + ' v'+ programVer +' started.');
 
     if checkCommandLineParam=false then
     begin
-        writeln('Call this program with a one parameter, the Google Property ID, e.g.' + CHR(13) + CHR(10) +
+        writeln('Call this program with a one parameter, the Google Property ID, e.g.' + CHR(13) + CHR(10) + 
                 'console_demo_delphi10 UA-123456-01');
         exit;
     end;
@@ -57,8 +58,9 @@ begin
             writeln('DLL NOT loaded. The DLL "' + DLLfilename + '" must be in the same folder as the executable.');
 
     writeln('DLL version: ', appTelemetryDll.appTelemetryGetVersion);
-    writeln('Enabling the log file. Check the log file for the duration of the telemetry functions.');
-    appTelemetryDll.appTelemetryEnableLogfile(true);
+    
+	writeln('Enabling the log file. Check the log file for the duration of the telemetry functions.');
+    appTelemetryDll.appTelemetryEnableLogfile(programName, 'com.company.' + programName);
     writeln('DLL log filename: ', appTelemetryDll.appTelemetryGetLogFilename);
 
     googleAnalyticsPropertyID :=  PAnsiChar(AnsiString(ParamStr(1)));

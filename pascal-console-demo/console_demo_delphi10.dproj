@@ -21,7 +21,6 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_ExeOutput>..\bin</DCC_ExeOutput>
-			<DCC_UsePackage>rtl;vcl;vclx;vclactnband;xmlrtl;vclimg;dbrtl;vcldb;bdertl;vcldbx;vcltouch;dsnap;dsnapcon;TeeUI;Tee;TeeDB;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_100_140;Intraweb_100_140;VclSmp;vclie;websnap;webdsnap;inetdb;inetdbbde;inetdbxpress;soaprtl;dbexpress;DbxCommonDriver;DataSnapIndy10ServerTransport;DataSnapProviderClient;DataSnapServer;DbxClientDriver;DBXInterBaseDriver;DBXMySQLDriver;dbxcds;DBXFirebirdDriver;DBXSybaseASEDriver;DBXSybaseASADriver;DBXOracleDriver;DBXMSSQLDriver;DBXInformixDriver;DBXDb2Driver</DCC_UsePackage>
 			<DCC_F>false</DCC_F>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<DCC_K>false</DCC_K>
@@ -75,7 +74,6 @@
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
-						<Parameters Name="RunParams">UA-385839-13</Parameters>
 					</Parameters>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
@@ -104,6 +102,42 @@
 						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclstd140.bpl">Embarcadero Standard Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcldb140.bpl">Embarcadero Database Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\Bin\dclmid140.bpl">Embarcadero MyBase DataAccess Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\Bin\dclIndyCore140.bpl">Indy 10 Core Design Time</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\Bin\dclwbm140.bpl">Embarcadero InternetExpress Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\Bin\dclnet140.bpl">Embarcadero Internet Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcldbx140.bpl">Embarcadero dbExpress Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\bcbie140.bpl">Embarcadero C++Builder Internet Explorer Components Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclbcbsmp140.bpl">Embarcadero Sample Controls Design Time Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\applet140.bpl">Embarcadero Control Panel Applet Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcl31w140.bpl">Delphi 1.0 Compatibility Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclact140.bpl">Embarcadero ActionBar Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclbde140.bpl">Embarcadero BDE DB Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dbx140.bpl">Embarcadero SQL Explorer UI Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclemacsedit140.bpl">Embarcadero Editor Emacs Enhancements</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclmlwiz140.bpl">Embarcadero Markup Language Wizards</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclsmpedit140.bpl">Embarcadero Editor Script Enhancements</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcltouch140.bpl">Embarcadero Touch Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\samplevisualizers140.bpl">Embarcadero Sample Debugger Visualizers</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclmcn140.bpl">Embarcadero DataSnap Connection Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcltee8140.bpl">TeeChart Standard 8 Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclado140.bpl">Embarcadero ADO DB Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\Bin\dclIndyProtocols140.bpl">Indy 10 Protocols Design Time</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclIntraweb_100_140.bpl">VCL for the Web 10.0  Design Package for CodeGear RAD Studio</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclsmp140.bpl">Embarcadero Sample Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclie140.bpl">Internet Explorer Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclwebsnap140.bpl">Embarcadero WebSnap Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclsoap140.bpl">Embarcadero SOAP Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclDataSnapIndy10ServerTransport140.bpl">Embarcadero DBExpress DataSnap Server Transport Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclDataSnapProviderClient140.bpl">Embarcadero DBExpress DataSnap Provider Client Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclDataSnapServer140.bpl">Embarcadero DBExpress DataSnap Server Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclDBXDrivers140.bpl">Embarcadero Driver Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclDBXDriversEnt140.bpl">Embarcadero Enterprise Driver Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcldbxcds140.bpl">Embarcadero SimpleDataset Component (DBX)</Excluded_Packages>
+					</Excluded_Packages>
 				</Delphi.Personality>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>
