@@ -17,7 +17,7 @@
                BlueprintIdentifier = "584CE9FA1F5074DC002B1393"
                BuildableName = "cpp-demo-mac"
                BlueprintName = "cpp-demo-mac"
-               ReferencedContainer = "container:appTelemetry-dylib-test.xcodeproj">
+               ReferencedContainer = "container:cpp-demo-mac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "584CE9FA1F5074DC002B1393"
             BuildableName = "cpp-demo-mac"
             BlueprintName = "cpp-demo-mac"
-            ReferencedContainer = "container:appTelemetry-dylib-test.xcodeproj">
+            ReferencedContainer = "container:cpp-demo-mac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,16 +70,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "584CE9FA1F5074DC002B1393"
-            BuildableName = "cpp-demo-mac"
-            BlueprintName = "cpp-demo-mac"
-            ReferencedContainer = "container:appTelemetry-dylib-test.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

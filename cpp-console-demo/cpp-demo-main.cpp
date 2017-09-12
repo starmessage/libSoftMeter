@@ -14,7 +14,7 @@
 
 #include "AppTelemetry_cppApi.h"
 
-const char *appName = "AppTelemetry Cpp Test";
+const char *appName = "Cpp-demo";
 const char *appVer = "v0.5";
 
 /* building the program without dependency on the runtime DLLs:
@@ -54,7 +54,7 @@ int main(int argc, const char * argv[])
         #ifdef _WIN32
             std::cerr << "cpp-demo-win UA-123456-12\n";
         #else
-            std::cerr << "cpp-demo-mac UA-123456-12\n";
+            std::cerr << "./cpp-demo-mac UA-123456-12\n";
         #endif
 		return 10;
 	}
@@ -63,7 +63,7 @@ int main(int argc, const char * argv[])
 		return 11;
 
     
-    std::string gaPropertyID("argv[1]");
+    std::string gaPropertyID(argv[1]);
 
 	// create an object that contains all the needed telemetry functionality, plus the loading and linking of the .DLL or the .dylib
 	AppTelemetry_cppApi telemetryDll(AppTelemetryDllFilename);
@@ -80,15 +80,18 @@ int main(int argc, const char * argv[])
 	}
 
 	std::cout << "libAppTelemetry version:" << telemetryDll.appTelemetryGetVersion() << std::endl;
-    std::cout << "libAppTelemetry log filename:" << telemetryDll.appTelemetryGetLogFilename() << std::endl;
-	telemetryDll.appTelemetryEnableLogfile(true);
-	if (!telemetryDll.appTelemetryInit(appName, appVer, gaPropertyID.c_str()))
+    if (!telemetryDll.appTelemetryInit(appName, appVer, gaPropertyID.c_str()))
 	{
 		std::cerr << "Error calling appTelemetryInit_ptr\n";
 		return 201;
 	}
-	std::cout << "appTelemetryInit() called with Google property" << gaPropertyID << std::endl;
+	std::cout << "appTelemetryInit() called with Google property:" << gaPropertyID << std::endl;
 	
+    // the log filename is available after the call to appTelemetryInit() because it depends on the applicationName
+    telemetryDll.appTelemetryEnableLogfile(appName, "com.company.appname");
+	std::cout << "libAppTelemetry log filename:" << telemetryDll.appTelemetryGetLogFilename() << std::endl;
+
+    
 	std::cout << "Will call appTelemetryAddPageview()" << std::endl;
 	if (!telemetryDll.appTelemetryAddPageview("main window", "main window"))
 	{
