@@ -2,6 +2,10 @@
 ///
 ///     unit dll_loader.pas
 ///     utility class to load the DLL and link its functions
+///
+///		Version of file: 1.0
+///  	URL of file: https://github.com/starmessage/libAppTelemetry-sample-programs/blob/master/pascal-console-demo/dll_loader.pas
+///		URL of repo: https://github.com/starmessage/libAppTelemetry-sample-programs
 ///     Copyright, StarMessage software
 ///     https://www.starmessagesoftware.com/libapptelemetry
 ///
@@ -48,7 +52,7 @@ type
 
 type
     // C prototype: const char*	appTelemetryGetVersion(void);
-    TappTelemetryGetVersion = function: PAnsiChar; cdecl; // stdcall; //
+    TappTelemetryGetVersion = function: PAnsiChar; cdecl; // stdcall; 
     TappTelemetryGetLogFilename = function: PAnsiChar; cdecl; 
     TappTelemetryEnableLogfile = procedure(appName, macBundleID:PAnsiChar); cdecl;
     TappTelemetryDisableLogfile = procedure; cdecl;
@@ -119,18 +123,19 @@ end;
 
 constructor TDllAppTelemetry.Create(aDllFilename:PChar);
 begin
-    inherited Create(aDllFilename);
-    // link the functions
-    // Same true if using GetProcAddress, the correct call is GetProcAddress(hDLL, '_DoMath'); otherwise nil is returned.
-    // https://stackoverflow.com/questions/10405991/calling-functions-from-a-c-dll-in-delphi
-    @appTelemetryGetVersionPtr := GetProcAddress(theDLL, 'appTelemetryGetVersion');
-    @appTelemetryGetLogFilenamePtr := GetProcAddress(theDLL, 'appTelemetryGetLogFilename');
-    @appTelemetryEnableLogfilePtr := GetProcAddress(theDLL, 'appTelemetryEnableLogfile');
-    @appTelemetryDisableLogfilePtr := GetProcAddress(theDLL, 'appTelemetryDisableLogfile');
+	inherited Create(aDllFilename);
+	// link the functions
+	// In some DLLs (depending on how they are compiled), the correct call is GetProcAddress(hDLL, '_FunctioName'); 
+	// otherwise nil is returned.
+	// https://stackoverflow.com/questions/10405991/calling-functions-from-a-c-dll-in-delphi
+	@appTelemetryGetVersionPtr := GetProcAddress(theDLL, 'appTelemetryGetVersion');
+	@appTelemetryGetLogFilenamePtr := GetProcAddress(theDLL, 'appTelemetryGetLogFilename');
+	@appTelemetryEnableLogfilePtr := GetProcAddress(theDLL, 'appTelemetryEnableLogfile');
+	@appTelemetryDisableLogfilePtr := GetProcAddress(theDLL, 'appTelemetryDisableLogfile');
 	@appTelemetryInitPtr := GetProcAddress(theDLL, 'appTelemetryInit');
 	@appTelemetryFreePtr := GetProcAddress(theDLL, 'appTelemetryFree');
-    @appTelemetryAddPageviewPtr := GetProcAddress(theDLL, 'appTelemetryAddPageview');
-    @appTelemetryAddEventPtr := GetProcAddress(theDLL, 'appTelemetryAddEvent');
+	@appTelemetryAddPageviewPtr := GetProcAddress(theDLL, 'appTelemetryAddPageview');
+	@appTelemetryAddEventPtr := GetProcAddress(theDLL, 'appTelemetryAddEvent');
 end;
 
 
