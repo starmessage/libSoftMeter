@@ -9,88 +9,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\apiAppTelemetry.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\main.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\cpcc\core.cpccOS.cpp">
-      <Filter>cpcc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\cpcc\cpcc_SelfTest.cpp">
-      <Filter>cpcc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\cpcc\cpccTimeCounter.cpp">
-      <Filter>cpcc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\cpcc\io.cpccFileSystemMini.cpp">
-      <Filter>cpcc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\cpcc\io.cpccLog.cpp">
-      <Filter>cpcc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\cpcc\io.cpccPathHelper.cpp">
-      <Filter>cpcc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\cpcc\io.cpccSystemFolders.cpp">
-      <Filter>cpcc</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\globals.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\cGoogleAnalytics.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\oldCode.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\cpcc\alpha\net.cpccHttpRequestWin.cpp">
-      <Filter>cpcc</Filter>
-    </ClCompile>
+    <ClCompile Include="..\cpp-demo-main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\cGoogleAnalytics.h">
-      <Filter>source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\core.cpccOS.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\cpcc_SelfTest.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\cpccTimeCounter.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\cpccUnicodeSupport.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\io.cpccFileSystemMini.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\io.cpccLog.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\io.cpccPathHelper.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\io.cpccSystemFolders.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\cGArequestBuilder.h">
-      <Filter>source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\alpha\net.cpccHttpRequestWin.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\alpha\net.cpccHttpRequest.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\cpcc\alpha\net.cpccWinHttp_helpers.h">
-      <Filter>cpcc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\apiAppTelemetry.h">
-      <Filter>source</Filter>
-    </ClInclude>
+    <ClInclude Include="..\core.cpccLinkLibrary.h" />
+    <ClInclude Include="..\AppTelemetry_cppApi.h" />
   </ItemGroup>
 </Project>
