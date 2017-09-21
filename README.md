@@ -10,7 +10,7 @@ Shareware developers for desktop programs can now see via one free reporting pla
 
 Web site: [http://www.StarMessageSoftware.com/libapptelemetry]
 
-Library version: 0.4
+Library version: 0.4.4
 
 (c) StarMessage Software [http://www.StarMessageSoftware.com]
  
