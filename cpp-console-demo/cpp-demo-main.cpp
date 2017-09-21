@@ -3,6 +3,7 @@
 //  main.cpp
 //  appTelemetry test in C++
 //
+//	file version: 0.4.4
 //  Copyright © 2017 StarMessage software. All rights reserved.
 //  Web: http://www.StarMessageSoftware.com/libapptelemetry
 // 
@@ -14,8 +15,7 @@
 
 #include "AppTelemetry_cppApi.h"
 
-const char *appName = "Cpp-demo";
-const char *appVer = "v0.5";
+
 
 /* building the program without dependency on the runtime DLLs:
 	To avoid "MSVCP140.dll is missing" you can statically link the program.
@@ -28,7 +28,11 @@ const char *appVer = "v0.5";
 
 // you can rename the dll if you want it to match your application's filename
 #ifdef _WIN32
-	const TCHAR * AppTelemetryDllFilename = "libAppTelemetry.dll";
+	#ifdef _M_AMD64
+		const TCHAR * AppTelemetryDllFilename = "libAppTelemetry64bit.dll";
+	#else
+		const TCHAR * AppTelemetryDllFilename = "libAppTelemetry.dll";
+	#endif
 #else
     const char * AppTelemetryDllFilename = "libAppTelemetry.dylib";
 #endif
@@ -45,6 +49,19 @@ bool checkCommandLineParams(int argc, const char * argv[])
 
 int main(int argc, const char * argv[])
 {
+	// The filename of this program will be used as the program name submitted to G.A.
+	// You can rename this test file so that you see the correct program name in the G.A. reports.
+	std::string executableName(argv[0]);
+	// contains something like: c:\folder1\cpp-demo-win
+	// The path must be removed.
+	size_t positionOfSlash = executableName.rfind('/');
+	if (positionOfSlash != std::string::npos)
+		executableName.erase(0, positionOfSlash+1);
+	positionOfSlash = executableName.rfind('\\');
+	if (positionOfSlash != std::string::npos)
+		executableName.erase(0, positionOfSlash+1);
+	// std::cout << "EXE:" << executableName << std::endl;
+
 
 	if (!checkCommandLineParams(argc, argv))
 	{
@@ -62,7 +79,7 @@ int main(int argc, const char * argv[])
 	if (!argv[1])
 		return 11;
 
-    
+
     std::string gaPropertyID(argv[1]);
 
 	// create an object that contains all the needed telemetry functionality, plus the loading and linking of the .DLL or the .dylib
@@ -78,8 +95,13 @@ int main(int argc, const char * argv[])
 		std::cerr << "Errors exist during the dynamic loading of telemetryDll\n";
 		return 101;
 	}
-
 	std::cout << "libAppTelemetry version:" << telemetryDll.appTelemetryGetVersion() << std::endl;
+
+	// fictional appName and appVersion for your testing
+	const char *appName = executableName.c_str();
+	const char *appVer = "0.6";
+
+	// initialize the library with your program's name, version and google propertyID
     if (!telemetryDll.appTelemetryInit(appName, appVer, gaPropertyID.c_str()))
 	{
 		std::cerr << "Error calling appTelemetryInit_ptr\n";
