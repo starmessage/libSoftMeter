@@ -3,7 +3,7 @@
 //  main.cpp
 //  appTelemetry test in C++
 //
-//	file version: 0.4.4
+//	file version: 0.4.5
 //  Copyright © 2017 StarMessage software. All rights reserved.
 //  Web: http://www.StarMessageSoftware.com/libapptelemetry
 // 
@@ -101,6 +101,9 @@ int main(int argc, const char * argv[])
 	const char *appName = executableName.c_str();
 	const char *appVer = "0.6";
 
+	telemetryDll.appTelemetryEnableLogfile(appName, "com.company.appname");
+	std::cout << "libAppTelemetry log filename:" << telemetryDll.appTelemetryGetLogFilename() << std::endl;
+
 	// initialize the library with your program's name, version and google propertyID
     if (!telemetryDll.appTelemetryInit(appName, appVer, gaPropertyID.c_str()))
 	{
@@ -109,10 +112,7 @@ int main(int argc, const char * argv[])
 	}
 	std::cout << "appTelemetryInit() called with Google property:" << gaPropertyID << std::endl;
 	
-    // the log filename is available after the call to appTelemetryInit() because it depends on the applicationName
-    telemetryDll.appTelemetryEnableLogfile(appName, "com.company.appname");
-	std::cout << "libAppTelemetry log filename:" << telemetryDll.appTelemetryGetLogFilename() << std::endl;
-
+   
     
 	std::cout << "Will call appTelemetryAddPageview()" << std::endl;
 	if (!telemetryDll.appTelemetryAddPageview("main window", "main window"))

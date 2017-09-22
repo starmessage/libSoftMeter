@@ -8,9 +8,9 @@ Shareware developers for desktop programs can now see via one free reporting pla
 
 **Library information:**
 
-Web site: [http://www.StarMessageSoftware.com/libapptelemetry]
-
-Library version: 0.4.4
+Web site: [https://www.StarMessageSoftware.com/libapptelemetry]
+Documentation / Implementation guide: [https://www.StarMessageSoftware.com/libapptelemetry/implementation]
+Library version: 0.4.5
 
 (c) StarMessage Software [http://www.StarMessageSoftware.com]
  
