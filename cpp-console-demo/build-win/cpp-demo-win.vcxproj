@@ -29,7 +29,7 @@
     <ProjectGuid>{2346BB8E-AEBE-4EAF-8658-DFC5D6EE6F5D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>CheckCopy</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -87,7 +87,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>f:\temp-visualstudio\$(ProjectName)\$(Configuration)-$(platform)\</OutDir>
     <IntDir>f:\temp-visualstudio\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
-    <TargetName>$(ProjectName)</TargetName>
+    <TargetName>$(ProjectName)-64bit</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -101,7 +101,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>f:\temp-visualstudio\$(ProjectName)\$(Configuration)-$(platform)\</OutDir>
     <IntDir>f:\temp-visualstudio\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
-    <TargetName>$(ProjectName)</TargetName>
+    <TargetName>$(ProjectName)-64bit</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
