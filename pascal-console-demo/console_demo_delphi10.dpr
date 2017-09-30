@@ -18,7 +18,6 @@ uses
   strUtils,
   dll_loader in 'dll_loader.pas';
 
-
 function checkCommandLineParam:boolean;
 // do some simple checking
 begin
@@ -32,7 +31,7 @@ end;
 
 
 const   programName = 'console_demo_delphi10';
-		programVer = '1.3';
+		programVer = '1.4';
         DLLfilename =  'libAppTelemetry.dll';
 
 var     appTelemetryDll:TDllAppTelemetry;
@@ -66,22 +65,28 @@ begin
     googleAnalyticsPropertyID :=  PAnsiChar(AnsiString(ParamStr(1)));
     writeln('Will send data to the Google Property ID:' +  googleAnalyticsPropertyID);
 
-    if not appTelemetryDll.appTelemetryInit('console demo delphi', '0.1', googleAnalyticsPropertyID) then
-        writeLn('appTelemetryInit failed.');
+    if not appTelemetryDll.appTelemetryInit(PAnsiChar(programName), PAnsiChar(programVer), googleAnalyticsPropertyID) then
+        writeLn('appTelemetryInit() failed.');
+
+	// you can see the user's OS version under the "browser" field in G.A.
+	// you can see the user's screen resolution under the "screen resolution" field in G.A.
+	// But for your convenience you can add a pageview that contains the OS version like this:
+	//if not appTelemetryDll.appTelemetryAddPageview(PAnsiChar('launch under ' + GetWinVersion), PAnsiChar('launch under ' + GetWinVersion)) then
+    //    writeLn('appTelemetryAddPageview() 1 failed.');
 
     if not appTelemetryDll.appTelemetryAddPageview('main window', 'main window') then
-        writeLn('appTelemetryAddPageview failed.');
+        writeLn('appTelemetryAddPageview() 2 failed.');
 
     // e.g. the user opens the configuration screen of your program
     if not appTelemetryDll.appTelemetryAddPageview('main window/configuration', 'configuration') then
-        writeLn('appTelemetryAddPageview failed.');
+        writeLn('appTelemetryAddPageview() failed.');
 
     // ........  more of your code here
 
 
     // eg. the user hits the exit button
     if not appTelemetryDll.appTelemetryAddPageview('exit', 'exit') then
-        writeLn('appTelemetryAddPageview failed.');
+        writeLn('appTelemetryAddPageview() failed.');
 
     appTelemetryDll.appTelemetryFree;
 
@@ -96,4 +101,9 @@ begin
       Writeln(E.ClassName, ': ', E.Message);
   end;
 
+
+
+
 end.
+
+
