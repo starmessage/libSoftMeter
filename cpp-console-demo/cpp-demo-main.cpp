@@ -15,6 +15,7 @@
 
 #include "AppTelemetry_cppApi.h"
 
+const char *appVer = "0.7";
 
 
 /* building the program without dependency on the runtime DLLs:
@@ -99,10 +100,11 @@ int main(int argc, const char * argv[])
 
 	// fictional appName and appVersion for your testing
 	const char *appName = executableName.c_str();
-	const char *appVer = "0.6";
+	
 
 	telemetryDll.appTelemetryEnableLogfile(appName, "com.company.appname");
-	std::cout << "libAppTelemetry log filename:" << telemetryDll.appTelemetryGetLogFilename() << std::endl;
+	std::string logFilename(telemetryDll.appTelemetryGetLogFilename());
+	std::cout << "libAppTelemetry log filename:" << logFilename << std::endl;
 
 	// initialize the library with your program's name, version and google propertyID
     if (!telemetryDll.appTelemetryInit(appName, appVer, gaPropertyID.c_str()))
@@ -129,6 +131,18 @@ int main(int argc, const char * argv[])
 	}
 
 	telemetryDll.appTelemetryFree();
+
+	if (system(NULL)) // If command is a null pointer, the function only checks whether a command processor is available through this function, without invoking any command.
+	{
+#ifdef _WIN32
+		std::string command("start " + logFilename);
+#else
+		std::string command("open -e " + logFilename);
+#endif
+		std::cout << "Will send command to open the log file." << std::endl;
+		system(command.c_str());
+	}
+
     std::cout << "Program exiting now." << std::endl;
     return 0;
 }
