@@ -36,6 +36,7 @@ extern "C" {
 	typedef void (*appTelemetryEnableLogfile_t)(const char *, const char *);
 	typedef void (*appTelemetryDisableLogfile_t)(void);
 	typedef bool (*appTelemetryInit_t)(const char *, const char *, const char *);
+	typedef bool(*appTelemetryAddOsVersion_t)(void);
 	typedef void (*appTelemetryFree_t)(void);
 	typedef bool (*appTelemetryAddPageview_t)(const char *, const char *);
 	typedef bool (*appTelemetryAddEvent_t)(const char *, const char *, const int);
@@ -57,6 +58,7 @@ private:
 	appTelemetryDisableLogfile_t	appTelemetryDisableLogfile_ptr = NULL;
 	appTelemetryInit_t				appTelemetryInit_ptr = NULL;
 	appTelemetryFree_t				appTelemetryFree_ptr = NULL;
+	appTelemetryAddOsVersion_t		appTelemetryAddOsVersion_ptr = NULL;
 	appTelemetryAddPageview_t		appTelemetryAddPageview_ptr = NULL;
 	appTelemetryAddEvent_t			appTelemetryAddEvent_ptr = NULL;
 
@@ -85,6 +87,10 @@ public:
 
 		appTelemetryFree_ptr = (appTelemetryFree_t)getFunction("appTelemetryFree");
 		if (!appTelemetryFree_ptr)
+			m_errorsExist = true;
+
+		appTelemetryAddOsVersion_ptr = (appTelemetryAddOsVersion_t)getFunction("appTelemetryAddOsVersion");
+		if (!appTelemetryAddOsVersion_ptr)
 			m_errorsExist = true;
 
 		appTelemetryAddPageview_ptr = (appTelemetryAddPageview_t)getFunction("appTelemetryAddPageview");
@@ -138,6 +144,15 @@ public:
 		if (appTelemetryFree_ptr)
 			appTelemetryFree_ptr();
 	}
+
+
+	bool		appTelemetryAddOsVersion(void)
+	{
+		if (appTelemetryAddOsVersion_ptr)
+			return appTelemetryAddOsVersion_ptr();
+		return false;
+	}
+
 
 	bool		appTelemetryAddPageview(const char *pagePath, const char *pageTitle = NULL)
 	{

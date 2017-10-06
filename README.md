@@ -10,7 +10,6 @@ Shareware developers for desktop programs can now see via one free reporting pla
 
 Web site: [https://www.StarMessageSoftware.com/libapptelemetry]
 Documentation / Implementation guide: [https://www.StarMessageSoftware.com/libapptelemetry/implementation]
-Library version: 0.4.5
 
 (c) StarMessage Software [http://www.StarMessageSoftware.com]
  
@@ -21,7 +20,7 @@ Track your program usage via your existing Google Analytics platform.
 **Operating system compatibility:**
 
 Already tested under:
-- Windows 32, 64 bit
+- Windows XP and later, 32/64 bit
 - OSX 10.6+
 
 

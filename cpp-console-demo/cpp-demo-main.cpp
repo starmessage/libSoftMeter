@@ -3,7 +3,7 @@
 //  main.cpp
 //  appTelemetry test in C++
 //
-//	file version: 0.4.5
+//	file version: 0.4.8
 //  Copyright © 2017 StarMessage software. All rights reserved.
 //  Web: http://www.StarMessageSoftware.com/libapptelemetry
 // 
@@ -15,7 +15,7 @@
 
 #include "AppTelemetry_cppApi.h"
 
-const char *appVer = "0.7";
+const char *appVer = "0.4.8";
 
 
 /* building the program without dependency on the runtime DLLs:
