@@ -1,20 +1,20 @@
-LibAppTelemetry End User License Agreement
--------------------------------------------
-ver 1.0
+﻿================================================================
+LibAppTelemetry End User License Agreement | License version 1.1
+================================================================
 
 
 Introduction.
 ----------------
 This software program uses the libAppTelemetry component that allows the developer of the 
-software to collect installation and usage statistics.
+software to collect installation and run-time usage statistics of the software.
 
 
 In brief.
 ----------------
-- No personal information is contained in the data.
-- The data are not sold, nor used/given to 3rd parties.
-- The data are used in aggregated form (e.g. number of installations per month).
-- The platform of Google Analytics is used for the data collection and reporting.
+- No personal information is collected.
+- The data are not sold, nor used/given/shared with 3rd parties.
+- The platform of Google Analytics is used for the data collection and reporting. 
+  The privacy and personal data policies of Google's Measurement Protocol are respected.
 
 
 Kind of data.
@@ -23,7 +23,7 @@ The data collected are completely anonymous and consist of parameters like the o
 system, the version of the software, the screen resolution, the country, any errors 
 occurred during the running of the program, etc.
 
-The same type of data are commonly collected every time we visit anonymously a website. 
+The same type of data are commonly collected every time you visit anonymously a website. 
 This is mentioned to allow you to establish an analogy between the data collected by this 
 program and the commonly used data collection that is a norm on the internet.
 
@@ -32,18 +32,24 @@ Purpose of data collection.
 -------------
 The data are collected for the sole purpose of monitoring the good running of the program 
 and identifying areas for improvement, discover incompatibilities with specific operating 
-systems, estimate the size of the user base, plan and respond to increases in demand, etc.
+systems, estimate the size of the user base, plan and respond to increases in demand, 
+estimate the usefulness of the various features of the program, etc.
 
 
 Storage of the data.
 -------------
-Data are trasnfered directly from the program to the secure platform of Google Analytics. 
-Google Analytics is used for the reporting on the data.
+Data are transfered directly from the program to the secure platform of Google Analytics. 
+Google Analytics is used for the reporting on the data. 
+The Google privacy and personal data protection policies apply.
+
 
 Who has access Storage of the data.
 -------------
+StarMessage software.
 
 
+More information about the telemetry library
+-------------
 You can read more information about libAppTelemetry at
 http://www.StarMessageSoftware/libapptelemetry
 
