@@ -78,28 +78,28 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>f:\temp-visualstudio\$(ProjectName)\$(Configuration)-$(platform)\</OutDir>
+    <OutDir>f:\temp-visualstudio\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>f:\temp-visualstudio\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetExt>.exe</TargetExt>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>f:\temp-visualstudio\$(ProjectName)\$(Configuration)-$(platform)\</OutDir>
+    <OutDir>f:\temp-visualstudio\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>f:\temp-visualstudio\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetName>$(ProjectName)-64bit</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>f:\temp-visualstudio\$(ProjectName)\$(Configuration)-$(platform)\</OutDir>
+    <OutDir>f:\temp-visualstudio\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>f:\temp-visualstudio\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetExt>.exe</TargetExt>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>f:\temp-visualstudio\$(ProjectName)\$(Configuration)-$(platform)\</OutDir>
+    <OutDir>f:\temp-visualstudio\$(ProjectName)\$(Configuration)\</OutDir>
     <IntDir>f:\temp-visualstudio\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetName>$(ProjectName)-64bit</TargetName>
     <TargetExt>.exe</TargetExt>

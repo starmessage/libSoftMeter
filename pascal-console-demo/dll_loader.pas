@@ -3,7 +3,7 @@
 ///     unit dll_loader.pas
 ///     utility class to load the DLL and link its functions
 ///
-///		Version of file: 1.0
+///		Version of file: 1.1
 ///  	URL of file: https://github.com/starmessage/libAppTelemetry-sample-programs/blob/master/pascal-console-demo/dll_loader.pas
 ///		URL of repo: https://github.com/starmessage/libAppTelemetry-sample-programs
 ///     Copyright, StarMessage software
@@ -32,7 +32,7 @@ uses Windows;
 type
 	TDllLoader = class(TObject)
     private
-        theDLL: THandle;
+        hDLL: THandle;
 
     public
         constructor Create(aDllFilename:PChar); virtual;
@@ -52,12 +52,13 @@ type
 
 type
     // C prototype: const char*	appTelemetryGetVersion(void);
-    TappTelemetryGetVersion = function: PAnsiChar; cdecl; // stdcall; 
-    TappTelemetryGetLogFilename = function: PAnsiChar; cdecl; 
+    TappTelemetryGetVersion = function: PAnsiChar; cdecl; // stdcall;
+    TappTelemetryGetLogFilename = function: PAnsiChar; cdecl;
     TappTelemetryEnableLogfile = procedure(appName, macBundleID:PAnsiChar); cdecl;
     TappTelemetryDisableLogfile = procedure; cdecl;
-    TappTelemetryInit = function(appName, appVersion, propertyID:PAnsiChar): BOOL ; cdecl;
+    TappTelemetryInit = function(appName, appVersion, propertyID:PAnsiChar, userGaveConsent:BOOL): BOOL ; cdecl;
     TappTelemetryFree = procedure; cdecl;
+		TappTelemetryAddOsVersion = procedure; cdecl;
     TappTelemetryAddPageview = function(pagePath, pageTitle:PAnsiChar): BOOL ; cdecl;
     TappTelemetryAddEvent = function(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ; cdecl;
 
@@ -65,10 +66,11 @@ type
     private
         appTelemetryGetVersionPtr: TappTelemetryGetVersion;
         appTelemetryGetLogFilenamePtr: TappTelemetryGetLogFilename;
-        appTelemetryEnableLogfilePtr: TappTelemetryEnableLogfile;
-		appTelemetryDisableLogfilePtr: TappTelemetryDisableLogfile;
+				appTelemetryEnableLogfilePtr: TappTelemetryEnableLogfile;
+				appTelemetryDisableLogfilePtr: TappTelemetryDisableLogfile;
         appTelemetryInitPtr: TappTelemetryInit;
         appTelemetryFreePtr: TappTelemetryFree;
+				appTelemetryAddOsVersionPtr: TappTelemetryAddOsVersion;
         appTelemetryAddPageviewPtr: TappTelemetryAddPageview;
         appTelemetryAddEventPtr: TappTelemetryAddEvent;
 
@@ -78,7 +80,7 @@ type
         function appTelemetryGetVersion: string;
         function appTelemetryGetLogFilename: string;
         procedure appTelemetryEnableLogfile(appName, macBundleID:PAnsiChar);
-		procedure appTelemetryDisableLogfile;
+				procedure appTelemetryDisableLogfile;
         function appTelemetryInit(appName, appVersion, propertyID:PAnsiChar): BOOL ;
         procedure appTelemetryFree;
         function appTelemetryAddPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
@@ -96,7 +98,7 @@ uses SysUtils;
 
 constructor TDllLoader.Create(aDllFilename:PChar);
 begin
-    theDLL := LoadLibrary(aDllFilename );
+    hDLL := LoadLibrary(aDllFilename );
     // if theDLL >= 32 then { success }
 end;
 
@@ -104,19 +106,19 @@ end;
 destructor  TDllLoader.Destroy;
 begin
     if isLoaded then
-        FreeLibrary(theDLL);
+        FreeLibrary(hDLL);
 end;
 
 
 function TDllLoader.getHandle: THandle;
 begin
-    getHandle := theDLL;
+    getHandle := hDLL;
 end;
 
 
 function TDllLoader.isLoaded;
 begin
-    isLoaded := (theDLL>32);
+    isLoaded := (hDLL>32);
 end;
 
 /////////////////////////////////////////////////////
@@ -125,15 +127,16 @@ constructor TDllAppTelemetry.Create(aDllFilename:PChar);
 begin
 	inherited Create(aDllFilename);
 	// link the functions
-	// In some DLLs (depending on how they are compiled), the correct call is GetProcAddress(hDLL, '_FunctioName'); 
+	// In some DLLs (depending on how they are compiled), the correct call is GetProcAddress(hDLL, '_FunctioName');
 	// otherwise nil is returned.
-	// https://stackoverflow.com/questions/10405991/calling-functions-from-a-c-dll-in-delphi
+
 	@appTelemetryGetVersionPtr := GetProcAddress(theDLL, 'appTelemetryGetVersion');
 	@appTelemetryGetLogFilenamePtr := GetProcAddress(theDLL, 'appTelemetryGetLogFilename');
 	@appTelemetryEnableLogfilePtr := GetProcAddress(theDLL, 'appTelemetryEnableLogfile');
 	@appTelemetryDisableLogfilePtr := GetProcAddress(theDLL, 'appTelemetryDisableLogfile');
 	@appTelemetryInitPtr := GetProcAddress(theDLL, 'appTelemetryInit');
 	@appTelemetryFreePtr := GetProcAddress(theDLL, 'appTelemetryFree');
+	@appTelemetryAddOsVersionPtr = GetProcAddress(theDLL, 'appTelemetryAddOsVersion');
 	@appTelemetryAddPageviewPtr := GetProcAddress(theDLL, 'appTelemetryAddPageview');
 	@appTelemetryAddEventPtr := GetProcAddress(theDLL, 'appTelemetryAddEvent');
 end;
@@ -147,6 +150,14 @@ begin
 end;
 
 
+function TDllAppTelemetry.appTelemetryInit(appName, appVersion, propertyID: PAnsiChar): BOOL ;
+begin
+    result := false;
+    if @appTelemetryInitPtr <> nil then
+		result := appTelemetryInitPtr(appName, appVersion, propertyID);
+end;
+
+
 procedure TDllAppTelemetry.appTelemetryFree;
 begin
     if @appTelemetryFreePtr <> nil then
@@ -154,11 +165,10 @@ begin
 end;
 
 
-function TDllAppTelemetry.appTelemetryInit(appName, appVersion, propertyID: PAnsiChar): BOOL ;
+procedure TDllAppTelemetry.appTelemetryAddOsVersion;
 begin
-    result := false;
-    if @appTelemetryInitPtr <> nil then
-		result := appTelemetryInitPtr(appName, appVersion, propertyID);
+    if @appTelemetryAddOsVersionPtr <> nil then
+			appTelemetryAddOsVersionPtr;
 end;
 
 

@@ -6,7 +6,7 @@
 //	file version: 0.4.8
 //  Copyright © 2017 StarMessage software. All rights reserved.
 //  Web: http://www.StarMessageSoftware.com/libapptelemetry
-// 
+//
 
 #include <string>
 #include <stdio.h>
@@ -15,14 +15,18 @@
 
 #include "AppTelemetry_cppApi.h"
 
-const char *appVer = "0.4.8";
+const char *appVer = "0.4.9";
+
+// If the user has opted-out from sending telemetry data, this variable must be false.
+// Save the user's consent in the app's settings and then read this variable every time your program starts.
+const bool userGaveConsent = true;
 
 
 /* building the program without dependency on the runtime DLLs:
 	To avoid "MSVCP140.dll is missing" you can statically link the program.
-	In visual studio, go to Project tab -> properties - > configuration properties -> C/C++ -> Code Generation 
+	In visual studio, go to Project tab -> properties - > configuration properties -> C/C++ -> Code Generation
 	on runtime library choose /MTd for debug mode and /MT for release mode.
-	This will cause the compiler to embed the runtime into the app. 
+	This will cause the compiler to embed the runtime into the app.
 	The executable will be significantly bigger, but it will run without any need of runtime DLLs.
 */
 
@@ -43,7 +47,7 @@ bool checkCommandLineParams(int argc, const char * argv[])
 {
 	if (argc!=2)
 		return false;
-		
+
 	return (strncmp(argv[1], "UA-", 3) == 0); // chech if the parameter starts with UA-
 }
 
@@ -67,7 +71,7 @@ int main(int argc, const char * argv[])
 	if (!checkCommandLineParams(argc, argv))
 	{
 		std::cerr << "Error: the program must be called with a parameter specifying the google analytics property\nE.g.\n";
-        
+
         // std::cerr << argv[0] << " UA-123456-12\n";
         #ifdef _WIN32
             std::cerr << "cpp-demo-win UA-123456-12\n";
@@ -100,34 +104,39 @@ int main(int argc, const char * argv[])
 
 	// fictional appName and appVersion for your testing
 	const char *appName = executableName.c_str();
-	
+
 
 	telemetryDll.appTelemetryEnableLogfile(appName, "com.company.appname");
 	std::string logFilename(telemetryDll.appTelemetryGetLogFilename());
 	std::cout << "libAppTelemetry log filename:" << logFilename << std::endl;
 
 	// initialize the library with your program's name, version and google propertyID
-    if (!telemetryDll.appTelemetryInit(appName, appVer, gaPropertyID.c_str()))
+    if (!telemetryDll.appTelemetryInit(appName, appVer, gaPropertyID.c_str(), userGaveConsent))
 	{
 		std::cerr << "Error calling appTelemetryInit_ptr\n";
 		return 201;
 	}
 	std::cout << "appTelemetryInit() called with Google property:" << gaPropertyID << std::endl;
 	
-   
-    
+	
+	if (!telemetryDll.appTelemetryAddOsVersion())
+	{
+		std::cerr << "Error calling appTelemetryAddOsVersion()\n";
+		return 202;
+	}
+	
 	std::cout << "Will call appTelemetryAddPageview()" << std::endl;
 	if (!telemetryDll.appTelemetryAddPageview("main window", "main window"))
 	{
 		std::cerr << "Error calling appTelemetryAddPageview_ptr\n";
-		return 202;
+		return 203;
 	}
 
 	std::cout << "Will call appTelemetryAddEvent()" << std::endl;
 	if (!telemetryDll.appTelemetryAddEvent("AppLaunch", appName, 1))
 	{
 		std::cerr << "Error calling appTelemetryAddEvent_ptr\n";
-		return 203;
+		return 204;
 	}
 
 	telemetryDll.appTelemetryFree();
