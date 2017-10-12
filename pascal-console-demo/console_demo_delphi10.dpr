@@ -31,8 +31,12 @@ end;
 
 
 const   programName = 'console_demo_delphi10';
-		programVer = '1.4';
+    		programVer = '1.5';
         DLLfilename =  'libAppTelemetry.dll';
+
+        // If the user has opted-out from sending telemetry data, this variable must be true.
+        // Save the user's consent in the app's settings and then read this variable every time your program starts.
+const disabledByTheUser:boolean = false;
 
 var     appTelemetryDll:TDllAppTelemetry;
         googleAnalyticsPropertyID:PAnsiChar;
@@ -44,7 +48,7 @@ begin
 
     if checkCommandLineParam=false then
     begin
-        writeln('Call this program with a one parameter, the Google Property ID, e.g.' + CHR(13) + CHR(10) + 
+        writeln('Call this program with a one parameter, the Google Property ID, e.g.' + CHR(13) + CHR(10) +
                 'console_demo_delphi10 UA-123456-01');
         exit;
     end;
@@ -57,16 +61,19 @@ begin
             writeln('DLL NOT loaded. The DLL "' + DLLfilename + '" must be in the same folder as the executable.');
 
     writeln('DLL version: ', appTelemetryDll.appTelemetryGetVersion);
-    
-	writeln('Enabling the log file. Check the log file for the duration of the telemetry functions.');
+
+  	writeln('Enabling the log file. Check the log file for the duration of the telemetry functions.');
     appTelemetryDll.appTelemetryEnableLogfile(programName, 'com.company.' + programName);
     writeln('DLL log filename: ', appTelemetryDll.appTelemetryGetLogFilename);
 
     googleAnalyticsPropertyID :=  PAnsiChar(AnsiString(ParamStr(1)));
     writeln('Will send data to the Google Property ID:' +  googleAnalyticsPropertyID);
 
-    if not appTelemetryDll.appTelemetryInit(PAnsiChar(programName), PAnsiChar(programVer), googleAnalyticsPropertyID) then
+    if not appTelemetryDll.appTelemetryInit(PAnsiChar(programName), PAnsiChar(programVer), googleAnalyticsPropertyID, disabledByTheUser) then
         writeLn('appTelemetryInit() failed.');
+
+    if not appTelemetryDll.appTelemetryAddOsVersion then
+        writeLn('appTelemetryAddOsVersion() failed.');
 
 	// you can see the user's OS version under the "browser" field in G.A.
 	// you can see the user's screen resolution under the "screen resolution" field in G.A.
@@ -105,5 +112,3 @@ begin
 
 
 end.
-
-

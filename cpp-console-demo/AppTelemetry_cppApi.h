@@ -3,7 +3,7 @@
  *  File:		AppTelemetry_cppApi.h
  *	Purpose:	Load the DLL or the DYLIB and expose all their functions via an object
  *	*****************************************
- *  Library:	
+ *  Library:
  *  Copyright: 	2017 StarMessage software.
  *  License: 	Free for opensource projects.
  *  			Commercial license exists for closed source projects.
@@ -23,7 +23,7 @@
 #if defined(__APPLE__)
 	// Mac OS X Specific header stuff here
 	#include <TargetConditionals.h>
-	// #define WINAPI
+
 #endif
 
 
@@ -35,7 +35,7 @@ extern "C" {
 	typedef const char* (*appTelemetryGetLogFilename_t)(void);
 	typedef void (*appTelemetryEnableLogfile_t)(const char *, const char *);
 	typedef void (*appTelemetryDisableLogfile_t)(void);
-	typedef bool (*appTelemetryInit_t)(const char *, const char *, const char *);
+	typedef bool (*appTelemetryInit_t)(const char *, const char *, const char *, const bool);
 	typedef bool(*appTelemetryAddOsVersion_t)(void);
 	typedef void (*appTelemetryFree_t)(void);
 	typedef bool (*appTelemetryAddPageview_t)(const char *, const char *);
@@ -132,10 +132,10 @@ public:
 			appTelemetryDisableLogfile_ptr();
 	}
 
-	bool		appTelemetryInit(const char *appName, const char *appVersion, const char *propertyID)
+	bool		appTelemetryInit(const char *appName, const char *appVersion, const char *propertyID, const bool disabledByTheUser)
 	{
 		if (appTelemetryInit_ptr)
-			return appTelemetryInit_ptr(appName, appVersion, propertyID);
+			return appTelemetryInit_ptr(appName, appVersion, propertyID, disabledByTheUser);
 		return false;
 	}
 
@@ -144,7 +144,6 @@ public:
 		if (appTelemetryFree_ptr)
 			appTelemetryFree_ptr();
 	}
-
 
 	bool		appTelemetryAddOsVersion(void)
 	{
