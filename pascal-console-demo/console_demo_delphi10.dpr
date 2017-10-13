@@ -31,12 +31,12 @@ end;
 
 
 const   programName = 'console_demo_delphi10';
-    		programVer = '1.5';
+    		programVer = '1.6';
         DLLfilename =  'libAppTelemetry.dll';
 
-        // If the user has opted-out from sending telemetry data, this variable must be true.
+        // If the user has opted-out from sending telemetry data, this variable must be false.
         // Save the user's consent in the app's settings and then read this variable every time your program starts.
-const disabledByTheUser:boolean = false;
+const userGaveConsent:boolean = true;
 
 var     appTelemetryDll:TDllAppTelemetry;
         googleAnalyticsPropertyID:PAnsiChar;
@@ -69,7 +69,7 @@ begin
     googleAnalyticsPropertyID :=  PAnsiChar(AnsiString(ParamStr(1)));
     writeln('Will send data to the Google Property ID:' +  googleAnalyticsPropertyID);
 
-    if not appTelemetryDll.appTelemetryInit(PAnsiChar(programName), PAnsiChar(programVer), googleAnalyticsPropertyID, disabledByTheUser) then
+    if not appTelemetryDll.appTelemetryInit(PAnsiChar(programName), PAnsiChar(programVer), googleAnalyticsPropertyID, userGaveConsent) then
         writeLn('appTelemetryInit() failed.');
 
     if not appTelemetryDll.appTelemetryAddOsVersion then
