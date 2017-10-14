@@ -3,7 +3,7 @@
 ///     unit dll_loader.pas
 ///     utility class to load the DLL and link its functions
 ///
-///		Version of file: 1.6
+///		Version of file: 1.7
 ///  	URL of file: https://github.com/starmessage/libAppTelemetry-sample-programs/blob/master/pascal-console-demo/dll_loader.pas
 ///		URL of repo: https://github.com/starmessage/libAppTelemetry-sample-programs
 ///     Copyright, StarMessage software
@@ -131,27 +131,16 @@ begin
 	// In some DLLs (depending on how they are compiled), the correct call is GetProcAddress(hDLL, '_FunctioName');
 	// otherwise nil is returned.
 
-<<<<<<< HEAD
-	@appTelemetryGetVersionPtr := GetProcAddress(getHandle, 'appTelemetryGetVersion');
-	@appTelemetryGetLogFilenamePtr := GetProcAddress(getHandle, 'appTelemetryGetLogFilename');
-	@appTelemetryEnableLogfilePtr := GetProcAddress(getHandle, 'appTelemetryEnableLogfile');
-	@appTelemetryDisableLogfilePtr := GetProcAddress(getHandle, 'appTelemetryDisableLogfile');
-	@appTelemetryInitPtr := GetProcAddress(getHandle, 'appTelemetryInit');
-	@appTelemetryFreePtr := GetProcAddress(getHandle, 'appTelemetryFree');
-	@appTelemetryAddOsVersionPtr := GetProcAddress(getHandle, 'appTelemetryAddOsVersion');
-	@appTelemetryAddPageviewPtr := GetProcAddress(getHandle, 'appTelemetryAddPageview');
-	@appTelemetryAddEventPtr := GetProcAddress(getHandle, 'appTelemetryAddEvent');
-=======
 	@appTelemetryGetVersionPtr := GetProcAddress(hDLL, 'appTelemetryGetVersion');
 	@appTelemetryGetLogFilenamePtr := GetProcAddress(hDLL, 'appTelemetryGetLogFilename');
 	@appTelemetryEnableLogfilePtr := GetProcAddress(hDLL, 'appTelemetryEnableLogfile');
 	@appTelemetryDisableLogfilePtr := GetProcAddress(hDLL, 'appTelemetryDisableLogfile');
 	@appTelemetryInitPtr := GetProcAddress(hDLL, 'appTelemetryInit');
 	@appTelemetryFreePtr := GetProcAddress(hDLL, 'appTelemetryFree');
-	@appTelemetryAddOsVersionPtr = GetProcAddress(hDLL, 'appTelemetryAddOsVersion');
+	@appTelemetryAddOsVersionPtr := GetProcAddress(hDLL, 'appTelemetryAddOsVersion');
 	@appTelemetryAddPageviewPtr := GetProcAddress(hDLL, 'appTelemetryAddPageview');
 	@appTelemetryAddEventPtr := GetProcAddress(hDLL, 'appTelemetryAddEvent');
->>>>>>> origin/master
+
 end;
 
 
@@ -167,11 +156,8 @@ function TDllAppTelemetry.appTelemetryInit(appName, appVersion, propertyID: PAns
 begin
     result := false;
     if @appTelemetryInitPtr <> nil then
-<<<<<<< HEAD
-			result := appTelemetryInitPtr(appName, appVersion, propertyID, userGaveConsent);
-=======
-			result := appTelemetryInitPtr(appName, appVersion, propertyID);
->>>>>>> origin/master
+		result := appTelemetryInitPtr(appName, appVersion, propertyID, userGaveConsent);
+
 end;
 
 
