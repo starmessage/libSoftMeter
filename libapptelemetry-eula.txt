@@ -1,12 +1,12 @@
 ﻿================================================================
-LibAppTelemetry End User License Agreement | License version 1.1
+LibAppTelemetry End User License Agreement | License version 1.2
 ================================================================
 
 
 Introduction.
 ----------------
 This software program uses the libAppTelemetry component that allows the developer of the 
-software to collect installation and run-time usage statistics of the software.
+software to collect anonymous installation and run-time usage statistics of the software.
 
 
 In brief.
@@ -14,7 +14,8 @@ In brief.
 - No personal information is collected.
 - The data are not sold, nor used/given/shared with 3rd parties.
 - The platform of Google Analytics is used for the data collection and reporting. 
-  The privacy and personal data policies of Google's Measurement Protocol are respected.
+  The privacy and personal data policies of Google's Measurement Protocol are also 
+  respected.
 
 
 Kind of data.
@@ -43,7 +44,7 @@ Google Analytics is used for the reporting on the data.
 The Google privacy and personal data protection policies apply.
 
 
-Who has access Storage of the data.
+Who has access to the data.
 -------------
 StarMessage software.
 
