@@ -31,7 +31,7 @@ end;
 
 
 const   programName = 'console_demo_delphi10';
-    		programVer = '1.6';
+    		programVer = '1.7';
         DLLfilename =  'libAppTelemetry.dll';
 
         // If the user has opted-out from sending telemetry data, this variable must be false.
