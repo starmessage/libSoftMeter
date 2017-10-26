@@ -52,5 +52,5 @@ StarMessage software.
 More information about the telemetry library
 -------------
 You can read more information about libAppTelemetry at
-http://www.StarMessageSoftware/libapptelemetry
+http://www.StarMessageSoftware.com/libapptelemetry
 
