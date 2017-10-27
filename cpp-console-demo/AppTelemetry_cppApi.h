@@ -1,4 +1,4 @@
-﻿
+
 /*  *****************************************
  *  File:		AppTelemetry_cppApi.h
  *	Purpose:	Load the DLL or the DYLIB and expose all their functions via an object
@@ -21,7 +21,7 @@
 
 
 #if defined(__APPLE__)
-	// Mac OS X Specific header stuff here
+	// Mac OS X Specific header stuff
 	#include <TargetConditionals.h>
 
 #endif
@@ -31,15 +31,14 @@
 extern "C" {
 #endif
 
-	typedef const char* (*appTelemetryGetVersion_t)(void);
-	typedef const char* (*appTelemetryGetLogFilename_t)(void);
-	typedef void (*appTelemetryEnableLogfile_t)(const char *, const char *);
-	typedef void (*appTelemetryDisableLogfile_t)(void);
-	typedef bool (*appTelemetryInit_t)(const char *, const char *, const char *, const bool);
-	typedef bool(*appTelemetryAddOsVersion_t)(void);
-	typedef void (*appTelemetryFree_t)(void);
-	typedef bool (*appTelemetryAddPageview_t)(const char *, const char *);
-	typedef bool (*appTelemetryAddEvent_t)(const char *, const char *, const int);
+	typedef const char* (*atGetVersion_t)(void);
+	typedef const char* (*atGetLogFilename_t)(void);
+	typedef void (*atEnableLogfile_t)(const char *, const char *);
+	typedef void (*atDisableLogfile_t)(void);
+	typedef bool (*atInit_t)(const char *, const char *, const char *, const char *, const char *, const bool);
+	typedef void (*atFree_t)(void);
+	typedef bool (*atSendPageview_t)(const char *, const char *);
+	typedef bool (*atSendEvent_t)(const char *, const char *, const int);
 
 #ifdef __cplusplus
 }
@@ -52,53 +51,48 @@ class AppTelemetry_cppApi : public cpccLinkedLibrary
 {
 private:
 
-	appTelemetryGetVersion_t		appTelemetryGetVersion_ptr = NULL;
-	appTelemetryGetLogFilename_t	appTelemetryGetLogFilename_ptr = NULL;
-	appTelemetryEnableLogfile_t		appTelemetryEnableLogfile_ptr = NULL;
-	appTelemetryDisableLogfile_t	appTelemetryDisableLogfile_ptr = NULL;
-	appTelemetryInit_t				appTelemetryInit_ptr = NULL;
-	appTelemetryFree_t				appTelemetryFree_ptr = NULL;
-	appTelemetryAddOsVersion_t		appTelemetryAddOsVersion_ptr = NULL;
-	appTelemetryAddPageview_t		appTelemetryAddPageview_ptr = NULL;
-	appTelemetryAddEvent_t			appTelemetryAddEvent_ptr = NULL;
+	atGetVersion_t			atGetVersion_ptr = NULL;
+	atGetLogFilename_t		atGetLogFilename_ptr = NULL;
+	atEnableLogfile_t		atEnableLogfile_ptr = NULL;
+	atDisableLogfile_t		atDisableLogfile_ptr = NULL;
+	atInit_t				atInit_ptr = NULL;
+	atFree_t				atFree_ptr = NULL;
+	atSendPageview_t		atSendPageview_ptr = NULL;
+	atSendEvent_t			atSendEvent_ptr = NULL;
 
-	bool							m_errorsExist = false;
+	bool					m_errorsExist = false;
 
 
 public:
 
 	explicit AppTelemetry_cppApi(const char *aLibraryfilename) : cpccLinkedLibrary(aLibraryfilename)
 	{
-		appTelemetryGetVersion_ptr = (appTelemetryGetVersion_t)getFunction("appTelemetryGetVersion");
-		if (!appTelemetryGetVersion_ptr)
+		atGetVersion_ptr = (atGetVersion_t)getFunction("atGetVersion");
+		if (!atGetVersion_ptr)
 			m_errorsExist = true;
 
-		appTelemetryGetLogFilename_ptr = (appTelemetryGetLogFilename_t)getFunction("appTelemetryGetLogFilename");
-		if (!appTelemetryGetLogFilename_ptr)
+		atGetLogFilename_ptr = (atGetLogFilename_t)getFunction("atGetLogFilename");
+		if (!atGetLogFilename_ptr)
 			m_errorsExist = true;
 
-		appTelemetryEnableLogfile_ptr = (appTelemetryEnableLogfile_t)getFunction("appTelemetryEnableLogfile");
-		if (!appTelemetryEnableLogfile_ptr)
+		atEnableLogfile_ptr = (atEnableLogfile_t)getFunction("atEnableLogfile");
+		if (!atEnableLogfile_ptr)
 			m_errorsExist = true;
 
-		appTelemetryInit_ptr = (appTelemetryInit_t)getFunction("appTelemetryInit");
-		if (!appTelemetryInit_ptr)
+		atInit_ptr = (atInit_t)getFunction("atInit");
+		if (!atInit_ptr)
 			m_errorsExist = true;
 
-		appTelemetryFree_ptr = (appTelemetryFree_t)getFunction("appTelemetryFree");
-		if (!appTelemetryFree_ptr)
+		atFree_ptr = (atFree_t)getFunction("atFree");
+		if (!atFree_ptr)
 			m_errorsExist = true;
 
-		appTelemetryAddOsVersion_ptr = (appTelemetryAddOsVersion_t)getFunction("appTelemetryAddOsVersion");
-		if (!appTelemetryAddOsVersion_ptr)
+		atSendPageview_ptr = (atSendPageview_t)getFunction("atSendPageview");
+		if (!atSendPageview_ptr)
 			m_errorsExist = true;
 
-		appTelemetryAddPageview_ptr = (appTelemetryAddPageview_t)getFunction("appTelemetryAddPageview");
-		if (!appTelemetryAddPageview_ptr)
-			m_errorsExist = true;
-
-		appTelemetryAddEvent_ptr = (appTelemetryAddEvent_t)getFunction("appTelemetryAddEvent");
-		if (!appTelemetryAddEvent_ptr)
+		atSendEvent_ptr = (atSendEvent_t)getFunction("atSendEvent");
+		if (!atSendEvent_ptr)
 			m_errorsExist = true;
 	}
 
@@ -106,64 +100,56 @@ public:
 public:
 	const bool errorsExist(void) { return m_errorsExist;  }
 
-	const char*	appTelemetryGetVersion(void)
+	const char*	atGetVersion(void)
 	{
-        if (!appTelemetryGetVersion_ptr)
-			return "appTelemetryGetVersion() Errors exist";
-		return appTelemetryGetVersion_ptr();
+        if (!atGetVersion_ptr)
+			return  "Error in version";
+		return atGetVersion_ptr();
 	}
 
-	const char*	appTelemetryGetLogFilename(void)
+	const char*	atGetLogFilename(void)
 	{
-        if (!appTelemetryGetLogFilename_ptr)
-			return "appTelemetryGetLogFilename() Errors exist";
-		return appTelemetryGetLogFilename_ptr();
+        if (!atGetLogFilename_ptr)
+			return "atGetLogFilename() Errors exist";
+		return atGetLogFilename_ptr();
 	}
 
-	void		appTelemetryEnableLogfile(const char *appName, const char *macBundleId)
+	void		atEnableLogfile(const char *appName, const char *macBundleId)
 	{
-		if (appTelemetryEnableLogfile_ptr)
-			appTelemetryEnableLogfile_ptr(appName, macBundleId);
+		if (atEnableLogfile_ptr)
+			atEnableLogfile_ptr(appName, macBundleId);
 	}
 
-	void		appTelemetryDisableLogfile(void)
+	void		atDisableLogfile(void)
 	{
-		if (appTelemetryEnableLogfile_ptr)
-			appTelemetryDisableLogfile_ptr();
+		if (atEnableLogfile_ptr)
+			atDisableLogfile_ptr();
 	}
 
-	bool		appTelemetryInit(const char *appName, const char *appVersion, const char *propertyID, const bool disabledByTheUser)
+	bool		atInit(const char *appName, const char *appVersion, const char *appLicense, const char *appEdition, const char *propertyID, const bool disabledByTheUser)
 	{
-		if (appTelemetryInit_ptr)
-			return appTelemetryInit_ptr(appName, appVersion, propertyID, disabledByTheUser);
+		if (atInit_ptr)
+			return atInit_ptr(appName, appVersion, appLicense, appEdition, propertyID, disabledByTheUser);
 		return false;
 	}
 
-	void		appTelemetryFree(void)
+	void		atFree(void)
 	{
-		if (appTelemetryFree_ptr)
-			appTelemetryFree_ptr();
+		if (atFree_ptr)
+			atFree_ptr();
 	}
 
-	bool		appTelemetryAddOsVersion(void)
+	bool		atSendPageview(const char *pagePath, const char *pageTitle = NULL)
 	{
-		if (appTelemetryAddOsVersion_ptr)
-			return appTelemetryAddOsVersion_ptr();
+		if (atSendPageview_ptr)
+			return atSendPageview_ptr(pagePath, pageTitle);
 		return false;
 	}
 
-
-	bool		appTelemetryAddPageview(const char *pagePath, const char *pageTitle = NULL)
+	bool		atSendEvent(const char *eventAction, const char *eventLabel, const int eventValue)
 	{
-		if (appTelemetryAddPageview_ptr)
-			return appTelemetryAddPageview_ptr(pagePath, pageTitle);
-		return false;
-	}
-
-	bool		appTelemetryAddEvent(const char *eventAction, const char *eventLabel, const int eventValue)
-	{
-		if (appTelemetryAddEvent_ptr)
-			return appTelemetryAddEvent_ptr(eventAction, eventLabel, eventValue);
+		if (atSendEvent_ptr)
+			return atSendEvent_ptr(eventAction, eventLabel, eventValue);
 		return false;
 	}
 

@@ -10,6 +10,7 @@ This repository contains
 
 **Library information:**
 
+Version: 0.5.2
 Web site: [https://www.StarMessageSoftware.com/libapptelemetry]
 Documentation / Implementation guide: [https://www.StarMessageSoftware.com/libapptelemetry/implementation]
 Examples reporting via  Google Analytics: [https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications]

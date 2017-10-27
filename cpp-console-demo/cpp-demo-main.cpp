@@ -15,7 +15,9 @@
 
 #include "AppTelemetry_cppApi.h"
 
-const char *appVer = "0.4.9";
+const char 	*appVer = "0.5.2",
+            *appLicense = "demo", // e.g. free, trial, full, paid, etc.
+			*appEdition = "console";
 
 // If the user has opted-out from sending telemetry data, this variable must be false.
 // Save the user's consent in the app's settings and then read this variable every time your program starts.
@@ -100,46 +102,38 @@ int main(int argc, const char * argv[])
 		std::cerr << "Errors exist during the dynamic loading of telemetryDll\n";
 		return 101;
 	}
-	std::cout << "libAppTelemetry version:" << telemetryDll.appTelemetryGetVersion() << std::endl;
+	std::cout << "libAppTelemetry version:" << telemetryDll.atGetVersion() << std::endl;
 
 	// fictional appName and appVersion for your testing
 	const char *appName = executableName.c_str();
 
-
-	telemetryDll.appTelemetryEnableLogfile(appName, "com.company.appname");
-	std::string logFilename(telemetryDll.appTelemetryGetLogFilename());
+	telemetryDll.atEnableLogfile(appName, "com.company.appname");
+	std::string logFilename(telemetryDll.atGetLogFilename());
 	std::cout << "libAppTelemetry log filename:" << logFilename << std::endl;
 
 	// initialize the library with your program's name, version and google propertyID
-    if (!telemetryDll.appTelemetryInit(appName, appVer, gaPropertyID.c_str(), userGaveConsent))
+    if (!telemetryDll.atInit(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
 	{
-		std::cerr << "Error calling appTelemetryInit_ptr\n";
+		std::cerr << "Error calling atInit_ptr\n";
 		return 201;
 	}
-	std::cout << "appTelemetryInit() called with Google property:" << gaPropertyID << std::endl;
+	std::cout << "atInit() called with Google property:" << gaPropertyID << std::endl;
 	
-	
-	if (!telemetryDll.appTelemetryAddOsVersion())
+	std::cout << "Will call atSendPageview()" << std::endl;
+	if (!telemetryDll.atSendPageview("main window", "main window"))
 	{
-		std::cerr << "Error calling appTelemetryAddOsVersion()\n";
-		return 202;
-	}
-	
-	std::cout << "Will call appTelemetryAddPageview()" << std::endl;
-	if (!telemetryDll.appTelemetryAddPageview("main window", "main window"))
-	{
-		std::cerr << "Error calling appTelemetryAddPageview_ptr\n";
+		std::cerr << "Error calling atSendPageview_ptr\n";
 		return 203;
 	}
 
-	std::cout << "Will call appTelemetryAddEvent()" << std::endl;
-	if (!telemetryDll.appTelemetryAddEvent("AppLaunch", appName, 1))
+	std::cout << "Will call atSendEvent()" << std::endl;
+	if (!telemetryDll.atSendEvent("AppLaunch", appName, 1))
 	{
-		std::cerr << "Error calling appTelemetryAddEvent_ptr\n";
+		std::cerr << "Error calling atSendEvent_ptr\n";
 		return 204;
 	}
 
-	telemetryDll.appTelemetryFree();
+	telemetryDll.atFree();
 
 	if (system(NULL)) // If command is a null pointer, the function only checks whether a command processor is available through this function, without invoking any command.
 	{
