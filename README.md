@@ -1,4 +1,4 @@
-﻿**libAppTelemetry-delphi-test**
+﻿**libAppTelemetry compiled library files and demo programs**
 
 libAppTelemetry is a Windows and MacOS library that allows you to send usage statistics from your program to your Google Analytics property.
 It is ideal for shareware developers as it extends the website usage data with the applications usage data.
@@ -9,16 +9,15 @@ This repository contains
 - the distributable library (DLL for Windows or .dylib for MacOS X) 
 
 **Library information:**
-
-Version: 0.5.2
-Web site: [https://www.StarMessageSoftware.com/libapptelemetry]
-Documentation / Implementation guide: [https://www.StarMessageSoftware.com/libapptelemetry/implementation]
-Examples reporting via  Google Analytics: [https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications]
-(c) StarMessage Software [http://www.StarMessageSoftware.com]
+- Version: 0.5.2
+- Web site: [https://www.StarMessageSoftware.com/libapptelemetry]
+- Documentation / Implementation guide: [https://www.StarMessageSoftware.com/libapptelemetry/implementation]
+- Examples reporting via  Google Analytics: [https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications]
+- (c) StarMessage Software [http://www.StarMessageSoftware.com]
  
 **Project Objectives:**
 
-Track your program usage via your existing Google Analytics platform. 
+Track the usage and instalations of your shareware program via your existing Google Analytics account. 
 
 **Operating system compatibility:**
 
