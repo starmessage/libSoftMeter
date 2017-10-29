@@ -64,7 +64,7 @@
 				584CEA0B1F5075B6002B1393 /* cpp-demo-main.cpp */,
 			);
 			name = source;
-			path = "/Users/cto/Documents/work/C-Proj/appTelemetry/demos";
+			path = "/Users/cto/Documents/work/C-Proj/appTelemetry/distrib";
 			sourceTree = "<absolute>";
 		};
 /* End PBXGroup section */
