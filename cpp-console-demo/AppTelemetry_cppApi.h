@@ -31,14 +31,15 @@
 extern "C" {
 #endif
 
-	typedef const char* (*atGetVersion_t)(void);
-	typedef const char* (*atGetLogFilename_t)(void);
-	typedef void (*atEnableLogfile_t)(const char *, const char *);
-	typedef void (*atDisableLogfile_t)(void);
-	typedef bool (*atInit_t)(const char *, const char *, const char *, const char *, const char *, const bool);
-	typedef void (*atFree_t)(void);
-	typedef bool (*atSendPageview_t)(const char *, const char *);
-	typedef bool (*atSendEvent_t)(const char *, const char *, const int);
+	typedef const char* (*latGetVersion_t)(void);
+	typedef const char* (*latGetLogFilename_t)(void);
+	typedef void (*latEnableLogfile_t)(const char *, const char *);
+	typedef void (*latDisableLogfile_t)(void);
+	typedef bool (*latInit_t)(const char *, const char *, const char *, const char *, const char *, const bool);
+	typedef void (*latFree_t)(void);
+	typedef bool (*latSendPageview_t)(const char *, const char *);
+	typedef bool (*latSendEvent_t)(const char *, const char *, const int);
+	typedef bool(*latSendScreenView_t)(const char *);
 
 #ifdef __cplusplus
 }
@@ -51,15 +52,15 @@ class AppTelemetry_cppApi : public cpccLinkedLibrary
 {
 private:
 
-	atGetVersion_t			atGetVersion_ptr = NULL;
-	atGetLogFilename_t		atGetLogFilename_ptr = NULL;
-	atEnableLogfile_t		atEnableLogfile_ptr = NULL;
-	atDisableLogfile_t		atDisableLogfile_ptr = NULL;
-	atInit_t				atInit_ptr = NULL;
-	atFree_t				atFree_ptr = NULL;
-	atSendPageview_t		atSendPageview_ptr = NULL;
-	atSendEvent_t			atSendEvent_ptr = NULL;
-
+	latGetVersion_t			latGetVersion_ptr = NULL;
+	latGetLogFilename_t		latGetLogFilename_ptr = NULL;
+	latEnableLogfile_t		latEnableLogfile_ptr = NULL;
+	latDisableLogfile_t		latDisableLogfile_ptr = NULL;
+	latInit_t				latInit_ptr = NULL;
+	latFree_t				latFree_ptr = NULL;
+	latSendPageview_t		latSendPageview_ptr = NULL;
+	latSendEvent_t			latSendEvent_ptr = NULL;
+	latSendScreenView_t		latSendScreenView_ptr = NULL;
 	bool					m_errorsExist = false;
 
 
@@ -67,32 +68,36 @@ public:
 
 	explicit AppTelemetry_cppApi(const char *aLibraryfilename) : cpccLinkedLibrary(aLibraryfilename)
 	{
-		atGetVersion_ptr = (atGetVersion_t)getFunction("atGetVersion");
-		if (!atGetVersion_ptr)
+		latGetVersion_ptr = (latGetVersion_t)getFunction("latGetVersion");
+		if (!latGetVersion_ptr)
 			m_errorsExist = true;
 
-		atGetLogFilename_ptr = (atGetLogFilename_t)getFunction("atGetLogFilename");
-		if (!atGetLogFilename_ptr)
+		latGetLogFilename_ptr = (latGetLogFilename_t)getFunction("latGetLogFilename");
+		if (!latGetLogFilename_ptr)
 			m_errorsExist = true;
 
-		atEnableLogfile_ptr = (atEnableLogfile_t)getFunction("atEnableLogfile");
-		if (!atEnableLogfile_ptr)
+		latEnableLogfile_ptr = (latEnableLogfile_t)getFunction("latEnableLogfile");
+		if (!latEnableLogfile_ptr)
 			m_errorsExist = true;
 
-		atInit_ptr = (atInit_t)getFunction("atInit");
-		if (!atInit_ptr)
+		latInit_ptr = (latInit_t)getFunction("latInit");
+		if (!latInit_ptr)
 			m_errorsExist = true;
 
-		atFree_ptr = (atFree_t)getFunction("atFree");
-		if (!atFree_ptr)
+		latFree_ptr = (latFree_t)getFunction("latFree");
+		if (!latFree_ptr)
 			m_errorsExist = true;
 
-		atSendPageview_ptr = (atSendPageview_t)getFunction("atSendPageview");
-		if (!atSendPageview_ptr)
+		latSendPageview_ptr = (latSendPageview_t)getFunction("latSendPageview");
+		if (!latSendPageview_ptr)
 			m_errorsExist = true;
 
-		atSendEvent_ptr = (atSendEvent_t)getFunction("atSendEvent");
-		if (!atSendEvent_ptr)
+		latSendEvent_ptr = (latSendEvent_t)getFunction("latSendEvent");
+		if (!latSendEvent_ptr)
+			m_errorsExist = true;
+
+		latSendScreenView_ptr = (latSendScreenView_t)getFunction("latSendScreenView");
+		if (!latSendScreenView_ptr)
 			m_errorsExist = true;
 	}
 
@@ -100,56 +105,77 @@ public:
 public:
 	const bool errorsExist(void) { return m_errorsExist;  }
 
-	const char*	atGetVersion(void)
-	{
-        if (!atGetVersion_ptr)
-			return  "Error in version";
-		return atGetVersion_ptr();
-	}
-
-	const char*	atGetLogFilename(void)
-	{
-        if (!atGetLogFilename_ptr)
-			return "atGetLogFilename() Errors exist";
-		return atGetLogFilename_ptr();
-	}
-
-	void		atEnableLogfile(const char *appName, const char *macBundleId)
-	{
-		if (atEnableLogfile_ptr)
-			atEnableLogfile_ptr(appName, macBundleId);
-	}
-
-	void		atDisableLogfile(void)
-	{
-		if (atEnableLogfile_ptr)
-			atDisableLogfile_ptr();
-	}
-
+	// deprecated fuctions:
+	const char*	atGetVersion(void) { return latGetVersion();  }
+	const char*	atGetLogFilename(void) { return latGetLogFilename(); }
+	void		atEnableLogfile(const char *appName, const char *macBundleId) { latEnableLogfile(appName, macBundleId); }
+	void		atDisableLogfile(void) { latDisableLogfile();  }
 	bool		atInit(const char *appName, const char *appVersion, const char *appLicense, const char *appEdition, const char *propertyID, const bool disabledByTheUser)
+		{	return latInit(appName, appVersion, appLicense, appEdition, propertyID, disabledByTheUser); }
+	void		atFree(void) { latFree(); }
+	bool		atSendPageview(const char *pagePath, const char *pageTitle = NULL) 
+		{	return latSendPageview(pagePath, pageTitle);  }
+	bool		atSendEvent(const char *eventAction, const char *eventLabel, const int eventValue) 
+		{		return latSendEvent(eventAction, eventLabel, eventValue);	}
+
+	// new functions
+	const char*	latGetVersion(void)
 	{
-		if (atInit_ptr)
-			return atInit_ptr(appName, appVersion, appLicense, appEdition, propertyID, disabledByTheUser);
+        if (!latGetVersion_ptr)
+			return  "Error in version";
+		return latGetVersion_ptr();
+	}
+
+	const char*	latGetLogFilename(void)
+	{
+        if (!latGetLogFilename_ptr)
+			return "latGetLogFilename() Errors exist";
+		return latGetLogFilename_ptr();
+	}
+
+	void		latEnableLogfile(const char *appName, const char *macBundleId)
+	{
+		if (latEnableLogfile_ptr)
+			latEnableLogfile_ptr(appName, macBundleId);
+	}
+
+	void		latDisableLogfile(void)
+	{
+		if (latEnableLogfile_ptr)
+			latDisableLogfile_ptr();
+	}
+
+	bool		latInit(const char *appName, const char *appVersion, const char *appLicense, const char *appEdition, const char *propertyID, const bool disabledByTheUser)
+	{
+		if (latInit_ptr)
+			return latInit_ptr(appName, appVersion, appLicense, appEdition, propertyID, disabledByTheUser);
 		return false;
 	}
 
-	void		atFree(void)
+	void		latFree(void)
 	{
-		if (atFree_ptr)
-			atFree_ptr();
+		if (latFree_ptr)
+			latFree_ptr();
 	}
 
-	bool		atSendPageview(const char *pagePath, const char *pageTitle = NULL)
+	bool		latSendPageview(const char *pagePath, const char *pageTitle = NULL)
 	{
-		if (atSendPageview_ptr)
-			return atSendPageview_ptr(pagePath, pageTitle);
+		if (latSendPageview_ptr)
+			return latSendPageview_ptr(pagePath, pageTitle);
 		return false;
 	}
 
-	bool		atSendEvent(const char *eventAction, const char *eventLabel, const int eventValue)
+	bool		latSendEvent(const char *eventAction, const char *eventLabel, const int eventValue)
 	{
-		if (atSendEvent_ptr)
-			return atSendEvent_ptr(eventAction, eventLabel, eventValue);
+		if (latSendEvent_ptr)
+			return latSendEvent_ptr(eventAction, eventLabel, eventValue);
+		return false;
+	}
+
+	bool	latSendScreenView(const char *screenName)
+	{
+		if (latSendScreenView_ptr)
+			return latSendScreenView_ptr(screenName);
 		return false;
 	}
 

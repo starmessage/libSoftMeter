@@ -15,7 +15,7 @@
 
 #include "AppTelemetry_cppApi.h"
 
-const char 	*appVer = "0.5.2",
+const char 	*appVer = "0.5.3",
             *appLicense = "demo", // e.g. free, trial, full, paid, etc.
 			*appEdition = "console";
 
@@ -102,38 +102,45 @@ int main(int argc, const char * argv[])
 		std::cerr << "Errors exist during the dynamic loading of telemetryDll\n";
 		return 101;
 	}
-	std::cout << "libAppTelemetry version:" << telemetryDll.atGetVersion() << std::endl;
+	std::cout << "libAppTelemetry version:" << telemetryDll.latGetVersion() << std::endl;
 
 	// fictional appName and appVersion for your testing
 	const char *appName = executableName.c_str();
 
-	telemetryDll.atEnableLogfile(appName, "com.company.appname");
-	std::string logFilename(telemetryDll.atGetLogFilename());
+	telemetryDll.latEnableLogfile(appName, "com.company.appname");
+	std::string logFilename(telemetryDll.latGetLogFilename());
 	std::cout << "libAppTelemetry log filename:" << logFilename << std::endl;
 
 	// initialize the library with your program's name, version and google propertyID
-    if (!telemetryDll.atInit(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
+    if (!telemetryDll.latInit(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
 	{
-		std::cerr << "Error calling atInit_ptr\n";
+		std::cerr << "Error calling latInit_ptr\n";
 		return 201;
 	}
-	std::cout << "atInit() called with Google property:" << gaPropertyID << std::endl;
+	std::cout << "latInit() called with Google property:" << gaPropertyID << std::endl;
 	
-	std::cout << "Will call atSendPageview()" << std::endl;
-	if (!telemetryDll.atSendPageview("main window", "main window"))
+	std::cout << "Will send a Pageview hit" << std::endl;
+	if (!telemetryDll.latSendPageview("main window", "main window"))
 	{
-		std::cerr << "Error calling atSendPageview_ptr\n";
+		std::cerr << "Error calling latSendPageview_ptr\n";
 		return 203;
 	}
 
-	std::cout << "Will call atSendEvent()" << std::endl;
-	if (!telemetryDll.atSendEvent("AppLaunch", appName, 1))
+	std::cout << "Will send a Event hit" << std::endl;
+	if (!telemetryDll.latSendEvent("AppLaunch", appName, 1))
 	{
-		std::cerr << "Error calling atSendEvent_ptr\n";
+		std::cerr << "Error calling latSendEvent_ptr\n";
 		return 204;
 	}
 
-	telemetryDll.atFree();
+	std::cout << "Will send a ScreenView hit" << std::endl;
+	if (!telemetryDll.latSendScreenView("Test screenView"))
+	{
+		std::cerr << "Error calling latSendScreenView\n";
+		return 204;
+	}
+
+	telemetryDll.latFree();
 
 	if (system(NULL)) // If command is a null pointer, the function only checks whether a command processor is available through this function, without invoking any command.
 	{

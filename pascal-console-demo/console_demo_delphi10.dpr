@@ -32,7 +32,7 @@ end;
 
 
 const   programName = 'console_demo_delphi10';
-	programVer = '1.9';
+	programVer = '2.0';
 	programLicense = 'demo';
 	programEdition = 'console';
 	DLLfilename =  'libAppTelemetry.dll';
@@ -63,33 +63,43 @@ begin
         else
             writeln('DLL NOT loaded. The DLL "' + DLLfilename + '" must be in the same folder as the executable.');
 
-    writeln('DLL version: ', appTelemetryDll.atGetVersion);
+    writeln('DLL version: ', appTelemetryDll.latGetVersion);
 
   	writeln('Enabling the log file. Check the log file for the duration of the telemetry functions.');
-    appTelemetryDll.appTelemetryEnableLogfile(programName, 'com.company.' + programName);
-    writeln('DLL log filename: ', appTelemetryDll.atGetLogFilename);
+    appTelemetryDll.latEnableLogfile(programName, 'com.company.' + programName);
+    writeln('DLL log filename: ', appTelemetryDll.latGetLogFilename);
 
     googleAnalyticsPropertyID :=  PAnsiChar(AnsiString(ParamStr(1)));
     writeln('Will send data to the Google Property ID:' +  googleAnalyticsPropertyID);
 
-    if not appTelemetryDll.atInit(PAnsiChar(programName), PAnsiChar(programVer), PAnsiChar(programLicense), PAnsiChar(programEdition), googleAnalyticsPropertyID, userGaveConsent) then
-        writeLn('appTelemetryInit() failed.');
+    if not appTelemetryDll.latInit(PAnsiChar(programName), PAnsiChar(programVer), PAnsiChar(programLicense), PAnsiChar(programEdition), googleAnalyticsPropertyID, userGaveConsent) then
+        writeLn('latInit() failed.');
 
-    if not appTelemetryDll.atSendPageview('main window', 'main window') then
-        writeLn('appTelemetryAddPageview() 2 failed.');
+    writeLn('Will send PageView hit');
+    if not appTelemetryDll.latSendPageview('main window', 'main window') then
+        writeLn('latSendPageview() 2 failed.');
 
     // e.g. the user opens the configuration screen of your program
-    if not appTelemetryDll.atSendPageview('main window/configuration', 'configuration') then
-        writeLn('appTelemetryAddPageview() failed.');
+    writeLn('Will send PageView hit');
+    if not appTelemetryDll.latSendPageview('main window/configuration', 'configuration') then
+        writeLn('latSendPageview() failed.');
+
+    writeLn('Will send Event hit');
+    if not appTelemetryDll.latSendEvent('App Events', 'Test event', 1) then
+        writeLn('latSendEvent() failed.');
+
+    writeLn('Will send ScreenView hit');
+    if not appTelemetryDll.latSendScreenView('CLI window test') then
+        writeLn('latSendScreenView() failed.');
 
     // ........  more of your code here
 
 
     // eg. the user hits the exit button
-    if not appTelemetryDll.atSendPageview('exit', 'exit') then
-        writeLn('appTelemetryAddPageview() failed.');
+    if not appTelemetryDll.latSendPageview('exit', 'exit') then
+        writeLn('latSendPageview() failed.');
 
-    appTelemetryDll.atFree;
+    appTelemetryDll.latFree;
 
     // destroy the object so that the DLL is also unloaded
     if assigned(appTelemetryDll) then
