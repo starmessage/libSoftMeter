@@ -9,7 +9,8 @@ This repository contains
 - the distributable library (DLL for Windows or .dylib for MacOS X) 
 
 **Library information:**
-- Version: 0.5.2
+- Version: 0.5.3. 
+  What's new: [https://www.starmessagesoftware.com/news/libapptelemetry-v0.5.3-with-screenviews-google-measurement-protocol]
 - Web site: [https://www.StarMessageSoftware.com/libapptelemetry]
 - Documentation / Implementation guide: [https://www.StarMessageSoftware.com/libapptelemetry/implementation]
 - Examples reporting via  Google Analytics: [https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications]

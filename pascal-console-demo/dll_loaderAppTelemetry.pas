@@ -32,38 +32,40 @@ uses Windows,
 
 type
     // C prototype: const char*	appTelemetryGetVersion(void);
-    TatGetVersion = function: PAnsiChar; cdecl; // stdcall;
-    TatGetLogFilename = function: PAnsiChar; cdecl;
-    TatEnableLogfile = procedure(appName, macBundleID:PAnsiChar); cdecl;
-    TatDisableLogfile = procedure; cdecl;
-    TatInit = function(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ; cdecl;
-    TatFree = procedure; cdecl;
-    TatAddPageview = function(pagePath, pageTitle:PAnsiChar): BOOL ; cdecl;
-    TatAddEvent = function(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ; cdecl;
+    TlatGetVersion = function: PAnsiChar; cdecl; // stdcall;
+    TlatGetLogFilename = function: PAnsiChar; cdecl;
+    TlatEnableLogfile = procedure(appName, macBundleID:PAnsiChar); cdecl;
+    TlatDisableLogfile = procedure; cdecl;
+    TlatInit = function(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ; cdecl;
+    TlatFree = procedure; cdecl;
+    TlatSendPageview = function(pagePath, pageTitle:PAnsiChar): BOOL ; cdecl;
+    TlatSendEvent = function(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ; cdecl;
+    TlatSendScreenview = function(screenName:PAnsiChar): BOOL ; cdecl;
 
 	TDllAppTelemetry = class(TDllLoader)
     private
-        atGetVersionPtr: TatGetVersion;
-        atGetLogFilenamePtr: TatGetLogFilename;
-        atEnableLogfilePtr: TatEnableLogfile;
-        atDisableLogfilePtr: TatDisableLogfile;
-        atInitPtr: TatInit;
-        atFreePtr: TatFree;
-        atSendPageviewPtr: TatAddPageview;
-        atSendEventPtr: TatAddEvent;
+        latGetVersionPtr: TlatGetVersion;
+        latGetLogFilenamePtr: TlatGetLogFilename;
+        latEnableLogfilePtr: TlatEnableLogfile;
+        latDisableLogfilePtr: TlatDisableLogfile;
+        latInitPtr: TlatInit;
+        latFreePtr: TlatFree;
+        latSendPageviewPtr: TlatSendPageview;
+        latSendEventPtr: TlatSendEvent;
+        latSendScreenviewPtr: TlatSendScreenview;
 
     public
         constructor Create(aDllFilename:PChar); override;
         // destructor  Destroy; override;
-        function atGetVersion: string;
-        function atGetLogFilename: string;
-        procedure appTelemetryEnableLogfile(appName, macBundleID:PAnsiChar);
-        procedure appTelemetryDisableLogfile;
-        function atInit(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
-        procedure atFree;
-        function atSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
-        function appTelemetryAddEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
-
+        function latGetVersion: string;
+        function latGetLogFilename: string;
+        procedure latEnableLogfile(appName, macBundleID:PAnsiChar);
+        procedure latDisableLogfile;
+        function latInit(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
+        procedure latFree;
+        function latSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
+        function latSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
+        function latSendScreenView(screenName:PAnsiChar): BOOL ;
   end;
 
 //////////////////////////////////////////////////////////////
@@ -80,83 +82,109 @@ begin
 	// In some DLLs (depending on how they are compiled), the correct call is GetProcAddress(hDLL, '_FunctioName');
 	// otherwise nil is returned.
 
-	@atGetVersionPtr := GetProcAddress(getHandle, 'atGetVersion');
-    if (@atGetVersionPtr=NIL) then
-         writeln('Failed to load function: appTelemetryGetVersion');
+	@latGetVersionPtr := GetProcAddress(getHandle, 'latGetVersion');
+    if (@latGetVersionPtr=NIL) then
+         writeln('Failed to load function: latGetVersion');
 
-    @atGetLogFilenamePtr := GetProcAddress(getHandle, 'atGetLogFilename');
-    if (@atGetLogFilenamePtr=NIL) then
-         writeln('Failed to load function: atGetLogFilename');
+    @latGetLogFilenamePtr := GetProcAddress(getHandle, 'latGetLogFilename');
+    if (@latGetLogFilenamePtr=NIL) then
+         writeln('Failed to load function: latGetLogFilename');
 
-	@atEnableLogfilePtr := GetProcAddress(getHandle, 'atEnableLogfile');
-	@atDisableLogfilePtr := GetProcAddress(getHandle, 'atDisableLogfile');
-	@atInitPtr := GetProcAddress(getHandle, 'atInit');
-	@atFreePtr := GetProcAddress(getHandle, 'atFree');
-	@atSendPageviewPtr := GetProcAddress(getHandle, 'atSendPageview');
-	@atSendEventPtr := GetProcAddress(getHandle, 'atSendEvent');
+	@latEnableLogfilePtr := GetProcAddress(getHandle, 'latEnableLogfile');
+    if (@latEnableLogfilePtr=NIL) then
+         writeln('Failed to load function: latEnableLogfile');
 
+	@latDisableLogfilePtr := GetProcAddress(getHandle, 'latDisableLogfile');
+    if (@latDisableLogfilePtr=NIL) then
+         writeln('Failed to load function: latDisableLogfile');
+
+	@latInitPtr := GetProcAddress(getHandle, 'latInit');
+    if (@latInitPtr=NIL) then
+         writeln('Failed to load function: latInit');
+
+	@latFreePtr := GetProcAddress(getHandle, 'latFree');
+    if (@latFreePtr=NIL) then
+         writeln('Failed to load function: latFree');
+
+	@latSendPageviewPtr := GetProcAddress(getHandle, 'latSendPageview');
+    if (@latSendPageviewPtr=NIL) then
+         writeln('Failed to load function: latSendPageview');
+
+	@latSendEventPtr := GetProcAddress(getHandle, 'latSendEvent');
+    if (@latSendEventPtr=NIL) then
+         writeln('Failed to load function: latSendEvent');
+
+    @latSendScreenviewPtr := GetProcAddress(getHandle, 'latSendScreenview');
+    if (@latSendScreenviewPtr=NIL) then
+         writeln('Failed to load function: latSendScreenview');
 end;
 
 
-function TDllAppTelemetry.atGetVersion: string;
+function TDllAppTelemetry.latGetVersion: string;
 begin
     result := 'unknown';
-    if @atGetVersionPtr<>nil then
-        result := string(atGetVersionPtr);
+    if @latGetVersionPtr<>nil then
+        result := string(latGetVersionPtr);
 end;
 
 
-function TDllAppTelemetry.atInit(appName, appVersion, appLicense, appEdition, propertyID: PAnsiChar; userGaveConsent:BOOL): BOOL ;
+function TDllAppTelemetry.latInit(appName, appVersion, appLicense, appEdition, propertyID: PAnsiChar; userGaveConsent:BOOL): BOOL ;
 begin
     result := false;
-    if @atInitPtr <> nil then
-		result := atInitPtr(appName, appVersion, appLicense, appEdition, propertyID, userGaveConsent);
+    if @latInitPtr <> nil then
+		result := latInitPtr(appName, appVersion, appLicense, appEdition, propertyID, userGaveConsent);
 
 end;
 
 
-procedure TDllAppTelemetry.atFree;
+procedure TDllAppTelemetry.latFree;
 begin
-    if @atFreePtr <> nil then
-			atFreePtr;
+    if @latFreePtr <> nil then
+			latFreePtr;
 end;
 
 
-function TDllAppTelemetry.atGetLogFilename:string;
+function TDllAppTelemetry.latGetLogFilename:string;
 begin
     result := '';
-    if @atGetLogFilenamePtr <> nil then
-			result := string(atGetLogFilenamePtr);
+    if @latGetLogFilenamePtr <> nil then
+			result := string(latGetLogFilenamePtr);
 end;
 
 
-function TDllAppTelemetry.appTelemetryAddEvent(eventAction, eventLabel: PAnsiChar; eventValue: integer): BOOL ;
+function TDllAppTelemetry.latSendEvent(eventAction, eventLabel: PAnsiChar; eventValue: integer): BOOL ;
 begin
     result := false;
-    if @atSendEventPtr <> nil then
-        result := atSendEventPtr(eventAction, eventLabel, eventValue);
+    if @latSendEventPtr <> nil then
+        result := latSendEventPtr(eventAction, eventLabel, eventValue);
 end;
 
 
-function TDllAppTelemetry.atSendPageview(pagePath, pageTitle: PAnsiChar): BOOL ;
+function TDllAppTelemetry.latSendPageview(pagePath, pageTitle: PAnsiChar): BOOL ;
 begin
     result := false;
-    if @atSendPageviewPtr <> nil then
-		result := atSendPageviewPtr(pagePath, pageTitle);
+    if @latSendPageviewPtr <> nil then
+		result := latSendPageviewPtr(pagePath, pageTitle);
+end;
+
+function TDllAppTelemetry.latSendScreenview(screenName: PAnsiChar): BOOL ;
+begin
+    result := false;
+    if @latSendScreenviewPtr <> nil then
+		result := latSendScreenviewPtr(screenName);
+end;
+
+procedure TDllAppTelemetry.latEnableLogfile(appName, macBundleID:PAnsiChar);
+begin
+    if @latEnableLogfilePtr <> nil then
+        latEnableLogfilePtr(appName, macBundleID);
 end;
 
 
-procedure TDllAppTelemetry.appTelemetryEnableLogfile(appName, macBundleID:PAnsiChar);
+procedure TDllAppTelemetry.latDisableLogfile;
 begin
-    if @atEnableLogfilePtr <> nil then
-        atEnableLogfilePtr(appName, macBundleID);
-end;
-
-
-procedure TDllAppTelemetry.appTelemetryDisableLogfile;
-begin
-    if @atDisableLogfilePtr <> nil then
-        atDisableLogfilePtr;
+    if @latDisableLogfilePtr <> nil then
+        latDisableLogfilePtr;
 end;
 
 end.
