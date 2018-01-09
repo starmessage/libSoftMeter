@@ -4,9 +4,12 @@ libAppTelemetry is a Windows and MacOS library that allows you to send usage sta
 It is ideal for shareware developers as it extends the website usage data with the applications usage data.
 Shareware developers for desktop programs can now see via one free reporting platform (Google Analytics) both how visitors use their website and how clients use their program on their desktop computer or laptops.
 
+The library can also be used in InnoSetup scripts to track Setups and Uninstalls.
+
 This repository contains 
 - Delphi/Pascal and C++ command line examples for Windows and MacOS X that show how to load the appTelemetry library and send page views from your shareware software to Google Analytics.
 - the distributable library (DLL for Windows or .dylib for MacOS X) 
+- InnoSetup scripts
 
 **Library information:**
 - Version: 0.5.3. 
@@ -14,7 +17,8 @@ This repository contains
 - Web site: [https://www.StarMessageSoftware.com/libapptelemetry]
 - Documentation / Implementation guide: [https://www.StarMessageSoftware.com/libapptelemetry/implementation]
 - Examples reporting via  Google Analytics: [https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications]
-- (c) StarMessage Software [http://www.StarMessageSoftware.com]
+- Implementing installation statistics in InnoSetup: [https://www.starmessagesoftware.com/blog/free-installation-statistics-innosetup-google-analytics]
+- (c) StarMessage Software
  
 **Project Objectives:**
 
