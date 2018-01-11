@@ -3,10 +3,10 @@
 [Code]
 (*
 
-Title:		Installation statistics via Google Analytics Add-on for InnoSetup
+Title:		Installation statistics via Google Analytics Add-on/Extension for InnoSetup
 Copyright: 	(C) StarMessage software 2018
 Web:			http://www.StarMessageSoftware.com/libapptelemetry
-Version: 	0.2 Alpha
+Version: 	0.2.1
 Purpose:	Monitor via the free Google Analytics platform important information about the distribution
 					and installation of your shareware/software. E.g. number of installations per month,
 					countries of your user base, screen resolutions, operating systems, versions of your software, etc.
@@ -28,6 +28,10 @@ Usage:
 	 libapptelemetry.dll
 
  - Copy installation-statistics-script.iss and libapptelemetry.dll to the same folder as your inno setup script
+   There are two versions of the DLL available:.
+	 		64bit: Runs on 64-bit versions of Windows.
+	 		32bit: Runs on all versions of Windows.
+	 There is olny a non-Unicode (aka Ansi) version. If you want a Unicode version, please let us know: sales -at- starmessage.info
 
  - In the [Files] section below, add the path to the DLL so that it is included in the setup package.
 
@@ -57,7 +61,7 @@ Usage:
 		begin
 			trackUninstall('StarMessage screensaver', '{AppVersion}', 'Trial', 'Windows', 'UA-111111-22');
 			// Unload the dll, otherwise it will not be deleted by the uninstaller
-			UnloadDLL(ExpandConstant('{syswow64}\StarMessage-libAppTelemetry.dll'));
+			UnloadDLL(ExpandConstant('{syswow64}\libAppTelemetry.dll'));
 			result := true;
 		end;
 
@@ -92,31 +96,31 @@ Notes:
 // We only need 3 of them for the tracking of the setup and uninstall,
 //   but we link all of them in case you want to make a more complex script.
 function latGetVersion: string;
-external 'latGetVersion@files:StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'latGetVersion@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 function latGetLogFilename: string;
-external 'latGetLogFilename@files:StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'latGetLogFilename@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 procedure latEnableLogfile(appName, macBundleID:PAnsiChar);
-external 'latEnableLogfile@files:StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'latEnableLogfile@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 procedure latDisableLogfile;
-external 'latDisableLogfile@files:StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'latDisableLogfile@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 function latInit(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
-external 'latInit@files:StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'latInit@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 procedure latFree;
-external 'latFree@files:StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'latFree@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 function latSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
-external 'latSendPageview@files:StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'latSendPageview@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 function latSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
-external 'latSendEvent@files:StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'latSendEvent@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 function latSendScreenView(screenName:PAnsiChar): BOOL ;
-external 'latSendScreenView@files:StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'latSendScreenView@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 //////////////////////////////////////////////////////////////////////////////
 // Functions and DLL file available during uninstall
@@ -124,31 +128,31 @@ external 'latSendScreenView@files:StarMessage-libAppTelemetry.dll cdecl loadwith
 // During the setup the files are accessed via the folder where the dll was installed; usually {app}
 // Note the 'u' preceeding the function name. This is to avoid the error of redeclaration of the same function.
 function ulatGetVersion: string;
-external 'latGetVersion@{syswow64}\StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'latGetVersion@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 function ulatGetLogFilename: string;
-external 'latGetLogFilename@{syswow64}\StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'latGetLogFilename@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 procedure ulatEnableLogfile(appName, macBundleID:PAnsiChar);
-external 'latEnableLogfile@{syswow64}\StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'latEnableLogfile@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 procedure ulatDisableLogfile;
-external 'latDisableLogfile@{syswow64}\StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'latDisableLogfile@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 function ulatInit(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
-external 'latInit@{syswow64}\StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'latInit@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 procedure ulatFree;
-external 'latFree@{syswow64}\StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'latFree@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 function ulatSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
-external 'latSendPageview@{syswow64}\StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'latSendPageview@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 function ulatSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
-external 'latSendEvent@{syswow64}\StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'latSendEvent@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 function ulatSendScreenView(screenName:PAnsiChar): BOOL ;
-external 'latSendScreenView@{syswow64}\StarMessage-libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'latSendScreenView@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 
 
@@ -177,9 +181,10 @@ end;
 
 
 [Files]
-; Install our DLL to {app} so we can access it at uninstall time
+; Install our libAppTelemetry DLL to {app} so we can access it at uninstall time
 ; Use "Flags: dontcopy" if you don't need uninstall time access
-; e.g. Source: "C:\distrib\MyApp\MyDll.dll"; DestDir: "{app}"
-
-Source: F:\work\c-proj\appTelemetry\distrib\bin\libAppTelemetry.dll; DestName: StarMessage-libAppTelemetry.dll; DestDir: {syswow64}
+; e.g. Source: "C:\distrib\MyApp\libAppTelemetry.dll"; DestDir: "{app}"
+; If needed you can also rename the dll to match your program's name.
+; but then, don't forget to change the name in the 'external' declarations, above.
+Source: c:\mySoftwareName\distrib\bin\libAppTelemetry.dll; DestName: mySoftwareName-libAppTelemetry.dll; DestDir: {syswow64}
 
