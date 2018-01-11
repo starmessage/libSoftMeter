@@ -64,7 +64,7 @@ EXPORT_API const latChar_t*	latGetLogFilename(void);
 
 // enable or disable the writing to the log file. You can call this anytime. 
 // If you do not call the Enable function, the default state is Disabled.
-EXPORT_API void latEnableLogfile(const latChar_t *appName, const char *macBundleId);
+EXPORT_API void latEnableLogfile(const latChar_t *appName, const latChar_t *macBundleId);
 EXPORT_API void latDisableLogfile(void);
 
 // initialize the library.
@@ -101,8 +101,8 @@ EXPORT_API bool latSendScreenview(const latChar_t *screenName);
 
 
 // deprecated functions: they are now called latXXXXXX()
-EXPORT_API const char*	atGetVersion(void);
-EXPORT_API const char*	atGetLogFilename(void);
+EXPORT_API const latChar_t*	atGetVersion(void);
+EXPORT_API const latChar_t*	atGetLogFilename(void);
 EXPORT_API void		atEnableLogfile(const char *appName, const char *macBundleId);
 EXPORT_API void		atDisableLogfile(void);
 EXPORT_API bool		atInit(const char *appName, const char *appVersion, const char *appLicense, const char *appEdition, const char *propertyID, const bool disabledByTheUser);

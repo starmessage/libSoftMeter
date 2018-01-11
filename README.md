@@ -9,7 +9,7 @@ The library can also be used in InnoSetup scripts to track Setups and Uninstalls
 This repository contains 
 - Delphi/Pascal and C++ command line examples for Windows and MacOS X that show how to load the appTelemetry library and send page views from your shareware software to Google Analytics.
 - the distributable library (DLL for Windows or .dylib for MacOS X) 
-- InnoSetup scripts
+- Inno Setup add-on (Inno Setup extension) scripts
 
 **Library information:**
 - Version: 0.5.3. 
@@ -17,7 +17,7 @@ This repository contains
 - Web site: [https://www.StarMessageSoftware.com/libapptelemetry]
 - Documentation / Implementation guide: [https://www.StarMessageSoftware.com/libapptelemetry/implementation]
 - Examples reporting via  Google Analytics: [https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications]
-- Implementing installation statistics in InnoSetup: [https://www.starmessagesoftware.com/blog/free-installation-statistics-innosetup-google-analytics]
+- Implementing installation statistics in Inno Setup: [https://www.starmessagesoftware.com/blog/free-installation-statistics-innosetup-google-analytics]
 - (c) StarMessage Software
  
 **Project Objectives:**
