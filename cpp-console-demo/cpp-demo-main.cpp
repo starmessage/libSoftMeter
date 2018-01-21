@@ -15,7 +15,7 @@
 
 #include "AppTelemetry_cppApi.h"
 
-const char 	*appVer = "0.5.3",
+const char 	*appVer = "0.5.4",
             *appLicense = "demo", // e.g. free, trial, full, paid, etc.
 			*appEdition = "console";
 
@@ -30,6 +30,12 @@ const bool userGaveConsent = true;
 	on runtime library choose /MTd for debug mode and /MT for release mode.
 	This will cause the compiler to embed the runtime into the app.
 	The executable will be significantly bigger, but it will run without any need of runtime DLLs.
+	
+   For Windows XP compatibility use the toolset version v140_xp (visual studio 2015)
+   This is the toolset that the libAppTelemetry.dll is compiled with.
+   When using the newer toolset v141_xp (visual studio 2017) the LoadLibrary() win32 api function 
+   failed to load the DLL under WinXP SP3.
+   
 */
 
 
@@ -134,9 +140,9 @@ int main(int argc, const char * argv[])
 	}
 
 	std::cout << "Will send a ScreenView hit" << std::endl;
-	if (!telemetryDll.latSendScreenView("Test screenView"))
+	if (!telemetryDll.latSendScreenview("Test screenView"))
 	{
-		std::cerr << "Error calling latSendScreenView\n";
+		std::cerr << "Error calling latSendScreenview\n";
 		return 204;
 	}
 

@@ -39,7 +39,7 @@ extern "C" {
 	typedef void (*latFree_t)(void);
 	typedef bool (*latSendPageview_t)(const char *, const char *);
 	typedef bool (*latSendEvent_t)(const char *, const char *, const int);
-	typedef bool(*latSendScreenView_t)(const char *);
+	typedef bool(*latSendScreenview_t)(const char *);
 
 #ifdef __cplusplus
 }
@@ -60,7 +60,7 @@ private:
 	latFree_t				latFree_ptr = NULL;
 	latSendPageview_t		latSendPageview_ptr = NULL;
 	latSendEvent_t			latSendEvent_ptr = NULL;
-	latSendScreenView_t		latSendScreenView_ptr = NULL;
+	latSendScreenview_t		latSendScreenview_ptr = NULL;
 	bool					m_errorsExist = false;
 
 
@@ -96,8 +96,8 @@ public:
 		if (!latSendEvent_ptr)
 			m_errorsExist = true;
 
-		latSendScreenView_ptr = (latSendScreenView_t)getFunction("latSendScreenView");
-		if (!latSendScreenView_ptr)
+		latSendScreenview_ptr = (latSendScreenview_t)getFunction("latSendScreenview");
+		if (!latSendScreenview_ptr)
 			m_errorsExist = true;
 	}
 
@@ -172,10 +172,10 @@ public:
 		return false;
 	}
 
-	bool	latSendScreenView(const char *screenName)
+	bool	latSendScreenview(const char *screenName)
 	{
-		if (latSendScreenView_ptr)
-			return latSendScreenView_ptr(screenName);
+		if (latSendScreenview_ptr)
+			return latSendScreenview_ptr(screenName);
 		return false;
 	}
 

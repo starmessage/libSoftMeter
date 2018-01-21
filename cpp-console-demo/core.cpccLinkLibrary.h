@@ -59,12 +59,25 @@
 			 If the function fails, the return value is NULL. 
 			 To get extended error information, call GetLastError.
 			 */
-			return LoadLibrary(aFilename);
+			tLibHandle result = LoadLibrary(aFilename);
+			if (!result)
+			{
+				std::cerr << "LoadLibrary(" << aFilename << ") failed. GetLastError=" << GetLastError() << std::endl;
+			}
+			return result;
 		}
 
-		static void unloadLibrary(const tLibHandle	aHandle) 	{	FreeLibrary(aHandle);	}
+		static void unloadLibrary(const tLibHandle	aHandle) 	
+		{	
+			if (aHandle)
+				FreeLibrary(aHandle);	
+		}
 
-		static void *getFunctionAddress(const tLibHandle	aHandle, const char * aFunctionName) { 	return  (void *)GetProcAddress(aHandle, aFunctionName); }
+		static void *getFunctionAddress(const tLibHandle	aHandle, const char * aFunctionName) 
+		{ 	
+			if (!aHandle) return NULL;
+			return  (void *)GetProcAddress(aHandle, aFunctionName); 
+		}
 
 	};
 
