@@ -36,8 +36,10 @@ type
     TlatGetLogFilename = function: PAnsiChar; cdecl;
     TlatEnableLogfile = procedure(appName, macBundleID:PAnsiChar); cdecl;
     TlatDisableLogfile = procedure; cdecl;
-    TlatInit = function(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ; cdecl;
+    
+	TlatInit = function(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ; cdecl;
     TlatFree = procedure; cdecl;
+	
     TlatSendPageview = function(pagePath, pageTitle:PAnsiChar): BOOL ; cdecl;
     TlatSendEvent = function(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ; cdecl;
     TlatSendScreenview = function(screenName:PAnsiChar): BOOL ; cdecl;
@@ -48,8 +50,10 @@ type
         latGetLogFilenamePtr: TlatGetLogFilename;
         latEnableLogfilePtr: TlatEnableLogfile;
         latDisableLogfilePtr: TlatDisableLogfile;
-        latInitPtr: TlatInit;
+        
+		latInitPtr: TlatInit;
         latFreePtr: TlatFree;
+		
         latSendPageviewPtr: TlatSendPageview;
         latSendEventPtr: TlatSendEvent;
         latSendScreenviewPtr: TlatSendScreenview;
@@ -61,8 +65,10 @@ type
         function latGetLogFilename: string;
         procedure latEnableLogfile(appName, macBundleID:PAnsiChar);
         procedure latDisableLogfile;
-        function latInit(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
+        
+		function latInit(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
         procedure latFree;
+		
         function latSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
         function latSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
         function latSendScreenView(screenName:PAnsiChar): BOOL ;
@@ -140,7 +146,7 @@ end;
 procedure TDllAppTelemetry.latFree;
 begin
     if @latFreePtr <> nil then
-			latFreePtr;
+		latFreePtr;
 end;
 
 
@@ -148,7 +154,7 @@ function TDllAppTelemetry.latGetLogFilename:string;
 begin
     result := '';
     if @latGetLogFilenamePtr <> nil then
-			result := string(latGetLogFilenamePtr);
+		result := string(latGetLogFilenamePtr);
 end;
 
 

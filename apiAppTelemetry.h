@@ -8,9 +8,6 @@
 
 #include <string>
 
-#ifdef __APPLE__DELETED
- #pragma GCC visibility push(default)
-#endif
 
 #ifdef UNICODE
 	typedef		wchar_t				latChar_t;
@@ -43,6 +40,11 @@
 	#define EXPORT_DIRECTIVE	__declspec(dllexport) 
 #else
 	#define EXPORT_DIRECTIVE	__attribute__((visibility("default")))
+	// another way to control the export visibility of functions in Xcode is to wrap the functions block inside
+	//  #pragma GCC visibility push(default)
+	// and
+	//  #pragma GCC visibility pop
+
 #endif
 
 
@@ -64,6 +66,9 @@ EXPORT_API const latChar_t*	latGetLogFilename(void);
 
 // enable or disable the writing to the log file. You can call this anytime. 
 // If you do not call the Enable function, the default state is Disabled.
+// Parameter macBundleId is used only in Mac OS. Under Windows you can pass an empty string ""
+// Parameters appName and macBundleId affect the filename and the folder of the logfile.
+// They must contain only characters compatible with the OS. E.g. they cannot contain characters such as /\:
 EXPORT_API void latEnableLogfile(const latChar_t *appName, const latChar_t *macBundleId);
 EXPORT_API void latDisableLogfile(void);
 
@@ -101,6 +106,7 @@ EXPORT_API bool latSendScreenview(const latChar_t *screenName);
 
 
 // deprecated functions: they are now called latXXXXXX()
+/*
 EXPORT_API const latChar_t*	atGetVersion(void);
 EXPORT_API const latChar_t*	atGetLogFilename(void);
 EXPORT_API void		atEnableLogfile(const char *appName, const char *macBundleId);
@@ -109,10 +115,5 @@ EXPORT_API bool		atInit(const char *appName, const char *appVersion, const char 
 EXPORT_API void		atFree(void);
 EXPORT_API bool		atSendPageview(const char *pagePath, const char *pageTitle = NULL);
 EXPORT_API bool		atSendEvent(const char *eventAction, const char *eventLabel, const int eventValue);
-
-
-#ifdef __APPLE__DELETED
- #pragma GCC visibility pop
-#endif
-
+*/
 
