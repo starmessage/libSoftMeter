@@ -4,7 +4,7 @@
  *	Purpose:	Load the DLL or the DYLIB and expose all their functions via an object
  *	*****************************************
  *  Library:
- *  Copyright: 	2017 StarMessage software.
+ *  Copyright: 	2018 StarMessage software.
  *  License: 	Free for opensource projects.
  *  			Commercial license exists for closed source projects.
  *	Web:		http://www.StarMessageSoftware.com/libapptelemetry
@@ -106,6 +106,7 @@ public:
 	const bool errorsExist(void) { return m_errorsExist;  }
 
 	// deprecated fuctions:
+	/*
 	const char*	atGetVersion(void) { return latGetVersion();  }
 	const char*	atGetLogFilename(void) { return latGetLogFilename(); }
 	void		atEnableLogfile(const char *appName, const char *macBundleId) { latEnableLogfile(appName, macBundleId); }
@@ -117,6 +118,7 @@ public:
 		{	return latSendPageview(pagePath, pageTitle);  }
 	bool		atSendEvent(const char *eventAction, const char *eventLabel, const int eventValue) 
 		{		return latSendEvent(eventAction, eventLabel, eventValue);	}
+	*/
 
 	// new functions
 	const char*	latGetVersion(void)
