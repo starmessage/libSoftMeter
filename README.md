@@ -12,8 +12,7 @@ This repository contains
 - Inno Setup add-on (Inno Setup extension) scripts
 
 **Library information:**
-- Version: 0.5.3. 
-  What's new: [https://www.starmessagesoftware.com/news/libapptelemetry-v0.5.3-with-screenviews-google-measurement-protocol]
+- Version: 0.5.5.5 
 - Web site: [https://www.StarMessageSoftware.com/libapptelemetry]
 - Documentation / Implementation guide: [https://www.StarMessageSoftware.com/libapptelemetry/implementation]
 - Examples reporting via  Google Analytics: [https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications]
@@ -28,7 +27,7 @@ Track the usage and instalations of your shareware program via your existing Goo
 
 Already tested under:
 - Windows XP and later, 32/64 bit
-- OSX 10.6+
+- OSX 10.6 and later, 64 bit
 
 
 
