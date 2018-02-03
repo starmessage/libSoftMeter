@@ -12,14 +12,12 @@
 #ifdef UNICODE
 	typedef		wchar_t				latChar_t;
 	typedef		std::wstring		latString_t;
-	#define		latCout_t			std::wcout
-	#define		latSystem_t			_wsystem
+    #define		latCout 			std::wcout // todo: move where it is needed
 
 #else
 	typedef		char				latChar_t;
 	typedef		std::string			latString_t;
-	#define		latCout_t			std::cout
-	#define		latSystem_t			system
+	#define		latCout 			std::cout
 #endif
 
 #ifndef _T	// define the _T() macro that is a MS VC macro
@@ -104,6 +102,9 @@ EXPORT_API bool latSendEvent(const latChar_t *eventAction, const latChar_t *even
 // It will process your request asynchronoulsly
 EXPORT_API bool latSendScreenview(const latChar_t *screenName);
 
+// if isFatal = false, the incident will be logged in Google analtytics as Exception
+// if isFatal = true, the incident will be logged in Google analtytics as Crash
+EXPORT_API bool latSendException(const latChar_t *exceptionDescription, const bool isFatal);
 
 // deprecated functions: they are now called latXXXXXX()
 /*

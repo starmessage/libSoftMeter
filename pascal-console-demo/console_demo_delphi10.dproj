@@ -48,8 +48,9 @@
 			<DelphiCompile Include="console_demo_delphi10.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="dll_loaderAppTelemetry.pas"/>
+			<DCCReference Include="main.pas"/>
 			<DCCReference Include="dll_loader.pas"/>
+			<DCCReference Include="dll_loaderAppTelemetry.pas"/>
 			<None Include="console_demo_delphi10.dpr"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
