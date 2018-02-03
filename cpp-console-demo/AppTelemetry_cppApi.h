@@ -14,7 +14,7 @@
 
 #pragma once
 
-// get this file from
+// get the latest version of this file from
 // https://github.com/starmessage/cpcc/blob/master/core.cpccLinkLibrary.h
 #include "core.cpccLinkLibrary.h"
 
@@ -39,7 +39,8 @@ extern "C" {
 	typedef void (*latFree_t)(void);
 	typedef bool (*latSendPageview_t)(const char *, const char *);
 	typedef bool (*latSendEvent_t)(const char *, const char *, const int);
-	typedef bool(*latSendScreenview_t)(const char *);
+	typedef bool (*latSendScreenview_t)(const char *);
+	typedef bool (*latSendException_t)(const char *, const bool);
 
 #ifdef __cplusplus
 }
@@ -61,6 +62,7 @@ private:
 	latSendPageview_t		latSendPageview_ptr = NULL;
 	latSendEvent_t			latSendEvent_ptr = NULL;
 	latSendScreenview_t		latSendScreenview_ptr = NULL;
+	latSendException_t		latSendException_ptr = NULL;
 	bool					m_errorsExist = false;
 
 
@@ -99,26 +101,17 @@ public:
 		latSendScreenview_ptr = (latSendScreenview_t)getFunction("latSendScreenview");
 		if (!latSendScreenview_ptr)
 			m_errorsExist = true;
+
+		latSendException_ptr = (latSendException_t)getFunction("latSendException");
+		if (!latSendException_ptr)
+			m_errorsExist = true;
 	}
 
 
 public:
 	const bool errorsExist(void) { return m_errorsExist;  }
 
-	// deprecated fuctions:
-	/*
-	const char*	atGetVersion(void) { return latGetVersion();  }
-	const char*	atGetLogFilename(void) { return latGetLogFilename(); }
-	void		atEnableLogfile(const char *appName, const char *macBundleId) { latEnableLogfile(appName, macBundleId); }
-	void		atDisableLogfile(void) { latDisableLogfile();  }
-	bool		atInit(const char *appName, const char *appVersion, const char *appLicense, const char *appEdition, const char *propertyID, const bool disabledByTheUser)
-		{	return latInit(appName, appVersion, appLicense, appEdition, propertyID, disabledByTheUser); }
-	void		atFree(void) { latFree(); }
-	bool		atSendPageview(const char *pagePath, const char *pageTitle = NULL) 
-		{	return latSendPageview(pagePath, pageTitle);  }
-	bool		atSendEvent(const char *eventAction, const char *eventLabel, const int eventValue) 
-		{		return latSendEvent(eventAction, eventLabel, eventValue);	}
-	*/
+
 
 	// new functions
 	const char*	latGetVersion(void)
@@ -181,6 +174,13 @@ public:
 		return false;
 	}
 
+	bool	latSendException(const char *ExceptionDescription, bool isFatal)
+	{
+		if (latSendScreenview_ptr)
+			return latSendException_ptr(ExceptionDescription, isFatal);
+		return false;
+	}
+
 };
 
 // If you want a global object of the appTelemetry, so you can use it from different parts of your program,
@@ -192,6 +192,7 @@ public:
 	.....
 	AppTelemetry_cppApi &appTelem(void)
 	{
+		// static might misbehave in winXP, better use a pointer and allocate the object with new()
 		static AppTelemetry_cppApi _instance("StarMessage-libAppTelemetry"); // this is the filename of the .dylib or the .dll
 		return _instance;
 	}

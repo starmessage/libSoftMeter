@@ -145,8 +145,41 @@ int main(int argc, const char * argv[])
 		return 204;
 	}
 
+	// And now, some exception handling....
+	// ---------------------------------------
+	try
+	{
+		throw std::runtime_error("TEST THROW c++ exception"); // Emulate a C++ exception
+		std::cout << "try {} block completed without exceptions thrown" << std::endl;
+	}
+	// Notes about the C++ try..catch statements
+	// Some things are called exceptions, but they are system (or processor) errors and not C++ exceptions.
+	// The following catch block only catches C++ exceptions from throw, not any other kind of exceptions (e.g. null-pointer access)
+	// In any case, if you manage to catch the exception or the system error, you can then use latSendException() to send it to Google Analytics
+	catch (const std::exception& ex)
+	{
+		std::cout << "Exception caught; will send it to G.A." << std::endl;
+		std::string excDesc("Error #18471a in " __FILE__ ": ");
+		excDesc += ex.what();
+		if (!telemetryDll.latSendException(excDesc.c_str(), 0))
+		{
+			std::cerr << "Error calling latSendException\n";
+			return 205;
+		}
+	}
+	catch (...)
+	{
+		std::cout << "Exception caught; will send it to G.A." << std::endl;
+		if (!telemetryDll.latSendException("Error #18471b in " __FILE__, 0))
+		{
+			std::cerr << "Error calling latSendException\n";
+			return 206;
+		}
+	}
+
 	telemetryDll.latFree();
 
+	// will open the log file in a text editor
 	if (system(NULL)) // If command is a null pointer, the function only checks whether a command processor is available through this function, without invoking any command.
 	{
 #ifdef _WIN32

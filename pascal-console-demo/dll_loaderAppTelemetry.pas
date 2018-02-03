@@ -43,6 +43,7 @@ type
     TlatSendPageview = function(pagePath, pageTitle:PAnsiChar): BOOL ; cdecl;
     TlatSendEvent = function(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ; cdecl;
     TlatSendScreenview = function(screenName:PAnsiChar): BOOL ; cdecl;
+    TlatSendException = function(screenName:PAnsiChar; isFatal:BOOL): BOOL ; cdecl;
 
 	TDllAppTelemetry = class(TDllLoader)
     private
@@ -57,6 +58,7 @@ type
         latSendPageviewPtr: TlatSendPageview;
         latSendEventPtr: TlatSendEvent;
         latSendScreenviewPtr: TlatSendScreenview;
+        latSendExceptionPtr: TlatSendException;
 
     public
         constructor Create(aDllFilename:PChar); override;
@@ -72,6 +74,7 @@ type
         function latSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
         function latSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
         function latSendScreenView(screenName:PAnsiChar): BOOL ;
+        function latSendException(exceptionDesc: PAnsiChar; isFatal:BOOL): BOOL ;
   end;
 
 //////////////////////////////////////////////////////////////
@@ -123,6 +126,11 @@ begin
     @latSendScreenviewPtr := GetProcAddress(getHandle, 'latSendScreenview');
     if (@latSendScreenviewPtr=NIL) then
          writeln('Failed to load function: latSendScreenview');
+
+    @latSendExceptionPtr := GetProcAddress(getHandle, 'latSendException');
+    if (@latSendExceptionPtr=NIL) then
+         writeln('Failed to load function: latSendException');
+
 end;
 
 
@@ -179,6 +187,15 @@ begin
     if @latSendScreenviewPtr <> nil then
 		result := latSendScreenviewPtr(screenName);
 end;
+
+
+function TDllAppTelemetry.latSendException(exceptionDesc: PAnsiChar; isFatal:BOOL): BOOL ;
+begin
+    result := false;
+    if @latSendExceptionPtr <> nil then
+		result := latSendExceptionPtr(exceptionDesc, isFatal);
+end;
+
 
 procedure TDllAppTelemetry.latEnableLogfile(appName, macBundleID:PAnsiChar);
 begin
