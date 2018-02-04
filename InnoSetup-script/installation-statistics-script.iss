@@ -1,20 +1,17 @@
-
-
 [Code]
 (*
 
-Title:          Installation statistics via Google Analytics Add-on/Extension for InnoSetup
+Title:          Add-on/extension for InnoSetup to monitor installation statistics via Google Analytics 
 Copyright:      (C) StarMessage software 2018
 Web:			      http://www.StarMessageSoftware.com/libapptelemetry
-File Version: 	0.2.3
+File Version: 	0.2.4
 File URL:       https://github.com/starmessage/libAppTelemetry-sample-programs/blob/master/apiAppTelemetry.h
 
 Purpose:	Monitor via the free Google Analytics platform important information about the distribution
 					and installation of your shareware/software. E.g. number of installations per month,
 					countries of your user base, screen resolutions, operating systems, versions of your software, etc.
 					You can even see real-time data from Google Analytics.
-					With libAppTelemetry and this InnoSetup script you can achieve to have this information
-					withing an hour or two of development effort.
+
 
 Information from Inno Setup about the use of DLLs in the innosetup scripts
 	http://www.jrsoftware.org/ishelp/index.php?topic=scriptdll
@@ -23,21 +20,37 @@ Other examples of iss scripts:
 	https://github.com/HeliumProject/InnoSetup/tree/master/Examples
 
 Usage:
- - Download from our GitHub space
+ - Check that you have enabled the Inno Setup Preprocessor (ISPP) 
+   This is a preprocessor add-on for Inno Setup that will allow Inno setup to run these pascal scripts.
+
+ - Download from our GitHub space:
    https://github.com/starmessage/libAppTelemetry-sample-programs
+
  	 the latest version of
-   installation-statistics-script.iss (this file) and
-	 libapptelemetry.dll
+   - installation-statistics-script.iss (this file) and
+	 - libapptelemetry.dll
 
  - Copy installation-statistics-script.iss and libapptelemetry.dll to the same folder as your inno setup script
    There are two versions of the DLL available:.
 	 		64bit: Runs on 64-bit versions of Windows.
 	 		32bit: Runs on all versions of Windows.
-	 There is olny a non-Unicode (aka Ansi) version. If you want a Unicode version, please let us know: sales -at- starmessage.info
+	 There is only a non-Unicode (aka Ansi) version. If you want a Unicode version, please let us know: sales -at- starmessage.info
 
- - In the [Files] section below, add the path to the DLL so that it is included in the setup package.
+ - In the [Files] section of your main setup script, add the path to the DLL so that it is included in the setup package.
+   Examples for the [Files] section:
+    Install our libAppTelemetry DLL to {app} so we can access it at uninstall time
+    Use "Flags: dontcopy" if you don't need uninstall time access
+    e.g. 
+    Source: "C:\distrib\MyApp\libAppTelemetry.dll"; DestDir: "{app}"
+    If needed, you can also rename the dll to match your program's name.
+    but then, don't forget to change the name in the 'external' declarations.
+    e.g. 
+    Source: c:\mySoftwareName\distrib\bin\libAppTelemetry.dll; DestName: mySoftwareName-libAppTelemetry.dll; DestDir: {syswow64}
 
- - Add #Include 'installation-statistics-script.iss' in your main .iss script, on a blank line outside of all sections
+ - Add a [code] section in your main script (if you do not already have a [code] section
+
+ - Add: #Include 'installation-statistics-script.iss' 
+    in your main .iss script, just above your [code] section
 
  - Decide which Google Analytics property you will use for the tracking.
    	In GA there are two reporting view types "Website" and "Mobile App"
@@ -47,7 +60,7 @@ Usage:
    	Some of these can be automatically taken from the constants of your main .iss script.
 	 	e.g. AppVersion is {AppVersion}
 
- - call trackInstallation() during the installation
+ - In your [code] section of your main script, call trackInstallation() during the installation
    	e.g.
 		function InitializeSetup(): Boolean;
 		// Called during Setup's initialization. Return False to abort Setup, True otherwise.
@@ -68,7 +81,8 @@ Usage:
 		end;
 
 Notes:
-	We recommend that you create a new Google property to track your software installations and not mix it with your website traffic property.
+	We recommend that you create a new Google property to track your software installations and 
+  not mix it with your website traffic property.
 	You can read more here: How to create and test a Mobile App reporting view in Google Analytics
 	https://www.starmessagesoftware.com/faq-page/how-to-create-mobile-app-reporting-view-google-analytics
 
@@ -76,27 +90,26 @@ Notes:
 	The "Run" command of the inno setup GUI is a "sandboxed" command that will not extract the DLL and your tests will fail.
 
 	If you use libAppTelemetry.dll also inside your software to monitor the usage statistics
-	(e.g. which screens of your program are used the most, etc.) you can use the same dll
-	version (recomended) for both purposes or distribute different versions.
+	(e.g. which screens of your program are used the most, etc.) you can re-use the same dll
+	file (recomended) for both purposes.
+
+  For the tracking of installations and uninstalls we only need 3 functions from the dll:
+  - latInit()
+  - latSendEvent()
+  - latFree()
+  But we also declare the rest of the functions contained in libAppTelemetry.dll
+  so you have them handy in case you want to make a more complex script.
 
 	Contact me in case of questions or feedback.
-
 *)
 
-// Below are two blocks of function declarations and linkage.
-// First block for the setup phase and another for the uninstall.
-// These are all the functions contained in libAppTelemetry.dll.
-// We only need 3 of them for the tracking of the setup and uninstall, but we link all of them
-//   so you have them handy in case you want to make a more complex script.
 
 
 //////////////////////////////////////////////////////////////////////////////
 // Functions and DLL file available during install
 // We declare and link here the functions for the setup phase.
 // During the setup the files are accessed via the "files:" specification
-// These are all the functions contained in libAppTelemetry.dll.
-// We only need 3 of them for the tracking of the setup and uninstall,
-//   but we link all of them in case you want to make a more complex script.
+
 function latGetVersion: string;
 external 'latGetVersion@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
@@ -127,8 +140,10 @@ external 'latSendScreenView@files:libAppTelemetry.dll cdecl loadwithalteredsearc
 //////////////////////////////////////////////////////////////////////////////
 // Functions and DLL file available during uninstall
 // We declare and link here AGAIN the functions for the uninstall phase.
+// Note the 'u' preceeding the function name. 
+// This is to avoid the syntax error of redeclaring the same functions twice.
 // During the setup the files are accessed via the folder where the dll was installed; usually {app}
-// Note the 'u' preceeding the function name. This is to avoid the error of redeclaration of the same function.
+
 function ulatGetVersion: string;
 external 'latGetVersion@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
@@ -159,6 +174,8 @@ external 'latSendScreenView@{app}\libAppTelemetry.dll cdecl loadwithalteredsearc
 
 
 procedure trackInstallation(appName, appVersion, appLicense, appEdition, PropertyID:PAnsiChar);
+var
+  eventAction: string;
 begin
 	latInit(appName, appVersion, appLicense, appEdition, PropertyID, TRUE);
   // Here we track the installation with a Google Analytics "Event" hit.
@@ -169,24 +186,22 @@ begin
 	// E.g. App launch, User went to settings screen, user created a new invoice, etc.
 	// With this separation we avoid having the important actions (e.g. installation)
 	// burried in the noise that the high volume of PageViews or ScreenViews create.
-	latSendEvent('StarMessage Install', 'Install', 1);
+  eventAction :=  appName + ' Install';
+	latSendEvent(PAnsiChar(eventAction), 'Install', 1);
 	latFree;
 end;
 
 
 procedure trackUninstall(appName, appVersion, appLicense, appEdition, PropertyID:PAnsiChar);
+var
+  eventAction: string;
 begin
 	ulatInit(appName, appVersion, appLicense, appEdition, PropertyID, TRUE);
-	ulatSendEvent('StarMessage Uninstall', 'Uninstall', -1);
+  eventAction :=  appName + ' Uninstall';
+	ulatSendEvent(PAnsiChar(eventAction), 'Uninstall', -1);
 	ulatFree;
 end;
 
 
-[Files]
-; Install our libAppTelemetry DLL to {app} so we can access it at uninstall time
-; Use "Flags: dontcopy" if you don't need uninstall time access
-; e.g. Source: "C:\distrib\MyApp\libAppTelemetry.dll"; DestDir: "{app}"
-; If needed you can also rename the dll to match your program's name.
-; but then, don't forget to change the name in the 'external' declarations, above.
-Source: c:\mySoftwareName\distrib\bin\libAppTelemetry.dll; DestName: mySoftwareName-libAppTelemetry.dll; DestDir: {syswow64}
+
 
