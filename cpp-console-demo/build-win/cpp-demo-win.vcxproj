@@ -23,6 +23,7 @@
     <ClInclude Include="..\AppTelemetry_cppApi.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\cpccHttpRequest\cpccUrl.SelfTest.cpp" />
     <ClCompile Include="..\cpp-demo-main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
