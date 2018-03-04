@@ -8,7 +8,11 @@
 
 #include "lib-export-api.h"
 
-// todo: move it where it is needed
+#ifdef _WIN32
+	#include <tchar.h>
+#endif
+
+/*
 #ifndef _T	// define the _T() macro that is a MS VC macro
 	#ifdef __APPLE__
 		#ifdef UNICODE
@@ -17,10 +21,10 @@
 			#define _T(s) s
 		#endif
 	#else
-		#include <tchar.h>
+		
 	#endif
 #endif
-
+*/
 
 #ifdef UNICODE
 	typedef		wchar_t				latChar_t;
