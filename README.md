@@ -12,9 +12,9 @@ This repository contains
 - Inno Setup add-on (Inno Setup extension) scripts
 
 **Library information:**
-- Version: 0.5.6 
-- Web site: [https://www.StarMessageSoftware.com/libapptelemetry]
-- Documentation / Implementation guide: [https://www.StarMessageSoftware.com/libapptelemetry/implementation]
+- Version: 0.5.7 
+- Web site: [https://www.StarMessageSoftware.com/softmeter]
+- Documentation / Implementation guide: [https://www.StarMessageSoftware.com/softmeter/implementation]
 - Examples reporting via  Google Analytics: [https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications]
 - Implementing installation statistics in Inno Setup: [https://www.starmessagesoftware.com/blog/free-installation-statistics-innosetup-google-analytics]
 - (c) StarMessage Software

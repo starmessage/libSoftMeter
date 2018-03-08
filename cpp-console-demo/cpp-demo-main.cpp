@@ -1,11 +1,11 @@
 //////////////////////////////////////////////////////////////////
 //
 //  main.cpp
-//  appTelemetry test in C++
+//  SoftMeter test in C++
 //
-//	file version: 0.5.5
+//	file version: 56
 //  Copyright © 2017 StarMessage software. All rights reserved.
-//  Web: http://www.StarMessageSoftware.com/libapptelemetry
+//  Web: http://www.StarMessageSoftware.com/softmeter
 //
 
 #include <string>
@@ -13,9 +13,9 @@
 #include <string.h>
 #include <iostream>
 
-#include "AppTelemetry_cppApi.h"
+#include "SoftMeter-CPP-Api.h"
 
-const char 	*appVer = "0.5.5",
+const char 	*appVer = "56",
             *appLicense = "demo", // e.g. free, trial, full, paid, etc.
 			*appEdition = "console";
 
@@ -42,12 +42,12 @@ const bool userGaveConsent = true;
 // you can rename the dll if you want it to match your application's filename
 #ifdef _WIN32
 	#ifdef _M_AMD64
-		const TCHAR * AppTelemetryDllFilename = "libAppTelemetry64bit.dll";
+		const TCHAR * AppTelemetryDllFilename = "libSoftMeter64bit.dll";
 	#else
-		const TCHAR * AppTelemetryDllFilename = "libAppTelemetry.dll";
+		const TCHAR * AppTelemetryDllFilename = "libSoftMeter.dll";
 	#endif
 #else
-    const char * AppTelemetryDllFilename = "libAppTelemetry.dylib";
+    const char * AppTelemetryDllFilename = "libSoftMeter.dylib";
 #endif
 
 
@@ -107,41 +107,41 @@ int main(int argc, const char * argv[])
 		std::cerr << "Errors exist during the dynamic loading of telemetryDll\n";
 		return 101;
 	}
-	std::cout << "libAppTelemetry version:" << telemetryDll.latGetVersion() << std::endl;
+	std::cout << "libAppTelemetry version:" << telemetryDll.getVersion() << std::endl;
 
 	// fictional appName and appVersion for your testing
 	const char *appName = executableName.c_str();
 
-	telemetryDll.latEnableLogfile(appName, "com.company.appname");
-	std::string logFilename(telemetryDll.latGetLogFilename());
+	telemetryDll.enableLogfile(appName, "com.company.appname");
+	std::string logFilename(telemetryDll.getLogFilename());
 	std::cout << "libAppTelemetry log filename:" << logFilename << std::endl;
 
 	// initialize the library with your program's name, version and google propertyID
-    if (!telemetryDll.latInit(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
+    if (!telemetryDll.start(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
 	{
-		std::cerr << "Error calling latInit_ptr\n";
+		std::cerr << "Error calling start_ptr\n";
 		return 201;
 	}
-	std::cout << "latInit() called with Google property:" << gaPropertyID << std::endl;
+	std::cout << "start() called with Google property:" << gaPropertyID << std::endl;
 	
 	std::cout << "Will send a Pageview hit" << std::endl;
-	if (!telemetryDll.latSendPageview("main window", "main window"))
+	if (!telemetryDll.sendPageview("main window", "main window"))
 	{
-		std::cerr << "Error calling latSendPageview_ptr\n";
+		std::cerr << "Error calling sendPageview_ptr\n";
 		return 203;
 	}
 
 	std::cout << "Will send a Event hit" << std::endl;
-	if (!telemetryDll.latSendEvent("AppLaunch", appName, 1))
+	if (!telemetryDll.sendEvent("AppLaunch", appName, 1))
 	{
-		std::cerr << "Error calling latSendEvent_ptr\n";
+		std::cerr << "Error calling sendEvent_ptr\n";
 		return 204;
 	}
 
 	std::cout << "Will send a ScreenView hit" << std::endl;
-	if (!telemetryDll.latSendScreenview("Test screenView"))
+	if (!telemetryDll.sendScreenview("Test screenView"))
 	{
-		std::cerr << "Error calling latSendScreenview\n";
+		std::cerr << "Error calling sendScreenview\n";
 		return 204;
 	}
 
@@ -155,29 +155,29 @@ int main(int argc, const char * argv[])
 	// Notes about the C++ try..catch statements
 	// Some things are called exceptions, but they are system (or processor) errors and not C++ exceptions.
 	// The following catch block only catches C++ exceptions from throw, not any other kind of exceptions (e.g. null-pointer access)
-	// In any case, if you manage to catch the exception or the system error, you can then use latSendException() to send it to Google Analytics
+	// In any case, if you manage to catch the exception or the system error, you can then use sendException() to send it to Google Analytics
 	catch (const std::exception& ex)
 	{
 		std::cout << "Exception caught; will send it to G.A." << std::endl;
 		std::string excDesc("Error #18471a in " __FILE__ ": ");
 		excDesc += ex.what();
-		if (!telemetryDll.latSendException(excDesc.c_str(), 0))
+		if (!telemetryDll.sendException(excDesc.c_str(), 0))
 		{
-			std::cerr << "Error calling latSendException\n";
+			std::cerr << "Error calling sendException\n";
 			return 205;
 		}
 	}
 	catch (...)
 	{
 		std::cout << "Exception caught; will send it to G.A." << std::endl;
-		if (!telemetryDll.latSendException("Error #18471b in " __FILE__, 0))
+		if (!telemetryDll.sendException("Error #18471b in " __FILE__, 0))
 		{
-			std::cerr << "Error calling latSendException\n";
+			std::cerr << "Error calling sendException\n";
 			return 206;
 		}
 	}
 
-	telemetryDll.latFree();
+	telemetryDll.stop();
 
 	// will open the log file in a text editor
 	if (system(NULL)) // If command is a null pointer, the function only checks whether a command processor is available through this function, without invoking any command.

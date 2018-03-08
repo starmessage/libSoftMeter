@@ -1,9 +1,9 @@
 //
 //  lib-export-api.h
-//  appTelemetry
+//  SoftMeter library
 //
 //  Copyright © 2018 StarMessage software. All rights reserved.
-//	https://www.starmessagesoftware.com/libapptelemetry
+//	https://www.starmessagesoftware.com/softmeter
 //
 
 

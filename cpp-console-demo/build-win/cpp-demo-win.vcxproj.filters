@@ -14,6 +14,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\core.cpccLinkLibrary.h" />
-    <ClInclude Include="..\AppTelemetry_cppApi.h" />
+    <ClInclude Include="..\SoftMeter-CPP-Api.h" />
   </ItemGroup>
 </Project>
