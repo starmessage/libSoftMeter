@@ -3,9 +3,9 @@
 
 Title:          Add-on/extension for InnoSetup to monitor installation statistics via Google Analytics 
 Copyright:      (C) StarMessage software 2018
-Web:			      http://www.StarMessageSoftware.com/libapptelemetry
-File Version: 	0.2.4
-File URL:       https://github.com/starmessage/libAppTelemetry-sample-programs/blob/master/apiAppTelemetry.h
+Web:			      http://www.StarMessageSoftware.com/softmeter
+File Version: 	0.3
+File URL:       https://github.com/starmessage/libSoftMeter/blob/master/InnoSetup-script/installation-statistics-script.iss
 
 Purpose:	Monitor via the free Google Analytics platform important information about the distribution
 					and installation of your shareware/software. E.g. number of installations per month,
@@ -16,21 +16,18 @@ Purpose:	Monitor via the free Google Analytics platform important information ab
 Information from Inno Setup about the use of DLLs in the innosetup scripts
 	http://www.jrsoftware.org/ishelp/index.php?topic=scriptdll
 
-Other examples of iss scripts:
-	https://github.com/HeliumProject/InnoSetup/tree/master/Examples
-
 Usage:
  - Check that you have enabled the Inno Setup Preprocessor (ISPP) 
    This is a preprocessor add-on for Inno Setup that will allow Inno setup to run these pascal scripts.
 
  - Download from our GitHub space:
-   https://github.com/starmessage/libAppTelemetry-sample-programs
+   https://github.com/starmessage/libSoftMeter
 
  	 the latest version of
    - installation-statistics-script.iss (this file) and
-	 - libapptelemetry.dll
+	 - libSoftMeter.dll
 
- - Copy installation-statistics-script.iss and libapptelemetry.dll to the same folder as your inno setup script
+ - Copy installation-statistics-script.iss and libSoftMeter.dll to the same folder as your inno setup script
    There are two versions of the DLL available:.
 	 		64bit: Runs on 64-bit versions of Windows.
 	 		32bit: Runs on all versions of Windows.
@@ -38,14 +35,14 @@ Usage:
 
  - In the [Files] section of your main setup script, add the path to the DLL so that it is included in the setup package.
    Examples for the [Files] section:
-    Install our libAppTelemetry DLL to {app} so we can access it at uninstall time
+    Install the DLL to {app} so we can access it at uninstall time
     Use "Flags: dontcopy" if you don't need uninstall time access
     e.g. 
-    Source: "C:\distrib\MyApp\libAppTelemetry.dll"; DestDir: "{app}"
+    Source: "C:\distrib\MyApp\libSoftMeter.dll"; DestDir: "{app}"
     If needed, you can also rename the dll to match your program's name.
     but then, don't forget to change the name in the 'external' declarations.
     e.g. 
-    Source: c:\mySoftwareName\distrib\bin\libAppTelemetry.dll; DestName: mySoftwareName-libAppTelemetry.dll; DestDir: {syswow64}
+    Source: c:\mySoftwareName\distrib\bin\libSoftMeter.dll; DestName: mySoftwareName-libSoftMeter.dll; DestDir: {syswow64}
 
  - Add a [code] section in your main script (if you do not already have a [code] section
 
@@ -76,7 +73,7 @@ Usage:
 		begin
 			trackUninstall('StarMessage screensaver', '1.1', 'Trial', 'Windows', 'UA-111111-22');
 			// Unload the dll, otherwise it will not be deleted by the uninstaller
-			UnloadDLL(ExpandConstant('{syswow64}\libAppTelemetry.dll'));
+			UnloadDLL(ExpandConstant('{syswow64}\libSoftMeter.dll'));
 			result := true;
 		end;
 
@@ -89,7 +86,7 @@ Notes:
 	You must compile and run the setup externally.
 	The "Run" command of the inno setup GUI is a "sandboxed" command that will not extract the DLL and your tests will fail.
 
-	If you use libAppTelemetry.dll also inside your software to monitor the usage statistics
+	If you the dll also inside your software to monitor the usage statistics
 	(e.g. which screens of your program are used the most, etc.) you can re-use the same dll
 	file (recomended) for both purposes.
 
@@ -97,7 +94,7 @@ Notes:
   - latInit()
   - latSendEvent()
   - latFree()
-  But we also declare the rest of the functions contained in libAppTelemetry.dll
+  But we also declare the rest of the functions contained in the dll
   so you have them handy in case you want to make a more complex script.
 
 	Contact me in case of questions or feedback.
@@ -111,31 +108,31 @@ Notes:
 // During the setup the files are accessed via the "files:" specification
 
 function latGetVersion: string;
-external 'latGetVersion@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'getVersion@files:libSoftMeter.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 function latGetLogFilename: string;
-external 'latGetLogFilename@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'getLogFilename@files:libSoftMeter.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 procedure latEnableLogfile(appName, macBundleID:PAnsiChar);
-external 'latEnableLogfile@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'enableLogfile@files:libSoftMeter.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 procedure latDisableLogfile;
-external 'latDisableLogfile@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'disableLogfile@files:libSoftMeter.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 function latInit(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
-external 'latInit@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'start@files:libSoftMeter.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 procedure latFree;
-external 'latFree@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'stop@files:libSoftMeter.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 function latSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
-external 'latSendPageview@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'sendPageview@files:libSoftMeter.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 function latSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
-external 'latSendEvent@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'sendEvent@files:libSoftMeter.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 function latSendScreenView(screenName:PAnsiChar): BOOL ;
-external 'latSendScreenView@files:libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload setuponly';
+external 'sendScreenView@files:libSoftMeter.dll cdecl loadwithalteredsearchpath delayload setuponly';
 
 //////////////////////////////////////////////////////////////////////////////
 // Functions and DLL file available during uninstall
@@ -145,31 +142,31 @@ external 'latSendScreenView@files:libAppTelemetry.dll cdecl loadwithalteredsearc
 // During the setup the files are accessed via the folder where the dll was installed; usually {app}
 
 function ulatGetVersion: string;
-external 'latGetVersion@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'getVersion@{app}\libSoftMeter.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 function ulatGetLogFilename: string;
-external 'latGetLogFilename@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'getLogFilename@{app}\libSoftMeter.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 procedure ulatEnableLogfile(appName, macBundleID:PAnsiChar);
-external 'latEnableLogfile@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'enableLogfile@{app}\libSoftMeter.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 procedure ulatDisableLogfile;
-external 'latDisableLogfile@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'disableLogfile@{app}\libSoftMeter.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 function ulatInit(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
-external 'latInit@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'start@{app}\libSoftMeter.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 procedure ulatFree;
-external 'latFree@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'stop@{app}\libSoftMeter.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 function ulatSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
-external 'latSendPageview@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'sendPageview@{app}\libSoftMeter.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 function ulatSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
-external 'latSendEvent@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'sendEvent@{app}\libSoftMeter.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 function ulatSendScreenView(screenName:PAnsiChar): BOOL ;
-external 'latSendScreenView@{app}\libAppTelemetry.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
+external 'sendScreenView@{app}\libSoftMeter.dll cdecl loadwithalteredsearchpath delayload uninstallonly';
 
 
 
