@@ -9,7 +9,8 @@ The library can also be used in InnoSetup scripts to track Setups and Uninstalls
 This repository contains 
 - Delphi/Pascal and C++ command line examples for Windows and MacOS X that show how to load the appTelemetry library and send page views from your shareware software to Google Analytics.
 - the distributable library (DLL for Windows or .dylib for MacOS X) 
-- Inno Setup add-on (Inno Setup extension) scripts
+- Inno Setup add-on (Inno Setup extension) scripts. 
+  The script allows you to track the number (and location and much more) of your software's installations, by using Inno setup and Google analytics.
 
 **Library information:**
 - Version: 0.5.7 
