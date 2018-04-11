@@ -14,7 +14,6 @@
 #endif
 
 
-
 #ifdef UNICODE
 	typedef		wchar_t				smChar_t;
 #else
@@ -29,8 +28,10 @@ EXPORT_API const smChar_t*	getLogFilename(void);
 
 // Enable or disable the log file. The default is disabled.
 // - Parameter macBundleId is used only in Mac OS. Under Windows you can pass NULL.
-// - Parameters appName and macBundleId affect the filename and the folder of the logfile.
-//   They must contain only characters compatible with the OS. E.g. they cannot contain characters such as /\:
+// - Parameters appName and macBundleId affect the filename and the folder of the 
+//	 logfile.
+//   They must contain only characters compatible with the OS. 
+//	 E.g. they cannot contain characters such as /\:
 EXPORT_API void enableLogfile(const smChar_t *appName, const smChar_t *macBundleId);
 EXPORT_API void disableLogfile(void);
 
@@ -38,14 +39,15 @@ EXPORT_API void disableLogfile(void);
 // Parameters:
 // - appLicense examples: free/trial/full/paid/etc
 // - appEdition examples: Apple store/Special build/Standard/IOS/Mac/Win/etc
-// Must be called before: sendPageview(), sendEvent(), sendScreenview(), sendException(), Free()
+// Must be called before any of the sendXXXX() functions
 EXPORT_API bool start(const smChar_t *appName, const smChar_t *appVersion,
 							const smChar_t *appLicense, const smChar_t *appEdition,
 							const smChar_t *propertyID, const bool  userGaveConsent);
 
 // stop the library. 
-// The function will wait for a maximum of 3 seconds for all pending async calls to gracefully finish.
-// After freeing the library, you can call again start() if you need to reuse it.
+// The function will wait for a maximum of 3 seconds for all pending async calls 
+// to gracefully finish.
+// After stopping the library, you can call again start() if you need to reuse it.
 EXPORT_API void stop(void);
 
 // Use sendPageview() if you are monitoring your app via a Google Analytics "Website" reporting view.
