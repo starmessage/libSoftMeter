@@ -71,7 +71,7 @@ begin
 end;
 
 
-function TDllLoader.isLoaded;
+function TDllLoader.isLoaded: boolean;
 begin
     isLoaded := (hDLL>32);
 end;
