@@ -2,15 +2,15 @@ unit main;
 
 interface
 
+uses dll_loader, dll_loaderAppTelemetry;
+
 procedure run_console_demo;
 
 implementation
 
 uses
   SysUtils,
-  strUtils,
-  dll_loaderAppTelemetry,
-  dll_loader;
+  strUtils;
 
 
 function checkCommandLineParam:boolean;
@@ -27,11 +27,17 @@ end;
 
 procedure run_console_demo;
 
-const   programName = 'console_demo_delphi10';
-	programVer = '2.1';
+const   programName = 'console_demo_pascal';
+	programVer = '2.2';
 	programLicense = 'demo';
 	programEdition = 'console';
-	DLLfilename =  'libAppTelemetry.dll';
+  {$IFDEF WIN32}
+    DLLfilename =  'libSoftMeter.dll';
+  {$ENDIF}
+  {$IFDEF WIN64}
+    DLLfilename =  'libSoftMeter64bit.dll';
+  {$ENDIF}
+
 
         // If the user has opted-out from sending telemetry data, this variable must be false.
         // Save the user's consent in the app's settings and then read this variable every time your program starts.
@@ -58,6 +64,7 @@ begin
             writeln('DLL loaded.')
         else
             writeln('DLL NOT loaded. The DLL "' + DLLfilename + '" must be in the same folder as the executable.');
+
 
     writeln('DLL version: ', appTelemetryDll.latGetVersion);
 
@@ -93,12 +100,12 @@ begin
     // .....
     try
         // throw an exception here, just for test
-        raise Exception.Create('Ugly error in line 96');
+        raise Exception.Create('Test of ugly error in line 96');
     except
         on E: Exception do
         begin
             writeLn('Will send Exception:', E.ClassName, ': ', E.Message);
-            if not appTelemetryDll.latSendException(PAnsiChar( E.ClassName+ ': ' +E.Message), FALSE) then
+            if not appTelemetryDll.latSendException(PAnsiChar( AnsiString(E.ClassName+ ': ' +E.Message)), FALSE) then
                 writeLn('latSendException() failed.');
         end;
     end;
