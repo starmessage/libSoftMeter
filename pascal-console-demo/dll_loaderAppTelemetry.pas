@@ -4,9 +4,11 @@
 ///     utility class to load the DLL and link its functions
 ///
 ///		Version of file: 1.9
-///  	URL of file: https://github.com/starmessage/libAppTelemetry-sample-programs/blob/master/pascal-console-demo/dll_loaderAppTelemetry.pas
-///		URL of repo: https://github.com/starmessage/libAppTelemetry-sample-programs
-///     Copyright, StarMessage software
+///  	URL of this file:
+///     https://github.com/starmessage/libSoftMeter/blob/master/pascal-console-demo/dll_loaderAppTelemetry.pas
+///		URL of repo:
+///     https://github.com/starmessage/libSoftMeter
+///   Copyright, StarMessage software
 ///     https://www.starmessagesoftware.com/softmeter
 ///
 //////////////////////////////////////////////////////////////
@@ -63,18 +65,18 @@ type
     public
         constructor Create(aDllFilename:PChar); override;
         // destructor  Destroy; override;
-        function latGetVersion: string;
-        function latGetLogFilename: string;
-        procedure latEnableLogfile(appName, macBundleID:PAnsiChar);
-        procedure latDisableLogfile;
+        function getVersion: string;
+        function getLogFilename: string;
+        procedure enableLogfile(appName, macBundleID:PAnsiChar);
+        procedure disableLogfile;
         
-		    function latInit(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
-        procedure latFree;
+		    function start(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
+        procedure stop;
 		
-        function latSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
-        function latSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
-        function latSendScreenView(screenName:PAnsiChar): BOOL ;
-        function latSendException(exceptionDesc: PAnsiChar; isFatal:BOOL): BOOL ;
+        function sendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
+        function sendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
+        function sendScreenView(screenName:PAnsiChar): BOOL ;
+        function sendException(exceptionDesc: PAnsiChar; isFatal:BOOL): BOOL ;
   end;
 
 
@@ -96,54 +98,10 @@ begin
             writeln('Loaded ok:' + aDllFilename)
         else
             writeln('Failed to load dll:' + aDllFilename);
-    (* for lazarus
-    getVersionPtr := TgetVersion(GetProcAddress(getHandle, 'getVersion'));
-    if (getVersionPtr=NIL) then
-         writeln('Failed to load function: latGetVersion');
 
-    latGetLogFilenamePtr := TlatGetLogFilename(GetProcAddress(getHandle, 'latGetLogFilename'));
-    if (latGetLogFilenamePtr = NIL) then
-         writeln('Failed to load function: latGetLogFilename');
-
-	  latEnableLogfilePtr := TlatEnableLogfile(GetProcAddress(getHandle, 'latEnableLogfile'));
-    if (latEnableLogfilePtr = NIL) then
-         writeln('Failed to load function: latEnableLogfile');
-
-	  latDisableLogfilePtr := TlatDisableLogfile(GetProcAddress(getHandle, 'latDisableLogfile'));
-    if (latDisableLogfilePtr=NIL) then
-         writeln('Failed to load function: latDisableLogfile');
-
-	latInitPtr := TlatInit(GetProcAddress(getHandle, 'latInit'));
-    if (latInitPtr=NIL) then
-         writeln('Failed to load function: latInit');
-
-	latFreePtr := TlatFree(GetProcAddress(getHandle, 'latFree'));
-    if (latFreePtr=NIL) then
-         writeln('Failed to load function: latFree');
-
-	latSendPageviewPtr := TlatSendPageview(GetProcAddress(getHandle, 'latSendPageview'));
-    if (latSendPageviewPtr=NIL) then
-         writeln('Failed to load function: latSendPageview');
-
-	latSendEventPtr := TlatSendEvent(GetProcAddress(getHandle, 'latSendEvent'));
-    if (latSendEventPtr=NIL) then
-         writeln('Failed to load function: latSendEvent');
-
-    latSendScreenviewPtr := TlatSendScreenview(GetProcAddress(getHandle, 'latSendScreenview'));
-    if (latSendScreenviewPtr=NIL) then
-         writeln('Failed to load function: latSendScreenview');
-
-    latSendExceptionPtr := TlatSendException(GetProcAddress(getHandle, 'latSendException'));
-    if (latSendExceptionPtr=NIL) then
-         writeln('Failed to load function: latSendException');
-
-    *)
-
-
-    // This is OK with Delphi syntax, but not ok with Free pascal.
-    // If assigned directly e.g.
     // @getVersionPtr := GetProcAddress(getHandle, 'latGetVersion');
-    // Lazarus/Free pascal gives here the error
+    // This is OK with Delphi syntax, but not ok with Free pascal.
+    // Lazarus/Free pascal gives the error
     // Can't assign values to an address
     // Solution: https://forum.lazarus.freepascal.org/index.php?topic=37217.0
 
@@ -151,46 +109,46 @@ begin
     if (@getVersionPtr=NIL) then
          writeln('Failed to load function: getVersion');
 
-    @getLogFilenamePtr := GetProcAddress(getHandle, 'latGetLogFilename');
+    @getLogFilenamePtr := GetProcAddress(getHandle, 'getLogFilename');
     if (@getLogFilenamePtr=NIL) then
-         writeln('Failed to load function: latGetLogFilename');
+         writeln('Failed to load function: getLogFilename');
 
-	@enableLogfilePtr := GetProcAddress(getHandle, 'latEnableLogfile');
+	  @enableLogfilePtr := GetProcAddress(getHandle, 'enableLogfile');
     if (@enableLogfilePtr=NIL) then
-         writeln('Failed to load function: latEnableLogfile');
+         writeln('Failed to load function: enableLogfile');
 
-	@disableLogfilePtr := GetProcAddress(getHandle, 'latDisableLogfile');
+	  @disableLogfilePtr := GetProcAddress(getHandle, 'disableLogfile');
     if (@disableLogfilePtr=NIL) then
-         writeln('Failed to load function: latDisableLogfile');
+         writeln('Failed to load function: disableLogfile');
 
-	@startPtr := GetProcAddress(getHandle, 'latInit');
+	  @startPtr := GetProcAddress(getHandle, 'start');
     if (@startPtr=NIL) then
-         writeln('Failed to load function: latInit');
+         writeln('Failed to load function: start');
 
-	@stopPtr := GetProcAddress(getHandle, 'latFree');
+	  @stopPtr := GetProcAddress(getHandle, 'stop');
     if (@stopPtr=NIL) then
-         writeln('Failed to load function: latFree');
+         writeln('Failed to load function: stop');
 
-	@sendPageviewPtr := GetProcAddress(getHandle, 'latSendPageview');
+	  @sendPageviewPtr := GetProcAddress(getHandle, 'sendPageview');
     if (@sendPageviewPtr=NIL) then
-         writeln('Failed to load function: latSendPageview');
+         writeln('Failed to load function: sendPageview');
 
-	@sendEventPtr := GetProcAddress(getHandle, 'latSendEvent');
+	  @sendEventPtr := GetProcAddress(getHandle, 'sendEvent');
     if (@sendEventPtr=NIL) then
-         writeln('Failed to load function: latSendEvent');
+         writeln('Failed to load function: sendEvent');
 
-    @sendScreenviewPtr := GetProcAddress(getHandle, 'latSendScreenview');
+    @sendScreenviewPtr := GetProcAddress(getHandle, 'sendScreenview');
     if (@sendScreenviewPtr=NIL) then
-         writeln('Failed to load function: latSendScreenview');
+         writeln('Failed to load function: sendScreenview');
 
-    @sendExceptionPtr := GetProcAddress(getHandle, 'latSendException');
+    @sendExceptionPtr := GetProcAddress(getHandle, 'sendException');
     if (@sendExceptionPtr=NIL) then
-         writeln('Failed to load function: latSendException');
+         writeln('Failed to load function: sendException');
 
 end;
 
 
-function TDllAppTelemetry.latGetVersion: string;
+function TDllAppTelemetry.getVersion: string;
 begin
     result := 'unknown';
     if @getVersionPtr<>nil then
@@ -198,31 +156,31 @@ begin
 end;
 
 
-function TDllAppTelemetry.latInit(appName, appVersion, appLicense, appEdition, propertyID: PAnsiChar; userGaveConsent:BOOL): BOOL ;
+function TDllAppTelemetry.start(appName, appVersion, appLicense, appEdition, propertyID: PAnsiChar; userGaveConsent:BOOL): BOOL ;
 begin
     result := false;
     if @startPtr <> nil then
-		result := startPtr(appName, appVersion, appLicense, appEdition, propertyID, userGaveConsent);
+		  result := startPtr(appName, appVersion, appLicense, appEdition, propertyID, userGaveConsent);
 
 end;
 
 
-procedure TDllAppTelemetry.latFree;
+procedure TDllAppTelemetry.stop;
 begin
     if @stopPtr <> nil then
-		stopPtr;
+		  stopPtr;
 end;
 
 
-function TDllAppTelemetry.latGetLogFilename:string;
+function TDllAppTelemetry.getLogFilename:string;
 begin
     result := '';
     if @getLogFilenamePtr <> nil then
-		result := string(getLogFilenamePtr);
+		  result := string(getLogFilenamePtr);
 end;
 
 
-function TDllAppTelemetry.latSendEvent(eventAction, eventLabel: PAnsiChar; eventValue: integer): BOOL ;
+function TDllAppTelemetry.sendEvent(eventAction, eventLabel: PAnsiChar; eventValue: integer): BOOL ;
 begin
     result := false;
     if @sendEventPtr <> nil then
@@ -230,37 +188,37 @@ begin
 end;
 
 
-function TDllAppTelemetry.latSendPageview(pagePath, pageTitle: PAnsiChar): BOOL ;
+function TDllAppTelemetry.sendPageview(pagePath, pageTitle: PAnsiChar): BOOL ;
 begin
     result := false;
     if @sendPageviewPtr <> nil then
-		result := sendPageviewPtr(pagePath, pageTitle);
+		  result := sendPageviewPtr(pagePath, pageTitle);
 end;
 
-function TDllAppTelemetry.latSendScreenview(screenName: PAnsiChar): BOOL ;
+function TDllAppTelemetry.sendScreenView(screenName: PAnsiChar): BOOL ;
 begin
     result := false;
     if @sendScreenviewPtr <> nil then
-		result := sendScreenviewPtr(screenName);
+		  result := sendScreenviewPtr(screenName);
 end;
 
 
-function TDllAppTelemetry.latSendException(exceptionDesc: PAnsiChar; isFatal:BOOL): BOOL ;
+function TDllAppTelemetry.sendException(exceptionDesc: PAnsiChar; isFatal:BOOL): BOOL ;
 begin
     result := false;
     if @sendExceptionPtr <> nil then
-		result := sendExceptionPtr(exceptionDesc, isFatal);
+		  result := sendExceptionPtr(exceptionDesc, isFatal);
 end;
 
 
-procedure TDllAppTelemetry.latEnableLogfile(appName, macBundleID:PAnsiChar);
+procedure TDllAppTelemetry.enableLogfile(appName, macBundleID:PAnsiChar);
 begin
     if @enableLogfilePtr <> nil then
         enableLogfilePtr(appName, macBundleID);
 end;
 
 
-procedure TDllAppTelemetry.latDisableLogfile;
+procedure TDllAppTelemetry.disableLogfile;
 begin
     if @disableLogfilePtr <> nil then
         disableLogfilePtr;
