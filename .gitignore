@@ -13,3 +13,5 @@ pascal-console-demo/backup/main.lpi
 pascal-console-demo/backup/main.lps
 pascal-console-demo/backup/main.pas
 pascal-console-demo/console_demo_delphi10.res
+pascal-console-demo/console_demo_lazarus.lpi
+pascal-console-demo/console_demo_lazarus.lpr
