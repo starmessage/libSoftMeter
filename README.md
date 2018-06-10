@@ -6,6 +6,9 @@ Shareware developers for desktop programs can now see via one free reporting pla
 
 The library can also be used in InnoSetup scripts to track Setups and Uninstalls.
 
+**How it works with Google Analytics**
+![Software analytics / usage analytics](https://www.starmessagesoftware.com/myfiles/how-it-works-softmeter-usage-analytics.png)
+
 This repository contains 
 - Delphi/Pascal and C++ command line examples for Windows and MacOS X that show how to load the appTelemetry library and send page views from your shareware software to Google Analytics.
 - the distributable library (DLL for Windows or .dylib for MacOS X) 
@@ -14,10 +17,12 @@ This repository contains
 
 **Library information:**
 - Version: 0.5.7 
-- Web site: [https://www.StarMessageSoftware.com/softmeter]
-- Documentation / Implementation guide: [https://www.StarMessageSoftware.com/softmeter/implementation]
-- Examples reporting via  Google Analytics: [https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications]
-- Implementing installation statistics in Inno Setup: [https://www.starmessagesoftware.com/blog/free-installation-statistics-innosetup-google-analytics]
+- [SoftMeter website](https://www.StarMessageSoftware.com/softmeter)
+- [API](https://www.starmessagesoftware.com/softmeter/sdk-api)
+- [Documentation / Implementation guide](https://www.StarMessageSoftware.com/softmeter/implementation)
+- [Examples reporting via  Google Analytics](https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications)
+- [Installation analytics](https://www.starmessagesoftware.com/blog/installation-analytics-shareware-desktop-software-applications)
+- [Implementing installation statistics in Inno Setup](https://www.starmessagesoftware.com/blog/free-installation-statistics-innosetup-google-analytics)
 - (c) StarMessage Software
  
 **Project Objectives:**
