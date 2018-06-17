@@ -3,7 +3,7 @@
 ///     unit dll_loaderAppTelemetry.pas
 ///     utility class to load the DLL and link its functions
 ///
-///		Version of file: 1.9
+///		Version of file: 2.0
 ///  	URL of this file:
 ///     https://github.com/starmessage/libSoftMeter/blob/master/pascal-console-demo/dll_loaderAppTelemetry.pas
 ///		URL of repo:
@@ -93,11 +93,8 @@ begin
 	// link the functions
 	// In some DLLs (depending on how they are compiled), the correct call is GetProcAddress(hDLL, '_FunctioName');
 	// otherwise nil is returned.
-    if (isLoaded)
-        then
-            writeln('Loaded ok:' + aDllFilename)
-        else
-            writeln('Failed to load dll:' + aDllFilename);
+    if (isLoaded=false) then
+      exit;
 
     // @getVersionPtr := GetProcAddress(getHandle, 'latGetVersion');
     // This is OK with Delphi syntax, but not ok with Free pascal.
@@ -107,43 +104,43 @@ begin
 
     @getVersionPtr := GetProcAddress(getHandle, 'getVersion');
     if (@getVersionPtr=NIL) then
-         writeln('Failed to load function: getVersion');
+      addError('Failed to load function: getVersion');
 
     @getLogFilenamePtr := GetProcAddress(getHandle, 'getLogFilename');
     if (@getLogFilenamePtr=NIL) then
-         writeln('Failed to load function: getLogFilename');
+      addError('Failed to load function: getLogFilename');
 
 	  @enableLogfilePtr := GetProcAddress(getHandle, 'enableLogfile');
     if (@enableLogfilePtr=NIL) then
-         writeln('Failed to load function: enableLogfile');
+      addError('Failed to load function: enableLogfile');
 
 	  @disableLogfilePtr := GetProcAddress(getHandle, 'disableLogfile');
     if (@disableLogfilePtr=NIL) then
-         writeln('Failed to load function: disableLogfile');
+      addError('Failed to load function: disableLogfile');
 
 	  @startPtr := GetProcAddress(getHandle, 'start');
     if (@startPtr=NIL) then
-         writeln('Failed to load function: start');
+      addError('Failed to load function: start');
 
 	  @stopPtr := GetProcAddress(getHandle, 'stop');
     if (@stopPtr=NIL) then
-         writeln('Failed to load function: stop');
+      addError('Failed to load function: stop');
 
 	  @sendPageviewPtr := GetProcAddress(getHandle, 'sendPageview');
     if (@sendPageviewPtr=NIL) then
-         writeln('Failed to load function: sendPageview');
+      addError('Failed to load function: sendPageview');
 
 	  @sendEventPtr := GetProcAddress(getHandle, 'sendEvent');
     if (@sendEventPtr=NIL) then
-         writeln('Failed to load function: sendEvent');
+      addError('Failed to load function: sendEvent');
 
     @sendScreenviewPtr := GetProcAddress(getHandle, 'sendScreenview');
     if (@sendScreenviewPtr=NIL) then
-         writeln('Failed to load function: sendScreenview');
+      addError('Failed to load function: sendScreenview');
 
     @sendExceptionPtr := GetProcAddress(getHandle, 'sendException');
     if (@sendExceptionPtr=NIL) then
-         writeln('Failed to load function: sendException');
+      addError('Failed to load function: sendException');
 
 end;
 

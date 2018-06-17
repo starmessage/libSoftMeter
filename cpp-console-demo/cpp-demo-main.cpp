@@ -15,7 +15,7 @@
 
 #include "SoftMeter-CPP-Api.h"
 
-const char 	*appVer = "56",
+const char 	*appVer = "57",
             *appLicense = "demo", // e.g. free, trial, full, paid, etc.
 			*appEdition = "console";
 
@@ -190,6 +190,8 @@ int main(int argc, const char * argv[])
 		std::cout << "Will send command to open the log file." << std::endl;
 		system(command.c_str());
 	}
+
+	std::cout << "Thank you for using SoftMeter.\r\nPlease send us your feedback: sales@starmessage.info" << std::endl;
 
     std::cout << "Program exiting now." << std::endl;
     return 0;
