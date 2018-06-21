@@ -3,8 +3,8 @@
 //  main.cpp
 //  SoftMeter test in C++
 //
-//	file version: 56
-//  Copyright © 2017 StarMessage software. All rights reserved.
+//	file version: 57
+//  Copyright © 2018 StarMessage software. All rights reserved.
 //  Web: http://www.StarMessageSoftware.com/softmeter
 //
 
@@ -12,7 +12,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
-
+#ifdef _WIN32
+#include <tchar.h>
+#endif
 #include "SoftMeter-CPP-Api.h"
 
 const char 	*appVer = "57",
@@ -42,9 +44,9 @@ const bool userGaveConsent = true;
 // you can rename the dll if you want it to match your application's filename
 #ifdef _WIN32
 	#ifdef _M_AMD64
-		const TCHAR * AppTelemetryDllFilename = "libSoftMeter64bit.dll";
+		const TCHAR * AppTelemetryDllFilename = _T("libSoftMeter64bit.dll");
 	#else
-		const TCHAR * AppTelemetryDllFilename = "libSoftMeter.dll";
+		const TCHAR * AppTelemetryDllFilename = _T("libSoftMeter.dll");
 	#endif
 #else
     const char * AppTelemetryDllFilename = "libSoftMeter.dylib";
@@ -150,7 +152,7 @@ int main(int argc, const char * argv[])
 	try
 	{
 		throw std::runtime_error("TEST THROW c++ exception"); // Emulate a C++ exception
-		std::cout << "try {} block completed without exceptions thrown" << std::endl;
+		// std::cout << "try {} block completed without exceptions thrown" << std::endl;
 	}
 	// Notes about the C++ try..catch statements
 	// Some things are called exceptions, but they are system (or processor) errors and not C++ exceptions.
