@@ -3,7 +3,7 @@
 //  main.cpp
 //  SoftMeter test in C++
 //
-//	file version: 57
+//	file version: 58
 //  Copyright © 2018 StarMessage software. All rights reserved.
 //  Web: http://www.StarMessageSoftware.com/softmeter
 //
@@ -17,7 +17,7 @@
 #endif
 #include "SoftMeter-CPP-Api.h"
 
-const char 	*appVer = "57",
+const char 	*appVer = "58",
             *appLicense = "demo", // e.g. free, trial, full, paid, etc.
 			*appEdition = "console";
 
