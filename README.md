@@ -1,8 +1,8 @@
 ﻿**SoftMeter SDK: Compiled library files and demo programs**
 
-SoftMeter (former libAppTelemetry) is a Windows and MacOS library that allows you to send usage statistics from your program to your Google Analytics property.
-It is ideal for shareware developers as it extends the website usage data with the applications usage data.
-Shareware developers for desktop programs can now see via one free reporting platform (Google Analytics) both how visitors use their website and how clients use their program on their desktop computer or laptops.
+SoftMeter (former libAppTelemetry) is a Windows and MacOS library that allows you to send usage statistics from your program to your Google Analytics property.  
+It is ideal for shareware developers as it extends the website usage data with the applications usage data.  
+Shareware developers for desktop programs can now see via *one* free reporting platform (Google Analytics), 1) how people use their website, *and* 2) how they are converted to also use the software on their desktop computer or laptops.
 
 The library can also be used in InnoSetup scripts to track Setups and Uninstalls.
 
@@ -23,7 +23,7 @@ This repository contains
 - [Examples reporting via  Google Analytics](https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications)
 - [Installation analytics](https://www.starmessagesoftware.com/blog/installation-analytics-shareware-desktop-software-applications)
 - [Implementing installation statistics in Inno Setup](https://www.starmessagesoftware.com/blog/free-installation-statistics-innosetup-google-analytics)
-- (c) StarMessage Software
+- [NuGet package](https://www.nuget.org/packages/libSoftMeter/)
  
 **Project Objectives:**
 

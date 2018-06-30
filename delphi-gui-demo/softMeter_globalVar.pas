@@ -31,7 +31,7 @@ const
   // put here your Google Analytics property ID.
   GooglePropertyID =  'UA-123-12';
   AppName = 'Demo Delphi GUI application';
-  AppVersion = '1.0';
+  AppVersion = '1.1';
   AppLicense = 'Free';
   AppEdition = 'Windows';
 
@@ -53,6 +53,15 @@ initialization
   Except
     ShowMessage('Error loading '+ DLLfilename);
   end;
+
+  if Length(GooglePropertyID)<10 then
+    begin
+    ShowMessage('You are running this demo with the propertyID: ' + GooglePropertyID + CHR(10)+CHR(13) +
+                'Are you sure this is YOUR Google propertyID?' + CHR(10)+CHR(13) +
+                'Go to softMeter_globalVar.pas to review it.' + CHR(10)+CHR(13) +
+                'Will not enable telemetry now.');
+    exit;
+    end;
 
   try
     dllSoftMeter.start(AppName, AppVersion, AppLicense, AppEdition, GooglePropertyID, userGaveConsent );
