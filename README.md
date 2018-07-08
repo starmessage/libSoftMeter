@@ -16,7 +16,6 @@ This repository contains
   The script allows you to track the number (and location and much more) of your software's installations, by using Inno setup and Google analytics.
 
 **Library information:**
-- Version: 0.5.8 
 - [SoftMeter website](https://www.StarMessageSoftware.com/softmeter)
 - [API](https://www.starmessagesoftware.com/softmeter/sdk-api)
 - [Documentation / Implementation guide](https://www.StarMessageSoftware.com/softmeter/implementation)
