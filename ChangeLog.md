@@ -1,11 +1,11 @@
 # [libSoftMeter Changelog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 All notable changes to this project will be documented in this file.
 
-The format is based on [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
+[libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
 ## [0.6.0] - Unreleased
 ### Added
-- Detect invalid Google Analytics propertyIDs and mute the hits to G.A.
+- Detect invalid Google Analytics propertyIDs and mute those hits to G.A.
 
 ## [0.5.9] - Unreleased
 ### Changed
@@ -20,6 +20,11 @@ The format is based on [libSoftMeter website](https://www.starmessagesoftware.co
 ### Changed
 - Internal improvements
 - Better modelling of the Application ID and the Application Installation ID
+
+## [0.5.7] - 2018-03-08
+### Changed
+- The library name was changed to SoftMeter from libAppTelemetry 
+- [Function names and dll,dylib filename changed](https://www.starmessagesoftware.com/news/libapptelemetry-v0.5.6-is-softmeter)
 
 ## [0.5.6] - 2018-02-03
 ### Added
