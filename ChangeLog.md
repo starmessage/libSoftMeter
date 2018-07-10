@@ -1,13 +1,13 @@
-# [libSoftMeter Changelog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
+# [libSoftMeter version history/Changelog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 All notable changes to this project will be documented in this file.
 
 [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
-## [0.6.0] - Unreleased
+## [0.6.0] - 2018-07-10
 ### Added
-- Detect invalid Google Analytics propertyIDs and mute those hits to G.A.
+- Detect invalid Google Analytics propertyIDs and mute those hits from G.A.
 
-## [0.5.9] - Unreleased
+## [0.5.9] - 2018-07-10
 ### Changed
 - Alignment of the code with the [SoftMeter Pro](https://www.starmessagesoftware.com/softmeter-pro) edition
 
