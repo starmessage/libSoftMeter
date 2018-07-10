@@ -17,7 +17,7 @@
 #endif
 #include "SoftMeter-CPP-Api.h"
 
-const char 	*appVer = "58",
+const char 	*appVer = "60",
             *appLicense = "demo", // e.g. free, trial, full, paid, etc.
 			*appEdition = "console";
 
@@ -122,29 +122,29 @@ int main(int argc, const char * argv[])
     if (!telemetryDll.start(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
 	{
 		std::cerr << "Error calling start_ptr\n";
-		return 201;
+		goto stop_report_and_exit;
 	}
 	std::cout << "start() called with Google property:" << gaPropertyID << std::endl;
 	
 	std::cout << "Will send a Pageview hit" << std::endl;
 	if (!telemetryDll.sendPageview("main window", "main window"))
 	{
-		std::cerr << "Error calling sendPageview_ptr\n";
-		return 203;
+		std::cerr << "sendPageview returned False\n";
+		goto stop_report_and_exit;
 	}
 
 	std::cout << "Will send a Event hit" << std::endl;
 	if (!telemetryDll.sendEvent("AppLaunch", appName, 1))
 	{
-		std::cerr << "Error calling sendEvent_ptr\n";
-		return 204;
+		std::cerr << "sendEvent returned False\n";
+		goto stop_report_and_exit;
 	}
 
 	std::cout << "Will send a ScreenView hit" << std::endl;
 	if (!telemetryDll.sendScreenview("Test screenView"))
 	{
-		std::cerr << "Error calling sendScreenview\n";
-		return 204;
+		std::cerr << "sendScreenview returned False\n";
+		goto stop_report_and_exit;
 	}
 
 	// And now, some exception handling....
@@ -165,8 +165,8 @@ int main(int argc, const char * argv[])
 		excDesc += ex.what();
 		if (!telemetryDll.sendException(excDesc.c_str(), 0))
 		{
-			std::cerr << "Error calling sendException\n";
-			return 205;
+			std::cerr << "sendException returned False\n";
+			goto stop_report_and_exit;
 		}
 	}
 	catch (...)
@@ -175,11 +175,14 @@ int main(int argc, const char * argv[])
 		if (!telemetryDll.sendException("Error #18471b in " __FILE__, 0))
 		{
 			std::cerr << "Error calling sendException\n";
-			return 206;
+			goto stop_report_and_exit;
 		}
 	}
 
+stop_report_and_exit:
+
 	telemetryDll.stop();
+
 
 	// will open the log file in a text editor
 	if (system(NULL)) // If command is a null pointer, the function only checks whether a command processor is available through this function, without invoking any command.
