@@ -16,6 +16,7 @@
 #include <tchar.h>
 #endif
 #include "SoftMeter-CPP-Api.h"
+#include "../SoftMeter-C-Api-AIO.h" // for testing the all-in-one functions
 
 const char 	*appVer = "60",
             *appLicense = "demo", // e.g. free, trial, full, paid, etc.
@@ -60,6 +61,21 @@ bool checkCommandLineParams(int argc, const char * argv[])
 
 	return (strncmp(argv[1], "UA-", 3) == 0); // chech if the parameter starts with UA-
 }
+
+
+bool testTheAllInOneFunctions(void)
+{
+	// load the dll
+	cpccLinkedLibrary theDLL(AppTelemetryDllFilename);
+
+	// get the address of the function
+
+	// call the one-in-all function
+
+	// unload the dll
+
+}
+
 
 
 int main(int argc, const char * argv[])
