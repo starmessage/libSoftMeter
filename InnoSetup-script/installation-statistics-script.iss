@@ -5,7 +5,7 @@
 Title:			Installation statistics via Google Analytics Add-on for Inno Setup
 Copyright: 	    (C) StarMessage software 2018
 Web:			http://www.StarMessageSoftware.com/softmeter/
-Script Version: 0.4
+Script Version: 0.5.1
 Purpose:	    Monitor via the free Google Analytics platform important information about the distribution
                 and installation of your shareware/software. E.g. number of installations per month,
                 countries of your user base, screen resolutions, operating systems, versions of your software, etc.
@@ -63,7 +63,7 @@ Usage:
 		function InitializeSetup(): Boolean;
 		// Called during Setup's initialization. Return False to abort Setup, True otherwise.
 		begin
-			trackInstallation('StarMessage screensaver', '1.1', 'Trial', 'Windows', 'UA-111111-22');
+			trackInstallation('StarMessage screensaver', '1.1', 'Trial', 'Windows', 'UA-1111-22');
 			result := true;
 		end;
 
@@ -72,7 +72,7 @@ Usage:
 		function InitializeUninstall(): Boolean;
 		// Return False to abort Uninstall, True otherwise.
 		begin
-			trackUninstall('StarMessage screensaver', '1.1', 'Trial', 'Windows', 'UA-111111-22');
+			trackUninstall('StarMessage screensaver', '1.1', 'Trial', 'Windows', 'UA-1111-22');
 			// Unload the dll, otherwise it will not be deleted by the uninstaller
 			UnloadDLL(ExpandConstant('{syswow64}\libSoftMeter.dll'));
 			result := true;
@@ -97,6 +97,7 @@ Notes:
 //////////////////////////////////////////////////////////////////////////////
 // Functions and DLL file available during install
 // We declare and link here the functions of the SoftMeter library.
+// We use the cdecl calling convention of the DLL. We will be also offering a stdcall edition of the DLL.
 // For the tracking of installations and uninstalls we only need 3 functions from the dll:
 // - iStart()
 // - iSendEvent()

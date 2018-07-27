@@ -19,7 +19,6 @@
 #include "core.cpccLinkLibrary.h"
 
 
-
 #if defined(__APPLE__)
 	// Mac OS X Specific header stuff
 	#include <TargetConditionals.h>
@@ -31,6 +30,7 @@
 extern "C" {
 #endif
 
+	// Under Windows, these the function pointers take the __cdecl DLL calling convention
 	typedef const char* (*gtVersion_t)(void);
 	typedef const char* (*getLogFilename_t)(void);
 	typedef void (*enableLogfile_t)(const char *, const char *);
@@ -42,6 +42,14 @@ extern "C" {
 	typedef bool (*sendScreenview_t)(const char *);
 	typedef bool (*sendException_t)(const char *, const bool);
 
+	// Under MacOS, the following pointers are not needed.
+	#ifdef _WIN32
+		// Under Windows, these the function pointers take the __stdcall DLL calling convention (currently only demonstrating start()
+		// The function names are appended with _stdcall
+		// Windows applications can load either set of functions
+		typedef bool __stdcall (*start_stdcall_t)(const char *, const char *, const char *, const char *, const char *, const bool);
+	#endif
+	
 #ifdef __cplusplus
 }
 #endif

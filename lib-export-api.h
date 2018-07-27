@@ -1,4 +1,4 @@
-//
+﻿//
 //  lib-export-api.h
 //  SoftMeter library
 //
@@ -7,11 +7,29 @@
 //
 
 
+/*
+#define USE_STDCALL_CONVENTION
+#if defined( USE_STDCALL_CONVENTION)  && defined( _WIN32 )
+	#define DLL_CALLING_CONVENTION  __stdcall
+#else
+	// this remanins as a blank define, needed for the MAC
+	#define DLL_CALLING_CONVENTION  
+#endif
+*/
 
 
 #ifdef _WIN32
 	// __declspec(dllexport) adds the export directive to the object file so you do not need to use a .def file. 
 	// When exporting functions with either method, make sure to use the __stdcall calling convention. 
+	// To export functions, the __declspec(dllexport) keyword must appear to the left of the calling-convention keyword, 
+	// if a keyword is specified. For example:
+	//   __declspec(dllexport) void __cdecl Function1(void);  
+	//   or
+	//   __declspec(dllexport) void __stdcall Function1(void);  
+
+
+
+
 	#define EXPORT_DIRECTIVE	__declspec(dllexport) 
 #else
 	#define EXPORT_DIRECTIVE	__attribute__((visibility("default")))
@@ -31,5 +49,5 @@
 	#define C_EXPORT 
 #endif
 
-// define the 
+// define the EXPORT_API that will be added as prefix in the library's function declarations
 #define EXPORT_API		C_EXPORT EXPORT_DIRECTIVE
