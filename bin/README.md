@@ -1,9 +1,9 @@
-﻿##SoftMeter libraries
+﻿## SoftMeter libraries
 
 SoftMeter is a Windows and MacOS library that allows you to send usage statistics from your program to your Google Analytics property.  
 - [SoftMeter website](https://www.StarMessageSoftware.com/softmeter)
 
-###Note about the Windows's libraries (DLLs)
+### Note about the Windows's libraries (DLLs)
 The SoftMeter DLLs contain twice the SoftMeter API functions.  
 One set is declared with the __cdecl calling convention and the other set with __stdcall.  
 The functions of the second set have '_stdcall' in their names.  
@@ -16,7 +16,7 @@ The same function, following the __stdcall calling convention
 
 Depending on the language of your Windows application you can call either set of functions.
 
-###How to see the calling convention of a DLL (__stdcall, __cdecl, __fastcall)
+### How to see the calling convention of a DLL (__stdcall, __cdecl, __fastcall)
 If the DLL is compiled by Microsoft VC and there's no DEF file used (__declspec(dllexport) is used for the export),  then you can assume the following rules for the function names in the DLL.
 
 - __cdecl
@@ -38,13 +38,13 @@ If the DLL was produced by a C/C++ compiler:
 If the DLL is produced by another langauge, there could be other calling conventions as well.
 
 
-###How to observe the function names of a DLL
+### How to observe the function names of a DLL
 You can use Microsoft's DumpBin.exe  
 Run it from inside the VS developer command prompt 
 e.g. dumpbin /exports softmeter.dll  
 
 
-###Known cases of __stdcall and __cdecl calling conventions
+### Known cases of __stdcall and __cdecl calling conventions
 - All Win32 API functions (with  very few exceptions) are __stdcall.
 
 
