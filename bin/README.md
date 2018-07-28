@@ -1,6 +1,6 @@
 ﻿## SoftMeter libraries
 
-SoftMeter is a Windows and MacOS library that allows you to send usage statistics from your program to your Google Analytics property.  
+SoftMeter is a Windows and MacOS library that allows you to monitor the usage of your software program (installs, uninstalls, number of daily/monthly users, countries, OS, etc) via your Google Analytics property.  
 - [SoftMeter website](https://www.StarMessageSoftware.com/softmeter)
 
 ### Function calling convention (__cdecl, __stdcall) for the Windows's libraries (DLLs)
