@@ -1,0 +1,71 @@
+Below is the dumpbin result for the softmeter.dll (v0.6.1),
+generated under the visual studio command prompt, by the command:
+
+dumpbin /exports libSoftMeter.dll
+
+You can see the function name pairs (for __cdecl and __stdcall calling conventions)
+of the exported functions.
+Ignore the functions prefixed with "lat" as they are kept only for backwards compatibility. 
+
+--------------------------------------------------------
+
+
+Microsoft (R) COFF/PE Dumper Version 14.14.26433.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file libsoftmeter.dll
+
+File Type: DLL
+
+  Section contains the following exports for libSoftMeter.dll
+
+    00000000 characteristics
+    FFFFFFFF time date stamp
+        0.00 version
+           1 ordinal base
+          32 number of functions
+          32 number of names
+
+    ordinal hint RVA      name
+
+         12    0 00010040 aio_sendEvent
+          1    1 00010120 aio_sendEvent_stdcall
+         13    2 0000FF20 disableLogfile
+          2    3 0000FF20 disableLogfile_stdcall
+         14    4 00014530 enableLogfile
+          3    5 00014840 enableLogfile_stdcall
+         15    6 0000FEE0 getLogFilename
+          4    7 0000FEE0 getLogFilename_stdcall
+         16    8 0000FED0 getVersion
+          5    9 0000FED0 getVersion_stdcall
+         17    A 0000FF20 latDisableLogfile
+         18    B 0000FF10 latEnableLogfile
+         19    C 0000FF40 latFree
+         20    D 0000FEE0 latGetLogFilename
+         21    E 0000FED0 latGetVersion
+         22    F 0000FF30 latInit
+         23   10 0000FFF0 latSendEvent
+         24   11 00010020 latSendException
+         25   12 0000FFB0 latSendPageview
+         26   13 0000FFD0 latSendScreenview
+         27   14 0000FFF0 sendEvent
+          6   15 000148B0 sendEvent_stdcall
+         28   16 00010020 sendException
+          7   17 000148F0 sendException_stdcall
+         29   18 0000FFB0 sendPageview
+          8   19 00014890 sendPageview_stdcall
+         30   1A 0000FFD0 sendScreenview
+          9   1B 000148D0 sendScreenview_stdcall
+         31   1C 00014760 start
+         10   1D 00014860 start_stdcall
+         32   1E 0000FF40 stop
+         11   1F 0000FF40 stop_stdcall
+
+  Summary
+
+        3000 .data
+       13000 .rdata
+        4000 .reloc
+        1000 .rsrc
+       38000 .text

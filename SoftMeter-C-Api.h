@@ -20,6 +20,19 @@
 	typedef		char				smChar_t;
 #endif
 
+/*
+	Note for Window's DLLs, and the calling convention.
+	
+	The following functions use the __cdecl calling convention.
+	Inside the DLL, they have exact counterparts that use the __stdcall calling convention.
+	The function names of their counterparts have a suffix of "_stdcall", e.g. 
+		start() // this is the __cdecl function
+		start_stdcall() // this is the __stdcall function
+	From your Windows application you can call the set you prefer.
+	
+	In other words, the DLL contains both calling conventions.
+*/
+
 // get the version string of the library. 
 EXPORT_API const smChar_t* getVersion(void);
 
@@ -77,7 +90,7 @@ EXPORT_API bool sendException(const smChar_t *exceptionDescription, const bool i
 #ifdef _WIN32
 	// __stdcall version of all the functions 
 	// The function names are appended with _stdcall
-	/* exported by DEF 
+	/* This section is REMed because these functions are exported by a .DEF file 
 	EXPORT_API const smChar_t*	__stdcall getVersion_stdcall(void);
 	EXPORT_API const smChar_t*	__stdcall getLogFilename_stdcall(void);
 	EXPORT_API void __stdcall enableLogfile_stdcall(const smChar_t *appName, const smChar_t *macBundleId);
