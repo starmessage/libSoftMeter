@@ -39,14 +39,15 @@ The symbols contain only the function name (no underscore prefix, no @, no numbe
  Otherwise, it probably uses the cdecl calling convention.  
 
 
-#### If the DLL is produced by another langauge, there could be other calling conventions as well.
+#### If the DLL is produced by another langauge
+- there could be other calling conventions as well.
 
 
 ### How to observe the function names of a DLL
 You can use Microsoft's DumpBin.exe  
 Run it from inside the VS developer command prompt 
 e.g. dumpbin /exports softmeter.dll  
-
+See the example of the [dumpbin report](https://github.com/starmessage/libSoftMeter/blob/stdcall-test-02/bin/dumpbin-of-softmeter-dll.txt) of SoftMeter.
 
 ### Known cases of __stdcall and __cdecl calling conventions
 - All Win32 API functions (with  very few exceptions) are __stdcall.

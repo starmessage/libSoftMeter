@@ -8,7 +8,8 @@ All notable changes to this project will be documented in this file.
 -	__stdcall version of the API functions.  
 	Now, under Windows, you can chose to call the __cdecl or the __stdcall version of the functions.
 	Both sets reside in the same DLL.
-		
+	See the [dumpbin report](https://github.com/starmessage/libSoftMeter/blob/stdcall-test-02/bin/dumpbin-of-softmeter-dll.txt)
+	
 - All-in-one functions  
 	Some tools (e.g. Installaware) allow you to load a DLL and make a single call. They do not keep the DLL loaded.  
 	A new all-in-one function, aio_sendEvent() was added to support such cases.  
