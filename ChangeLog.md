@@ -8,13 +8,14 @@ All notable changes to this project will be documented in this file.
 -	__stdcall version of the API functions.  
 	Now, under Windows, you can chose to call the __cdecl or the __stdcall version of the functions.
 	Both sets reside in the same DLL.
-	Pending: use a .DEF file to simplify the names of the __stdcall functions.
-	
+		
 - All-in-one functions  
 	Some tools (e.g. Installaware) allow you to load a DLL and make a single call. They do not keep the DLL loaded.  
-	A new all-in-one function (aio_sendEvent) was added to support Installaware.  
-	It combines the parameters of start() and sendEvent() and performs the whole sequence of start(), sendEvent(), stop.
-
+	A new all-in-one function, aio_sendEvent() was added to support such cases.  
+	It combines the parameters of start() and sendEvent() and performs the whole sequence of start(), sendEvent(), stop.  
+	aio_sendEvent follows the __cdecl calling convention and 
+	aio_sendEvent_stdcall follows the __stdcall calling convention (for Installaware)
+	
 	
 ## [0.6.0] - 2018-07-10
 ### Added
