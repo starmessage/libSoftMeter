@@ -31,7 +31,7 @@ extern "C" {
 #endif
 
 	// Under Windows, these the function pointers take the __cdecl DLL calling convention
-	typedef const char* (*gtVersion_t)(void);
+	typedef const char* (*getVersion_t)(void);
 	typedef const char* (*getLogFilename_t)(void);
 	typedef void (*enableLogfile_t)(const char *, const char *);
 	typedef void (*disableLogfile_t)(void);
@@ -47,7 +47,7 @@ extern "C" {
 		// Under Windows, these the function pointers take the __stdcall DLL calling convention (currently only demonstrating start()
 		// The function names are appended with _stdcall
 		// Windows applications can load either set of functions
-		typedef bool __stdcall (*start_stdcall_t)(const char *, const char *, const char *, const char *, const char *, const bool);
+		// typedef bool __stdcall (*start_stdcall_t)(const char *, const char *, const char *, const char *, const char *, const bool);
 	#endif
 	
 #ifdef __cplusplus
@@ -60,7 +60,7 @@ class AppTelemetry_cppApi : public cpccLinkedLibrary
 {
 private:
 
-	gtVersion_t			getVersion_ptr = NULL;
+	getVersion_t			getVersion_ptr = NULL;
 	getLogFilename_t	getLogFilename_ptr = NULL;
 	enableLogfile_t		enableLogfile_ptr = NULL;
 	disableLogfile_t	disableLogfile_ptr = NULL;
@@ -76,7 +76,7 @@ public:
 
 	explicit AppTelemetry_cppApi(const char *aLibraryfilename) : cpccLinkedLibrary(aLibraryfilename)
 	{
-		getVersion_ptr = (gtVersion_t)getFunction("getVersion");
+		getVersion_ptr = (getVersion_t)getFunction("getVersion");
 		if (!getVersion_ptr)
 			m_errorsExist = true;
 
