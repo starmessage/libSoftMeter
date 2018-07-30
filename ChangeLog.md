@@ -5,10 +5,10 @@ All notable changes to this project will be documented in this file.
 
 ## [0.6.1] - unreleased
 ### Added
--	__stdcall version of the API functions.  
+-	The API functions have their __stdcall counterparts.  
 	Now, under Windows, you can chose to call the __cdecl or the __stdcall version of the functions.
 	Both sets reside in the same DLL.
-	See the [dumpbin report](https://github.com/starmessage/libSoftMeter/blob/stdcall-test-02/bin/dumpbin-of-softmeter-dll.txt)
+	See the [dumpbin report](https://github.com/starmessage/libSoftMeter/blob/master/bin/dumpbin-of-softmeter-dll.txt)
 	
 - All-in-one functions  
 	Some tools (e.g. Installaware) allow you to load a DLL and make a single call. They do not keep the DLL loaded.  
