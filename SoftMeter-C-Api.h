@@ -21,7 +21,7 @@
 #endif
 
 /*
-	Note for Window's DLLs, and the calling convention.
+	Note for the Window's DLLs, and the calling convention.
 	
 	The following functions use the __cdecl calling convention.
 	Inside the DLL, they have exact counterparts that use the __stdcall calling convention.
@@ -32,6 +32,9 @@
 	
 	In other words, the DLL contains both calling conventions.
 */
+
+// Where are the all-in-one functions?
+// The "All-in-one" functions are defined in SoftMeter-C-Api-AIO.h
 
 // get the version string of the library. 
 EXPORT_API const smChar_t* getVersion(void);
@@ -90,6 +93,7 @@ EXPORT_API bool sendException(const smChar_t *exceptionDescription, const bool i
 #ifdef _WIN32
 	// __stdcall version of all the functions 
 	// The function names are appended with _stdcall
+	
 	/* This section is REMed because these functions are exported by a .DEF file 
 	EXPORT_API const smChar_t*	__stdcall getVersion_stdcall(void);
 	EXPORT_API const smChar_t*	__stdcall getLogFilename_stdcall(void);

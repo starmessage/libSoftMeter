@@ -20,8 +20,13 @@ typedef bool (*aio_sendEvent_t) (const smChar_t *, const smChar_t *, const smCha
   	To ease the implementation of SoftMeter in such tools, new all-in-one function will be added.  	
 */
   	  
-//	The function, aio_sendEvent() combines the parameters of start() and sendEvent() and performs the whole 
-//	sequence of start(), sendEvent(), stop.
+//	The function, aio_sendEvent() performs the whole sequence of start(), sendEvent(), stop.
+//  This allows you to send with a single function call, an event to Google Analytics.
+//  It was created for tools like Installaware where you can only call one function from the DLL 
+//  before the DLL gets unloaded. In such cases, you cannot keep the DLL loaded in memory and do
+//  successive function calls, preserving the internal state of the DLL. 
+//  For its parameters, aio_sendEvent() combines the parameters of start() and sendEvent() 
+//  In the DLLs there also its counterpart, aio_sendEvent_stdcall()
 EXPORT_API bool aio_sendEvent(const smChar_t *appName, const smChar_t *appVersion,
                                                 const smChar_t *appLicense, const smChar_t *appEdition,
                                                 const smChar_t *propertyID, const bool  userGaveConsent,
