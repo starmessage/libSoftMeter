@@ -6,7 +6,7 @@ SoftMeter is a Windows and MacOS library that allows you to monitor the usage of
 ### Function calling convention (__cdecl, __stdcall) for the Windows's libraries (DLLs)
 The SoftMeter DLLs contain the SoftMeter API functions twice.  
 One set is declared with the __cdecl calling convention and the other set with __stdcall.  
-The functions of the second set have '_stdcall' in their names.  
+The functions of the second set have have the '_stdcall' suffix in their names.  
 
 E.g
 - start()  
@@ -47,7 +47,7 @@ The symbols contain only the function name (no underscore prefix, no @, no numbe
 You can use Microsoft's DumpBin.exe  
 Run it from inside the VS developer command prompt 
 e.g. dumpbin /exports softmeter.dll  
-See the example of the [dumpbin report](https://github.com/starmessage/libSoftMeter/blob/stdcall-test-02/bin/dumpbin-of-softmeter-dll.txt) of SoftMeter.
+See the example of the [dumpbin report](https://github.com/starmessage/libSoftMeter/blob/master/bin/dumpbin-of-softmeter-dll.txt) of SoftMeter.
 
 ### Known cases of __stdcall and __cdecl calling conventions
 - All Win32 API functions (with  very few exceptions) are __stdcall.
