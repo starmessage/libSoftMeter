@@ -4,7 +4,10 @@ SoftMeter (former libAppTelemetry) is a Windows and MacOS library that allows yo
 It is ideal for shareware developers as it extends the website usage data with the applications usage data.  
 Shareware developers for desktop programs can now see via *one* free reporting platform (Google Analytics), 1) how people use their website, *and* 2) how they are converted to also use the software on their desktop computer or laptops.
 
-The library can also be used in InnoSetup scripts to track Setups and Uninstalls.
+The library can also be used in InnoSetup scripts and other installation packages, (e.g. Installaware) to track Setups and Uninstalls.
+
+- [SoftMeter website](https://www.StarMessageSoftware.com/softmeter)
+- [ChangeLog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 
 **How it works with Google Analytics**
 ![Software analytics / usage analytics](https://www.starmessagesoftware.com/myfiles/how-it-works-softmeter-usage-analytics.png)
@@ -17,12 +20,10 @@ This repository contains
 
 **Library information:**
 
-- [SoftMeter website](https://www.StarMessageSoftware.com/softmeter)
 - [GitHub repo](https://github.com/starmessage/libSoftMeter)
-- [ChangeLog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 - [API](https://www.starmessagesoftware.com/softmeter/sdk-api)
-- [Documentation / Implementation guide](https://www.StarMessageSoftware.com/softmeter/implementation)
-- [Examples reporting via  Google Analytics](https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications)
+- [Implementation checklist](https://www.StarMessageSoftware.com/softmeter/implementation)
+- [Examples reporting via Google Analytics](https://www.starmessagesoftware.com/blog/google-analytics-reports-software-applications)
 - [Installation analytics](https://www.starmessagesoftware.com/blog/installation-analytics-shareware-desktop-software-applications)
 - [Implementing installation statistics in Inno Setup](https://www.starmessagesoftware.com/blog/free-installation-statistics-innosetup-google-analytics)
 - [NuGet package](https://www.nuget.org/packages/libSoftMeter/)
