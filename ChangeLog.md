@@ -3,11 +3,14 @@ All notable changes to this project will be documented in this file.
 
 [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
-## [0.6.1] - unreleased
+## [0.6.1] - 2018-07-30
+
 ### Added
--	The API functions have their __stdcall counterparts.  
+-	__stdcall counterparts of the API functions.  
 	Now, under Windows, you can chose to call the __cdecl or the __stdcall version of the functions.
 	Both sets reside in the same DLL.
+	The stdcall set of functions has _stdcall in the function names.
+	The existing functions remain as they were (cdecl)
 	See the [dumpbin report](https://github.com/starmessage/libSoftMeter/blob/master/bin/dumpbin-of-softmeter-dll.txt)
 	
 - All-in-one functions  
@@ -17,7 +20,9 @@ All notable changes to this project will be documented in this file.
 	aio_sendEvent follows the __cdecl calling convention and 
 	aio_sendEvent_stdcall follows the __stdcall calling convention (for Installaware)
 	
-	
+### Changed
+- Internal improvements
+
 ## [0.6.0] - 2018-07-10
 ### Added
 - Detect invalid Google Analytics propertyIDs and mute those hits from G.A.
