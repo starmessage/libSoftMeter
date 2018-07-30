@@ -54,7 +54,7 @@ type
         enableLogfilePtr: TenableLogfile;
         disableLogfilePtr: TdisableLogfile;
         
-		    startPtr: Tstart;
+        startPtr: Tstart;
         stopPtr: Tstop;
 
         sendPageviewPtr: TsendPageview;
