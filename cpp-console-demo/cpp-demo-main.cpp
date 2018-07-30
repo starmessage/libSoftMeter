@@ -13,11 +13,12 @@
 #include <string.h>
 #include <iostream>
 #ifdef _WIN32
-#include <tchar.h>
+    #include <tchar.h>
 #endif
 #include "SoftMeter-CPP-Api.h"
+#include "../SoftMeter-C-Api-AIO.h" // for testing the all-in-one functions
 
-const char 	*appVer = "60",
+const char 	*appVer = "61",
             *appLicense = "demo", // e.g. free, trial, full, paid, etc.
 			*appEdition = "console";
 
@@ -62,6 +63,27 @@ bool checkCommandLineParams(int argc, const char * argv[])
 }
 
 
+bool testTheAllInOneFunctions(const char *appName, const char *aPropertyID)
+{
+	// load the dll
+	cpccLinkedLibrary theDLL(AppTelemetryDllFilename);
+
+	// get the address of the function
+    aio_sendEvent_t functionPtr = (aio_sendEvent_t) theDLL.getFunction("aio_sendEvent");
+    if (!functionPtr)
+    {
+        std::cerr << "function aio_sendEvent not found.\n";
+        return false;
+    }
+    
+	// call the one-in-all function
+    return functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, "Testing AIO function", "aio_sendEvent() test", 0);
+	// unload the dll
+
+}
+
+
+
 int main(int argc, const char * argv[])
 {
 	// The filename of this program will be used as the program name submitted to G.A.
@@ -96,6 +118,7 @@ int main(int argc, const char * argv[])
 
     std::string gaPropertyID(argv[1]);
 
+    
 	// create an object that contains all the needed telemetry functionality, plus the loading and linking of the .DLL or the .dylib
 	AppTelemetry_cppApi telemetryDll(AppTelemetryDllFilename);
 	if (!telemetryDll.isLoaded())
@@ -184,6 +207,11 @@ stop_report_and_exit:
 	telemetryDll.stop();
 
 
+    // finally, test the All-in-one function(s)
+    if (!testTheAllInOneFunctions(appName, gaPropertyID.c_str()))
+        std::cerr << "Error calling testTheAllInOneFunctions()\n";
+                             
+    
 	// will open the log file in a text editor
 	if (system(NULL)) // If command is a null pointer, the function only checks whether a command processor is available through this function, without invoking any command.
 	{
