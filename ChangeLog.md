@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 
 ## [0.6.1] - 2018-07-30
 
+- [Announcement on the website](https://www.starmessagesoftware.com/news/softmeter-v061-released-see-application-statistcs-google-analytics)
+
 ### Added
 -	__stdcall counterparts of the API functions.  
 	Now, under Windows, you can chose to call the __cdecl or the __stdcall version of the functions.
@@ -51,4 +53,20 @@ All notable changes to this project will be documented in this file.
 - New function: sendException(char *exceptionDescription, bool isFatal)  
   Use it to [remotely log and monitor exceptions](https://www.starmessagesoftware.com/blog/how-to-track-software-exceptions-via-google-analytics).  
   You can see the exceptions of your distributed installations in real-time from Google Analytics
+
+## [0.5.5] 
+### Changed
+- Internal improvements
+- Better compatibility with Windows XP
+
+## [0.5.3] 
+### Added
+- ScreenView hits of the Google measurement protocol.  
+Until now the library had only PageView and Event hits.
+
+## [0.5.2] 
+### Changed
+- start() now takes two more string parameters,  
+license (e.g. free, trial, pro, limited, etc) and  
+edition (e.g. AppleStore, Mac, Win, Promo, etc)  
 
