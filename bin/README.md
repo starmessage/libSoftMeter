@@ -19,7 +19,8 @@ See the example of the [dumpbin report](https://github.com/starmessage/libSoftMe
 
 Depending on the language of your Windows application you can call either set of functions.
 
-<div style="border:1px solid gray; background:#f1f1f1;">
+===
+
 ## General notes about the calling conventions of DLL functions
 If you are fighting with the DLL function's calling convention of a third-party or your own DLL, you can see below some notes that can help you solve the puzzle.
 
@@ -65,6 +66,5 @@ e.g. dumpbin /exports softmeter.dll
 ### Links:
 https://social.msdn.microsoft.com/Forums/vstudio/en-US/93bb7268-fc38-4444-a795-511dd5ff0738/exporting-stdcall-and-cdecl-calling-conventions?forum=vcgeneral
 
-</div>
-
+===
 
