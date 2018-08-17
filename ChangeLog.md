@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
+## [0.6.2] - Unreleased
+
+### Fixed
+
+- User preferred language was not always correct under Windows.
+
 ## [0.6.1] - 2018-07-30
 
 - [Announcement on the website](https://www.starmessagesoftware.com/news/softmeter-v061-released-see-application-statistcs-google-analytics)
