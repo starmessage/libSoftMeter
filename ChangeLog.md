@@ -9,9 +9,17 @@ All notable changes to this project will be documented in this file.
 
 - User preferred language was not always correct under Windows.
 
+### Changed
+
+- Internal improvements
+
+### Added
+
+-	Call-home switch (Pro edition). 
+
 ## [0.6.1] - 2018-07-30
 
-- [Announcement on the website](https://www.starmessagesoftware.com/news/softmeter-v061-released-see-application-statistcs-google-analytics)
+- [Announcement at the website](https://www.starmessagesoftware.com/news/softmeter-v061-released-see-application-statistcs-google-analytics)
 
 ### Added
 -	__stdcall counterparts of the API functions.  
