@@ -18,7 +18,7 @@
 #include "SoftMeter-CPP-Api.h"
 #include "../SoftMeter-C-Api-AIO.h" // for testing the all-in-one functions
 
-const char 	*appVer = "61",
+const char 	*appVer = "62",
             *appLicense = "demo", // e.g. free, trial, full, paid, etc.
 			*appEdition = "console";
 
@@ -78,10 +78,41 @@ bool testTheAllInOneFunctions(const char *appName, const char *aPropertyID)
     
 	// call the one-in-all function
     return functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, "Testing AIO function", "aio_sendEvent() test", 0);
-	// unload the dll
+	
 
 }
 
+
+#ifdef _WIN32
+bool testTheSend_aio_Event_strcall(const char *appName, const char *aPropertyID)
+{
+	// testing aio_sendEvent_stdcall()
+	HMODULE hDLL = LoadLibrary(AppTelemetryDllFilename);
+	if (!hDLL)
+	{
+		std::cerr << "DLL not loaded:" << AppTelemetryDllFilename << std::endl;
+		return false;
+	}
+
+	// https://docs.microsoft.com/en-us/cpp/cpp/stdcall
+	typedef bool  (__stdcall *aio_sendEvent_stdcall_t)  (const smChar_t *, const smChar_t *, const smChar_t *, const smChar_t *, const smChar_t *, const bool, const smChar_t *, const smChar_t *, const int);
+
+	const aio_sendEvent_stdcall_t functionPtr = (aio_sendEvent_stdcall_t) GetProcAddress(hDLL, "aio_sendEvent_stdcall");
+	if (!functionPtr)
+	{
+		std::cerr << "Function aio_sendEvent_stdcall() not found in the DLL" << std::endl;
+		return false;
+	}
+
+	bool result = functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, "Testing stdcall AIO function", "aio_sendEvent_stdcall() test", 0);
+
+	// unload the dll
+	if (hDLL)
+		FreeLibrary(hDLL);
+
+	return true;
+}
+#endif
 
 
 int main(int argc, const char * argv[])
@@ -104,11 +135,11 @@ int main(int argc, const char * argv[])
 	{
 		std::cerr << "Error: the program must be called with a parameter specifying the google analytics property\nE.g.\n";
 
-        // std::cerr << argv[0] << " UA-123456-12\n";
+        // std::cerr << argv[0] << " UA-1234-1\n";
         #ifdef _WIN32
-            std::cerr << "cpp-demo-win UA-123456-12\n";
+            std::cerr << "cpp-demo-win UA-1234-1\n";
         #else
-            std::cerr << "./cpp-demo-mac UA-123456-12\n";
+            std::cerr << "./cpp-demo-mac UA-1234-1\n";
         #endif
 		return 10;
 	}
@@ -116,7 +147,7 @@ int main(int argc, const char * argv[])
 	if (!argv[1])
 		return 11;
 
-    std::string gaPropertyID(argv[1]);
+    const std::string gaPropertyID(argv[1]);
 
     
 	// create an object that contains all the needed telemetry functionality, plus the loading and linking of the .DLL or the .dylib
@@ -206,12 +237,19 @@ stop_report_and_exit:
 
 	telemetryDll.stop();
 
-
-    // finally, test the All-in-one function(s)
+	std::cout << "Will send an event hit using the All-in-one function aio_sendEvent()" << std::endl;
+    // test the All-in-one function(s)
     if (!testTheAllInOneFunctions(appName, gaPropertyID.c_str()))
         std::cerr << "Error calling testTheAllInOneFunctions()\n";
                              
-    
+	#ifdef _WIN32
+		// test the __stdcall function calling convention
+		std::cout << "Will send an event hit using the All-in-one function aio_sendEvent_stdcall() and the __stdcall convention" << std::endl;
+		if (!testTheSend_aio_Event_strcall(appName, gaPropertyID.c_str()))
+			std::cerr << "Error calling testTheSend_aio_Event_strcall()\n";
+	#endif
+
+
 	// will open the log file in a text editor
 	if (system(NULL)) // If command is a null pointer, the function only checks whether a command processor is available through this function, without invoking any command.
 	{

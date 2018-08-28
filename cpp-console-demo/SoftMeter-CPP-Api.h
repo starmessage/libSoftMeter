@@ -14,6 +14,8 @@
 
 #pragma once
 
+//	see also: SoftMeter-C-Api-AIO.h for the all-in-one functions
+
 // get the latest version of this file from
 // https://github.com/starmessage/cpcc/blob/master/core.cpccLinkLibrary.h
 #include "core.cpccLinkLibrary.h"
@@ -60,7 +62,7 @@ class AppTelemetry_cppApi : public cpccLinkedLibrary
 {
 private:
 
-	getVersion_t			getVersion_ptr = NULL;
+	getVersion_t		getVersion_ptr = NULL;
 	getLogFilename_t	getLogFilename_ptr = NULL;
 	enableLogfile_t		enableLogfile_ptr = NULL;
 	disableLogfile_t	disableLogfile_ptr = NULL;
