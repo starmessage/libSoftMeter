@@ -16,11 +16,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerWorkingDirectory>$(myVisualStudioTemp)\$(ProjectName)\$(Configuration)\</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>UA-385839-13</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments> UA-385839-13</LocalDebuggerCommandArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LocalDebuggerWorkingDirectory>$(myVisualStudioTemp)\$(ProjectName)\$(Configuration)\</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>UA-385839-13</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments> UA-385839-13</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>
