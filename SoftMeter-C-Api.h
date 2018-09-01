@@ -14,7 +14,7 @@
 #endif
 
 
-#ifdef UNICODE
+#ifdef UNICODE	// for Windows systems
 	typedef		wchar_t				smChar_t;
 #else
 	typedef		char				smChar_t;
@@ -30,7 +30,7 @@
 		start_stdcall() // this is the __stdcall function
 	From your Windows application you can call the set you prefer.
 	
-	In other words, the DLL contains both calling conventions.
+	As a result, the DLL contains both calling conventions.
 */
 
 // Where are the all-in-one functions?

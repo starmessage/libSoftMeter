@@ -12,8 +12,8 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Internal improvements
-- __stdcall example call (Windows DLL only)
-[cpp-demo-main.cpp](https://github.com/starmessage/libSoftMeter/blob/master/cpp-console-demo/cpp-demo-main.cpp) now contains an example of calling the __stdcall version of an API function.
+- __stdcall example call (Windows DLL only)  
+[cpp-demo-main.cpp](https://github.com/starmessage/libSoftMeter/blob/master/cpp-console-demo/cpp-demo-main.cpp) now contains an example of calling the __stdcall version of an API function.  
 Reminder: Since v0.6.1 the DLL contains both the __stdcall and the __cdecl versions of all the API functions, so you can call the most appropriate for your development tool.
 
 ### Added
