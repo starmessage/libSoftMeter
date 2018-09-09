@@ -1,8 +1,7 @@
 ﻿**SoftMeter application analytics SDK: Compiled library files and demo programs**
 
 > ![SoftMeter application analytics logo](https://www.starmessagesoftware.com/myfiles/softmeter-icon-128x155.png)  
-> Listen to the heartbeat  
-> of your software
+> Listen to the heartbeat of your software
 
 SoftMeter (former libAppTelemetry) is a Windows and MacOS library that allows you to send usage statistics from your program to your Google Analytics property.  
 It is ideal for shareware developers as it extends the website usage data with the applications usage data.  
@@ -14,7 +13,10 @@ The library can also be used in InnoSetup scripts and other installation package
 - [ChangeLog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 
 **How it works with Google Analytics**
-![Software analytics / usage analytics](https://www.starmessagesoftware.com/myfiles/how-it-works-softmeter-usage-analytics.png)
+![Application analytics / usage analytics](https://www.starmessagesoftware.com/myfiles/how-it-works-softmeter-usage-analytics.png)
+
+**Example of application analytics reporting dashboard**
+![Example of reporting dashboard for application analytics](https://www.starmessagesoftware.com/myfiles/softmeter-application-analytics-dashboard.png)
 
 This repository contains 
 - Delphi/Pascal and C++ command line examples for Windows and MacOS X that show how to load the appTelemetry library and send page views from your shareware software to Google Analytics.
