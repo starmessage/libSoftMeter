@@ -2,15 +2,13 @@
 * Sample EULA for software using SoftMeter *
 ********************************************
 
-================================================================
-<YOUR-SOFTWARE-NAME> End User License Agreement | License version 1.2
-================================================================
-
+=====================================================================
+<YOUR-SOFTWARE-NAME> End User License Agreement | License version 1.3
+=====================================================================
 
 Introduction.
 ----------------
-This software program uses the libSoftMeter component that allows the developer of the 
-software to collect anonymous installation and run-time usage statistics of the software.
+This software program uses the SoftMeter library component that allows the developer of the software ("DEVELOPER") to collect anonymous installation and run-time usage statistics of the software.
 
 
 In brief.
@@ -18,8 +16,7 @@ In brief.
 - No personal information is collected.
 - The data are not sold, nor used/given/shared with 3rd parties.
 - The platform of Google Analytics is used for the data collection and reporting. 
-  The privacy and personal data policies of Google's Measurement Protocol are also 
-  respected.
+  The privacy and personal data policies of Google's Measurement Protocol are also respected.
 
 
 Type of data.
@@ -44,13 +41,14 @@ estimate the usefulness of the various features of the program, etc.
 Storage of the data.
 -------------
 Data are transfered directly from the program to the secure platform of Google Analytics. 
-Google Analytics is used for the reporting on the data. 
+Google Analytics is used as the reporting platform for the data. 
 The Google privacy and personal data protection policies apply.
 
 
 Who has access to the data.
 -------------
-StarMessage software.
+- StarMessage software, the maker of SoftMeter
+- <YOUR COMPANY NAME>
 
 
 More information about the telemetry library
