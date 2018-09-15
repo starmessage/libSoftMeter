@@ -1,0 +1,74 @@
+﻿SoftMeter - License Agreement [v0.6.2]
+======================================
+
+This License Agreement is a legal agreement between:
+A) the Author (StarMessageSoftware.com) of this software library, SoftMeter, which includes computer software and may include associated media, and “online” or electronic documentation (“SOFTWARE LIBRARY”) and
+B) you, the software developer (either an individual or a single entity) wishing to include the SoftMeter library in your software.
+
+
+THIRD PARTIES INVOLVED
+---------------------------
+The SOFTWARE LIBRARY uses Google's measurement protocol to send data from the developer's software to the Google analytics platform.
+The Google Analytics and the Google measurement protocol terms apply.
+
+
+IMPLEMENTATION OF THE SOFTWARE LIBRARY INTO YOUR SOFTWARE
+---------------------------------------------------------
+1) You must give to your end users proper notice about the telemetry's data collection and the kind of data you collect.
+
+2) You must get consent from your end users before starting to collect data and provide them with the opportunity to opt-in and out from the data collection.
+
+3) To operate in the EU and EEA, following the new GDPR law (May 25, 2018), the users of your software must opt-in for the data collection.
+
+4) You can use the data only for monitoring your software's metrics (e.g. country distribution, number of installations, runtime executions, most used features, operating systems and versions, screen resolutions and similar anonymous data) and for the purpose of improving a) your software and b) your marketing activities. 
+
+5) You cannot collect personal data.
+
+6) You cannot collect any data that allows Google to personally identify an individual (such as names, Social Security Numbers, email addresses, or any similar data), or data that permanently identifies a particular device (such as a unique device identifier if such an identifier cannot be reset).
+
+7) You must comply with the Google Measurement Protocol rules.
+
+8) When releasing a new version of your software you must include a recent version of the SOFTWARE LIBRARY.
+
+
+SOFTMETER FREE EDITION TERMS
+----------------------------
+1) "Call home" functionality
+The library has telemetry for its own purposes: A hit is sent to the Author's Google Analytics property for the purpose of monitoring the proper usage of the SOFTWARE LIBRARY. 
+The data sent comply with the rules above.
+
+2) No registration is needed to use the SOFTWARE LIBRARY.
+
+3) There is no cost for this edition of the SOFTWARE LIBRARY.
+
+
+SOFTMETER PRO EDITION TERMS
+---------------------------
+1) The Pro edition does not send "call home" hits to the Author's Google Analytics property.
+It only sends hits to your (the developer's) Google Analytics property.
+
+2) The license of the Pro edition is for one Google Analytics account number and all the "Properties" under that account.
+You cannot use it to send hits to more that one Google Analytics account number.
+
+3) The Pro edition is for all your products, which must send hits to the same Google Account as described above.
+
+4) There is a low annual fee for this edition of the SOFTWARE LIBRARY. The license's duration is for one year. Multiple years can be purchased. 
+
+5) The renewal is not automatic. When the end of the license approaches, you will need to re-order it. The new license will start from the date the old license expires.
+    
+6) During the year, you will get all version updates of the library. 
+
+7) You can stop paying the annual license at any time without affecting the telemetry of your already distributed applications. The library will continue to function normally.
+
+8) If you stop paying, you should stop including the SoftMeter Pro edition in your new software releases.
+
+
+DISCLAIMER OF WARRANTY
+----------------------
+This software and the accompanying files are given "as is" and without any warranties as of their proper operation or their safe coexistence with other software or data.
+NO WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED.
+
+
+NO LIABILITY FOR DAMAGES
+------------------------
+In no event shall the Author of this Software be liable for any special, consequential, incidental or indirect damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use of or inability to use this product, even if the Author of this Software is aware of the possibility of such damages and known defects.
