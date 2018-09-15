@@ -2,7 +2,7 @@
 ======================================
 
 This License Agreement is a legal agreement between:
-A) the Author (StarMessageSoftware.com) of this software library, SoftMeter, which includes computer software and may include associated media, and “online” or electronic documentation (“SOFTWARE LIBRARY”) and
+A) the Author (StarMessageSoftware.com) of this software library, SoftMeter, which  includes computer software and may include associated media, and “online” or  electronic documentation (“SOFTWARE LIBRARY”) and
 B) you, the software developer (either an individual or a single entity) wishing to include the SoftMeter library in your software.
 
 
@@ -34,8 +34,8 @@ IMPLEMENTATION OF THE SOFTWARE LIBRARY INTO YOUR SOFTWARE
 SOFTMETER FREE EDITION TERMS
 ----------------------------
 1) "Call home" functionality
-The library has telemetry for its own purposes: A hit is sent to the Author's Google Analytics property for the purpose of monitoring the proper usage of the SOFTWARE LIBRARY. 
-The data sent comply with the rules above.
+   The library has telemetry for its own purposes: A hit is sent to the Author's Google Analytics property for the purpose of monitoring the proper usage of the SOFTWARE LIBRARY. 
+   The data sent comply with the rules above.
 
 2) No registration is needed to use the SOFTWARE LIBRARY.
 
@@ -45,10 +45,10 @@ The data sent comply with the rules above.
 SOFTMETER PRO EDITION TERMS
 ---------------------------
 1) The Pro edition does not send "call home" hits to the Author's Google Analytics property.
-It only sends hits to your (the developer's) Google Analytics property.
+   It only sends hits to your (the developer's) Google Analytics property.
 
 2) The license of the Pro edition is for one Google Analytics account number and all the "Properties" under that account.
-You cannot use it to send hits to more that one Google Analytics account number.
+   You cannot use it to send hits to more that one Google Analytics account number.
 
 3) The Pro edition is for all your products, which must send hits to the same Google Account as described above.
 
@@ -71,4 +71,5 @@ NO WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED.
 
 NO LIABILITY FOR DAMAGES
 ------------------------
-In no event shall the Author of this Software be liable for any special, consequential, incidental or indirect damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use of or inability to use this product, even if the Author of this Software is aware of the possibility of such damages and known defects.
+In no event shall the Author of this Software be liable for any special, consequential, incidental or indirect damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any 
+other pecuniary loss) arising out of the use of or inability to use this product, even if the Author of this Software is aware of the possibility of such damages and known defects.
