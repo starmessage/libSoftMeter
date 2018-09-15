@@ -21,21 +21,15 @@ In brief.
 
 Type of data.
 ----------------
-The data collected are completely anonymous and consist of parameters like the operating 
-system, the version of the software, the screen resolution, the country, any errors 
-occurred during the running of the program, etc.
+The data collected are completely anonymous and consist of parameters like the operating system, the version of the software, the screen resolution, the country, any errors occurred during the running of the program, etc.
 
 The same type of data are commonly collected every time you visit anonymously a website. 
-This is mentioned to allow you to understand the analogy between the data collected by this 
-program and the commonly used data collection that is a norm on the internet.
+This is mentioned to allow you to understand the analogy between the data collected by this program and the commonly used data collection that is a norm on the internet.
 
 
 Purpose of data collection.
 -------------
-The data are collected for the sole purpose of monitoring the good running of the program 
-and identifying areas for improvement, discover incompatibilities with specific operating 
-systems, estimate the size of the user base, plan and respond to increases in demand, 
-estimate the usefulness of the various features of the program, etc.
+The data are collected for the sole purpose of monitoring the good running of the program and identifying areas for improvement, discover incompatibilities with specific operating systems, estimate the size of the user base, plan and respond to increases in demand, estimate the usefulness of the various features of the program, etc.
 
 
 Storage of the data.
