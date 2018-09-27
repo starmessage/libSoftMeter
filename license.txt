@@ -1,4 +1,5 @@
-﻿SoftMeter - License Agreement [v0.6.2]
+﻿======================================
+SoftMeter - License Agreement [v0.6.2]
 ======================================
 
 This License Agreement is a legal agreement between:
