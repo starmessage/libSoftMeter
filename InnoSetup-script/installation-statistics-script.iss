@@ -3,28 +3,30 @@
 (*
 
 Title:			Installation statistics via Google Analytics Add-on for Inno Setup
-Copyright: 	    (C) StarMessage software 2018
+Copyright:      (C) StarMessage software 2018
 Web:			http://www.StarMessageSoftware.com/softmeter/
-Script Version: 0.5.1
-Purpose:	    Monitor via the free Google Analytics platform important information about the distribution
-                and installation of your shareware/software. E.g. number of installations per month,
-                countries of your user base, screen resolutions, operating systems, versions of your software, etc.
+Script Version: 0.6.2
+Purpose:	    Monitor via the free Google Analytics platform important information about
+                the distribution and installation of your shareware/software. E.g. number
+                of installations per month, countries of your user base, screen resolutions,
+                operating systems, versions of your software, etc.
                 You can even see real-time data from Google Analytics.
-                With SoftMeter and this InnoSetup script you can achieve to have this information
-                withing an hour or two of development effort.
+                With SoftMeter and this InnoSetup script you can achieve to have this
+                information withing an hour or two of development effort.
 E-mail:			sales -at- starmessage.info
 				(For support and suggestions)
-				
+
 Information from Inno Setup about the use of DLLs in the innosetup scripts
 	http://www.jrsoftware.org/ishelp/index.php?topic=scriptdll
 
 Usage:
  - Check that you have enabled the Inno Setup Preprocessor (ISPP)
    This is a preprocessor add-on for Inno Setup that will allow Inno setup to run Pascal scripts.
-   
+   The "Inno setup Quick start pack" installation prompts you to include it.
+
  - Download from our GitHub space https://github.com/starmessage/libSoftMeter
 	(a) installation-statistics-script.iss (this file)
-	(b) inno-statistics-config.iss, 
+	(b) inno-statistics-config.iss,
 	(c) libSoftMeter.dll
 	There are two versions of the DLL available:
 	 		64bit: Runs on 64-bit versions of Windows.
@@ -53,7 +55,7 @@ Usage:
 	This installer script can work with any of them because it uses Event hits that are recorded by both types of views.
 
  - Edit the file "inno-statistics-config.iss" to add your PropertyID and the DLL filename name.
- 
+
  - Decide on the variables: AppName, AppVersion, AppLicense, AppEdition.
    	Some of these can be automatically taken from the constants of your main .iss script.
 	 	e.g. AppVersion is {AppVersion}
@@ -86,7 +88,7 @@ Notes:
 
 	You must run the setup externally (not from inside the Inno Setup GUI).
 	The "Run" command of the inno setup GUI is a "sandboxed" command that will not extract the DLL and your tests will fail.
-	
+
 	Contact me in case of questions or feedback.
 
 *)
@@ -164,10 +166,10 @@ begin
 	// We send PageViews and  ScreenViews hits for the daily usage of the software.
 	// E.g. App launch, User went to settings screen, user created a new invoice, etc.
 	// With this separation we avoid having the important actions (e.g. installation)
-	// burried in the noise that the high volume of PageViews or ScreenViews create.
+	// burried in the noise created by the high volume of PageViews or ScreenViews.
 	eventAction :=  appName + ' Install';
 	iSendEvent(PAnsiChar(eventAction), 'Install', 1);
-	iStop;
+    iStop;
 end;
 
 

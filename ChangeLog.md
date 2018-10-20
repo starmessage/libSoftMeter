@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
+## [0.6.3] - Unreleased
+
+### Changed
+
+- Internal improvements
+
+
 ## [0.6.2] - 2018-08-28
 
 ### Fixed

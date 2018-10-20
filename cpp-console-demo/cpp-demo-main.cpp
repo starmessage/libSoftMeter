@@ -98,19 +98,19 @@ bool testTheSend_aio_Event_strcall(const char *appName, const char *aPropertyID)
 	typedef bool  (__stdcall *aio_sendEvent_stdcall_t)  (const smChar_t *, const smChar_t *, const smChar_t *, const smChar_t *, const smChar_t *, const bool, const smChar_t *, const smChar_t *, const int);
 
 	const aio_sendEvent_stdcall_t functionPtr = (aio_sendEvent_stdcall_t) GetProcAddress(hDLL, "aio_sendEvent_stdcall");
+	
+	bool result;
 	if (!functionPtr)
 	{
 		std::cerr << "Function aio_sendEvent_stdcall() not found in the DLL" << std::endl;
-		return false;
+		result=false;
 	}
-
-	bool result = functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, "Testing stdcall AIO function", "aio_sendEvent_stdcall() test", 0);
+	else
+		result = functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, "Testing stdcall AIO function", "aio_sendEvent_stdcall() test", 0);
 
 	// unload the dll
-	if (hDLL)
-		FreeLibrary(hDLL);
-
-	return true;
+	FreeLibrary(hDLL);
+	return result;
 }
 #endif
 
