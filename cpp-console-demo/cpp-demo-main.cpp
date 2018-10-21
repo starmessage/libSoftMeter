@@ -18,7 +18,7 @@
 #include "SoftMeter-CPP-Api.h"
 #include "../SoftMeter-C-Api-AIO.h" // for testing the all-in-one functions
 
-const char 	*appVer = "62",
+const char 	*appVer = "63",
             *appLicense = "demo", // e.g. free, trial, full, paid, etc.
 			*appEdition = "console";
 
