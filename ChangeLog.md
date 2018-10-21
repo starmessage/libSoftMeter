@@ -3,7 +3,10 @@ All notable changes to this project will be documented in this file.
 
 [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
-## [0.6.3] - Unreleased
+## [0.6.3] - 2018-10-21
+
+No changes in the API.  
+Please upgrade: the DLL and dylib files of the previous version are directly replaceable by this version's files.
 
 ### Changed
 
