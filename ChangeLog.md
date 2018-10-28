@@ -1,7 +1,7 @@
 # [libSoftMeter version history/Changelog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 All notable changes to this project will be documented in this file.
 
-[libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
+SoftMeter is an application analytics library for Windows and MacOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
 ## [0.6.3] - 2018-10-21
 
