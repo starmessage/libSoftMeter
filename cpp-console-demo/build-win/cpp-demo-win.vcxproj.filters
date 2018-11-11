@@ -10,7 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp-demo-main.cpp" />
-    <ClCompile Include="..\..\..\..\cpccHttpRequest\cpccUrl.SelfTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\core.cpccLinkLibrary.h" />

@@ -18,9 +18,9 @@
 #include "SoftMeter-CPP-Api.h"
 #include "../SoftMeter-C-Api-AIO.h" // for testing the all-in-one functions
 
-const char 	*appVer = "63",
-            *appLicense = "demo", // e.g. free, trial, full, paid, etc.
-			*appEdition = "console";
+const smChar_t 	*appVer = _T("63"),
+                *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
+			    *appEdition = _T("console");
 
 // If the user has opted-out from sending telemetry data, this variable must be false.
 // Save the user's consent in the app's settings and then read this variable every time your program starts.
@@ -63,7 +63,7 @@ bool checkCommandLineParams(int argc, const char * argv[])
 }
 
 
-bool testTheAllInOneFunctions(const char *appName, const char *aPropertyID)
+bool testTheAllInOneFunctions(const smChar_t *appName, const smChar_t *aPropertyID)
 {
 	// load the dll
 	cpccLinkedLibrary theDLL(AppTelemetryDllFilename);
@@ -77,14 +77,14 @@ bool testTheAllInOneFunctions(const char *appName, const char *aPropertyID)
     }
     
 	// call the one-in-all function
-    return functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, "Testing AIO function", "aio_sendEvent() test", 0);
+    return functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, _T("Testing AIO function"), _T("aio_sendEvent() test"), 0);
 	
 
 }
 
 
 #ifdef _WIN32
-bool testTheSend_aio_Event_strcall(const char *appName, const char *aPropertyID)
+bool testTheSend_aio_Event_strcall(const smChar_t *appName, const smChar_t *aPropertyID)
 {
 	// testing aio_sendEvent_stdcall()
 	HMODULE hDLL = LoadLibrary(AppTelemetryDllFilename);
@@ -106,7 +106,7 @@ bool testTheSend_aio_Event_strcall(const char *appName, const char *aPropertyID)
 		result=false;
 	}
 	else
-		result = functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, "Testing stdcall AIO function", "aio_sendEvent_stdcall() test", 0);
+		result = functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, _T("Testing stdcall AIO function"), _T("aio_sendEvent_stdcall() test"), 0);
 
 	// unload the dll
 	FreeLibrary(hDLL);
@@ -166,7 +166,7 @@ int main(int argc, const char * argv[])
 	std::cout << "libAppTelemetry version:" << telemetryDll.getVersion() << std::endl;
 
 	// fictional appName and appVersion for your testing
-	const char *appName = executableName.c_str();
+	const smChar_t *appName = executableName.c_str();
 
 	telemetryDll.enableLogfile(appName, "com.company.appname");
 	std::string logFilename(telemetryDll.getLogFilename());
@@ -188,7 +188,8 @@ int main(int argc, const char * argv[])
 	}
 
 	std::cout << "Will send a Event hit" << std::endl;
-	if (!telemetryDll.sendEvent("AppLaunch", appName, 1))
+	// if (!telemetryDll.sendEvent("AppLaunch", appName, 1))
+    if (!telemetryDll.sendEvent("AppLaunch", appName, 1))
 	{
 		std::cerr << "sendEvent returned False\n";
 		goto stop_report_and_exit;
