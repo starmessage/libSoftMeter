@@ -76,7 +76,7 @@ private:
 
 public:
 
-	explicit AppTelemetry_cppApi(const char *aLibraryfilename) : cpccLinkedLibrary(aLibraryfilename)
+	explicit AppTelemetry_cppApi(const TCHAR *aLibraryfilename) : cpccLinkedLibrary(aLibraryfilename)
 	{
 		getVersion_ptr = (getVersion_t)getFunction("getVersion");
 		if (!getVersion_ptr)

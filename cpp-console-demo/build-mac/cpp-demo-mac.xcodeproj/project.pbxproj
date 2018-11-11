@@ -95,7 +95,7 @@
 		584CE9F31F5074DC002B1393 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "StarMessage software";
 				TargetAttributes = {
 					584CE9FA1F5074DC002B1393 = {

@@ -145,7 +145,7 @@ protected:
 
 public: // ctor, dtor
 
-	explicit cpccLinkedLibrary(const char *aLibraryfilename)
+	explicit cpccLinkedLibrary(const TCHAR *aLibraryfilename)
 	{
 		m_libHandle = cpccLinkedLibradyImpl::loadLibrary(aLibraryfilename);
 		if (!m_libHandle)
