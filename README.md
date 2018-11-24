@@ -36,11 +36,10 @@ This repository contains
  
 **Project Objectives:**
 
-Track the usage and instalations of your shareware program via your existing Google Analytics account. 
+Track the usage and instalations of your shareware program (and soon your mobile IOS app) via your existing Google Analytics account. 
 
 **Operating system compatibility:**
 
-Already tested under:
 - Windows XP and later, 32/64 bit
 - OSX 10.6 and later, 64 bit
 
