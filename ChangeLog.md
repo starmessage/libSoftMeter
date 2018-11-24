@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 SoftMeter is an application analytics library for Windows and MacOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
+## [0.6.4] - (unpublished)
+
+### Fixed
+
+- Bug in getOSNameVersionAndBuild() for some MacOS locales, e.g Ukrainian
+
+### Added
+
+- Hit rate limiter to impose the Google analytics limits.
+
 ## [0.6.3] - 2018-10-21
 
 No changes in the API.  
@@ -11,7 +21,6 @@ Please upgrade: the DLL and dylib files of the previous version are directly rep
 ### Changed
 
 - Internal improvements
-
 
 ## [0.6.2] - 2018-08-28
 

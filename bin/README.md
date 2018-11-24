@@ -1,7 +1,13 @@
 ﻿## SoftMeter libraries (DLLs and dylib)
 
 SoftMeter is a Windows and MacOS library that allows you to monitor the usage of your software program (installs, uninstalls, number of daily/monthly users, countries, OS, etc) via your Google Analytics property.  
+An IOS version will soon be release.
 - Go to [SoftMeter website](https://www.StarMessageSoftware.com/softmeter) for more information.  
+
+## Description of files
+|libSoftMeter.dll|Windows 32 bit DLL. Suitable for 32 and 64 bit of Windows.|
+|libSoftMeter64bit.dll|Windows 64 bit DLL. Suitable for 64 bit of Windows.|
+|libSoftMeter.dylib|MacOS dylib for 64 bit systems.|
 
 ## SoftMeter DLLs for Windows
 To ease the life of the Windows applications developer, the SoftMeter DLLs have both __cdecl and __stdcall calling conventions.  
