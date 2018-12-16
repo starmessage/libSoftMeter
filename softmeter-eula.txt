@@ -3,7 +3,7 @@
 ********************************************
 
 =====================================================================
-<YOUR-SOFTWARE-NAME> End User License Agreement | License version 1.3
+<YOUR-SOFTWARE-NAME> End User License Agreement | License version 1.4
 =====================================================================
 
 Introduction.
@@ -17,6 +17,12 @@ In brief.
 - The data are not sold, nor used/given/shared with 3rd parties.
 - The platform of Google Analytics is used for the data collection and reporting. 
   The privacy and personal data policies of Google's Measurement Protocol are also respected.
+- You can turn off the data collection if you do not consent to it.
+
+
+Purpose of data collection.
+-------------
+The data are collected for the sole purpose of monitoring the good running of the program and identifying areas for improvement, discover incompatibilities with specific operating systems, estimate the size of the user base, plan and respond to increases in demand, estimate the usefulness of the various features of the program, etc.
 
 
 Type of data.
@@ -26,23 +32,27 @@ The data collected are completely anonymous and consist of parameters like the o
 The same type of data are commonly collected every time you visit anonymously a website. 
 This is mentioned to allow you to understand the analogy between the data collected by this program and the commonly used data collection that is a norm on the internet.
 
-
-Purpose of data collection.
--------------
-The data are collected for the sole purpose of monitoring the good running of the program and identifying areas for improvement, discover incompatibilities with specific operating systems, estimate the size of the user base, plan and respond to increases in demand, estimate the usefulness of the various features of the program, etc.
+You can read more information about the data collection and processing here:  
+https://www.starmessagesoftware.com/softmeter/data
 
 
 Storage of the data.
 -------------
+Google Analytics is used as the reporting platform for the data.  
 Data are transfered directly from the program to the secure platform of Google Analytics. 
-Google Analytics is used as the reporting platform for the data. 
-The Google privacy and personal data protection policies apply.
+The Google privacy and personal data protection policies apply.  
 
 
 Who has access to the data.
 -------------
 - StarMessage software, the maker of SoftMeter
 - <YOUR COMPANY NAME>
+
+
+Turning On/Off the data collection.
+----------------
+The software provides you with an option to enable or disable the data collection at anytime.
+If you do not consent to the collection of the data, you can use this option to disable this functionality. 
 
 
 More information about the telemetry library
