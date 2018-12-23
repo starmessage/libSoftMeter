@@ -3,7 +3,7 @@
 > ![SoftMeter application analytics logo](https://www.starmessagesoftware.com/myfiles/softmeter-icon-128x155.png)  
 > Listen to the heartbeat of your software
 
-SoftMeter (former libAppTelemetry) is a Windows and MacOS library that allows you to send usage statistics from your program to your Google Analytics property.  
+SoftMeter (former libAppTelemetry) is a Windows, MacOS and IOS library that allows you to send usage statistics from your program to your Google Analytics property.  
 It is ideal for shareware developers as it extends the website usage data with the applications usage data.  
 Shareware developers for desktop programs can now see via *one* free reporting platform (Google Analytics), 1) how people use their website, *and* 2) how they are converted to also use the software on their desktop computer or laptops.
 
@@ -43,6 +43,11 @@ Track the usage and instalations of your shareware program (and soon your mobile
 - Windows XP and later, 32/64 bit
 - OSX 10.6 and later, 64 bit
 
-
+**Keywords:**
+Application analytics
+IOS app analytics
+Windows desktop software usage analytics
+MacOS desktop software usage analytics
+Runtime usage statistics
 
 
