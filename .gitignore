@@ -18,3 +18,7 @@ pascal-console-demo/console_demo_lazarus.lpr
 *.user
 *.user
 sample-implementations/IOS/source/dev-propertyID.h
+sample-implementations/IOS/demo-IOS.xcodeproj/project.pbxproj
+sample-implementations/IOS/demo-IOS.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+sample-implementations/IOS/demo-IOS.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+sample-implementations/IOS/demo-IOS.xcodeproj/xcuserdata/cto.xcuserdatad/xcschemes/xcschememanagement.plist
