@@ -1,5 +1,5 @@
 ﻿======================================
-SoftMeter - License Agreement [v0.6.3]
+SoftMeter - License Agreement [v0.6.4]
 ======================================
 
 This License Agreement is a legal agreement between:
@@ -23,7 +23,7 @@ IMPLEMENTATION OF THE SOFTWARE LIBRARY INTO YOUR SOFTWARE
 
 4) You can use the data only for monitoring your software's metrics (e.g. country distribution, number of installations, runtime executions, most used features, operating systems and versions, screen resolutions and similar anonymous data) and for the purpose of improving a) your software and b) your marketing activities. 
 
-5) You cannot collect personal data.
+5) You cannot collect personal data. (E.g. email, personal IDs or other data that can identify a person)
 
 6) You cannot collect any data that allows Google to personally identify an individual (such as names, Social Security Numbers, email addresses, or any similar data), or data that permanently identifies a particular device (such as a unique device identifier if such an identifier cannot be reset).
 
@@ -31,9 +31,6 @@ IMPLEMENTATION OF THE SOFTWARE LIBRARY INTO YOUR SOFTWARE
 
 8) When releasing a new version of your software you must include a recent version of the SOFTWARE LIBRARY.
 
-9) "Call home" functionality
-   The library has telemetry for its own purposes: A hit is sent to the Author's Google Analytics property for the purpose of monitoring the proper usage of the SOFTWARE LIBRARY. 
-   The data sent comply with the rules above.
 
 
 SOFTMETER FREE EDITION TERMS
@@ -42,6 +39,18 @@ SOFTMETER FREE EDITION TERMS
 1) No registration is needed to use the SOFTWARE LIBRARY.
 
 2) There is no cost for this edition of the SOFTWARE LIBRARY.
+
+3) There are certain limitations in the functionalities of the free edition.
+   You can see them on the SoftMeter website, in the "Free vs Pro" comparison page.
+   
+4) "Call home" functionality
+   The library has telemetry for its own purposes: A hit is sent to the Author's Google Analytics property for the purpose of monitoring the proper usage of the SOFTWARE LIBRARY. 
+   The data sent comply with the rules above.
+
+5) The Author might contact you for matters related to the usage of the SOFTWARE LIBRARY.  
+   For example, ask for feedback, for any problems that you might have faced, for improvement ideas.  
+   The "call home" hit, contains (amongst other data) the application name.
+   From your application name the Author can find the official email address, which can be used to contact you.
 
 
 SOFTMETER PRO EDITION TERMS
