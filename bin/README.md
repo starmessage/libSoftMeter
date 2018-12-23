@@ -1,4 +1,4 @@
-﻿## SoftMeter libraries (DLLs and dylib)
+﻿# SoftMeter libraries (.dll, .dylib, .framework)
 
 SoftMeter is a Windows, MacOS and IOS library that allows you to monitor the usage of your software program (installs, uninstalls, number of daily/monthly users, countries, OS, etc) via your Google Analytics property.  
 An IOS version will soon be release.
