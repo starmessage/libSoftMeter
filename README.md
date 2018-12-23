@@ -41,7 +41,8 @@ Track the usage and instalations of your shareware program (and soon your mobile
 **Operating system compatibility:**
 
 - Windows XP and later, 32/64 bit
-- OSX 10.6 and later, 64 bit
+- MacOS 10.8 and later, 64 bit
+- IOS 8 and later
 
 **Keywords:**
 Application analytics
