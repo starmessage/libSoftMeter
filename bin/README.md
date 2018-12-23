@@ -8,12 +8,9 @@ An IOS version will soon be release.
 
 |File|Description|
 |----------|-------------|
-|Windows editions| |
 |libSoftMeter.dll|Windows 32 bit DLL. Suitable for 32 and 64 bit of Windows.|
 |libSoftMeter64bit.dll|Windows 64 bit DLL. Suitable for 64 bit of Windows.|
-|MacOS editions| |
 |libSoftMeter.dylib|MacOS dylib for 64 bit systems.|
-|IOS editions| |
 |libSoftMeter-IOS.framework|IOS framework.|
 
 ## SoftMeter DLLs for Windows
