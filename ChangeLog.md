@@ -3,11 +3,25 @@ All notable changes to this project will be documented in this file.
 
 SoftMeter is an application analytics library for Windows and MacOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
+## [0.9.0] - 23 Dec 2018
+
+# Added
+
+- IOS edition. Now you can track your IOS apps via SoftMeter and see their app analytics.
+- Online license check (PRO vs FREE).  
+  If you have a SoftMeter PRO subscription, you can activate as PRO not only your new releases but also your existing installations.  
+ 
+# Changed
+
+- SoftMeter version number advanced from 0.6.4 to 0.9.0 as it is a quite mature product with thousands of installations.
+- Minor field mapping changes
+
+
 ## [0.6.4] - 1 Dec 2018
 
 ### Fixed
 
-- Bug in getOSNameVersionAndBuild() for some MacOS locales, e.g Ukrainian
+- Bug in getOSNameVersionAndBuild() for some MacOS locales, e.g Ukrainian.
 
 ### Added
 

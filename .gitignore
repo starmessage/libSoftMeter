@@ -17,3 +17,4 @@ pascal-console-demo/console_demo_lazarus.lpi
 pascal-console-demo/console_demo_lazarus.lpr
 *.user
 *.user
+sample-implementations/IOS/source/dev-propertyID.h
