@@ -5,6 +5,9 @@ An IOS version will soon be release.
 - Go to [SoftMeter website](https://www.StarMessageSoftware.com/softmeter) for more information.  
 
 ## Description of files
+
+|File|Description|
+|----------|-------------|
 |Windows editions| |
 |libSoftMeter.dll|Windows 32 bit DLL. Suitable for 32 and 64 bit of Windows.|
 |libSoftMeter64bit.dll|Windows 64 bit DLL. Suitable for 64 bit of Windows.|
@@ -12,6 +15,7 @@ An IOS version will soon be release.
 |libSoftMeter.dylib|MacOS dylib for 64 bit systems.|
 |IOS editions| |
 |libSoftMeter-IOS.framework|IOS framework.|
+
 ## SoftMeter DLLs for Windows
 To ease the life of the Windows applications developer, the SoftMeter DLLs have both __cdecl and __stdcall calling conventions.  
 
