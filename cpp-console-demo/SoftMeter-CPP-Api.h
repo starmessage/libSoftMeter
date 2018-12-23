@@ -27,12 +27,18 @@
 
 #endif
 
+#ifndef _WIN32
+    #ifndef TCHAR // for non Windows systems
+        #define  TCHAR char
+    #endif
+#endif
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-	// Under Windows, these the function pointers take the __cdecl DLL calling convention
+	// Under Windows, these the function pointers use the __cdecl DLL calling convention
 	typedef const char* (*getVersion_t)(void);
 	typedef const char* (*getLogFilename_t)(void);
 	typedef void (*enableLogfile_t)(const char *, const char *);
