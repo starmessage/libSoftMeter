@@ -133,6 +133,11 @@
 	typedef cpccLinkedLibraryPortable_OSX cpccLinkedLibradyImpl;
 #endif
 
+#ifndef _WIN32
+    #ifndef TCHAR // for non Windows systems
+        #define  TCHAR char
+    #endif
+#endif
 
 class cpccLinkedLibrary 
 {
