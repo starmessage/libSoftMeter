@@ -1,4 +1,4 @@
-unit main;
+﻿unit main;
 
 interface
 
@@ -28,7 +28,7 @@ end;
 procedure run_console_demo;
 
 const   programName = 'console_demo_pascal';
-	programVer = '2.2';
+	programVer = '2.3';
 	programLicense = 'demo';
 	programEdition = 'console';
   {$IFDEF WIN32}
@@ -54,7 +54,7 @@ begin
     if checkCommandLineParam=false then
     begin
         writeln('Call this program with a one parameter, the Google Property ID, e.g.' + CHR(13) + CHR(10) +
-                'console_demo_delphi10 UA-123456-01');
+                'console_demo_delphi10 UA-1234-01');
         exit;
     end;
 
@@ -69,7 +69,7 @@ begin
     writeln('DLL version: ', appTelemetryDll.getVersion);
 
   	writeln('Enabling the log file. Check the log file for the duration of the telemetry functions.');
-    appTelemetryDll.enableLogfile(programName, 'com.company.' + programName);
+    appTelemetryDll.enableLogfile(programName, 'com.mycompany.' + programName);
     writeln('DLL log filename: ', appTelemetryDll.getLogFilename);
 
     googleAnalyticsPropertyID :=  PAnsiChar(AnsiString(ParamStr(1)));
@@ -92,8 +92,13 @@ begin
         writeLn('latSendEvent() failed.');
 
     writeLn('Will send ScreenView hit');
-    if not appTelemetryDll.sendScreenView('CLI window test') then
+    //if not appTelemetryDll.sendScreenView('CLI window test') then
+    //    writeLn('latSendScreenView() failed.');
+
+    // greek text test
+    if not appTelemetryDll.sendScreenView('Greek test: Καλημέρα σας.') then
         writeLn('latSendScreenView() failed.');
+
 
     // ........  more of your code here
 
