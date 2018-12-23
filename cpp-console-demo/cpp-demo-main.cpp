@@ -18,6 +18,12 @@
 #include "SoftMeter-CPP-Api.h"
 #include "../SoftMeter-C-Api-AIO.h" // for testing the all-in-one functions
 
+#ifndef _WIN32
+    #ifndef _T  // for non Windows systems
+        #define _T(s) s
+    #endif
+#endif
+
 const smChar_t 	*appVer = _T("63"),
                 *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
 			    *appEdition = _T("console");
