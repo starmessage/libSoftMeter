@@ -6,7 +6,15 @@
 //    https://www.starmessagesoftware.com/softmeter
 // 
 
+
+// This file's extension must be .mm so that it is compiled as Obj-C++
+
+
+// Include the "SoftMeterIOS.framework" in your IOS project frameworks and
+// "SoftMeter-C-Api.h" in your header files
+// You can find a copy of "SoftMeter-C-Api.h" inside the framework bundle
 #include "../../../bin/libSoftMeter-IOS.framework/Headers/SoftMeter-C-Api.h"
+
 #import "AppDelegate.h"
 
 
@@ -27,11 +35,6 @@
     const char *gaPropertyID = "UA-1234-1";
 #endif
 
-// Include the "SoftMeterIOS.framework" in your IOS project frameworks and
-// "SoftMeter-C-Api.h" in your header files
-// You can find a copy of "SoftMeter-C-Api.h" inside the framework bundle
-
-// The file extension of this source file must be .mm so that it is compiled as Obj-C++
 
 const char *appName = "SoftMeter IOS demo";
 const char *appVer = "0.9.0";
