@@ -1,5 +1,5 @@
 //
-//  AppDelegate.m
+//  AppDelegate.mm
 //  SoftMeter application analytics IOS demo
 //
 //  Copyright © 2018 StarMessage software. All rights reserved.
