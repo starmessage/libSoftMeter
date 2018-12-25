@@ -17,7 +17,8 @@
 
 @implementation AppDelegate
 
-#include "dev-propertyID.h"
+// this line must be rem-ed. 
+// #include "dev-propertyID.h"
 
 // BEFORE RUNNING THE DEMO !!!
 //      Replace "1234-1" with your Google Analytics property !
