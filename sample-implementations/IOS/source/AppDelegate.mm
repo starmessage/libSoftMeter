@@ -35,7 +35,7 @@
     const char *gaPropertyID = "UA-1234-1";
 #endif
 
-
+// replace these strings with your app's information
 const char *appName = "SoftMeter IOS demo";
 const char *appVer = "0.9.0";
 const char *appLicense = "demo";
