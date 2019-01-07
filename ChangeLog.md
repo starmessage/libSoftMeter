@@ -1,9 +1,18 @@
 # [libSoftMeter version history/Changelog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 All notable changes to this project will be documented in this file.
 
-SoftMeter is an application analytics library for Windows and MacOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
+SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
-## [0.9.0] - 23 Dec 2018
+## [0.9.1] - 2019-01-07
+
+### Changed
+
+- Internal improvements
+
+
+## [0.9.0] - 2018-12-23
+
+[Announcement](https://www.starmessagesoftware.com/news/softmeter-v0.9-track-your-IOS-apps-free), [IOS analytics, blog article](https://www.starmessagesoftware.com/blog/ios-app-analytics-how-to-monitor-ios-app-usage-free)
 
 # Added
 
@@ -17,7 +26,7 @@ SoftMeter is an application analytics library for Windows and MacOS. Read more a
 - Minor field mapping changes
 
 
-## [0.6.4] - 1 Dec 2018
+## [0.6.4] - 2018-12-01
 
 ### Fixed
 
