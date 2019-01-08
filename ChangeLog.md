@@ -5,6 +5,11 @@ SoftMeter is a free or low cost application analytics library for Windows, MacOS
 
 ## [0.9.1] - 2019-01-07
 
+### Fixed
+
+- IOS linked framework (network.framework) should not have been linked as required but as optional. Problem noticed outside the simulator, in release mode.
+All IOS developers must upgrade.
+
 ### Changed
 
 - Internal improvements
