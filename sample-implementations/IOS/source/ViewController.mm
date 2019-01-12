@@ -23,6 +23,8 @@
 
 - (IBAction)onPress_ButtonPressMe:(id)sender
 {
+    // note: rate limits apply:
+    // 300 hits per session (app run), 10 available for burst, replenished at a rate of 1 per 2 seconds
     sendEvent("IOS event", "Button pressed", 0);
 }
 

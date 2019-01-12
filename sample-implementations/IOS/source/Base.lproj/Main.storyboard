@@ -28,20 +28,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQI-zY-2rY">
+                                <rect key="frame" x="89" y="147" width="197" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Press me to send a GA event"/>
+                                <connections>
+                                    <action selector="onPress_ButtonPressMe:" destination="BYZ-38-t0r" eventType="touchDown" id="Wsa-Qa-1YA"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moy-EW-Rd1">
-                                <rect key="frame" x="172" y="152" width="30" height="30"/>
+                                <rect key="frame" x="172" y="243" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Exit"/>
                                 <connections>
                                     <action selector="onPress_ButtonExit:" destination="BYZ-38-t0r" eventType="touchDown" id="vUQ-fC-brb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQI-zY-2rY">
-                                <rect key="frame" x="93" y="114" width="185" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Press me to send GA event"/>
-                                <connections>
-                                    <action selector="onPress_ButtonPressMe:" destination="BYZ-38-t0r" eventType="touchDown" id="Wsa-Qa-1YA"/>
                                 </connections>
                             </button>
                         </subviews>

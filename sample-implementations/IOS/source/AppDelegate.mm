@@ -25,8 +25,8 @@
 
 @implementation AppDelegate
 
-// this line must be rem-ed. 
-// #include "dev-propertyID.h"
+// this line must be rem-ed, so that the variable gaPropertyID is used with your own Google PropertyID
+#include "dev-propertyID.h"
 
 // BEFORE RUNNING THE DEMO !!!
 //      Replace "1234-1" with your Google Analytics property !
@@ -37,7 +37,7 @@
 
 // replace these strings with your app's information
 const char *appName = "SoftMeter IOS demo";
-const char *appVer = "0.9.0";
+const char *appVer = "0.9.2";
 const char *appLicense = "demo";
 const char *appEdition = "IOS app";
 
