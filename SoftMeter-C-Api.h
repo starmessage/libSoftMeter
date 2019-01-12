@@ -1,7 +1,7 @@
 //
 //  SoftMeter-C-Api.h
 //
-//  Copyright © 2018 StarMessage software. All rights reserved.
+//  Copyright © 2019 StarMessage software. All rights reserved.
 //	https://www.starmessagesoftware.com/softmeter
 //
 
@@ -46,8 +46,8 @@ EXPORT_API const smChar_t* getLogFilename(void);
 // - Parameter macBundleId is used only in Mac OS. Under Windows you can pass NULL.
 // - Parameters appName and macBundleId affect the filename and the folder of the 
 //	 logfile.
-//   They must contain only characters compatible with the OS. 
-//	 E.g. they cannot contain characters such as /\:
+//   They must contain only characters compatible with the OS path. 
+//	 E.g. they cannot contain special characters such as /\~*:
 EXPORT_API void enableLogfile(const smChar_t *appName, const smChar_t *macBundleId);
 EXPORT_API void disableLogfile(void);
 
@@ -55,7 +55,10 @@ EXPORT_API void disableLogfile(void);
 // Parameters:
 // - subscriptionID, string as devivered by the payment processor after your order
 // - subscriptionType, depends on the payment processor. More info in the order page.
-// Must be called before any of the start() function.
+// Must be called before the start() function.
+// Note: This function will be used when SoftMeter will support multiple payment processors.
+//       Until then, you do not need to call this function because SoftMeter uses
+//       the propertyID as the default subscriptionID to check for the PRO license.
 EXPORT_API void setSubscription(const smChar_t *subscriptionID, const int subscriptionType);
 
 
@@ -102,7 +105,7 @@ EXPORT_API bool sendException(const smChar_t *exceptionDescription, const bool i
 	// __stdcall version of all the functions 
 	// The same function names but appended with _stdcall
 	
-	// This section is REMed because these functions are exported by a .DEF file 
+	// They do not need the EXPORT declaration  because they are exported by a .DEF file 
 	const smChar_t*	__stdcall getVersion_stdcall(void);
 	const smChar_t*	__stdcall getLogFilename_stdcall(void);
 	void __stdcall enableLogfile_stdcall(const smChar_t *appName, const smChar_t *macBundleId);
@@ -116,6 +119,6 @@ EXPORT_API bool sendException(const smChar_t *exceptionDescription, const bool i
 	bool __stdcall sendScreenview_stdcall(const smChar_t *screenName);
 	bool __stdcall sendEvent_stdcall(const smChar_t *eventAction, const smChar_t *eventLabel, const int eventValue);
 	bool __stdcall sendException_stdcall(const smChar_t *exceptionDescription, const bool isFatal);
-	/* */
+	
 
 #endif
