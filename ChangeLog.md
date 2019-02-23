@@ -3,7 +3,24 @@ All notable changes to this project will be documented in this file.
 
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
-## [0.9.2] - Unpublised
+## [0.9.3] - Unpublished
+
+### Added
+
+- Detect the number of monitors and their resolutions. It also detects if there is a retina (high resolution / HiDPI) display on Mac platforms.
+	For multi monitor configurations you will see under the "Screen resolution" dimension of Google Analytics values like
+    1280x800, 1920x1080
+    1280x800, 840x525 HiDPI
+    Until now, only the main monitor of a multi-monitor configuration was reported.
+
+- Alpha version implementation of proxy settings (Windows only)
+
+### Changed
+
+- Internal improvements
+
+
+## [0.9.2] - 2019-01-12 - MacOS and IOS release
 
 ### Changed
 
@@ -25,13 +42,13 @@ All IOS developers must upgrade.
 
 [Announcement](https://www.starmessagesoftware.com/news/softmeter-v0.9-track-your-IOS-apps-free), [IOS analytics, blog article](https://www.starmessagesoftware.com/blog/ios-app-analytics-how-to-monitor-ios-app-usage-free)
 
-# Added
+### Added
 
 - IOS edition. Now you can track your IOS apps via SoftMeter and see their app analytics.
 - Online license check (PRO vs FREE).  
   If you have a SoftMeter PRO subscription, you can activate as PRO not only your new releases but also your existing installations.  
  
-# Changed
+### Changed
 
 - SoftMeter version number advanced from 0.6.4 to 0.9.0 as it is a quite mature product with thousands of installations.
 - Minor field mapping changes
