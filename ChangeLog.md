@@ -10,18 +10,20 @@ SoftMeter is a free or low cost application analytics library for Windows, MacOS
 - Multiple monitor configurations and retina displays.  
 Detects and reports the number of monitors and their resolutions.  
 It also detects if there is a retina (high resolution / HiDPI) display on Mac platforms.  
+Until now, only the main monitor of a multi-monitor configuration was reported.  
 For multi monitor configurations you will see under the "Screen resolution" dimension of Google Analytics values like  
 ```
 1280x800, 1920x1080  
 1280x800, 840x525 HiDPI  
 ```
-Until now, only the main monitor of a multi-monitor configuration was reported.
 
 - new function setProxy()  
 ```
 void setProxy(const smChar_t *address, const int port,  
               const smChar_t *username , const smChar_t *password, const int authScheme);  
 ```
+proxyAuthScheme under Windows must be one of the following:  
+0: no authentication, 2: NTLM, 4: Passport, 8: Digest, 16: Negotiate  
 Alpha version implementation of proxy settings (Windows only)  
 To test the proxy function:  
 Store cpcc-demo-win and libSoftMeter.dll in the same folder.  
@@ -35,8 +37,7 @@ Example:
 ```
 cpp-demo-main UA-1111-1    192.168.5.1      8081         smith           iamgreat     4
 ```
-proxyAuthScheme under Windows must be one of the following:  
-0: no authentication, 2: NTLM, 4: Passport, 8: Digest, 16: Negotiate 
+
 
 ### Changed
 
