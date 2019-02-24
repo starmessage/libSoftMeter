@@ -38,11 +38,13 @@
 extern "C" {
 #endif
 
-	// Under Windows, these the function pointers use the __cdecl DLL calling convention
+	// Under Windows, these function pointers use the __cdecl DLL calling convention
 	typedef const char* (*getVersion_t)(void);
 	typedef const char* (*getLogFilename_t)(void);
 	typedef void (*enableLogfile_t)(const char *, const char *);
 	typedef void (*disableLogfile_t)(void);
+    typedef void(*setProxy_t)(const char *, const int, const char *, const char *, const int);
+    
 	typedef bool (*start_t)(const char *, const char *, const char *, const char *, const char *, const bool);
 	typedef void (*stop_t)(void);
 	typedef bool (*sendPageview_t)(const char *, const char *);
@@ -72,6 +74,7 @@ private:
 	getLogFilename_t	getLogFilename_ptr = NULL;
 	enableLogfile_t		enableLogfile_ptr = NULL;
 	disableLogfile_t	disableLogfile_ptr = NULL;
+    setProxy_t          setProxy_ptr = NULL;
 	start_t				start_ptr = NULL;
 	stop_t				stop_ptr = NULL;
 	sendPageview_t		sendPageview_ptr = NULL;
