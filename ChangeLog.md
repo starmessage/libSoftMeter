@@ -19,8 +19,8 @@ Until now, only the main monitor of a multi-monitor configuration was reported.
 
 - new function setProxy()  
 ```
-    void setProxy(const smChar_t *address, const int port,  
-                  const smChar_t *username , const smChar_t *password, const int authScheme);  
+void setProxy(const smChar_t *address, const int port,  
+              const smChar_t *username , const smChar_t *password, const int authScheme);  
 ```
 Alpha version implementation of proxy settings (Windows only)  
 To test the proxy function:  
@@ -29,7 +29,7 @@ Run cpcc-demo-win with your PropertyID and the extra parameters
 for the proxy server and the proxy credentials.  
 Syntax:  
 ```
-    cpp-demo-main <propertyID> <proxyaddress> <proxyport> <proxyUsername> <proxypassword> <proxyAuthScheme> 
+cpp-demo-main <propertyID> <proxyaddress> <proxyport> <proxyUsername> <proxypassword> <proxyAuthScheme> 
 ```
 Example:  
 ```
