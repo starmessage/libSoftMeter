@@ -7,7 +7,8 @@ SoftMeter is a free or low cost application analytics library for Windows, MacOS
 
 ### Added
 
-- Detect and report the number of monitors and their resolutions.  
+- Multiple monitor configurations and retina displays.  
+Detects and reports the number of monitors and their resolutions.  
 It also detects if there is a retina (high resolution / HiDPI) display on Mac platforms.  
 For multi monitor configurations you will see under the "Screen resolution" dimension of Google Analytics values like  
     1280x800, 1920x1080  
