@@ -1,0 +1,401 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		58236F292198695700EDE9A1 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 58236F282198695700EDE9A1 /* AppDelegate.mm */; };
+		58236F2C2198695700EDE9A1 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 58236F2B2198695700EDE9A1 /* ViewController.mm */; };
+		58236F2F2198695700EDE9A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58236F2D2198695700EDE9A1 /* Main.storyboard */; };
+		58236F312198695D00EDE9A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58236F302198695D00EDE9A1 /* Assets.xcassets */; };
+		58236F342198695D00EDE9A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58236F322198695D00EDE9A1 /* LaunchScreen.storyboard */; };
+		58236F372198695D00EDE9A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58236F362198695D00EDE9A1 /* main.m */; };
+		58C026B621E3EF7E007EA368 /* libSoftMeter-IOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 58C81EC821CE94BF00D0861A /* libSoftMeter-IOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		58C026B721E3EFF3007EA368 /* libSoftMeter-IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58C81EC821CE94BF00D0861A /* libSoftMeter-IOS.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		58E78F932198C49F00C7CC31 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E78F922198C49F00C7CC31 /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		58C026B521E3EF50007EA368 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				58C026B621E3EF7E007EA368 /* libSoftMeter-IOS.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		582200842198D8AA0094A3D0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58236F242198695700EDE9A1 /* SoftMeter-demo-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SoftMeter-demo-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		58236F272198695700EDE9A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		58236F282198695700EDE9A1 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		58236F2A2198695700EDE9A1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		58236F2B2198695700EDE9A1 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		58236F2E2198695700EDE9A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		58236F302198695D00EDE9A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		58236F332198695D00EDE9A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		58236F362198695D00EDE9A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		58C81EC821CE94BF00D0861A /* libSoftMeter-IOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "libSoftMeter-IOS.framework"; path = "../../bin/libSoftMeter-IOS.framework"; sourceTree = "<group>"; };
+		58C81EE521CF8DC700D0861A /* dev-propertyID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dev-propertyID.h"; sourceTree = "<group>"; };
+		58DCE1982199EFFE0084A198 /* SoftMeter-C-Api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SoftMeter-C-Api.h"; path = "../../bin/libSoftMeter-IOS.framework/Headers/SoftMeter-C-Api.h"; sourceTree = "<group>"; };
+		58E78F922198C49F00C7CC31 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		58236F212198695600EDE9A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58C026B721E3EFF3007EA368 /* libSoftMeter-IOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5822007F2198CDC80094A3D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				58C81EC821CE94BF00D0861A /* libSoftMeter-IOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		58236F1B2198695600EDE9A1 = {
+			isa = PBXGroup;
+			children = (
+				58DCE1972199EFC30084A198 /* libSoftMeter */,
+				58E78F922198C49F00C7CC31 /* Default-568h@2x.png */,
+				58236F252198695700EDE9A1 /* Products */,
+				58236F262198695700EDE9A1 /* source */,
+				5822007F2198CDC80094A3D0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		58236F252198695700EDE9A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				58236F242198695700EDE9A1 /* SoftMeter-demo-IOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		58236F262198695700EDE9A1 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				58C81EE521CF8DC700D0861A /* dev-propertyID.h */,
+				582200842198D8AA0094A3D0 /* Info.plist */,
+				58236F272198695700EDE9A1 /* AppDelegate.h */,
+				58236F282198695700EDE9A1 /* AppDelegate.mm */,
+				58236F2A2198695700EDE9A1 /* ViewController.h */,
+				58236F2B2198695700EDE9A1 /* ViewController.mm */,
+				58236F2D2198695700EDE9A1 /* Main.storyboard */,
+				58236F302198695D00EDE9A1 /* Assets.xcassets */,
+				58236F322198695D00EDE9A1 /* LaunchScreen.storyboard */,
+				58236F362198695D00EDE9A1 /* main.m */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		58DCE1972199EFC30084A198 /* libSoftMeter */ = {
+			isa = PBXGroup;
+			children = (
+				58DCE1982199EFFE0084A198 /* SoftMeter-C-Api.h */,
+			);
+			name = libSoftMeter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		58236F232198695600EDE9A1 /* demo-IOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58236F3A2198695D00EDE9A1 /* Build configuration list for PBXNativeTarget "demo-IOS" */;
+			buildPhases = (
+				58236F202198695600EDE9A1 /* Sources */,
+				58236F212198695600EDE9A1 /* Frameworks */,
+				58236F222198695600EDE9A1 /* Resources */,
+				58C026B521E3EF50007EA368 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "demo-IOS";
+			productName = iosDemo;
+			productReference = 58236F242198695700EDE9A1 /* SoftMeter-demo-IOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		58236F1C2198695600EDE9A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "StarMessage software";
+				TargetAttributes = {
+					58236F232198695600EDE9A1 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 58236F1F2198695600EDE9A1 /* Build configuration list for PBXProject "demo-IOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 58236F1B2198695600EDE9A1;
+			productRefGroup = 58236F252198695700EDE9A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				58236F232198695600EDE9A1 /* demo-IOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		58236F222198695600EDE9A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58236F342198695D00EDE9A1 /* LaunchScreen.storyboard in Resources */,
+				58E78F932198C49F00C7CC31 /* Default-568h@2x.png in Resources */,
+				58236F312198695D00EDE9A1 /* Assets.xcassets in Resources */,
+				58236F2F2198695700EDE9A1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		58236F202198695600EDE9A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58236F2C2198695700EDE9A1 /* ViewController.mm in Sources */,
+				58236F372198695D00EDE9A1 /* main.m in Sources */,
+				58236F292198695700EDE9A1 /* AppDelegate.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		58236F2D2198695700EDE9A1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				58236F2E2198695700EDE9A1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		58236F322198695D00EDE9A1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				58236F332198695D00EDE9A1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		58236F382198695D00EDE9A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../bin";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../../bin";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		58236F392198695D00EDE9A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../bin";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../../bin";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		58236F3B2198695D00EDE9A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TGVZ8HB435;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/../../bin";
+				INFOPLIST_FILE = "$(SRCROOT)/source/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				NEW_SETTING = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.StarMessageSoftware.SoftMeterDemo-IOS";
+				PRODUCT_NAME = "SoftMeter-$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		58236F3C2198695D00EDE9A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TGVZ8HB435;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/../../bin";
+				INFOPLIST_FILE = "$(SRCROOT)/source/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				NEW_SETTING = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.StarMessageSoftware.SoftMeterDemo-IOS";
+				PRODUCT_NAME = "SoftMeter-$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		58236F1F2198695600EDE9A1 /* Build configuration list for PBXProject "demo-IOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58236F382198695D00EDE9A1 /* Debug */,
+				58236F392198695D00EDE9A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58236F3A2198695D00EDE9A1 /* Build configuration list for PBXNativeTarget "demo-IOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58236F3B2198695D00EDE9A1 /* Debug */,
+				58236F3C2198695D00EDE9A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 58236F1C2198695600EDE9A1 /* Project object */;
+}

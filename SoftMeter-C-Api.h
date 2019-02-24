@@ -21,26 +21,26 @@
 #endif
 
 /*
-	Note for the Window's DLLs, and the calling convention.
-	
-	The following functions use the __cdecl calling convention.
-	Inside the DLL, they have exact counterparts that use the __stdcall calling convention.
-	The function names of their counterparts have a suffix of "_stdcall", e.g. 
-		start() // this is the __cdecl function
+	Note about the Windows' DLL calling convention:
+
+	The SoftMeter DLL contains both of the
+    __cdecl and __stdcall calling conventions.
+
+    Each SoftMeter API function exists twice, one with its normal 
+    name and one with its name appended with __stdcall.
+
+    E.g.
+    	start() // this is the __cdecl function
 		start_stdcall() // this is the __stdcall function
 	From your Windows application you can call the set you prefer.
-	
-	As a result, the DLL contains both calling conventions.
+	    
 */
 
-// Where are the all-in-one functions?
-// The "All-in-one" functions are defined in SoftMeter-C-Api-AIO.h
+// Q: Where are the all-in-one functions?
+// A: The "All-in-one" functions are defined in SoftMeter-C-Api-AIO.h
 
 // get the version string of the library. 
 EXPORT_API const smChar_t* getVersion(void);
-
-// get the full path name of the log file. 
-EXPORT_API const smChar_t* getLogFilename(void);
 
 // Enable or disable the log file. The default is disabled.
 // - Parameter macBundleId is used only in Mac OS. Under Windows you can pass NULL.
@@ -51,14 +51,27 @@ EXPORT_API const smChar_t* getLogFilename(void);
 EXPORT_API void enableLogfile(const smChar_t *appName, const smChar_t *macBundleId);
 EXPORT_API void disableLogfile(void);
 
-// Set the subscription ID for paid licenses.
-// Parameters:
-// - subscriptionID, string as devivered by the payment processor after your order
-// - subscriptionType, depends on the payment processor. More info in the order page.
+// get the full path name of the log file. 
+EXPORT_API const smChar_t* getLogFilename(void);
+
+// If your software runs behind a proxy server (e.g. you are on a corporate network) 
+//   set the proxy server details before calling any of the start() function.
+// Currently, this function is in "alpha" version and works for Windows only.
+// Values for authScheme under Windows: 
+//   0 = no authentication, 2 = NTLM, 4 = Passport, 8 = Digest, 16 = Negotiate 
+// If the proxy does not need authentication, use authScheme = 0 and the 
+//   username and password will be ignored.
+EXPORT_API void setProxy(const smChar_t *address, const int port, 
+                         const smChar_t *username , const smChar_t *password, const int authScheme);
+
+
+// Call this function if you have a SoftMeter PRO license.
 // Must be called before the start() function.
-// Note: This function will be used when SoftMeter will support multiple payment processors.
-//       Until then, you do not need to call this function because SoftMeter uses
-//       the propertyID as the default subscriptionID to check for the PRO license.
+// Even if you are using the free edition of SoftMeter, you can call this function 
+//   with subscriptionID = Google analytics account number, ie the xxxxx part of UA-xxxxx-y
+//   and with subscriptionType = 2
+//   Doing so will allow you to activate the PRO features also for the already existing 
+//   installations, at any time in the future if you buy a PRO SoftMeter licence.
 EXPORT_API void setSubscription(const smChar_t *subscriptionID, const int subscriptionType);
 
 
@@ -102,14 +115,17 @@ EXPORT_API bool sendException(const smChar_t *exceptionDescription, const bool i
 
 
 #ifdef _WIN32
-	// __stdcall version of all the functions 
-	// The same function names but appended with _stdcall
-	
+	// __stdcall version of all the functions to be exported in the DLL
+    // Not needed for the MacOS platforms.
+    // These are the same function names but appended with _stdcall
 	// They do not need the EXPORT declaration  because they are exported by a .DEF file 
 	const smChar_t*	__stdcall getVersion_stdcall(void);
 	const smChar_t*	__stdcall getLogFilename_stdcall(void);
 	void __stdcall enableLogfile_stdcall(const smChar_t *appName, const smChar_t *macBundleId);
 	void __stdcall disableLogfile_stdcall(void);
+    void __stdcall setProxy_stdcall(const smChar_t *address, const int port,
+                              const smChar_t *username , const smChar_t *password, const int authScheme);
+
     void __stdcall setSubscription_stdcall(const smChar_t *subscriptionID, const int subscriptionType);
 	bool __stdcall start_stdcall(const smChar_t *appName, const smChar_t *appVersion,
 		                        const smChar_t *appLicense, const smChar_t *appEdition,

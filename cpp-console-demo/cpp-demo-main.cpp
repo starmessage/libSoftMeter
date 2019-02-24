@@ -3,7 +3,6 @@
 //  main.cpp
 //  SoftMeter test in C++
 //
-//	file version: 58
 //  Copyright © 2018 StarMessage software. All rights reserved.
 //  Web: http://www.StarMessageSoftware.com/softmeter
 //
@@ -24,7 +23,7 @@
     #endif
 #endif
 
-const smChar_t 	*appVer = _T("63"),
+const smChar_t 	*appVer = _T("93"),
                 *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
 			    *appEdition = _T("console");
 
@@ -51,28 +50,31 @@ const bool userGaveConsent = true;
 // you can rename the dll if you want it to match your application's filename
 #ifdef _WIN32
 	#ifdef _M_AMD64
-		const TCHAR * AppTelemetryDllFilename = _T("libSoftMeter64bit.dll");
+		const TCHAR * softmeterLibFilename = _T("libSoftMeter64bit.dll");
 	#else
-		const TCHAR * AppTelemetryDllFilename = _T("libSoftMeter.dll");
+		const TCHAR * softmeterLibFilename = _T("libSoftMeter.dll");
 	#endif
 #else
-    const char * AppTelemetryDllFilename = "libSoftMeter.dylib";
+    const char * softmeterLibFilename = "libSoftMeter.dylib";
 #endif
 
 
 bool checkCommandLineParams(int argc, const char * argv[])
 {
-	if (argc!=2)
+	if ((argc!=2) // run with one parameter, the PropertyID
+        && (argc!=4) // run with 3 parameters, with Proxy Address and Proxy port
+        && (argc!=7) // run with 3 parameters, proxy username, proxy password, proxy auth schemeID
+        )
 		return false;
 
-	return (strncmp(argv[1], "UA-", 3) == 0); // chech if the parameter starts with UA-
+	return (strncmp(argv[1], "UA-", 3) == 0); // chech if the 1st parameter starts with UA-
 }
 
 
 bool testTheAllInOneFunctions(const smChar_t *appName, const smChar_t *aPropertyID)
 {
 	// load the dll
-	cpccLinkedLibrary theDLL(AppTelemetryDllFilename);
+	cpccLinkedLibrary theDLL(softmeterLibFilename);
 
 	// get the address of the function
     aio_sendEvent_t functionPtr = (aio_sendEvent_t) theDLL.getFunction("aio_sendEvent");
@@ -93,10 +95,10 @@ bool testTheAllInOneFunctions(const smChar_t *appName, const smChar_t *aProperty
 bool testTheSend_aio_Event_strcall(const smChar_t *appName, const smChar_t *aPropertyID)
 {
 	// testing aio_sendEvent_stdcall()
-	HMODULE hDLL = LoadLibrary(AppTelemetryDllFilename);
+	HMODULE hDLL = LoadLibrary(softmeterLibFilename);
 	if (!hDLL)
 	{
-		std::cerr << "DLL not loaded:" << AppTelemetryDllFilename << std::endl;
+		std::cerr << "DLL not loaded:" << softmeterLibFilename << std::endl;
 		return false;
 	}
 
@@ -112,7 +114,7 @@ bool testTheSend_aio_Event_strcall(const smChar_t *appName, const smChar_t *aPro
 		result=false;
 	}
 	else
-		result = functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, _T("Testing stdcall AIO function"), _T("aio_sendEvent_stdcall() test"), 0);
+		result = functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent,  _T("Greek text: Ελληνικό κείμενο"), _T("aio_sendEvent_stdcall() test"), 0);
 
 	// unload the dll
 	FreeLibrary(hDLL);
@@ -123,8 +125,7 @@ bool testTheSend_aio_Event_strcall(const smChar_t *appName, const smChar_t *aPro
 
 int main(int argc, const char * argv[])
 {
-	// The filename of this program will be used as the program name submitted to G.A.
-	// You can rename this test file so that you see the correct program name in the G.A. reports.
+	// The filename of this program will be used as the program name submitted to G.A. reports.
 	std::string executableName(argv[0]);
 	// contains something like: c:\folder1\cpp-demo-win
 	// The path must be removed.
@@ -156,30 +157,64 @@ int main(int argc, const char * argv[])
     const std::string gaPropertyID(argv[1]);
 
     
-	// create an object that contains all the needed telemetry functionality, plus the loading and linking of the .DLL or the .dylib
-	AppTelemetry_cppApi telemetryDll(AppTelemetryDllFilename);
-	if (!telemetryDll.isLoaded())
+	// create an object that contains all the needed telemetry functionality,
+    // and also implements the loading and linking of the .DLL or the .dylib
+	AppTelemetry_cppApi softmeterLib(softmeterLibFilename);
+	if (!softmeterLib.isLoaded())
 	{
 		std::cerr << "Exiting because the DLL was not loaded\n";
 		return 100;
 	}
 
-	if (telemetryDll.errorsExist())
+	if (softmeterLib.errorsExist())
 	{
-		std::cerr << "Errors exist during the dynamic loading of telemetryDll\n";
+		std::cerr << "Errors exist during the dynamic loading of softmeterLib\n";
 		return 101;
 	}
-	std::cout << "libAppTelemetry version:" << telemetryDll.getVersion() << std::endl;
+	std::cout << "libAppTelemetry version:" << softmeterLib.getVersion() << std::endl;
+
+
+    // check for parameters indicating that we must use a proxy
+    // e.g. cpp-demo-main <propertyID> <proxyaddress> <proxyport> <proxyUsername> <proxypassword> <proxyAuthScheme> 
+    // e.g. cpp-demo-main UA-1111-1    192.168.5.1      8081         smith           iamgreat     4
+    // proxyAuthScheme under Windows can be one of the following: 
+    //      0: no authentication, 2: NTLM, 4: Passport, 8: Digest, 16: Negotiate 
+    std::basic_string<smChar_t> proxyAddress, proxyUsername, proxyPassword;
+    int proxyPort=0, proxyAuthSchemeID=0;
+    bool useProxy = false;
+    if (argc>3) //  we have the proxy address and port
+    {
+        proxyAddress = argv[2];
+        proxyPort = std::stoi(argv[3]);
+        useProxy = true;
+        std::cout << "Will use proxy server " << proxyAddress << ":" << proxyPort << std::endl;
+    }
+
+    // if the proxy needs credentials, then argv[4] .. argv[6] are used
+    if (argc > 6) //  we have the proxy address and port
+    {
+        proxyUsername = argv[4];
+        proxyPassword = argv[5];
+        proxyAuthSchemeID = std::stoi(argv[6]);
+    }
+
+    if (useProxy)
+    {
+        typedef void(*setHttpsProxy_t)(const char *, const int, const char *, const char *, const int);
+        const setHttpsProxy_t functionPtr = (setHttpsProxy_t)softmeterLib.getFunction("setProxy");
+        if (functionPtr)
+            functionPtr(proxyAddress.c_str(), proxyPort, proxyUsername.c_str(), proxyPassword.c_str(), proxyAuthSchemeID);
+    }
 
 	// fictional appName and appVersion for your testing
 	const smChar_t *appName = executableName.c_str();
 
-	telemetryDll.enableLogfile(appName, "com.company.appname");
-	std::string logFilename(telemetryDll.getLogFilename());
-	std::cout << "libAppTelemetry log filename:" << logFilename << std::endl;
+	softmeterLib.enableLogfile(appName, "com.company.appname");
+	std::string logFilename(softmeterLib.getLogFilename());
+	std::cout << "SoftMeter log filename:" << logFilename << std::endl;
 
 	// initialize the library with your program's name, version and google propertyID
-    if (!telemetryDll.start(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
+    if (!softmeterLib.start(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
 	{
 		std::cerr << "Error calling start_ptr\n";
 		goto stop_report_and_exit;
@@ -187,22 +222,22 @@ int main(int argc, const char * argv[])
 	std::cout << "start() called with Google property:" << gaPropertyID << std::endl;
 	
 	std::cout << "Will send a Pageview hit" << std::endl;
-	if (!telemetryDll.sendPageview("main window", "main window"))
+	if (!softmeterLib.sendPageview("main window", "main window"))
 	{
 		std::cerr << "sendPageview returned False\n";
 		goto stop_report_and_exit;
 	}
 
 	std::cout << "Will send a Event hit" << std::endl;
-	// if (!telemetryDll.sendEvent("AppLaunch", appName, 1))
-    if (!telemetryDll.sendEvent("AppLaunch", appName, 1))
+	// if (!softmeterLib.sendEvent("AppLaunch", appName, 1))
+    if (!softmeterLib.sendEvent("AppLaunch", appName, 1))
 	{
 		std::cerr << "sendEvent returned False\n";
 		goto stop_report_and_exit;
 	}
 
 	std::cout << "Will send a ScreenView hit" << std::endl;
-	if (!telemetryDll.sendScreenview("Test screenView"))
+	if (!softmeterLib.sendScreenview("Test screenView"))
 	{
 		std::cerr << "sendScreenview returned False\n";
 		goto stop_report_and_exit;
@@ -224,7 +259,7 @@ int main(int argc, const char * argv[])
 		std::cout << "Exception caught; will send it to G.A." << std::endl;
 		std::string excDesc("Error #18471a in " __FILE__ ": ");
 		excDesc += ex.what();
-		if (!telemetryDll.sendException(excDesc.c_str(), 0))
+		if (!softmeterLib.sendException(excDesc.c_str(), 0))
 		{
 			std::cerr << "sendException returned False\n";
 			goto stop_report_and_exit;
@@ -233,7 +268,7 @@ int main(int argc, const char * argv[])
 	catch (...)
 	{
 		std::cout << "Exception caught; will send it to G.A." << std::endl;
-		if (!telemetryDll.sendException("Error #18471b in " __FILE__, 0))
+		if (!softmeterLib.sendException("Error #18471b in " __FILE__, 0))
 		{
 			std::cerr << "Error calling sendException\n";
 			goto stop_report_and_exit;
@@ -242,7 +277,7 @@ int main(int argc, const char * argv[])
 
 stop_report_and_exit:
 
-	telemetryDll.stop();
+	softmeterLib.stop();
 
 	std::cout << "Will send an event hit using the All-in-one function aio_sendEvent()" << std::endl;
     // test the All-in-one function(s)
