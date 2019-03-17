@@ -3,6 +3,19 @@ All notable changes to this project will be documented in this file.
 
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
+## [0.9.4] - 2019-03-17
+
+### Added
+- Custom end-points for the collection of the usage analytics data.  
+You can set you own server as the data collection end-point.  
+SoftMeter will send the data hits to your server instead of Google Analytics.  
+Contact us for more information.
+
+
+### Changed
+- Improved compatibility with Windows 7
+
+
 ## [0.9.3] - 2019-02-24
 
 ### Added
@@ -20,6 +33,9 @@ For multi monitor configurations you will see under the "Screen resolution" dime
 - new function setProxy()  
     void setProxy(const smChar_t *address, const int port,  
                   const smChar_t *username , const smChar_t *password, const int authScheme);  
+
+It will set the proxy server for Softmeter. The address is without protocol (http, https).  
+The function will set both an https and http proxy server address.
 
 proxyAuthScheme under Windows must be one of the following:  
 0: no authentication, 2: NTLM, 4: Passport, 8: Digest, 16: Negotiate  
