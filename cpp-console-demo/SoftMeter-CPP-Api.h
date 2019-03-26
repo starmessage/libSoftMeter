@@ -43,7 +43,8 @@ extern "C" {
 	typedef const char* (*getLogFilename_t)(void);
 	typedef void (*enableLogfile_t)(const char *, const char *);
 	typedef void (*disableLogfile_t)(void);
-    typedef void(*setProxy_t)(const char *, const int, const char *, const char *, const int);
+    typedef void (*setProxy_t)(const char *, const int, const char *, const char *, const int);
+    typedef void (*setSubscription_t)(const char *, const int);
     
 	typedef bool (*start_t)(const char *, const char *, const char *, const char *, const char *, const bool);
 	typedef void (*stop_t)(void);
@@ -75,6 +76,7 @@ private:
 	enableLogfile_t		enableLogfile_ptr = NULL;
 	disableLogfile_t	disableLogfile_ptr = NULL;
     setProxy_t          setProxy_ptr = NULL;
+    setSubscription_t   setSubscription_ptr = NULL;
 	start_t				start_ptr = NULL;
 	stop_t				stop_ptr = NULL;
 	sendPageview_t		sendPageview_ptr = NULL;
@@ -98,6 +100,10 @@ public:
 		enableLogfile_ptr = (enableLogfile_t)getFunction("enableLogfile");
 		if (!enableLogfile_ptr)
 			m_errorsExist = true;
+        
+        setSubscription_ptr = (setSubscription_t)getFunction("setSubscription");
+        if (!setSubscription_ptr)
+            m_errorsExist = true;
 
 		start_ptr = (start_t)getFunction("start");
 		if (!start_ptr)
@@ -156,6 +162,20 @@ public:
 			disableLogfile_ptr();
 	}
 
+    
+    void setSubscription(const char *subscriptionID, const int subscriptionType)
+    {
+        if (setSubscription_ptr)
+        {
+            setSubscription_ptr(subscriptionID, subscriptionType);
+        }
+        else
+        {
+            // std::cerr << "Error #7163: NULL setSubscription_ptr" << std::endl;
+        }
+    }
+    
+    
 	bool		start(const char *appName, const char *appVersion, const char *appLicense, const char *appEdition, const char *propertyID, const bool disabledByTheUser)
 	{
 		if (start_ptr)
@@ -163,11 +183,13 @@ public:
 		return false;
 	}
 
+
 	void		stop(void)
 	{
 		if (stop_ptr)
 			stop_ptr();
 	}
+
 
 	bool		sendPageview(const char *pagePath, const char *pageTitle )
 	{
@@ -182,6 +204,7 @@ public:
 			return sendEvent_ptr(eventAction, eventLabel, eventValue);
 		return false;
 	}
+
 
 	bool	sendScreenview(const char *screenName)
 	{
