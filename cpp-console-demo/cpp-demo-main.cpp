@@ -23,7 +23,7 @@
     #endif
 #endif
 
-const smChar_t 	*appVer = _T("93"),
+const smChar_t 	*appVer = _T("100"),
                 *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
 			    *appEdition = _T("console");
 
@@ -86,7 +86,6 @@ bool testTheAllInOneFunctions(const smChar_t *appName, const smChar_t *aProperty
     
 	// call the one-in-all function
     return functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, _T("Testing AIO function"), _T("aio_sendEvent() test"), 0);
-	
 
 }
 
@@ -173,7 +172,22 @@ int main(int argc, const char * argv[])
 	}
 	std::cout << "libAppTelemetry version:" << softmeterLib.getVersion() << std::endl;
 
-
+    // set subscription details (for SoftMeter PRO licenses)
+    // If you have a PRO license, you must call setSubscription()
+    // with your google Account number and 2 as a subscriptionType.
+    // If you have FREE license but you might get a PRO license in the future, you can still call
+    // this function so that when you purchase your PRO license all your already installed software
+    // get the PRO features automatically.
+    std::string subscriptionID(gaPropertyID);
+    
+    auto found2ndDash = subscriptionID.rfind(_T("-"));
+    if (found2ndDash!=std::string::npos)
+        subscriptionID.erase(found2ndDash);
+    subscriptionID.erase(0,3); // erase the UA- part
+    
+    std::cout << "calling setSubscription(" << subscriptionID << ", 2)" << std::endl;
+    softmeterLib.setSubscription(subscriptionID.c_str(), 2);
+    
     // check for parameters indicating that we must use a proxy
     // e.g. cpp-demo-main <propertyID> <proxyaddress> <proxyport> <proxyUsername> <proxypassword> <proxyAuthScheme> 
     // e.g. cpp-demo-main UA-1111-1    192.168.5.1      8081         smith           iamgreat     4
@@ -215,33 +229,30 @@ int main(int argc, const char * argv[])
 
 	// initialize the library with your program's name, version and google propertyID
     if (!softmeterLib.start(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
-	{
 		std::cerr << "Error calling start_ptr\n";
-		goto stop_report_and_exit;
-	}
-	std::cout << "start() called with Google property:" << gaPropertyID << std::endl;
+
+    std::cout << "start() called with Google property:" << gaPropertyID << std::endl;
 	
+    // 1st hit
 	std::cout << "Will send a Pageview hit" << std::endl;
 	if (!softmeterLib.sendPageview("main window", "main window"))
-	{
-		std::cerr << "sendPageview returned False\n";
-		goto stop_report_and_exit;
-	}
+		std::cout << "sendPageview returned False\n";
 
+    // 2nd hit
 	std::cout << "Will send a Event hit" << std::endl;
-	// if (!softmeterLib.sendEvent("AppLaunch", appName, 1))
-    if (!softmeterLib.sendEvent("AppLaunch", appName, 1))
-	{
-		std::cerr << "sendEvent returned False\n";
-		goto stop_report_and_exit;
-	}
+	if (!softmeterLib.sendEvent("AppLaunch", appName, 1))
+		std::cout << "sendEvent returned False\n";
 
-	std::cout << "Will send a ScreenView hit" << std::endl;
+    // 3rd hit
+    std::cout << "Will send a ScreenView hit" << std::endl;
 	if (!softmeterLib.sendScreenview("Test screenView"))
-	{
-		std::cerr << "sendScreenview returned False\n";
-		goto stop_report_and_exit;
-	}
+		std::cout << "sendScreenview returned False\n";
+
+    // Note for the SoftMeter free edition:
+    // There is a limit for the total number of hits that can be sent per session.
+    // At the time of writing this code the limit was 3 hits.
+    // If you are testing the free edition, the following hits will return false 
+    // because the limit was reached.
 
 	// And now, some exception handling....
 	// ---------------------------------------
@@ -260,40 +271,36 @@ int main(int argc, const char * argv[])
 		std::string excDesc("Error #18471a in " __FILE__ ": ");
 		excDesc += ex.what();
 		if (!softmeterLib.sendException(excDesc.c_str(), 0))
-		{
-			std::cerr << "sendException returned False\n";
-			goto stop_report_and_exit;
-		}
+			std::cout << "sendException returned False\n";
 	}
 	catch (...)
 	{
 		std::cout << "Exception caught; will send it to G.A." << std::endl;
 		if (!softmeterLib.sendException("Error #18471b in " __FILE__, 0))
-		{
-			std::cerr << "Error calling sendException\n";
-			goto stop_report_and_exit;
-		}
+			std::cout << "sendException returned False\n";
 	}
 
-stop_report_and_exit:
-
+  
 	softmeterLib.stop();
 
 	std::cout << "Will send an event hit using the All-in-one function aio_sendEvent()" << std::endl;
+
+    // The all-in-one functions include calls the start() and stop(), so do not call these functions yourself.
+    // Here, we cann the all-in-one functions after the start() and stop() section.
     // test the All-in-one function(s)
     if (!testTheAllInOneFunctions(appName, gaPropertyID.c_str()))
-        std::cerr << "Error calling testTheAllInOneFunctions()\n";
+        std::cout << "testTheAllInOneFunctions() returned False\n";
                              
 	#ifdef _WIN32
 		// test the __stdcall function calling convention
 		std::cout << "Will send an event hit using the All-in-one function aio_sendEvent_stdcall() and the __stdcall convention" << std::endl;
 		if (!testTheSend_aio_Event_strcall(appName, gaPropertyID.c_str()))
-			std::cerr << "Error calling testTheSend_aio_Event_strcall()\n";
+			std::cout << "testTheSend_aio_Event_strcall()  returned False\n";
 	#endif
 
 
 	// will open the log file in a text editor
-	if (system(NULL)) // If command is a null pointer, the function only checks whether a command processor is available through this function, without invoking any command.
+	if (system(NULL)) // With a null pointer the function only checks whether a command processor is available, without invoking any command.
 	{
 #ifdef _WIN32
 		std::string command("start " + logFilename);

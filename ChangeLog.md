@@ -3,11 +3,17 @@ All notable changes to this project will be documented in this file.
 
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
+## [1.0.0] - 2019-03-26
+
+### Changed
+- Internal improvements
+
+
 ## [0.9.4] - 2019-03-17
 
 ### Added
-- Custom end-points for the collection of the usage analytics data.  
-You can set you own server as the data collection end-point.  
+- Custom endpoints for the collection of the usage analytics data.  
+You can set your own server as the data collection endpoint.  
 SoftMeter will send the data hits to your server instead of Google Analytics.  
 Contact us for more information.
 
@@ -24,7 +30,7 @@ Contact us for more information.
 Detects and reports the number of monitors and their resolutions.  
 It also detects if there is a retina (high resolution / HiDPI) display on Mac platforms.  
 Until now, only the main monitor of a multi-monitor configuration was reported.  
-For multi monitor configurations you will see under the "Screen resolution" dimension of Google Analytics values like  
+For multi-monitor configurations, you will see under the "Screen resolution" dimension of Google Analytics values like  
 ```
 1280x800, 1920x1080  
 1280x800, 840x525 HiDPI  
