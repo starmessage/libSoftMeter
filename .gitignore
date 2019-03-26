@@ -27,3 +27,4 @@ cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/xcuserdata/cto.xcuserdatad/xcs
 cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/project.pbxproj
 cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/xcuserdata/cto.xcuserdatad/xcschemes/xcschememanagement.plist
 cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/project.pbxproj
+*.~pas
