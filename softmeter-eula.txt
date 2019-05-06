@@ -3,7 +3,7 @@
 ********************************************
 
 =====================================================================
-<YOUR-SOFTWARE-NAME> End User License Agreement | License version 1.4
+<YOUR-SOFTWARE-NAME> End User License Agreement | License version 1.5
 =====================================================================
 
 Introduction.
@@ -51,7 +51,7 @@ Who has access to the data.
 
 Turning On/Off the data collection.
 ----------------
-The software provides you with an option to enable or disable the data collection at anytime.
+The software provides you with an option to enable or disable the data collection at any time.
 If you do not consent to the collection of the data, you can use this option to disable this functionality. 
 
 
