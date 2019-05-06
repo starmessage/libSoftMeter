@@ -4,8 +4,6 @@
 ///     utility class to load the DLL and link its functions
 ///
 ///		Version of file: 2.0
-///  	URL of this file:
-///     https://github.com/starmessage/libSoftMeter/blob/master/pascal-console-demo/dll_loaderAppTelemetry.pas
 ///		URL of repo:
 ///     https://github.com/starmessage/libSoftMeter
 ///   Copyright, StarMessage software
@@ -38,8 +36,9 @@ type
     TgetLogFilename = function: PAnsiChar; cdecl;
     TenableLogfile = procedure(appName, macBundleID:PAnsiChar); cdecl;
     TdisableLogfile = procedure; cdecl;
-    
-	  Tstart = function(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ; cdecl;
+    TSetSubscription = procedure(subscriptionID :PAnsiChar; subscriptionType :integer); cdecl;
+
+	Tstart = function(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ; cdecl;
     Tstop = procedure; cdecl;
 	
     TsendPageview = function(pagePath, pageTitle:PAnsiChar): BOOL ; cdecl;
@@ -53,7 +52,8 @@ type
         getLogFilenamePtr: TgetLogFilename;
         enableLogfilePtr: TenableLogfile;
         disableLogfilePtr: TdisableLogfile;
-        
+        setSubscriptionPtr: TSetSubscription;
+
         startPtr: Tstart;
         stopPtr: Tstop;
 
@@ -67,10 +67,12 @@ type
         // destructor  Destroy; override;
         function getVersion: string;
         function getLogFilename: string;
-        procedure enableLogfile(appName, macBundleID:PAnsiChar);
+        procedure enableLogfile(appName: PAnsiChar);
         procedure disableLogfile;
         
-		    function start(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
+        procedure setSubscription(subscriptionID :PAnsiChar; subscriptionType :integer);
+        
+		function start(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
         procedure stop;
 		
         function sendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
@@ -118,6 +120,10 @@ begin
     if (@disableLogfilePtr=NIL) then
       addError('Failed to load function: disableLogfile');
 
+    @setSubscriptionPtr := GetProcAddress(getHandle, 'setSubscription');
+    if (@setSubscriptionPtr=NIL) then
+      addError('Failed to load function: setSubscription');
+
 	  @startPtr := GetProcAddress(getHandle, 'start');
     if (@startPtr=NIL) then
       addError('Failed to load function: start');
@@ -150,6 +156,13 @@ begin
     result := 'unknown';
     if @getVersionPtr<>nil then
         result := string(getVersionPtr);
+end;
+
+
+procedure TDllAppTelemetry.setSubscription(subscriptionID: PAnsiChar; subscriptionType: integer);
+begin
+    if @setSubscriptionPtr <> nil then
+        setSubscriptionPtr(subscriptionID, subscriptionType);
 end;
 
 
@@ -208,10 +221,10 @@ begin
 end;
 
 
-procedure TDllAppTelemetry.enableLogfile(appName, macBundleID:PAnsiChar);
+procedure TDllAppTelemetry.enableLogfile(appName:PAnsiChar);
 begin
     if @enableLogfilePtr <> nil then
-        enableLogfilePtr(appName, macBundleID);
+        enableLogfilePtr(appName, nil);
 end;
 
 
