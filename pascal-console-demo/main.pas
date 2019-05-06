@@ -1,4 +1,4 @@
-﻿unit main;
+unit main;
 
 interface
 
@@ -8,9 +8,13 @@ procedure run_console_demo;
 
 implementation
 
+
 uses
   SysUtils,
-  strUtils;
+  strUtils,
+  windows;
+
+
 
 
 function checkCommandLineParam:boolean;
@@ -25,10 +29,13 @@ begin
 end;
 
 
+
+
+
 procedure run_console_demo;
 
 const   programName = 'console_demo_pascal';
-	programVer = '2.3';
+	programVer = '2.4';
 	programLicense = 'demo';
 	programEdition = 'console';
   {$IFDEF WIN32}
@@ -41,7 +48,7 @@ const   programName = 'console_demo_pascal';
 
         // If the user has opted-out from sending telemetry data, this variable must be false.
         // Save the user's consent in the app's settings and then read this variable every time your program starts.
-const userGaveConsent:boolean = true;
+const   userGaveConsent:boolean = true;
 
 var     appTelemetryDll:TDllAppTelemetry;
         googleAnalyticsPropertyID:PAnsiChar;
@@ -69,35 +76,33 @@ begin
     writeln('DLL version: ', appTelemetryDll.getVersion);
 
   	writeln('Enabling the log file. Check the log file for the duration of the telemetry functions.');
-    appTelemetryDll.enableLogfile(programName, 'com.mycompany.' + programName);
+    appTelemetryDll.enableLogfile(programName);
     writeln('DLL log filename: ', appTelemetryDll.getLogFilename);
 
     googleAnalyticsPropertyID :=  PAnsiChar(AnsiString(ParamStr(1)));
     writeln('Will send data to the Google Property ID:' +  googleAnalyticsPropertyID);
 
+    appTelemetryDll.setSubscription('your-subscription-id', 2);
+
     if not appTelemetryDll.start(PAnsiChar(programName), PAnsiChar(programVer), PAnsiChar(programLicense), PAnsiChar(programEdition), googleAnalyticsPropertyID, userGaveConsent) then
-        writeLn('latInit() failed.');
+        writeLn('start() failed.');
 
     writeLn('Will send PageView hit');
     if not appTelemetryDll.sendPageview('main window', 'main window') then
-        writeLn('latSendPageview() 2 failed.');
+        writeLn('sendPageview() 2 failed.');
 
     // e.g. the user opens the configuration screen of your program
     writeLn('Will send PageView hit');
     if not appTelemetryDll.sendPageview('main window/configuration', 'configuration') then
-        writeLn('latSendPageview() failed.');
+        writeLn('sendPageview() failed.');
 
     writeLn('Will send Event hit');
     if not appTelemetryDll.sendEvent('App Events', 'Test event', 1) then
-        writeLn('latSendEvent() failed.');
+        writeLn('sendEvent() failed.');
 
     writeLn('Will send ScreenView hit');
-    //if not appTelemetryDll.sendScreenView('CLI window test') then
-    //    writeLn('latSendScreenView() failed.');
-
-    // greek text test
-    if not appTelemetryDll.sendScreenView('Greek test: Καλημέρα σας.') then
-        writeLn('latSendScreenView() failed.');
+    if not appTelemetryDll.sendScreenView('CLI window test') then
+        writeLn('sendScreenView() failed.');
 
 
     // ........  more of your code here
@@ -111,7 +116,7 @@ begin
         begin
             writeLn('Will send Exception:', E.ClassName, ': ', E.Message);
             if not appTelemetryDll.sendException(PAnsiChar( AnsiString(E.ClassName+ ': ' +E.Message)), FALSE) then
-                writeLn('latSendException() failed.');
+                writeLn('sendException() failed.');
         end;
     end;
 
@@ -119,7 +124,7 @@ begin
 
     // eg. the user hits the exit button
     if not appTelemetryDll.sendPageview('exit', 'exit') then
-        writeLn('latSendPageview() failed.');
+        writeLn('sendPageview() failed.');
 
     appTelemetryDll.stop;
 
