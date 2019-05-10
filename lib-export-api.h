@@ -1,4 +1,4 @@
-﻿//
+//
 //  lib-export-api.h
 //  SoftMeter library
 //
@@ -26,12 +26,15 @@
 	//   __declspec(dllexport) void __cdecl Function1(void);  
 	//   or
 	//   __declspec(dllexport) void __stdcall Function1(void);  
+    // __declspec(dllexport) cannot be applied to a function with the __clrcall calling convention.
 
+	#define EXPORT_DIRECTIVE	__declspec(dllexport)
 
+    #define CALL_CONV   __stdcall
 
-
-	#define EXPORT_DIRECTIVE	__declspec(dllexport) 
 #else
+    #define CALL_CONV
+
 	#define EXPORT_DIRECTIVE	__attribute__((visibility("default")))
 	// 	another way to control the export visibility of functions in Xcode 
 	//  is to wrap the functions inside a block of
@@ -45,6 +48,7 @@
 	// extern "C" means that the function behind the descriptor 
 	// should be compiled with the C standard naming mangling.
 	#define C_EXPORT extern "C" 
+    // #define C_EXPORT
 #else
 	#define C_EXPORT 
 #endif

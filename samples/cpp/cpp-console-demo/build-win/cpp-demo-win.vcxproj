@@ -39,8 +39,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\core.cpccLinkLibrary.h" />
-    <ClInclude Include="..\SoftMeter-CPP-Api.h" />
+    <ClInclude Include="..\..\core.cpccLinkLibrary.h" />
+    <ClInclude Include="..\..\SoftMeter-CPP-Api.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp-demo-main.cpp" />
@@ -148,14 +148,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(myVisualStudioTemp)\$(ProjectName)\$(Configuration)\</OutDir>
+    <OutDir>$(myVisualStudioTemp)\$(Configuration)\</OutDir>
     <IntDir>$(myVisualStudioTemp)\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetExt>.exe</TargetExt>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(myVisualStudioTemp)\$(ProjectName)\$(Configuration)\</OutDir>
+    <OutDir>$(myVisualStudioTemp)\$(Configuration)\</OutDir>
     <IntDir>$(myVisualStudioTemp)\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetName>$(ProjectName)-64bit</TargetName>
     <TargetExt>.exe</TargetExt>
@@ -165,31 +165,32 @@
     <TargetName>$(ProjectName)-64bit</TargetName>
     <TargetExt>.exe</TargetExt>
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(myVisualStudioTemp)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(myVisualStudioTemp)\$(ProjectName)\$(Configuration)\</OutDir>
+    <OutDir>$(myVisualStudioTemp)\$(Configuration)\</OutDir>
     <IntDir>$(myVisualStudioTemp)\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetExt>.exe</TargetExt>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseUnicode|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(myVisualStudioTemp)\$(ProjectName)\$(Configuration)\</OutDir>
+    <OutDir>$(myVisualStudioTemp)\$(Configuration)\</OutDir>
     <IntDir>$(myVisualStudioTemp)\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetExt>.exe</TargetExt>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(myVisualStudioTemp)\$(ProjectName)\$(Configuration)\</OutDir>
+    <OutDir>$(myVisualStudioTemp)\$(Configuration)\</OutDir>
     <IntDir>$(myVisualStudioTemp)\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetName>$(ProjectName)-64bit</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseUnicode|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(myVisualStudioTemp)\$(ProjectName)\$(Configuration)\</OutDir>
+    <OutDir>$(myVisualStudioTemp)\$(Configuration)\</OutDir>
     <IntDir>$(myVisualStudioTemp)\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetName>$(ProjectName)-64u</TargetName>
     <TargetExt>.exe</TargetExt>
@@ -199,12 +200,14 @@
     <TargetName>$(ProjectName)-64bit</TargetName>
     <TargetExt>.exe</TargetExt>
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(myVisualStudioTemp)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseUnicode|ARM'">
     <IntDir>$(myVisualStudioTemp)\$(ProjectName)-intermediate\$(Configuration)-$(platform)\</IntDir>
     <TargetName>$(ProjectName)-64bit</TargetName>
     <TargetExt>.exe</TargetExt>
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(myVisualStudioTemp)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

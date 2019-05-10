@@ -1,20 +1,10 @@
-Below is the dumpbin result for the softmeter.dll (v0.6.1),
-generated under the visual studio command prompt, by the command:
-
-dumpbin /exports libSoftMeter.dll
-
-You can see the function name pairs (for __cdecl and __stdcall calling conventions)
-of the exported functions.
-Ignore the functions prefixed with "lat" as they are kept only for backwards compatibility. 
-
---------------------------------------------------------
-
-
-Microsoft (R) COFF/PE Dumper Version 14.14.26433.0
+dumpbin results of softmeter v1.1
+--------------------------------------------------
+Microsoft (R) COFF/PE Dumper Version 14.16.27030.1
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 
-Dump of file libsoftmeter.dll
+Dump of file libSoftMeter.dll
 
 File Type: DLL
 
@@ -29,43 +19,43 @@ File Type: DLL
 
     ordinal hint RVA      name
 
-         12    0 00010040 aio_sendEvent
-          1    1 00010120 aio_sendEvent_stdcall
-         13    2 0000FF20 disableLogfile
-          2    3 0000FF20 disableLogfile_stdcall
-         14    4 00014530 enableLogfile
-          3    5 00014840 enableLogfile_stdcall
-         15    6 0000FEE0 getLogFilename
-          4    7 0000FEE0 getLogFilename_stdcall
-         16    8 0000FED0 getVersion
-          5    9 0000FED0 getVersion_stdcall
-         17    A 0000FF20 latDisableLogfile
-         18    B 0000FF10 latEnableLogfile
-         19    C 0000FF40 latFree
-         20    D 0000FEE0 latGetLogFilename
-         21    E 0000FED0 latGetVersion
-         22    F 0000FF30 latInit
-         23   10 0000FFF0 latSendEvent
-         24   11 00010020 latSendException
-         25   12 0000FFB0 latSendPageview
-         26   13 0000FFD0 latSendScreenview
-         27   14 0000FFF0 sendEvent
-          6   15 000148B0 sendEvent_stdcall
-         28   16 00010020 sendException
-          7   17 000148F0 sendException_stdcall
-         29   18 0000FFB0 sendPageview
-          8   19 00014890 sendPageview_stdcall
-         30   1A 0000FFD0 sendScreenview
-          9   1B 000148D0 sendScreenview_stdcall
-         31   1C 00014760 start
-         10   1D 00014860 start_stdcall
-         32   1E 0000FF40 stop
-         11   1F 0000FF40 stop_stdcall
+         12    0 00014170 aio_sendEvent = _aio_sendEvent@36
+          1    1 00014250 aio_sendEvent_stdcall = ?aio_sendEvent_stdcall@@YG_NPBD0000_N00H@Z (bool __stdcall aio_sendEvent_stdcall(char const *,char const *,char const *,char const *,char const *,bool,char const *,char const *,int))
+         13    2 0001B5F0 disableLogfile = ?disableLogfile_stdcall@@YGXXZ (void __stdcall disableLogfile_stdcall(void))
+          2    3 0001B5F0 disableLogfile_stdcall = ?disableLogfile_stdcall@@YGXXZ (void __stdcall disableLogfile_stdcall(void))
+         14    4 0001B600 enableLogfile = _enableLogfile@8
+          3    5 0001C240 enableLogfile_stdcall = ?enableLogfile_stdcall@@YGXPBD0@Z (void __stdcall enableLogfile_stdcall(char const *,char const *))
+         15    6 0001B5C0 getLogFilename = ?getLogFilename_stdcall@@YGPBDXZ (char const * __stdcall getLogFilename_stdcall(void))
+         16    7 0001B5C0 getLogFilename_cdecl = ?getLogFilename_stdcall@@YGPBDXZ (char const * __stdcall getLogFilename_stdcall(void))
+          4    8 0001B5C0 getLogFilename_stdcall = ?getLogFilename_stdcall@@YGPBDXZ (char const * __stdcall getLogFilename_stdcall(void))
+         17    9 0001B5B0 getVersion = ?getVersion_stdcall@@YGPBDXZ (char const * __stdcall getVersion_stdcall(void))
+         18    A 0001B5B0 getVersion_cdecl = ?getVersion_stdcall@@YGPBDXZ (char const * __stdcall getVersion_stdcall(void))
+          5    B 0001B5B0 getVersion_stdcall = ?getVersion_stdcall@@YGPBDXZ (char const * __stdcall getVersion_stdcall(void))
+         19    C 0001C1E0 sendEvent = ?sendEvent_stdcall@@YG_NPBD0H@Z (bool __stdcall sendEvent_stdcall(char const *,char const *,int))
+         20    D 0001C2B0 sendEvent_cdecl = _sendEvent_cdecl
+          6    E 0001C1E0 sendEvent_stdcall = ?sendEvent_stdcall@@YG_NPBD0H@Z (bool __stdcall sendEvent_stdcall(char const *,char const *,int))
+         21    F 0001C220 sendException = ?sendException_stdcall@@YG_NPBD_N@Z (bool __stdcall sendException_stdcall(char const *,bool))
+         22   10 0001C300 sendException_cdecl = _sendException_cdecl
+          7   11 0001C220 sendException_stdcall = ?sendException_stdcall@@YG_NPBD_N@Z (bool __stdcall sendException_stdcall(char const *,bool))
+         23   12 0001C1C0 sendPageview = ?sendPageview_stdcall@@YG_NPBD0@Z (bool __stdcall sendPageview_stdcall(char const *,char const *))
+         24   13 0001C290 sendPageview_cdecl = _sendPageview_cdecl
+          8   14 0001C1C0 sendPageview_stdcall = ?sendPageview_stdcall@@YG_NPBD0@Z (bool __stdcall sendPageview_stdcall(char const *,char const *))
+         25   15 0001C200 sendScreenview = ?sendScreenview_stdcall@@YG_NPBD@Z (bool __stdcall sendScreenview_stdcall(char const *))
+         26   16 0001C2E0 sendScreenview_cdecl = _sendScreenview_cdecl
+          9   17 0001C200 sendScreenview_stdcall = ?sendScreenview_stdcall@@YG_NPBD@Z (bool __stdcall sendScreenview_stdcall(char const *))
+         27   18 0001BCA0 setOptions = _setOptions@4
+         28   19 0001C260 setOptions_cdecl = _setOptions_cdecl
+         29   1A 0001BE10 start = _start@24
+         30   1B 0001C270 start_cdecl = _start_cdecl
+         10   1C 0001C250 start_stdcall = ?start_stdcall@@YG_NPBD0000_N@Z (bool __stdcall start_stdcall(char const *,char const *,char const *,char const *,char const *,bool))
+         31   1D 0001C150 stop = ?stop_stdcall@@YGXXZ (void __stdcall stop_stdcall(void))
+         32   1E 0001C150 stop_cdecl = ?stop_stdcall@@YGXXZ (void __stdcall stop_stdcall(void))
+         11   1F 0001C150 stop_stdcall = ?stop_stdcall@@YGXXZ (void __stdcall stop_stdcall(void))
 
   Summary
 
-        3000 .data
-       13000 .rdata
-        4000 .reloc
+        4000 .data
+       1A000 .rdata
+        5000 .reloc
         1000 .rsrc
-       38000 .text
+       5D000 .text

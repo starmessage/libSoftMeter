@@ -4,7 +4,7 @@
  *	Purpose:	Load the DLL or the DYLIB and expose all their functions via an object
  *	*****************************************
  *  Library:	SoftMeter
- *  Copyright: 	2018 StarMessage software.
+ *  Copyright: 	StarMessage software.
  *  License: 	Free for opensource projects.
  *  			Commercial license exists for closed source projects.
  *	Web:		http://www.StarMessageSoftware.com/softmeter
@@ -16,7 +16,7 @@
 
 //	see also: SoftMeter-C-Api-AIO.h for the all-in-one functions
 
-// get the latest version of this file from
+// get the latest version of "core.cpccLinkLibrary.h" from
 // https://github.com/starmessage/cpcc/blob/master/core.cpccLinkLibrary.h
 #include "core.cpccLinkLibrary.h"
 
@@ -24,41 +24,43 @@
 #if defined(__APPLE__)
 	// Mac OS X Specific header stuff
 	#include <TargetConditionals.h>
-
+    
 #endif
 
 #ifndef _WIN32
+    #define WIN_CALL_CONV 
     #ifndef TCHAR // for non Windows systems
         #define  TCHAR char
     #endif
+#else
+    #define WIN_CALL_CONV __stdcall
 #endif
+
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-	// Under Windows, these function pointers use the __cdecl DLL calling convention
-	typedef const char* (*getVersion_t)(void);
-	typedef const char* (*getLogFilename_t)(void);
-	typedef void (*enableLogfile_t)(const char *, const char *);
-	typedef void (*disableLogfile_t)(void);
-    typedef void (*setProxy_t)(const char *, const int, const char *, const char *, const int);
-    typedef void (*setSubscription_t)(const char *, const int);
-    
-	typedef bool (*start_t)(const char *, const char *, const char *, const char *, const char *, const bool);
-	typedef void (*stop_t)(void);
-	typedef bool (*sendPageview_t)(const char *, const char *);
-	typedef bool (*sendEvent_t)(const char *, const char *, const int);
-	typedef bool (*sendScreenview_t)(const char *);
-	typedef bool (*sendException_t)(const char *, const bool);
+	// Under Windows, these function pointers use the __stdcall DLL calling convention
+	typedef const char* (WIN_CALL_CONV *getVersion_t)(void);
+	typedef const char* (WIN_CALL_CONV *getLogFilename_t)(void);
+	typedef void (WIN_CALL_CONV *enableLogfile_t)(const char *, const char *);
+	typedef void (WIN_CALL_CONV *disableLogfile_t)(void);
+    typedef void(WIN_CALL_CONV *setOptions_t)(const char *);
+	typedef bool (WIN_CALL_CONV *start_t)(const char *, const char *, const char *, const char *, const char *, const bool);
+	typedef void (WIN_CALL_CONV *stop_t)(void);
+	typedef bool (WIN_CALL_CONV *sendPageview_t)(const char *, const char *);
+	typedef bool (WIN_CALL_CONV *sendEvent_t)(const char *, const char *, const int);
+	typedef bool (WIN_CALL_CONV *sendScreenview_t)(const char *);
+	typedef bool (WIN_CALL_CONV *sendException_t)(const char *, const bool);
 
 	// Under MacOS, the following pointers are not needed.
 	#ifdef _WIN32
-		// Under Windows, these the function pointers take the __stdcall DLL calling convention (currently only demonstrating start()
-		// The function names are appended with _stdcall
-		// Windows applications can load either set of functions
-		// typedef bool __stdcall (*start_stdcall_t)(const char *, const char *, const char *, const char *, const char *, const bool);
+		// Under Windows, if you need to use the __cdecl calling convention, 
+        // these are the function pointers for the __cdecl DLL functions (currently only demonstrating start()
+		// The function names are appended with _cdecl
+		typedef bool (__cdecl *start_cdecl_t)(const char *, const char *, const char *, const char *, const char *, const bool);
 	#endif
 	
 #ifdef __cplusplus
@@ -75,8 +77,10 @@ private:
 	getLogFilename_t	getLogFilename_ptr = NULL;
 	enableLogfile_t		enableLogfile_ptr = NULL;
 	disableLogfile_t	disableLogfile_ptr = NULL;
-    setProxy_t          setProxy_ptr = NULL;
-    setSubscription_t   setSubscription_ptr = NULL;
+    // deprecated
+    //setProxy_t          setProxy_ptr = NULL;
+    //setSubscription_t   setSubscription_ptr = NULL;
+    setOptions_t        setOptions_ptr = NULL;
 	start_t				start_ptr = NULL;
 	stop_t				stop_ptr = NULL;
 	sendPageview_t		sendPageview_ptr = NULL;
@@ -101,8 +105,8 @@ public:
 		if (!enableLogfile_ptr)
 			m_errorsExist = true;
         
-        setSubscription_ptr = (setSubscription_t)getFunction("setSubscription");
-        if (!setSubscription_ptr)
+        setOptions_ptr = (setOptions_t)getFunction("setOptions");
+        if (!setOptions_ptr)
             m_errorsExist = true;
 
 		start_ptr = (start_t)getFunction("start");
@@ -163,11 +167,11 @@ public:
 	}
 
     
-    void setSubscription(const char *subscriptionID, const int subscriptionType)
+    void setOptions(const char *developerOptions)
     {
-        if (setSubscription_ptr)
+        if (setOptions_ptr)
         {
-            setSubscription_ptr(subscriptionID, subscriptionType);
+            setOptions_ptr(developerOptions);
         }
         else
         {
@@ -220,18 +224,7 @@ public:
 		return false;
 	}
 
-	// deprecated functions of api v5.6
-	const char*	latGetVersion(void) { return getVersion(); }
-	const char*	latGetLogFilename(void) { return getLogFilename(); }
-	void latEnableLogfile(const char *appName, const char *macBundleId) 	{ enableLogfile(appName, macBundleId); }
-	void latDisableLogfile(void) { disableLogfile(); }
-	bool latInit(const char *appName, const char *appVersion, const char *appLicense, const char *appEdition, const char *propertyID, const bool disabledByTheUser)
- 		{ 	return start(appName, appVersion, appLicense, appEdition, propertyID, disabledByTheUser); }
-	void latFree(void) { stop(); }
-	bool latSendPageview(const char *pagePath, const char *pageTitle ) 	{	return sendPageview(pagePath, pageTitle); }
-	bool latSendEvent(const char *eventAction, const char *eventLabel, const int eventValue)	{ 	return sendEvent(eventAction, eventLabel, eventValue); }
-	bool latSendScreenview(const char *screenName)	{	return sendScreenview(screenName);	}
-	bool latSendException(const char *ExceptionDescription, bool isFatal)	{	return sendException(ExceptionDescription, isFatal);	}
+
 
 };
 
@@ -244,7 +237,8 @@ public:
 	.....
 	AppTelemetry_cppApi &appTelem(void)
 	{
-		// static might misbehave in winXP, better use a pointer and allocate the object with new()
+ 
+		// use a pointer and allocate the object with new() so that the object is allocated in the heap memory
 		static AppTelemetry_cppApi _instance("StarMessage-libAppTelemetry"); // this is the filename of the .dylib or the .dll
 		return _instance;
 	}

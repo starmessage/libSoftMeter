@@ -1,7 +1,6 @@
 ﻿# SoftMeter libraries (.dll, .dylib, .framework)
 
 SoftMeter is a Windows, MacOS and IOS library that allows you to monitor the usage of your software program (installs, uninstalls, number of daily/monthly users, countries, OS, etc) via your Google Analytics property.  
-An IOS version will soon be release.
 - Go to [SoftMeter website](https://www.StarMessageSoftware.com/softmeter) for more information.  
 
 ## Description of files
@@ -13,18 +12,19 @@ An IOS version will soon be release.
 |libSoftMeter.dylib|MacOS dylib for 64 bit systems.|
 |libSoftMeter-IOS.framework|IOS framework.|
 
-## SoftMeter DLLs for Windows
+## SoftMeter DLLs calling conventions for Windows
 To ease the life of the Windows applications developer, the SoftMeter DLLs have both __cdecl and __stdcall calling conventions.  
 
 The DLLs contain the SoftMeter API functions twice.  
 One set is declared with the __cdecl calling convention and the other set with __stdcall.  
-The functions of the second set have have the '_stdcall' suffix in their names.  
+
 
 E.g
 - start()  
-Function following the __cdecl calling convention
 - start_stdcall()  
-The same function, following the __stdcall calling convention.  
+Functions following the __stdcall calling convention
+- start_cdecl()  
+The same function, following the __cdecl calling convention.  
 See the example of the [dumpbin report](https://github.com/starmessage/libSoftMeter/blob/master/bin/dumpbin-of-softmeter-dll.txt) of SoftMeter.
 
 Depending on the language of your Windows application you can call either set of functions.

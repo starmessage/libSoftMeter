@@ -1,5 +1,7 @@
 unit main;
 
+// file version: 1.1
+
 interface
 
 uses dll_loader, dll_loaderAppTelemetry;
@@ -12,9 +14,8 @@ implementation
 uses
   SysUtils,
   strUtils,
-  windows;
-
-
+  windows,
+  ShellApi;
 
 
 function checkCommandLineParam:boolean;
@@ -35,7 +36,7 @@ end;
 procedure run_console_demo;
 
 const   programName = 'console_demo_pascal';
-	programVer = '2.4';
+	programVer = '2.5';
 	programLicense = 'demo';
 	programEdition = 'console';
   {$IFDEF WIN32}
@@ -52,7 +53,7 @@ const   userGaveConsent:boolean = true;
 
 var     appTelemetryDll:TDllAppTelemetry;
         googleAnalyticsPropertyID:PAnsiChar;
-
+        logFilename:string;
 begin
 
   try
@@ -60,7 +61,7 @@ begin
 
     if checkCommandLineParam=false then
     begin
-        writeln('Call this program with a one parameter, the Google Property ID, e.g.' + CHR(13) + CHR(10) +
+        writeln('Call this program with a one parameter, your Google Property ID, e.g.' + CHR(13) + CHR(10) +
                 'console_demo_delphi10 UA-1234-01');
         exit;
     end;
@@ -75,14 +76,15 @@ begin
 
     writeln('DLL version: ', appTelemetryDll.getVersion);
 
-  	writeln('Enabling the log file. Check the log file for the duration of the telemetry functions.');
+    writeln('Enabling the log file. Check the log file for the duration of the telemetry functions.');
     appTelemetryDll.enableLogfile(programName);
-    writeln('DLL log filename: ', appTelemetryDll.getLogFilename);
+    logFilename := appTelemetryDll.getLogFilename;
+    writeln('DLL log filename: ', logFilename);
 
     googleAnalyticsPropertyID :=  PAnsiChar(AnsiString(ParamStr(1)));
     writeln('Will send data to the Google Property ID:' +  googleAnalyticsPropertyID);
 
-    appTelemetryDll.setSubscription('your-subscription-id', 2);
+    appTelemetryDll.setOptions('subscriptionID=your-subscription-id' + CHR(10) + 'subscriptionType=2');
 
     if not appTelemetryDll.start(PAnsiChar(programName), PAnsiChar(programVer), PAnsiChar(programLicense), PAnsiChar(programEdition), googleAnalyticsPropertyID, userGaveConsent) then
         writeLn('start() failed.');
@@ -138,6 +140,9 @@ begin
     on E: Exception do
       Writeln(E.ClassName, ': ', E.Message);
   end;
+
+  Writeln('Will open the log file');
+  ShellExecute(0, 'open', 'Notepad.exe', PChar(logFilename), nil, SW_SHOWNORMAL);
 
 end;
 

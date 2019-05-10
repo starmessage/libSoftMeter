@@ -3,7 +3,7 @@
 //  main.cpp
 //  SoftMeter test in C++
 //
-//  Copyright © 2018 StarMessage software. All rights reserved.
+//  © StarMessage software. All rights reserved.
 //  Web: http://www.StarMessageSoftware.com/softmeter
 //
 
@@ -14,8 +14,8 @@
 #ifdef _WIN32
     #include <tchar.h>
 #endif
-#include "SoftMeter-CPP-Api.h"
-#include "../SoftMeter-C-Api-AIO.h" // for testing the all-in-one functions
+#include "../SoftMeter-CPP-Api.h" 
+#include "../../../SoftMeter-C-Api-AIO.h" // for testing the all-in-one functions
 
 #ifndef _WIN32
     #ifndef _T  // for non Windows systems
@@ -23,7 +23,7 @@
     #endif
 #endif
 
-const smChar_t 	*appVer = _T("100"),
+const smChar_t 	*appVer = _T("101"),
                 *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
 			    *appEdition = _T("console");
 
@@ -32,7 +32,8 @@ const smChar_t 	*appVer = _T("100"),
 const bool userGaveConsent = true;
 
 
-/* building the program without dependency on the runtime DLLs:
+/* Windows:
+    How to build the program without dependency on the runtime DLLs:
 	To avoid "MSVCP140.dll is missing" you can statically link the program.
 	In visual studio, go to Project tab -> properties - > configuration properties -> C/C++ -> Code Generation
 	on runtime library choose /MTd for debug mode and /MT for release mode.
@@ -40,7 +41,7 @@ const bool userGaveConsent = true;
 	The executable will be significantly bigger, but it will run without any need of runtime DLLs.
 	
    For Windows XP compatibility use the toolset version v140_xp (visual studio 2015)
-   This is the toolset that the libAppTelemetry.dll is compiled with.
+   This is the toolset that the libSoftMeter.dll is compiled with.
    When using the newer toolset v141_xp (visual studio 2017) the LoadLibrary() win32 api function 
    failed to load the DLL under WinXP SP3.
    
@@ -86,7 +87,6 @@ bool testTheAllInOneFunctions(const smChar_t *appName, const smChar_t *aProperty
     
 	// call the one-in-all function
     return functionPtr(appName, appVer, appLicense, appEdition, aPropertyID, userGaveConsent, _T("Testing AIO function"), _T("aio_sendEvent() test"), 0);
-
 }
 
 
@@ -172,21 +172,14 @@ int main(int argc, const char * argv[])
 	}
 	std::cout << "libAppTelemetry version:" << softmeterLib.getVersion() << std::endl;
 
-    // set subscription details (for SoftMeter PRO licenses)
-    // If you have a PRO license, you must call setSubscription()
-    // with your google Account number and 2 as a subscriptionType.
-    // If you have FREE license but you might get a PRO license in the future, you can still call
-    // this function so that when you purchase your PRO license all your already installed software
-    // get the PRO features automatically.
-    std::string subscriptionID(gaPropertyID);
-    
-    auto found2ndDash = subscriptionID.rfind(_T("-"));
-    if (found2ndDash!=std::string::npos)
-        subscriptionID.erase(found2ndDash);
-    subscriptionID.erase(0,3); // erase the UA- part
-    
-    std::cout << "calling setSubscription(" << subscriptionID << ", 2)" << std::endl;
-    softmeterLib.setSubscription(subscriptionID.c_str(), 2);
+    const bool testTheSubscription = false; // make this variable true if you want to test your subscription
+    if (testTheSubscription)
+    {
+        // set subscription details (for SoftMeter PRO licenses)
+        softmeterLib.setOptions("subscriptionID=YOUR_SUBSCRIPTION_ID\n"
+                                "subscriptionType=2\n");
+    }
+           
     
     // check for parameters indicating that we must use a proxy
     // e.g. cpp-demo-main <propertyID> <proxyaddress> <proxyport> <proxyUsername> <proxypassword> <proxyAuthScheme> 

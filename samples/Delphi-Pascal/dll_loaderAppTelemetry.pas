@@ -3,10 +3,10 @@
 ///     unit dll_loaderAppTelemetry.pas
 ///     utility class to load the DLL and link its functions
 ///
-///		Version of file: 2.0
-///		URL of repo:
+///     Version of file: 2.0
+///     URL of repo:
 ///     https://github.com/starmessage/libSoftMeter
-///   Copyright, StarMessage software
+///     Copyright, StarMessage software
 ///     https://www.starmessagesoftware.com/softmeter
 ///
 //////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ interface
 //////////////////////////////////////////////////////////////
 
 uses Windows,
-	  dll_loader;
+        dll_loader;
 
 //////////////////////////////////////////////////////////////
 ///
@@ -28,31 +28,36 @@ uses Windows,
 ///     a Pascal/Delphi object that loads the appTelemetry DLL,
 ///     and links its functions
 ///
+///     See the latest version of the "C" API, together with comments
+///     about the functions, at:
+///     https://github.com/starmessage/libSoftMeter/blob/master/SoftMeter-C-Api.h
+///
 //////////////////////////////////////////////////////////////
 
 type
-    // C prototype: const char*	getVersion(void);
-    TgetVersion = function: PAnsiChar; cdecl; // stdcall;
-    TgetLogFilename = function: PAnsiChar; cdecl;
-    TenableLogfile = procedure(appName, macBundleID:PAnsiChar); cdecl;
-    TdisableLogfile = procedure; cdecl;
-    TSetSubscription = procedure(subscriptionID :PAnsiChar; subscriptionType :integer); cdecl;
+    // C prototype: const char* getVersion(void);
 
-	Tstart = function(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ; cdecl;
-    Tstop = procedure; cdecl;
-	
-    TsendPageview = function(pagePath, pageTitle:PAnsiChar): BOOL ; cdecl;
-    TsendEvent = function(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ; cdecl;
-    TsendScreenview = function(screenName:PAnsiChar): BOOL ; cdecl;
-    TsendException = function(screenName:PAnsiChar; isFatal:BOOL): BOOL ; cdecl;
+    TgetVersion = function: PAnsiChar; stdcall; // stdcall;
+    TgetLogFilename = function: PAnsiChar; stdcall;
+    TenableLogfile = procedure(appName, macBundleID:PAnsiChar); stdcall;
+    TdisableLogfile = procedure; stdcall;
+    TSetOptions = function(developerOptions:PAnsiChar): BOOL ;  stdcall;
 
-	TDllAppTelemetry = class(TDllLoader)
+    Tstart = function(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ; stdcall;
+    Tstop = procedure; stdcall;
+
+    TsendPageview = function(pagePath, pageTitle:PAnsiChar): BOOL ; stdcall;
+    TsendEvent = function(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ; stdcall;
+    TsendScreenview = function(screenName:PAnsiChar): BOOL ; stdcall;
+    TsendException = function(screenName:PAnsiChar; isFatal:BOOL): BOOL ; stdcall;
+
+    TDllAppTelemetry = class(TDllLoader)
     private
         getVersionPtr: TgetVersion;
         getLogFilenamePtr: TgetLogFilename;
         enableLogfilePtr: TenableLogfile;
         disableLogfilePtr: TdisableLogfile;
-        setSubscriptionPtr: TSetSubscription;
+        setOptionsPtr: TSetOptions;
 
         startPtr: Tstart;
         stopPtr: Tstop;
@@ -69,12 +74,12 @@ type
         function getLogFilename: string;
         procedure enableLogfile(appName: PAnsiChar);
         procedure disableLogfile;
-        
-        procedure setSubscription(subscriptionID :PAnsiChar; subscriptionType :integer);
-        
-		function start(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
+
+        function setOptions(developerOptions: PAnsiChar): BOOL;
+
+        function start(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
         procedure stop;
-		
+
         function sendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
         function sendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
         function sendScreenView(screenName:PAnsiChar): BOOL ;
@@ -91,10 +96,10 @@ type
 
 constructor TDllAppTelemetry.Create(aDllFilename:PChar);
 begin
-	inherited Create(aDllFilename);
-	// link the functions
-	// In some DLLs (depending on how they are compiled), the correct call is GetProcAddress(hDLL, '_FunctioName');
-	// otherwise nil is returned.
+    inherited Create(aDllFilename);
+    // link the functions
+    // In some DLLs (depending on how they are compiled), the correct call is GetProcAddress(hDLL, '_FunctioName');
+    // otherwise nil is returned.
     if (isLoaded=false) then
       exit;
 
@@ -112,31 +117,31 @@ begin
     if (@getLogFilenamePtr=NIL) then
       addError('Failed to load function: getLogFilename');
 
-	  @enableLogfilePtr := GetProcAddress(getHandle, 'enableLogfile');
+    @enableLogfilePtr := GetProcAddress(getHandle, 'enableLogfile');
     if (@enableLogfilePtr=NIL) then
       addError('Failed to load function: enableLogfile');
 
-	  @disableLogfilePtr := GetProcAddress(getHandle, 'disableLogfile');
+    @disableLogfilePtr := GetProcAddress(getHandle, 'disableLogfile');
     if (@disableLogfilePtr=NIL) then
       addError('Failed to load function: disableLogfile');
 
-    @setSubscriptionPtr := GetProcAddress(getHandle, 'setSubscription');
-    if (@setSubscriptionPtr=NIL) then
-      addError('Failed to load function: setSubscription');
+    @setOptionsPtr := GetProcAddress(getHandle, 'setOptions');
+    if (@setOptionsPtr=NIL) then
+      addError('Failed to load function: setOptions');
 
-	  @startPtr := GetProcAddress(getHandle, 'start');
+    @startPtr := GetProcAddress(getHandle, 'start');
     if (@startPtr=NIL) then
       addError('Failed to load function: start');
 
-	  @stopPtr := GetProcAddress(getHandle, 'stop');
+    @stopPtr := GetProcAddress(getHandle, 'stop');
     if (@stopPtr=NIL) then
       addError('Failed to load function: stop');
 
-	  @sendPageviewPtr := GetProcAddress(getHandle, 'sendPageview');
+    @sendPageviewPtr := GetProcAddress(getHandle, 'sendPageview');
     if (@sendPageviewPtr=NIL) then
       addError('Failed to load function: sendPageview');
 
-	  @sendEventPtr := GetProcAddress(getHandle, 'sendEvent');
+    @sendEventPtr := GetProcAddress(getHandle, 'sendEvent');
     if (@sendEventPtr=NIL) then
       addError('Failed to load function: sendEvent');
 
@@ -159,10 +164,11 @@ begin
 end;
 
 
-procedure TDllAppTelemetry.setSubscription(subscriptionID: PAnsiChar; subscriptionType: integer);
+function TDllAppTelemetry.setOptions(developerOptions: PAnsiChar): BOOL;
 begin
-    if @setSubscriptionPtr <> nil then
-        setSubscriptionPtr(subscriptionID, subscriptionType);
+    result := false;
+    if @setOptionsPtr <> nil then
+        result := setOptionsPtr(developerOptions);
 end;
 
 
@@ -170,7 +176,7 @@ function TDllAppTelemetry.start(appName, appVersion, appLicense, appEdition, pro
 begin
     result := false;
     if @startPtr <> nil then
-		  result := startPtr(appName, appVersion, appLicense, appEdition, propertyID, userGaveConsent);
+        result := startPtr(appName, appVersion, appLicense, appEdition, propertyID, userGaveConsent);
 
 end;
 
@@ -178,7 +184,7 @@ end;
 procedure TDllAppTelemetry.stop;
 begin
     if @stopPtr <> nil then
-		  stopPtr;
+        stopPtr;
 end;
 
 
@@ -186,7 +192,7 @@ function TDllAppTelemetry.getLogFilename:string;
 begin
     result := '';
     if @getLogFilenamePtr <> nil then
-		  result := string(getLogFilenamePtr);
+        result := string(getLogFilenamePtr);
 end;
 
 
@@ -202,14 +208,14 @@ function TDllAppTelemetry.sendPageview(pagePath, pageTitle: PAnsiChar): BOOL ;
 begin
     result := false;
     if @sendPageviewPtr <> nil then
-		  result := sendPageviewPtr(pagePath, pageTitle);
+        result := sendPageviewPtr(pagePath, pageTitle);
 end;
 
 function TDllAppTelemetry.sendScreenView(screenName: PAnsiChar): BOOL ;
 begin
     result := false;
     if @sendScreenviewPtr <> nil then
-		  result := sendScreenviewPtr(screenName);
+        result := sendScreenviewPtr(screenName);
 end;
 
 
@@ -217,7 +223,7 @@ function TDllAppTelemetry.sendException(exceptionDesc: PAnsiChar; isFatal:BOOL):
 begin
     result := false;
     if @sendExceptionPtr <> nil then
-		  result := sendExceptionPtr(exceptionDesc, isFatal);
+        result := sendExceptionPtr(exceptionDesc, isFatal);
 end;
 
 
