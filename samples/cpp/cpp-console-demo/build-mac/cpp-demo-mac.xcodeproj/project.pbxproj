@@ -24,9 +24,9 @@
 
 /* Begin PBXFileReference section */
 		584CE9FB1F5074DC002B1393 /* cpp-demo-mac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cpp-demo-mac"; sourceTree = BUILT_PRODUCTS_DIR; };
-		584CEA0B1F5075B6002B1393 /* cpp-demo-main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "cpp-demo-main.cpp"; path = "cpp-console-demo/cpp-demo-main.cpp"; sourceTree = "<group>"; };
-		584CEA111F509C9F002B1393 /* SoftMeter-CPP-Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SoftMeter-CPP-Api.h"; path = "cpp-console-demo/SoftMeter-CPP-Api.h"; sourceTree = "<group>"; };
-		5883BA291F5F455000936FD1 /* core.cpccLinkLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = core.cpccLinkLibrary.h; path = "cpp-console-demo/core.cpccLinkLibrary.h"; sourceTree = "<group>"; };
+		584CEA0B1F5075B6002B1393 /* cpp-demo-main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "cpp-demo-main.cpp"; path = "samples/cpp/cpp-console-demo/cpp-demo-main.cpp"; sourceTree = "<group>"; };
+		584CEA111F509C9F002B1393 /* SoftMeter-CPP-Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SoftMeter-CPP-Api.h"; path = "samples/cpp/SoftMeter-CPP-Api.h"; sourceTree = "<group>"; };
+		5883BA291F5F455000936FD1 /* core.cpccLinkLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = core.cpccLinkLibrary.h; path = samples/cpp/core.cpccLinkLibrary.h; sourceTree = "<group>"; };
 		589EAF3D210B636E00CAEAD2 /* SoftMeter-C-Api-AIO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoftMeter-C-Api-AIO.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

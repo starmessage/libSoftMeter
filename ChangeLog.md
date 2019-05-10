@@ -3,6 +3,36 @@ All notable changes to this project will be documented in this file.
 
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
+## [1.1.0] - (unpublished)
+
+### Changed
+- Windows edition: the DLL calling conversion changed from __cdecl to __stdcall  
+The ready samples (c++, Delphi/Pascal, Inno setup, Installaware) will be changed to reflect this change.  
+The __cdecl specifier will be replaced by the __stdcall specifier.  
+All functions in the DLL will continue to have their __stdcall counterparts so you can still call the set you prefer. E.g.  
+```
+    start()     // this uses the __stdcall calling conventions (which is the WIN API default)  
+    start_cdecl() // this is the __cdecl function  
+    start_stdcall() // this is the __stdcall function (deprecated because the start() has the same convention)  
+```
+
+- Better compatibility with Windows 7 and Vista.
+
+### Added
+
+- function setOptions() to pass multiple optional developer parameters to SoftMeter.  
+The parameters are passed as a string containing key=value pairs, separated with a new line character "\n".
+Examples: 
+To pass your SoftMeter PRO subscription details, call  
+```
+setOptions( "subscriptionID=Your-subsciption-ID\n"
+            "subscriptionType=2\n" );
+```
+
+### Removed
+- setSubscription() is removed as setOptions() can be used to pass your subscription details.
+- setProxy() is removed as setOptions() can be used to pass your proxy details.
+
 ## [1.0.0] - 2019-03-26
 
 ### Changed

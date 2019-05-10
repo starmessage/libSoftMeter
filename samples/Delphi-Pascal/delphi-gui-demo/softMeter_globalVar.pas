@@ -3,11 +3,11 @@
 ///     unit softMeter_globalVar.pas
 ///     Example unit to offer a global object of softMeter
 ///
-///		Version of file: 2.0
-///  	URL of repo:
+///     Version of file: 2.2
+///     URL of repo:
 ///     https://github.com/starmessage/libSoftMeter
-///   Copyright, StarMessage software
-///   https://www.starmessagesoftware.com/libSoftMeter
+///     Copyright, StarMessage software
+///     https://www.starmessagesoftware.com/libSoftMeter
 ///
 //////////////////////////////////////////////////////////////
 
@@ -29,11 +29,13 @@ var userGaveConsent:boolean;
 
 const
   // put here your Google Analytics property ID.
-  GooglePropertyID =  'UA-123-12';
+  GooglePropertyID =  'UA-123-1';
   AppName = 'Demo Delphi GUI application';
   AppVersion = '1.1';
   AppLicense = 'Free';
-  AppEdition = 'Windows';
+  AppEdition = 'Standard';
+  // if you have a subscription
+  PROsubscription = 'subscriptionID=your-subscription-id' + CHR(10) + 'subscriptionType=2';
 
   {$IFDEF WIN32}
       DLLfilename =  'libSoftMeter.dll';
@@ -63,14 +65,17 @@ initialization
     exit;
     end;
 
-  try
-    dllSoftMeter.start(AppName, AppVersion, AppLicense, AppEdition, GooglePropertyID, userGaveConsent );
-  Except
-    ShowMessage('Error calling  dllSoftMeter.start');
-  end;
+    // set your SoftMeter PRO subscription here, before calling start()
+    // dllSoftMeter.setOptions(PChar(PROsubscription));
 
-  if dllSoftMeter.errorsExist then
-    showMessage('Errors in dllSoftMeter:' + dllSoftMeter.getErrorText);
+    try
+        dllSoftMeter.start(AppName, AppVersion, AppLicense, AppEdition, GooglePropertyID, userGaveConsent );
+    Except
+        ShowMessage('Error calling  dllSoftMeter.start');
+    end;
+
+    if dllSoftMeter.errorsExist then
+        showMessage('Errors in dllSoftMeter:' + dllSoftMeter.getErrorText);
 
 finalization
 

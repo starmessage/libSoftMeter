@@ -25,7 +25,7 @@
 
 @implementation AppDelegate
 
-// this line must be rem-ed, so that the variable gaPropertyID is used with your own Google PropertyID
+// this line must be rem-ed, so that the variable gaPropertyID (declared a few lines below) is used with your own Google PropertyID
 #include "dev-propertyID.h"
 
 // BEFORE RUNNING THE DEMO !!!

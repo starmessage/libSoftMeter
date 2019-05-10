@@ -3,13 +3,13 @@
 ///     unit dll_loader.pas
 ///     utility class to load the DLL and link its functions
 ///
-///		Version of file: 2.0
-///  	URL of file:
-///     https://github.com/starmessage/libSoftMeter/blob/master/pascal-console-demo/dll_loader.pas
-///		URL of repo:
-///     https://github.com/starmessage/libSoftMeter
-///   Copyright, StarMessage software
-///   https://www.starmessagesoftware.com/softmeter
+///     Version of file: 2.0
+///     URL of file:
+///         https://github.com/starmessage/libSoftMeter/blob/master/pascal-console-demo/dll_loader.pas
+///     URL of repo:
+///         https://github.com/starmessage/libSoftMeter
+///     Copyright, StarMessage software
+///         https://www.starmessagesoftware.com/softmeter
 ///
 //////////////////////////////////////////////////////////////
 
@@ -32,7 +32,7 @@ uses Windows;
 //////////////////////////////////////////////////////////////
 
 type
-	TDllLoader = class(TObject)
+    TDllLoader = class(TObject)
     private
         hDLL: THandle;
         errorTextCollector: string;
@@ -102,4 +102,6 @@ end;
 
 
 end.
+
+
 

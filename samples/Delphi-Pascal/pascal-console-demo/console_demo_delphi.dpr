@@ -1,4 +1,4 @@
-program console_demo_delphi10;
+program console_demo_delphi;
 
 {$APPTYPE CONSOLE}
 
@@ -15,11 +15,12 @@ program console_demo_delphi10;
 
 uses
   main in 'main.pas',
-  dll_loader in 'dll_loader.pas',
-  dll_loaderAppTelemetry in 'dll_loaderAppTelemetry.pas';
+  dll_loader in '..\dll_loader.pas',
+  dll_loaderAppTelemetry in '..\dll_loaderAppTelemetry.pas';
 
 begin
-    run_console_demo;
+
+  run_console_demo;
 
 
 
