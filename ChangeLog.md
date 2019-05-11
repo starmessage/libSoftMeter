@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
-## [1.1.0] - (unpublished)
+## [1.1.0] - 2019-05-10
 
 ### Changed
 - Windows edition: the DLL calling conversion changed from __cdecl to __stdcall  
