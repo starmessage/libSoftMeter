@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/SoftMeter-C-Api-AIO.h</key>
 		<data>
-		skuIeZcWkdTuKfzna6ipxoTKlgw=
+		Rcefjttc5fIFDq1Pi45n+kiBr+0=
 		</data>
 		<key>Headers/SoftMeter-C-Api.h</key>
 		<data>
-		vbyffv7AQBA+YfKjJfbWp49WdSo=
+		nl67m0WnX6XNB/qusrrETUOAHGY=
 		</data>
 		<key>Headers/lib-export-api.h</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		n9C26ZbrBIBGCfS09Bv7FEw2sGM=
+		9GF89g99u/SO3sa0g3p5XgI0RQU=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -27,22 +27,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			skuIeZcWkdTuKfzna6ipxoTKlgw=
+			Rcefjttc5fIFDq1Pi45n+kiBr+0=
 			</data>
 			<key>hash2</key>
 			<data>
-			+FLpZ0Tm9wb7IRZ2qf0HV/yJQ+yWkkLcmAgSyE4bLZA=
+			hT8aRBhEcWenZ+yshJuy5HgGJuaMEqRBJQliKoECubg=
 			</data>
 		</dict>
 		<key>Headers/SoftMeter-C-Api.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			vbyffv7AQBA+YfKjJfbWp49WdSo=
+			nl67m0WnX6XNB/qusrrETUOAHGY=
 			</data>
 			<key>hash2</key>
 			<data>
-			BltYS2xNICnkC8ZuIwq7Otzm7dBu3hZ+AJDrJkGGMFM=
+			hjgZjp/tSmZGXatR+OGkexra2/Tx51JFBZwowDYg+/c=
 			</data>
 		</dict>
 		<key>Headers/lib-export-api.h</key>

@@ -3,7 +3,7 @@
 ///     unit dll_loaderAppTelemetry.pas
 ///     utility class to load the DLL and link its functions
 ///
-///     Version of file: 2.0
+///     Version of file: 2.1
 ///     URL of repo:
 ///     https://github.com/starmessage/libSoftMeter
 ///     Copyright, StarMessage software
@@ -20,7 +20,7 @@ interface
 //////////////////////////////////////////////////////////////
 
 uses Windows,
-        dll_loader;
+     dll_loader;
 
 //////////////////////////////////////////////////////////////
 ///
