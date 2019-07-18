@@ -3,11 +3,25 @@ All notable changes to this project will be documented in this file.
 
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
-## [1.1.0] - 2019-05-10
+## [1.2.0] - 2019-07-18
+
+### Added
+
+- Perpetual license option, removing all limitations for SoftMeter. 
 
 ### Changed
+
+- Internal improvements
+
+## [1.1.0] - 2019-05-10
+
+### API changes
+- Yes, in functions: setOptions(), setSubscription(), setProxy(), and in the calling convention of the Windows DLL functions.
+
+### Changed
+
 - Windows edition: the DLL calling conversion changed from __cdecl to __stdcall  
-The ready samples (c++, Delphi/Pascal, Inno setup, Installaware) will be changed to reflect this change.  
+The ready samples (c++, Delphi/Pascal, Inno setup, Installaware) were also changed to reflect this change.  
 The __cdecl specifier will be replaced by the __stdcall specifier.  
 All functions in the DLL will continue to have their __stdcall counterparts so you can still call the set you prefer. E.g.  
 ```
@@ -67,8 +81,8 @@ For multi-monitor configurations, you will see under the "Screen resolution" dim
 ```
 
 - new function setProxy()  
-    void setProxy(const smChar_t *address, const int port,  
-                  const smChar_t *username , const smChar_t *password, const int authScheme);  
+    void setProxy(const TCHAR *address, const int port,  
+                  const TCHAR *username , const TCHAR *password, const int authScheme);  
 
 It will set the proxy server for Softmeter. The address is without protocol (http, https).  
 The function will set both an https and http proxy server address.

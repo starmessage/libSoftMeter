@@ -1,6 +1,6 @@
 //
 //  SoftMeter-C-Api.h
-//  File version: 1.1
+//  File version: 1.1.1
 //  Copyright StarMessage software. All rights reserved.
 //	https://www.starmessagesoftware.com/softmeter
 //
@@ -11,16 +11,12 @@
 
 #ifdef _WIN32
 	#include <tchar.h>
+#else
+    #ifndef TCHAR
+        #define  TCHAR char
+    #endif
 #endif
  
-
-#ifdef UNICODE	
-	// for Windows systems
-	typedef		wchar_t				smChar_t;
-#else
-    // for non-Windows systems and non-unicode Windows
-	typedef		char				smChar_t;
-#endif
 
 
 // Q: Where are the all-in-one functions?
@@ -30,7 +26,7 @@
 // https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md
 
 // get the version string of the library. 
-EXPORT_API const smChar_t* CALL_CONV getVersion(void);
+EXPORT_API const TCHAR* CALL_CONV getVersion(void);
 
 // Enable or disable the log file. The default is disabled.
 // - Parameter macBundleId is used only in Mac OS. Under Windows you can pass NULL.
@@ -39,11 +35,11 @@ EXPORT_API const smChar_t* CALL_CONV getVersion(void);
 //   They must contain only characters compatible with the OS path. 
 //	 E.g. they cannot contain special characters such as /\~*:
 //   The log file is stored in the user's temp folder. To open the folder: [Start]->Run->%TEMP% (and OK)
-EXPORT_API  void CALL_CONV enableLogfile(const smChar_t *appName, const smChar_t *macBundleId);
+EXPORT_API  void CALL_CONV enableLogfile(const TCHAR *appName, const TCHAR *macBundleId);
 EXPORT_API  void CALL_CONV disableLogfile(void);
 
 // get the full path name of the log file. 
-EXPORT_API  const smChar_t* CALL_CONV getLogFilename(void);
+EXPORT_API  const TCHAR* CALL_CONV getLogFilename(void);
 
 /* Use this function to pass optional parameters to SoftMeter. 
 The parameters are passed as a string containing key=value pairs, 
@@ -75,14 +71,14 @@ Passing the Proxy parameters
  If the proxy does not need authentication, do not pass the parameters authScheme, username and password
  
 */
-EXPORT_API  const bool CALL_CONV setOptions(const smChar_t *developerOptions);
+EXPORT_API  const bool CALL_CONV setOptions(const TCHAR *developerOptions);
 
 
 
 /* deprecated by setOptions():
 
-EXPORT_API void setSubscription(const smChar_t *subscriptionID, const int subscriptionType);
-EXPORT_API void setProxy(const smChar_t *address, const int port, const smChar_t *username , const smChar_t *password, const int authScheme);
+EXPORT_API void setSubscription(const TCHAR *subscriptionID, const int subscriptionType);
+EXPORT_API void setProxy(const TCHAR *address, const int port, const TCHAR *username , const TCHAR *password, const int authScheme);
 */
 
 
@@ -91,9 +87,9 @@ EXPORT_API void setProxy(const smChar_t *address, const int port, const smChar_t
 // - appLicense examples: free/trial/full/paid/etc
 // - appEdition examples: Apple store/Special build/Standard/IOS/Mac/Win/etc
 // Must be called before any of the sendXXXX() functions
-EXPORT_API  bool CALL_CONV start(const smChar_t *appName, const smChar_t *appVersion,
-							const smChar_t *appLicense, const smChar_t *appEdition,
-							const smChar_t *propertyID, const bool  userGaveConsent);
+EXPORT_API  bool CALL_CONV start(const TCHAR *appName, const TCHAR *appVersion,
+							const TCHAR *appLicense, const TCHAR *appEdition,
+							const TCHAR *propertyID, const bool  userGaveConsent);
 
 // stop the library. 
 // The function will wait for a maximum of 3 seconds for all pending async calls 
@@ -105,24 +101,24 @@ EXPORT_API  void CALL_CONV stop(void);
 // Call this function after program launch, on program exit and on every important form, window, screen 
 // that you want to track. E.g. Main Window, Configuration settings, Main Window, Exiting.
 // It will process your request asynchronously.
-EXPORT_API  bool CALL_CONV sendPageview(const smChar_t *pagePath, const smChar_t *pageTitle);
+EXPORT_API  bool CALL_CONV sendPageview(const TCHAR *pagePath, const TCHAR *pageTitle);
 
 // Similar to smSendPageView, use sendScreenview() if you are monitoring your app via a 
 // Google Analytics "Mobile App" reporting view.
 // It will process your request asynchronously.
-EXPORT_API  bool CALL_CONV sendScreenview(const smChar_t *screenName);
+EXPORT_API  bool CALL_CONV sendScreenview(const TCHAR *screenName);
 
 // optionally call sendEvent() to log events in Google Analytics.
 // With the events, you have an alternative way of tracking your program.
 // You can use events to mark some important milestones in the use of your program,
 // e.g. the user enters a registration code to convert the free trial to a full version.
 // It will process your request asynchronously
-EXPORT_API  bool CALL_CONV sendEvent(const smChar_t *eventAction, const smChar_t *eventLabel, const int eventValue );
+EXPORT_API  bool CALL_CONV sendEvent(const TCHAR *eventAction, const TCHAR *eventLabel, const int eventValue );
 
 // If you catch exceptions in your program, you can send them to Google Analutics.
 // if isFatal = false, the incident will be logged in Google analtytics as Exception
 // if isFatal = true, the incident will be logged in Google analtytics as Crash
-EXPORT_API  bool CALL_CONV sendException(const smChar_t *exceptionDescription, const bool isFatal);
+EXPORT_API  bool CALL_CONV sendException(const TCHAR *exceptionDescription, const bool isFatal);
 
 
 #ifdef _WIN32
@@ -149,20 +145,20 @@ EXPORT_API  bool CALL_CONV sendException(const smChar_t *exceptionDescription, c
 	// They do not need the EXPORT declaration  because they are exported by a .DEF file 
     ///////////////////////////////////////////////////////////////////////
 
-	const smChar_t*	__stdcall getVersion_stdcall(void);
-	const smChar_t*	__stdcall getLogFilename_stdcall(void);
-	void __stdcall enableLogfile_stdcall(const smChar_t *appName, const smChar_t *macBundleId);
-	void __stdcall disableLogfile_stdcall(void);
-    bool __stdcall setOptions_stdcall(const smChar_t *developerOptions);
+	const TCHAR*	__stdcall getVersion_stdcall(void);
+	const TCHAR*	__stdcall getLogFilename_stdcall(void);
+    void __stdcall enableLogfile_stdcall(const TCHAR *appName, const TCHAR *macBundleId);
+    void __stdcall disableLogfile_stdcall(void);
+    bool __stdcall setOptions_stdcall(const TCHAR *developerOptions);
 
-	bool __stdcall start_stdcall(const smChar_t *appName, const smChar_t *appVersion,
-		                        const smChar_t *appLicense, const smChar_t *appEdition,
-		                        const smChar_t *propertyID, const bool  userGaveConsent);
-	void __stdcall stop_stdcall(void);
-    bool __stdcall sendPageview_stdcall(const smChar_t *pagePath, const smChar_t *pageTitle);
-	bool __stdcall sendScreenview_stdcall(const smChar_t *screenName);
-	bool __stdcall sendEvent_stdcall(const smChar_t *eventAction, const smChar_t *eventLabel, const int eventValue);
-	bool __stdcall sendException_stdcall(const smChar_t *exceptionDescription, const bool isFatal);
+    bool __stdcall start_stdcall(const TCHAR *appName, const TCHAR *appVersion,
+		                        const TCHAR *appLicense, const TCHAR *appEdition,
+		                        const TCHAR *propertyID, const bool  userGaveConsent);
+    void __stdcall stop_stdcall(void);
+    bool __stdcall sendPageview_stdcall(const TCHAR *pagePath, const TCHAR *pageTitle);
+    bool __stdcall sendScreenview_stdcall(const TCHAR *screenName);
+    bool __stdcall sendEvent_stdcall(const TCHAR *eventAction, const TCHAR *eventLabel, const int eventValue);
+    bool __stdcall sendException_stdcall(const TCHAR *exceptionDescription, const bool isFatal);
 	
     /////////////////////////////////////////////////////////////////////////
     // __cdeclspec version of all the functions to be exported in the DLL
@@ -170,17 +166,17 @@ EXPORT_API  bool CALL_CONV sendException(const smChar_t *exceptionDescription, c
     // These function names are appended with _cdecl
     /////////////////////////////////////////////////////////////////////////
 
-    EXPORT_API const  smChar_t* __cdecl	getVersion_cdecl(void);
-    EXPORT_API const smChar_t* __cdecl 	getLogFilename_cdecl(void);
-    EXPORT_API bool __cdecl setOptions_cdecl(const smChar_t *developerOptions);
-    EXPORT_API bool __cdecl start_cdecl(const smChar_t *appName, const smChar_t *appVersion,
-                                                const smChar_t *appLicense, const smChar_t *appEdition,
-                                                const smChar_t *propertyID, const bool  userGaveConsent);
+    EXPORT_API const  TCHAR* __cdecl	getVersion_cdecl(void);
+    EXPORT_API const TCHAR* __cdecl 	getLogFilename_cdecl(void);
+    EXPORT_API bool __cdecl setOptions_cdecl(const TCHAR *developerOptions);
+    EXPORT_API bool __cdecl start_cdecl(const TCHAR *appName, const TCHAR *appVersion,
+                                        const TCHAR *appLicense, const TCHAR *appEdition,
+                                        const TCHAR *propertyID, const bool  userGaveConsent);
     EXPORT_API void __cdecl stop_cdecl(void);
-    EXPORT_API bool __cdecl sendPageview_cdecl(const smChar_t *pagePath, const smChar_t *pageTitle);
-    EXPORT_API bool __cdecl sendEvent_cdecl(const smChar_t *eventAction, const smChar_t *eventLabel, const int eventValue);
-    EXPORT_API bool __cdecl sendScreenview_cdecl(const smChar_t *screenName);
-    EXPORT_API bool __cdecl sendException_cdecl(const smChar_t *exceptionDescription, const bool isFatal);
+    EXPORT_API bool __cdecl sendPageview_cdecl(const TCHAR *pagePath, const TCHAR *pageTitle);
+    EXPORT_API bool __cdecl sendEvent_cdecl(const TCHAR *eventAction, const TCHAR *eventLabel, const int eventValue);
+    EXPORT_API bool __cdecl sendScreenview_cdecl(const TCHAR *screenName);
+    EXPORT_API bool __cdecl sendException_cdecl(const TCHAR *exceptionDescription, const bool isFatal);
 
 
 #endif

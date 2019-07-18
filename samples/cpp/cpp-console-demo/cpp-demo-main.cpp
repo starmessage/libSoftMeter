@@ -23,7 +23,7 @@
     #endif
 #endif
 
-const smChar_t 	*appVer = _T("101"),
+const TCHAR 	*appVer = _T("104"),
                 *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
 			    *appEdition = _T("console");
 
@@ -51,7 +51,7 @@ const bool userGaveConsent = true;
 // you can rename the dll if you want it to match your application's filename
 #ifdef _WIN32
 	#ifdef _M_AMD64
-		const TCHAR * softmeterLibFilename = _T("libSoftMeter64bit.dll");
+		const TCHAR * softmeterLibFilename = _T("libSoftMeter64.dll");
 	#else
 		const TCHAR * softmeterLibFilename = _T("libSoftMeter.dll");
 	#endif
@@ -72,7 +72,7 @@ bool checkCommandLineParams(int argc, const char * argv[])
 }
 
 
-bool testTheAllInOneFunctions(const smChar_t *appName, const smChar_t *aPropertyID)
+bool testTheAllInOneFunctions(const TCHAR *appName, const TCHAR *aPropertyID)
 {
 	// load the dll
 	cpccLinkedLibrary theDLL(softmeterLibFilename);
@@ -91,7 +91,7 @@ bool testTheAllInOneFunctions(const smChar_t *appName, const smChar_t *aProperty
 
 
 #ifdef _WIN32
-bool testTheSend_aio_Event_strcall(const smChar_t *appName, const smChar_t *aPropertyID)
+bool testTheSend_aio_Event_strcall(const TCHAR *appName, const TCHAR *aPropertyID)
 {
 	// testing aio_sendEvent_stdcall()
 	HMODULE hDLL = LoadLibrary(softmeterLibFilename);
@@ -102,7 +102,7 @@ bool testTheSend_aio_Event_strcall(const smChar_t *appName, const smChar_t *aPro
 	}
 
 	// https://docs.microsoft.com/en-us/cpp/cpp/stdcall
-	typedef bool  (__stdcall *aio_sendEvent_stdcall_t)  (const smChar_t *, const smChar_t *, const smChar_t *, const smChar_t *, const smChar_t *, const bool, const smChar_t *, const smChar_t *, const int);
+	typedef bool  (__stdcall *aio_sendEvent_stdcall_t)  (const TCHAR *, const TCHAR *, const TCHAR *, const TCHAR *, const TCHAR *, const bool, const TCHAR *, const TCHAR *, const int);
 
 	const aio_sendEvent_stdcall_t functionPtr = (aio_sendEvent_stdcall_t) GetProcAddress(hDLL, "aio_sendEvent_stdcall");
 	
@@ -155,127 +155,133 @@ int main(int argc, const char * argv[])
 
     const std::string gaPropertyID(argv[1]);
 
+    // fictional appName and appVersion for your testing
+    const TCHAR *appName = executableName.c_str();
+    std::string logFilename;
     
-	// create an object that contains all the needed telemetry functionality,
-    // and also implements the loading and linking of the .DLL or the .dylib
-	AppTelemetry_cppApi softmeterLib(softmeterLibFilename);
-	if (!softmeterLib.isLoaded())
-	{
-		std::cerr << "Exiting because the DLL was not loaded\n";
-		return 100;
-	}
+    {   // this block contains the softmeterLib object.
+        // We need to free it before testing the all-in-one function further below
+        
+        // create an object that contains all the needed telemetry functionality,
+        // and also implements the loading and linking of the .DLL or the .dylib
+        AppTelemetry_cppApi softmeterLib(softmeterLibFilename);
+        if (!softmeterLib.isLoaded())
+        {
+            std::cerr << "Exiting because the DLL was not loaded\n";
+            return 100;
+        }
 
-	if (softmeterLib.errorsExist())
-	{
-		std::cerr << "Errors exist during the dynamic loading of softmeterLib\n";
-		return 101;
-	}
-	std::cout << "libAppTelemetry version:" << softmeterLib.getVersion() << std::endl;
+        if (softmeterLib.errorsExist())
+        {
+            std::cerr << "Errors exist during the dynamic loading of softmeterLib\n";
+            return 101;
+        }
+        std::cout << "libAppTelemetry version:" << softmeterLib.getVersion() << std::endl;
 
-    const bool testTheSubscription = false; // make this variable true if you want to test your subscription
-    if (testTheSubscription)
-    {
-        // set subscription details (for SoftMeter PRO licenses)
-        softmeterLib.setOptions("subscriptionID=YOUR_SUBSCRIPTION_ID\n"
-                                "subscriptionType=2\n");
-    }
-           
+        const bool testTheSubscription = false; // make this variable true if you want to test your subscription
+        if (testTheSubscription)
+        {
+            // set subscription details (for SoftMeter PRO licenses)
+            softmeterLib.setOptions("subscriptionID=YOUR_SUBSCRIPTION_ID\n"
+                                    "subscriptionType=2\n");
+        }
+        
+        
+        // check for parameters indicating that we must use a proxy
+        // e.g. cpp-demo-main <propertyID> <proxyaddress> <proxyport> <proxyUsername> <proxypassword> <proxyAuthScheme>
+        // e.g. cpp-demo-main UA-1111-1    192.168.5.1      8081         smith           iamgreat     4
+        // proxyAuthScheme under Windows can be one of the following:
+        //      0: no authentication, 2: NTLM, 4: Passport, 8: Digest, 16: Negotiate
+        std::basic_string<TCHAR> proxyAddress, proxyUsername, proxyPassword;
+        int proxyPort=0, proxyAuthSchemeID=0;
+        bool useProxy = false;
+        if (argc>3) //  we have the proxy address and port
+        {
+            proxyAddress = argv[2];
+            proxyPort = std::stoi(argv[3]);
+            useProxy = true;
+            std::cout << "Will use proxy server " << proxyAddress << ":" << proxyPort << std::endl;
+        }
+
+        // if the proxy needs credentials, then argv[4] .. argv[6] are used
+        if (argc > 6) //  we have the proxy address and port
+        {
+            proxyUsername = argv[4];
+            proxyPassword = argv[5];
+            proxyAuthSchemeID = std::stoi(argv[6]);
+        }
+
+        if (useProxy)
+        {
+            typedef void(*setHttpsProxy_t)(const char *, const int, const char *, const char *, const int);
+            const setHttpsProxy_t functionPtr = (setHttpsProxy_t)softmeterLib.getFunction("setProxy");
+            if (functionPtr)
+                functionPtr(proxyAddress.c_str(), proxyPort, proxyUsername.c_str(), proxyPassword.c_str(), proxyAuthSchemeID);
+        }
+
+        
+        
+        softmeterLib.enableLogfile(appName, "com.company.appname");
+        logFilename = softmeterLib.getLogFilename();
+        std::cout << "SoftMeter log filename:" << logFilename << std::endl;
+
+        // initialize the library with your program's name, version and google propertyID
+        if (!softmeterLib.start(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
+            std::cerr << "Error calling start_ptr\n";
+
+        std::cout << "start() called with Google property:" << gaPropertyID << std::endl;
+        
+        // 1st hit
+        std::cout << "Will send a Pageview hit" << std::endl;
+        if (!softmeterLib.sendPageview("main window", "main window"))
+            std::cout << "sendPageview returned False\n";
+
+        // 2nd hit
+        std::cout << "Will send a Event hit" << std::endl;
+        if (!softmeterLib.sendEvent("AppLaunch", appName, 1))
+            std::cout << "sendEvent returned False\n";
+
+        // 3rd hit
+        std::cout << "Will send a ScreenView hit" << std::endl;
+        if (!softmeterLib.sendScreenview("Test screenView"))
+            std::cout << "sendScreenview returned False\n";
+
+        // Note for the SoftMeter free edition:
+        // There is a limit for the total number of hits that can be sent per session.
+        // At the time of writing this code the limit was 3 hits.
+        // If you are testing the free edition, the following hits will return false
+        // because the limit was reached.
+
+        // And now, some exception handling....
+        // ---------------------------------------
+        try
+        {
+            throw std::runtime_error("TEST THROW c++ exception"); // Emulate a C++ exception
+            // std::cout << "try {} block completed without exceptions thrown" << std::endl;
+        }
+        // Notes about the C++ try..catch statements
+        // Some things are called exceptions, but they are system (or processor) errors and not C++ exceptions.
+        // The following catch block only catches C++ exceptions from throw, not any other kind of exceptions (e.g. null-pointer access)
+        // In any case, if you manage to catch the exception or the system error, you can then use sendException() to send it to Google Analytics
+        catch (const std::exception& ex)
+        {
+            std::cout << "Exception caught; will send it to G.A." << std::endl;
+            std::string excDesc("Error #18471a in " __FILE__ ": ");
+            excDesc += ex.what();
+            if (!softmeterLib.sendException(excDesc.c_str(), 0))
+                std::cout << "sendException returned False\n";
+        }
+        catch (...)
+        {
+            std::cout << "Exception caught; will send it to G.A." << std::endl;
+            if (!softmeterLib.sendException("Error #18471b in " __FILE__, 0))
+                std::cout << "sendException returned False\n";
+        }
+
+      
+        softmeterLib.stop();
+    }  // the end of this block frees the softmeterLib object.
     
-    // check for parameters indicating that we must use a proxy
-    // e.g. cpp-demo-main <propertyID> <proxyaddress> <proxyport> <proxyUsername> <proxypassword> <proxyAuthScheme> 
-    // e.g. cpp-demo-main UA-1111-1    192.168.5.1      8081         smith           iamgreat     4
-    // proxyAuthScheme under Windows can be one of the following: 
-    //      0: no authentication, 2: NTLM, 4: Passport, 8: Digest, 16: Negotiate 
-    std::basic_string<smChar_t> proxyAddress, proxyUsername, proxyPassword;
-    int proxyPort=0, proxyAuthSchemeID=0;
-    bool useProxy = false;
-    if (argc>3) //  we have the proxy address and port
-    {
-        proxyAddress = argv[2];
-        proxyPort = std::stoi(argv[3]);
-        useProxy = true;
-        std::cout << "Will use proxy server " << proxyAddress << ":" << proxyPort << std::endl;
-    }
-
-    // if the proxy needs credentials, then argv[4] .. argv[6] are used
-    if (argc > 6) //  we have the proxy address and port
-    {
-        proxyUsername = argv[4];
-        proxyPassword = argv[5];
-        proxyAuthSchemeID = std::stoi(argv[6]);
-    }
-
-    if (useProxy)
-    {
-        typedef void(*setHttpsProxy_t)(const char *, const int, const char *, const char *, const int);
-        const setHttpsProxy_t functionPtr = (setHttpsProxy_t)softmeterLib.getFunction("setProxy");
-        if (functionPtr)
-            functionPtr(proxyAddress.c_str(), proxyPort, proxyUsername.c_str(), proxyPassword.c_str(), proxyAuthSchemeID);
-    }
-
-	// fictional appName and appVersion for your testing
-	const smChar_t *appName = executableName.c_str();
-
-	softmeterLib.enableLogfile(appName, "com.company.appname");
-	std::string logFilename(softmeterLib.getLogFilename());
-	std::cout << "SoftMeter log filename:" << logFilename << std::endl;
-
-	// initialize the library with your program's name, version and google propertyID
-    if (!softmeterLib.start(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))
-		std::cerr << "Error calling start_ptr\n";
-
-    std::cout << "start() called with Google property:" << gaPropertyID << std::endl;
-	
-    // 1st hit
-	std::cout << "Will send a Pageview hit" << std::endl;
-	if (!softmeterLib.sendPageview("main window", "main window"))
-		std::cout << "sendPageview returned False\n";
-
-    // 2nd hit
-	std::cout << "Will send a Event hit" << std::endl;
-	if (!softmeterLib.sendEvent("AppLaunch", appName, 1))
-		std::cout << "sendEvent returned False\n";
-
-    // 3rd hit
-    std::cout << "Will send a ScreenView hit" << std::endl;
-	if (!softmeterLib.sendScreenview("Test screenView"))
-		std::cout << "sendScreenview returned False\n";
-
-    // Note for the SoftMeter free edition:
-    // There is a limit for the total number of hits that can be sent per session.
-    // At the time of writing this code the limit was 3 hits.
-    // If you are testing the free edition, the following hits will return false 
-    // because the limit was reached.
-
-	// And now, some exception handling....
-	// ---------------------------------------
-	try
-	{
-		throw std::runtime_error("TEST THROW c++ exception"); // Emulate a C++ exception
-		// std::cout << "try {} block completed without exceptions thrown" << std::endl;
-	}
-	// Notes about the C++ try..catch statements
-	// Some things are called exceptions, but they are system (or processor) errors and not C++ exceptions.
-	// The following catch block only catches C++ exceptions from throw, not any other kind of exceptions (e.g. null-pointer access)
-	// In any case, if you manage to catch the exception or the system error, you can then use sendException() to send it to Google Analytics
-	catch (const std::exception& ex)
-	{
-		std::cout << "Exception caught; will send it to G.A." << std::endl;
-		std::string excDesc("Error #18471a in " __FILE__ ": ");
-		excDesc += ex.what();
-		if (!softmeterLib.sendException(excDesc.c_str(), 0))
-			std::cout << "sendException returned False\n";
-	}
-	catch (...)
-	{
-		std::cout << "Exception caught; will send it to G.A." << std::endl;
-		if (!softmeterLib.sendException("Error #18471b in " __FILE__, 0))
-			std::cout << "sendException returned False\n";
-	}
-
-  
-	softmeterLib.stop();
-
 	std::cout << "Will send an event hit using the All-in-one function aio_sendEvent()" << std::endl;
 
     // The all-in-one functions include calls the start() and stop(), so do not call these functions yourself.

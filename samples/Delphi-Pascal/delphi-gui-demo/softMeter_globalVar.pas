@@ -3,7 +3,7 @@
 ///     unit softMeter_globalVar.pas
 ///     Example unit to offer a global object of softMeter
 ///
-///     Version of file: 2.2
+///     Version of file: 2.4
 ///     URL of repo:
 ///     https://github.com/starmessage/libSoftMeter
 ///     Copyright, StarMessage software
@@ -28,28 +28,27 @@ uses dialogs;
 var userGaveConsent:boolean;
 
 const
-  // put here your Google Analytics property ID.
+  // put here your Google Analytics property ID and your application information
   GooglePropertyID =  'UA-123-1';
   AppName = 'Demo Delphi GUI application';
   AppVersion = '1.1';
   AppLicense = 'Free';
   AppEdition = 'Standard';
-  // if you have a subscription
+  // if you have a SoftMeter PRO subscription
   PROsubscription = 'subscriptionID=your-subscription-id' + CHR(10) + 'subscriptionType=2';
 
   {$IFDEF WIN32}
       DLLfilename =  'libSoftMeter.dll';
   {$ENDIF}
   {$IFDEF WIN64}
-      DLLfilename =  'libSoftMeter64bit.dll';
+      DLLfilename =  'libSoftMeter64.dll';
   {$ENDIF}
 
 
 
 initialization
 
-  // make sure you load this variable from the user settings
-  userGaveConsent:= true;
+  
   try
     dllSoftMeter := TDllAppTelemetry.Create(DLLfilename);
   Except
@@ -67,7 +66,12 @@ initialization
 
     // set your SoftMeter PRO subscription here, before calling start()
     // dllSoftMeter.setOptions(PChar(PROsubscription));
-
+    
+    // make sure you load this variable from the user settings
+    userGaveConsent:= true;
+    // ToDo: make this a lazy call so that the INI file with the user settings containing the 
+    // consent of the user is already loaded somewhere in the program.
+    
     try
         dllSoftMeter.start(AppName, AppVersion, AppLicense, AppEdition, GooglePropertyID, userGaveConsent );
     Except

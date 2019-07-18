@@ -1,6 +1,6 @@
 unit main;
 
-// file version: 1.1
+// file version: 1.2
 
 interface
 
@@ -43,7 +43,7 @@ const   programName = 'console_demo_pascal';
     DLLfilename =  'libSoftMeter.dll';
   {$ENDIF}
   {$IFDEF WIN64}
-    DLLfilename =  'libSoftMeter64bit.dll';
+    DLLfilename =  'libSoftMeter64.dll';
   {$ENDIF}
 
 
