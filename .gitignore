@@ -32,3 +32,11 @@ cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/project.pbxproj
 bin/create dumpbin file.bat
 samples/Delphi-Pascal/pascal-console-demo/console_demo_lazarus.lpi
 samples/Delphi-Pascal/pascal-console-demo/console_demo_lazarus.lpr
+samples/cpp/cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/xcshareddata/xcschemes/cpp-demo-mac.xcscheme
+samples/cpp/cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/xcuserdata/cto.xcuserdatad/xcschemes/xcschememanagement.plist
+samples/cpp/cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/xcuserdata/cto.xcuserdatad/xcschemes/xcschememanagement.plist
+samples/cpp/cpp-console-demo/build-win/cpp-demo-win.vcxproj
+samples/Delphi-Pascal/pascal-console-demo/console_demo_delphi10.dof
+samples/Delphi-Pascal/pascal-console-demo/console_demo_delphi10.dpr
+samples/Delphi-Pascal/pascal-console-demo/console_demo_delphi10.dproj
+samples/Delphi-Pascal/pascal-console-demo/console_demo_delphi10.res
