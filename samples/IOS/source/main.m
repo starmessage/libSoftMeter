@@ -2,7 +2,7 @@
 //  main.m
 //  SoftMeter application analytics IOS demo
 //
-//  Copyright © 2018 StarMessage software. All rights reserved.
+//  Copyright StarMessage software. All rights reserved.
 //    https://www.starmessagesoftware.com/softmeter
 //
 

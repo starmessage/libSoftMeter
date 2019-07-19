@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnExit;
 @property (weak, nonatomic) IBOutlet UIButton *btnPressMe;
+@property (retain, nonatomic) IBOutlet UITextView *IBOutlet_logFileView;
 
 @end
 
@@ -26,6 +27,7 @@
     // note: rate limits apply:
     // 300 hits per session (app run), 10 available for burst, replenished at a rate of 1 per 2 seconds
     sendEvent("IOS event", "Button pressed", 0);
+    [self refreshLogView];
 }
 
 
@@ -33,11 +35,28 @@
     exit(0);
 }
 
+- (void) refreshLogView
+{
+    NSString *path = [NSString stringWithUTF8String:getLogFilename()];
+    NSString *content = [NSString stringWithContentsOfFile:path
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    
+    self.IBOutlet_logFileView.text = content;
+    // [content release];
+    // [path release];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
+    // Do any additional setup after loading the view, typically from a nib.
+    [self refreshLogView];
 }
 
 
+- (void)dealloc {
+    [_IBOutlet_logFileView release];
+    [super dealloc];
+}
 @end

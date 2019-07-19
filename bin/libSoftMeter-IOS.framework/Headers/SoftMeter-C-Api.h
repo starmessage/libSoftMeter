@@ -1,6 +1,6 @@
 //
 //  SoftMeter-C-Api.h
-//  File version: 1.1.1
+//  File version: 1.2
 //  Copyright StarMessage software. All rights reserved.
 //	https://www.starmessagesoftware.com/softmeter
 //
