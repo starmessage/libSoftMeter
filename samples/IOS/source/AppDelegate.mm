@@ -37,7 +37,7 @@
 
 // replace these strings with your app's information
 const char *appName = "SoftMeter IOS demo";
-const char *appVer = "0.9.2";
+const char *appVer = "1.2.1";
 const char *appLicense = "demo";
 const char *appEdition = "IOS app";
 
@@ -48,6 +48,14 @@ const char *appEdition = "IOS app";
     
     // Instead of "true", get the actual consent from the app settings.
     const bool userGaveConsent = true;
+    
+    // you do not need to enable the log file in your release.
+    // But highly recommended during development.
+    enableLogfile("demo-IOS", "com.StarMessageSoftware.SoftMeterDemo-IOS");
+    
+    // if you have a PRO subscription, add here your subscription license.
+    // Otherwise, REM this line
+    setOptions("subscriptionID=11111\nsubscriptionType=2");
     
     // call the start() function to initialize the SoftMeter library
     start(appName, appVer, appLicense, appEdition, gaPropertyID, userGaveConsent);
@@ -85,6 +93,12 @@ const char *appEdition = "IOS app";
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
     stop();
+    
+    // show the log file
+    // https://littlebitesofcocoa.com/321-opening-files-from-the-files-app
+    // https://stackoverflow.com/questions/7942597/supporting-open-in-menu-item-in-my-app-for-ios-mail-and-safari
+    
+    
 }
 
 
