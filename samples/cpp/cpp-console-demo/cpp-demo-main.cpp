@@ -181,7 +181,7 @@ int main(int argc, const char * argv[])
         const bool testTheSubscription = false; // make this variable true if you want to test your subscription
         if (testTheSubscription)
         {
-            // set subscription details (for SoftMeter PRO licenses)
+            // set subscription details (for your SoftMeter PRO subscription)
             softmeterLib.setOptions("subscriptionID=YOUR_SUBSCRIPTION_ID\n"
                                     "subscriptionType=2\n");
         }
