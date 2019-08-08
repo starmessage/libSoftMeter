@@ -1,13 +1,13 @@
 /*  ****************************************************
  *  File:			core.cpccLinkLibrary.h
- *	File version: 	1.1
+ *	File version: 	1.2
  *  Dependencies: 	None
  *	Purpose:		Portable (cross-platform), light-weight class 
  *					to help with the dynamic library loading (.DLL, .dylib) 
  *					and linking of functions 
  *	****************************************************
  *  Library:		Cross Platform C++ Classes (cpcc)
- *  Copyright: 		2017 StarMessage software.
+ *  Copyright: 		StarMessage software.
  *  License: 		Free for opensource projects.
  *  				Commercial license for closed source projects.
  *	Web:			http://www.starmessagesoftware.com/cpcclibrary/
@@ -143,28 +143,32 @@ class cpccLinkedLibrary
 {
 
 private:
-	cpccLinkedLibradyImpl::tLibHandle 			m_libHandle;
+	const cpccLinkedLibradyImpl::tLibHandle 			m_libHandle;
 	
+    // prevent copy and assignment
+    cpccLinkedLibrary(const cpccLinkedLibrary&);
+    cpccLinkedLibrary& operator=(const cpccLinkedLibrary&);
+    
 protected:
 	// cpccLinkedLibradyImpl::tLibHandle			getLibHandle(void) const { return m_libHandle;  }
 
 public: // ctor, dtor
 
-	explicit cpccLinkedLibrary(const TCHAR *aLibraryfilename)
+    explicit cpccLinkedLibrary(const TCHAR *aLibraryfilename):
+        m_libHandle(cpccLinkedLibradyImpl::loadLibrary(aLibraryfilename))
 	{
-		m_libHandle = cpccLinkedLibradyImpl::loadLibrary(aLibraryfilename);
 		if (!m_libHandle)
 			std::cerr << "#7524: failed to load dynamic library: " << aLibraryfilename << std::endl;
         else
             std::cout << "Library loaded: " << aLibraryfilename << std::endl;
     }
 
-
+	// todo: rule of three
 	virtual ~cpccLinkedLibrary()
 	{
 		if (m_libHandle)
 			cpccLinkedLibradyImpl::unloadLibrary(m_libHandle);
-		m_libHandle = NULL;
+		// m_libHandle = NULL;
 	};
 	
 

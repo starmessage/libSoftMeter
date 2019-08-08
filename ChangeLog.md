@@ -3,11 +3,19 @@ All notable changes to this project will be documented in this file.
 
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
+## [1.2.2] - 2019-08-08
+
+### Changed
+
+- Small internal improvements
+- MacOS only: change of SDK from version 10.8 to 10.14 to pass the (new) notarization process of the Apple Store.
+
 ## [1.2.1] - 2019-07-19
 
 ### Changed
 
-- Internal improvements for the SoftMeter PRO subscription and the PRO perpetual license
+- Internal improvements for the SoftMeter PRO subscription and the PRO perpetual license.
+- IOS analytics demo app shows the SoftMeter log file.
 
 ## [1.2.0] - 2019-07-18
 

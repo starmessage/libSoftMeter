@@ -1,6 +1,6 @@
 //
 //  SoftMeter-C-Api.h
-//  File version: 1.2
+//  File version: 1.2.1
 //  Copyright StarMessage software. All rights reserved.
 //	https://www.starmessagesoftware.com/softmeter
 //
@@ -41,18 +41,19 @@ EXPORT_API  void CALL_CONV disableLogfile(void);
 // get the full path name of the log file. 
 EXPORT_API  const TCHAR* CALL_CONV getLogFilename(void);
 
-/* Use this function to pass optional parameters to SoftMeter. 
+/* Use the setOptions() function to pass optional parameters to SoftMeter. 
 The parameters are passed as a string containing key=value pairs, 
 separated with a new line character "\n" (aka, line feed, chr(10)).
 
 You must call this function before the start() function.
-You can pack different options in one parameter string or call the function more than one time,
-each one passing different options.
+You can pack different options in one parameter string or call the function multiple times,
+each one passing additional options.
 
 Passing the SoftMeter PRO subscription details.
-	setOptions("subscriptionID=1234567\nsubscriptionType=2"); // note the \n, separating the parameters
-	with subscriptionID = Google analytics account number, ie the xxxxx part of UA-xxxxx-y
-	and with subscriptionType = 2
+	setOptions("subscriptionID=1234567\nsubscriptionType=2\n"); 
+	// note the \n character that separates the two parameters.
+	subscriptionID must be your Google analytics account number, ie the xxxxx part of UA-xxxxx-y
+	and the subscriptionType must be 2
 	Developers using the free edition of SoftMeter, you can also call this function
 	Doing so will allow them to activate the PRO features also for the already existing
 	installations, when ever they buy a PRO SoftMeter licence in the future.
