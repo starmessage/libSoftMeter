@@ -23,7 +23,7 @@
     #endif
 #endif
 
-const TCHAR 	*appVer = _T("104"),
+const TCHAR 	*appVer = _T("106"),
                 *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
 			    *appEdition = _T("console");
 
@@ -181,9 +181,8 @@ int main(int argc, const char * argv[])
         const bool testTheSubscription = false; // make this variable true if you want to test your subscription
         if (testTheSubscription)
         {
-            // set subscription details (for your SoftMeter PRO subscription)
-            softmeterLib.setOptions("subscriptionID=YOUR_SUBSCRIPTION_ID\n"
-                                    "subscriptionType=2\n");
+            softmeterLib.setOptions("subscriptionID=YOUR_SUBSCRIPTION_ID");
+            softmeterLib.setOptions("subscriptionType=2");
         }
         
         
@@ -219,8 +218,6 @@ int main(int argc, const char * argv[])
                 functionPtr(proxyAddress.c_str(), proxyPort, proxyUsername.c_str(), proxyPassword.c_str(), proxyAuthSchemeID);
         }
 
-        
-        
         softmeterLib.enableLogfile(appName, "com.company.appname");
         logFilename = softmeterLib.getLogFilename();
         std::cout << "SoftMeter log filename:" << logFilename << std::endl;

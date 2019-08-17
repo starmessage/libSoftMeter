@@ -1,6 +1,6 @@
 //
 //  SoftMeter-C-Api.h
-//  File version: 1.2.1
+//  File version: 1.2.3
 //  Copyright StarMessage software. All rights reserved.
 //	https://www.starmessagesoftware.com/softmeter
 //
@@ -50,14 +50,19 @@ You can pack different options in one parameter string or call the function mult
 each one passing additional options.
 
 Passing the SoftMeter PRO subscription details.
-	setOptions("subscriptionID=1234567\nsubscriptionType=2\n"); 
-	// note the \n character that separates the two parameters.
+    setOptions("subscriptionID=1234567");
+    setOptions("subscriptionType=2");
 	subscriptionID must be your Google analytics account number, ie the xxxxx part of UA-xxxxx-y
 	and the subscriptionType must be 2
 	Developers using the free edition of SoftMeter, you can also call this function
 	Doing so will allow them to activate the PRO features also for the already existing
 	installations, when ever they buy a PRO SoftMeter licence in the future.
-
+ 
+    Alternatively, can pass these two parameters in one function call if you pack them together.
+    E.g.
+    setOptions("subscriptionID=1234567\nsubscriptionType=2\n");
+    // note the \n character that separates the two parameters.
+ 
 
 Passing the Proxy parameters
 	setOptions( "proxyAddress=192.1.127.123\n"
@@ -167,7 +172,7 @@ EXPORT_API  bool CALL_CONV sendException(const TCHAR *exceptionDescription, cons
     // These function names are appended with _cdecl
     /////////////////////////////////////////////////////////////////////////
 
-    EXPORT_API const  TCHAR* __cdecl	getVersion_cdecl(void);
+    EXPORT_API const TCHAR* __cdecl	    getVersion_cdecl(void);
     EXPORT_API const TCHAR* __cdecl 	getLogFilename_cdecl(void);
     EXPORT_API bool __cdecl setOptions_cdecl(const TCHAR *developerOptions);
     EXPORT_API bool __cdecl start_cdecl(const TCHAR *appName, const TCHAR *appVersion,
