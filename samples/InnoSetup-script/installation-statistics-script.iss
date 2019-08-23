@@ -5,7 +5,7 @@
 Title:          Installation statistics via Google Analytics Add-on for Inno Setup
 Copyright:      (C) StarMessage software
 Web:            http://www.StarMessageSoftware.com/softmeter/
-Script Version: 1.1.0
+Script Version: 1.2.3
 Compatibility:  SoftMeter v1.1 and above
 Purpose:	      Monitor via the free Google Analytics platform important information about
                 the distribution and installation of your shareware/software. E.g. number
@@ -110,31 +110,31 @@ Notes:
 // During the setup the files are accessed via the "files:" specification
 
 function iGetVersion: string;
-external 'getVersion@files:libSoftMeter.dll loadwithalteredsearchpath delayload setuponly';
+external 'getVersion@files:libSoftMeter.dll stdcall loadwithalteredsearchpath delayload setuponly';
 
 function iGetLogFilename: string;
-external 'getLogFilename@files:libSoftMeter.dll loadwithalteredsearchpath delayload setuponly';
+external 'getLogFilename@files:libSoftMeter.dll stdcall loadwithalteredsearchpath delayload setuponly';
 
 procedure iEnableLogfile(appName, macBundleID:PAnsiChar);
-external 'enableLogfile@files:libSoftMeter.dll loadwithalteredsearchpath delayload setuponly';
+external 'enableLogfile@files:libSoftMeter.dll stdcall loadwithalteredsearchpath delayload setuponly';
 
 procedure iDisableLogfile;
-external 'disableLogfile@files:libSoftMeter.dll loadwithalteredsearchpath delayload setuponly';
+external 'disableLogfile@files:libSoftMeter.dll stdcall loadwithalteredsearchpath delayload setuponly';
 
 function iStart(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
-external 'start@files:libSoftMeter.dll loadwithalteredsearchpath delayload setuponly';
+external 'start@files:libSoftMeter.dll stdcall loadwithalteredsearchpath delayload setuponly';
 
 procedure iStop;
-external 'stop@files:libSoftMeter.dll loadwithalteredsearchpath delayload setuponly';
+external 'stop@files:libSoftMeter.dll stdcall loadwithalteredsearchpath delayload setuponly';
 
 function iSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
-external 'sendPageview@files:libSoftMeter.dll loadwithalteredsearchpath delayload setuponly';
+external 'sendPageview@files:libSoftMeter.dll stdcall loadwithalteredsearchpath delayload setuponly';
 
 function iSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
-external 'sendEvent@files:libSoftMeter.dll loadwithalteredsearchpath delayload setuponly';
+external 'sendEvent@files:libSoftMeter.dll stdcall loadwithalteredsearchpath delayload setuponly';
 
 function iSendScreenView(screenName:PAnsiChar): BOOL ;
-external 'sendScreenView@files:libSoftMeter.dll loadwithalteredsearchpath delayload setuponly';
+external 'sendScreenView@files:libSoftMeter.dll stdcall loadwithalteredsearchpath delayload setuponly';
 
 //////////////////////////////////////////////////////////////////////////////
 // Functions and DLL file available during uninstall
@@ -144,13 +144,13 @@ external 'sendScreenView@files:libSoftMeter.dll loadwithalteredsearchpath delayl
 // During the uninstall, the files are accessed via the folder where the dll was installed; usually {app}
 
 function uStart(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ;
-external 'start@{app}\libSoftMeter.dll loadwithalteredsearchpath delayload uninstallonly';
+external 'start@{app}\libSoftMeter.dll stdcall loadwithalteredsearchpath delayload uninstallonly';
 
 procedure uStop;
-external 'stop@{app}\libSoftMeter.dll loadwithalteredsearchpath delayload uninstallonly';
+external 'stop@{app}\libSoftMeter.dll stdcall loadwithalteredsearchpath delayload uninstallonly';
 
 function uSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
-external 'sendEvent@{app}\libSoftMeter.dll loadwithalteredsearchpath delayload uninstallonly';
+external 'sendEvent@{app}\libSoftMeter.dll stdcall loadwithalteredsearchpath delayload uninstallonly';
 
 
 
