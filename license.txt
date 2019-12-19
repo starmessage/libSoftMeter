@@ -1,5 +1,5 @@
 ﻿======================================
-SoftMeter - License Agreement [v1.2]
+SoftMeter - License Agreement [v1.3]
 ======================================
 
 This License Agreement is a legal agreement between:
@@ -11,8 +11,8 @@ B) you, the software developer (either an individual or a single entity) wishing
 
 THIRD PARTIES INVOLVED
 ---------------------------
-The SOFTWARE LIBRARY uses Google's measurement protocol to send data from the developer's software product to the 
-Google Analytics platform.
+In its default configuration, the SOFTWARE LIBRARY uses Google's measurement protocol to send data from the 
+developer's software product to the Google Analytics platform.
 The Google Analytics terms and the Google measurement protocol terms apply.
 You will need a (free) Google Analytics account to see the reported usage data of your software application.
 
@@ -25,17 +25,19 @@ GENERAL LICENSE TERMS (FOR ALL SOFTMETER EDITIONS)
 2) You must give to your end users proper notice about the telemetry's data collection and the kind of data you collect.
    This link summarizes the data collected and their usage:
    https://www.starmessagesoftware.com/softmeter/data
-   In order to provide transparency of your operations (a new requirement of the GDPR law) to your users, you can include this (or similar) information into your software notification form and/or on your website.
+   In order to provide transparency of your operations (a new requirement of the GDPR law) to your users, 
+   you can include this (or similar) information into your software's "About" window and/or on your website.
 
-3) You must get consent from your end-users before starting to collect data and provide them with the opportunity to
-   opt-in and out from the data collection.
+3) You must get consent from your end-users before starting to send data.
+   You must provide a way for your end-users to review their decision adn opt-in and out from the data collection 
+   at any time.
 
 4) To operate in the EU and EEA, following the new GDPR law (May 25, 2018), the users of your software must opt-in before
    the data collection starts.
 
 5) You can use the data only for monitoring your software's metrics (e.g. country distribution, number of installations,
    runtime executions, most used features, operating systems and versions, screen resolutions and similar anonymous data)
-   and for the purpose of improving a) your software and b) your marketing activities. 
+   and only for the purpose of improving a) your software and b) your marketing activities. 
 
 6) You cannot collect personal data. (E.g. email, personal IDs or other data that can identify a person)
 
@@ -50,7 +52,7 @@ GENERAL LICENSE TERMS (FOR ALL SOFTMETER EDITIONS)
 
 
 LICENSE TERMS OF THE SOFTMETER FREE EDITION
------------------------------------
+-------------------------------------------
 
 1) No registration is needed to use the SOFTWARE LIBRARY.
 
@@ -76,8 +78,10 @@ LICENSE TERMS OF THE SOFTMETER PRO SUBSCRIPTION
 1) Your PRO subscription is for one Google Analytics account number and all the "Properties" under that account.
    You cannot send hits to more than one Google Analytics account number.
 
-2) The PRO subscription can be used by up to 5 of your products (5 software applications).
-   It covers all the operating system variants of the same applications (MacOS, IOS, Windows).
+2) One PRO subscription can be used by up to 5 of your products (5 software applications).
+   It covers one the operating system variants (MacOS, IOS, Windows).
+   Additional operating system variants can by licensed with an additional cost.
+   During the ordering of the subscription you have to declare which operating system variant(s) you need.
 
 3) The PRO subscription cannot be transferred to other software developers (either an individual or a single entity)
    or be shared with them.
@@ -86,11 +90,13 @@ LICENSE TERMS OF THE SOFTMETER PRO SUBSCRIPTION
    The subscription renewal is not automatic. When the end of the license approaches, you will need to re-order it.
    The new license will start from the date the old license expires.
     
-5) You can get all version updates of the library without any extra cost. 
-
-6) You can stop paying the annual renewal at any time.
+5) You can stop paying the annual renewal at any time.
    The library will continue to function normally at your already installed user base, but as a FREE edition.
    The limits of the FREE edition will apply when the subscription expires.
+
+6) You can get all version updates of the library without any extra cost. 
+
+7) This is a non-exclusive, non-transferable license.
 
 
 TERMS OF THE SOFTMETER PRO PERPETUAL LICENSE
@@ -108,6 +114,8 @@ TERMS OF THE SOFTMETER PRO PERPETUAL LICENSE
 4) The PRO perpetual license is a one-time fee.
     
 5) You can get all version updates of the library without any extra cost. 
+
+6) This is a non-exclusive, non-transferable license.
 
 
 DISCLAIMER OF WARRANTY
