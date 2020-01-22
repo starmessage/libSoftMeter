@@ -1,5 +1,5 @@
 ﻿======================================
-SoftMeter - License Agreement [v1.3]
+SoftMeter - License Agreement [v1.4]
 ======================================
 
 This License Agreement is a legal agreement between:
@@ -13,42 +13,79 @@ THIRD PARTIES INVOLVED
 ---------------------------
 In its default configuration, the SOFTWARE LIBRARY uses Google's measurement protocol to send data from the 
 developer's software product to the Google Analytics platform.
-The Google Analytics terms and the Google measurement protocol terms apply.
 You will need a (free) Google Analytics account to see the reported usage data of your software application.
 
+The Google Analytics terms and the Google measurement protocol terms apply.
 
-GENERAL LICENSE TERMS (FOR ALL SOFTMETER EDITIONS)
----------------------------------------------------------
 
-1) When releasing a new version of your software you must include a recent version of the SOFTWARE LIBRARY.
+EXCLUSIVITY, TRANSFERABILIY
+---------------------------
+This is a non-exclusive license.
+This is a non-transferable license. It cannot be transferred to other software developers (either an individual
+or a single entity) or be shared or co-used with them.
+The copyright of the SOFTWARE LIBRARY remains at any time with the Author.
 
-2) You must give to your end users proper notice about the telemetry's data collection and the kind of data you collect.
+
+DISCLAIMER OF WARRANTY
+----------------------
+This software and the accompanying files and online resources and services are given "as is" and without any warranties
+as of their proper operation or their safe coexistence with other software or data.
+NO WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED.
+
+
+NO LIABILITY FOR DAMAGES
+------------------------
+In no event shall the Author be liable for any special, consequential, incidental or indirect damages whatsoever 
+(including, without limitation, damages for loss of business profits, business interruption, loss of business 
+information, or any other pecuniary loss) arising out of the use of or inability to use this product, even if the 
+Author of this Software is aware of the possibility of such damages and known defects.
+There is no guaranty that the SOFTWARE LIBRARY does not have bugs on its own or in co-existence with other 
+current of future systems.
+
+
+SCOPE AND PURPOSE OF THE LICENSE
+--------------------------------
+The SOFTWARE LIBRARY belongs to the category fields of Application Analytics, Software Analytics, In-App analytics, 
+Usage Analytics.
+You cannot use the SOFTWARE LIBRARY to create deriviate or possibly competing software or services in these 
+category fields.
+The SOFTWARE LIBRARY is meant to be included in your software for the sole purpose of measuring its usage.
+
+
+OBLIGATIONS AGAINST PERSONAL DATA
+---------------------------------
+1) You must give to your end users proper notice about the telemetry's data collection and the kind of data you collect.
    This link summarizes the data collected and their usage:
    https://www.starmessagesoftware.com/softmeter/data
    In order to provide transparency of your operations (a new requirement of the GDPR law) to your users, 
    you can include this (or similar) information into your software's "About" window and/or on your website.
 
-3) You must get consent from your end-users before starting to send data.
+2) You must get consent from your end-users before starting to send data.
    You must provide a way for your end-users to review their decision adn opt-in and out from the data collection 
    at any time.
 
-4) To operate in the EU and EEA, following the new GDPR law (May 25, 2018), the users of your software must opt-in before
+3) To operate in the EU and EEA, following the new GDPR law, the users of your software must opt-in before
    the data collection starts.
 
-5) You can use the data only for monitoring your software's metrics (e.g. country distribution, number of installations,
+4) You can use the data only for monitoring your software's metrics (e.g. country distribution, number of installations,
    runtime executions, most used features, operating systems and versions, screen resolutions and similar anonymous data)
    and only for the purpose of improving a) your software and b) your marketing activities. 
 
-6) You cannot collect personal data. (E.g. email, personal IDs or other data that can identify a person)
+5) You cannot collect personal data. (E.g. email, personal IDs or other data that can identify a person)
 
-7) You cannot collect any data that allows Google to personally identify an individual (such as names, Social Security
+6) You cannot collect any data that allows Google to personally identify an individual (such as names, Social Security
    Numbers, email addresses, or any similar data), or data that permanently identifies a particular device (such as a 
    unique device identifier if such an identifier cannot be reset).
 
-8) You must comply with the Google Measurement Protocol rules.
 
-9) There are three editions of the SoftMeter library: Free, Pro subscription, Pro perpetual.
-   Apart from these general terms, the specific terms of the used edition will also apply.
+GENERAL LICENSE TERMS (FOR ALL SOFTMETER EDITIONS)
+---------------------------------------------------------
+
+When releasing a new version of your software you must include a recent version of the SOFTWARE LIBRARY.
+
+There are four licenses for the SoftMeter library: 
+Free, Pro subscription, Pro perpetual, Source code.
+Apart from the general terms, the specific terms of the specific edition will also apply.
 
 
 LICENSE TERMS OF THE SOFTMETER FREE EDITION
@@ -67,9 +104,15 @@ LICENSE TERMS OF THE SOFTMETER FREE EDITION
    The data sent comply with the rules above.
 
 5) The Author might contact you for matters related to the usage of the SOFTWARE LIBRARY.  
-   For example, ask for feedback, for any problems that you might have faced, for improvement ideas.  
-   The "call home" hit, contains (amongst other data) the application name.
-   From your application name, the Author can find the official email address, which can be used to contact you.
+   The "call home" hit, contains (amongst other data) the application name.  
+   From your application name, the Author can find the official email address, which can be used to contact you.   
+   For example, the Author might ask for feedback and improvement ideas, or report issues of proper use of the 
+   SOFTWARE LIBRARY.
+   
+6) The Author might add your application name in a "customers list".
+   The Author may share the "customers list" document with other prospect clients.
+   The Author may publish online the "customers list".
+
 
 
 LICENSE TERMS OF THE SOFTMETER PRO SUBSCRIPTION
@@ -83,20 +126,19 @@ LICENSE TERMS OF THE SOFTMETER PRO SUBSCRIPTION
    Additional operating system variants can by licensed with an additional cost.
    During the ordering of the subscription you have to declare which operating system variant(s) you need.
 
-3) The PRO subscription cannot be transferred to other software developers (either an individual or a single entity)
-   or be shared with them.
-
-4) The subscription is based on an annual fee.
+3) The subscription is based on an annual fee.
    The subscription renewal is not automatic. When the end of the license approaches, you will need to re-order it.
    The new license will start from the date the old license expires.
     
-5) You can stop paying the annual renewal at any time.
+4) You can stop paying the annual renewal at any time.
    The library will continue to function normally at your already installed user base, but as a FREE edition.
    The limits of the FREE edition will apply when the subscription expires.
 
-6) You can get all version updates of the library without any extra cost. 
+5) You can get all version updates of the library without any extra cost. 
 
-7) This is a non-exclusive, non-transferable license.
+6) The Author might add your application name in a "customers list".
+   The Author may share the "customers list" document with other prospect clients.
+   The Author may publish online the "customers list".
 
 
 TERMS OF THE SOFTMETER PRO PERPETUAL LICENSE
@@ -105,29 +147,48 @@ TERMS OF THE SOFTMETER PRO PERPETUAL LICENSE
 1) Your PRO perpetual license is for one Google Analytics account number and all the "Properties" under that account.
    You cannot send hits to more than one Google Analytics account number.
 
-2) The PRO perpetual license can be used by an unlimited number of your products (software applications).
+2) The PRO perpetual license can be used by any number of your products (software applications).
    It covers all the operating system variants of the same applications (MacOS, IOS, Windows).
 
-3) The PRO perpetual license cannot be transferred to other software developers (either individuals or single entities)
-   or be shared with them.
-
-4) The PRO perpetual license is a one-time fee.
+3) The PRO perpetual license is a one-time fee. You can use the SOFTWARE LIBRARY for an unlimited period of time.
     
-5) You can get all version updates of the library without any extra cost. 
-
-6) This is a non-exclusive, non-transferable license.
+4) You can get all version updates of the library without any extra cost. 
 
 
-DISCLAIMER OF WARRANTY
-----------------------
-This software and the accompanying files and online resources and services are given "as is" and without any warranties
-as of their proper operation or their safe coexistence with other software or data.
-NO WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE IS OFFERED.
+TERMS OF THE SOFTMETER PRO SOURCE-CODE LICENSE
+----------------------------------------------
+
+1) You are given the source-code of the SOFTWARE LIBRARY in order to protect your investment in this product, 
+   for example in cases where the Author cannot fix a bug or cannot provide updated versions of the SOFTWARE 
+   LIBRARY in the future.
+
+2) You can use the SOFTWARE LIBRARY only as part of (embedded in) your software products.
+
+3) You cannot use the SOFTWARE LIBRARY to develop competing software products or services in the category field
+   of Analytics.
+
+4) You must take measures so that the source code is not leaked as a whole or in parts to other individuals or entities.
+   The source code must remain isolated from our product's source code (so that it is not accessible to all members of 
+   your developement team).
+   When needed, you must compile the source code and use the binary compiled file (.dll, .lib, .framework, .dylib) 
+   in your application.
+
+5) You can make modifications to the source code. If you do, it is recommended to send the modifications back to the
+   Author for possible inclusion in the master source code.
+   In this way, your modifications will be preserved if you get an updated release from the Author.
+
+6) You can use the SOFTWARE LIBRARY for an unlimited period of time.
+
+7) The source-code license is all your Google Analytics account numbers and all the "Properties" under those accounts.
+
+8) The source-code license can be used by any number of your products (software applications).
+
+9) The cost of the source-code license depends on the number of operating systems covered.
+
+10) The cost consists of an initial fee and an optional annual maintenance fee.  
+   With the initial fee you will get the source code of the SOFTWARE LIBRARY and remote support in seting up your 
+   compilation environment and doing a successful first compilation.
+   With the annual maintenance fee you will get the updates in the source code of the SOFTWARE LIBRARY, including
+   possible adjustments or improvements that are of particular interest to you.
 
 
-NO LIABILITY FOR DAMAGES
-------------------------
-In no event shall the Author of this Software be liable for any special, consequential, incidental or indirect damages 
-whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business 
-information, or any other pecuniary loss) arising out of the use of or inability to use this product, even if the 
-Author of this Software is aware of the possibility of such damages and known defects.
