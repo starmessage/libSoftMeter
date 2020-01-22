@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
 
+## [1.3] - 2020-01-22
+
+### Changed
+
+- Internal improvements
+
+
 ## [1.2.4] - 2019-08-21
 
 ### Changed
