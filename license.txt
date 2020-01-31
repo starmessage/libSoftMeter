@@ -1,12 +1,13 @@
 ﻿======================================
-SoftMeter - License Agreement [v1.4]
+SoftMeter - License Agreement [v1.4.1]
 ======================================
 
 This License Agreement is a legal agreement between:
-A) the Author (StarMessageSoftware.com) of this software library, SoftMeter, which  includes computer software 
-   and may include associated media, and “online” or  electronic documentation and resources (“SOFTWARE LIBRARY”) and
-B) you, the software developer (either an individual or a single entity) wishing to include the SoftMeter library in 
-   your software.
+A) the Author (StarMessageSoftware.com) of this software library, SoftMeter, which  includes computer 
+   software and may include associated media, and “online” or  electronic documentation and resources 
+   (“SOFTWARE LIBRARY”) and
+B) you, the software developer (either an individual or a single entity) wishing to include the SoftMeter 
+   library in your software.
 
 
 THIRD PARTIES INVOLVED
@@ -52,8 +53,8 @@ category fields.
 The SOFTWARE LIBRARY is meant to be included in your software for the sole purpose of measuring its usage.
 
 
-OBLIGATIONS AGAINST PERSONAL DATA
----------------------------------
+OBLIGATIONS AGAINST PERSONAL DATA PROCESSING AND PROTECTION
+-----------------------------------------------------------
 1) You must give to your end users proper notice about the telemetry's data collection and the kind of data you collect.
    This link summarizes the data collected and their usage:
    https://www.starmessagesoftware.com/softmeter/data
@@ -158,37 +159,40 @@ TERMS OF THE SOFTMETER PRO PERPETUAL LICENSE
 TERMS OF THE SOFTMETER PRO SOURCE-CODE LICENSE
 ----------------------------------------------
 
-1) You are given the source-code of the SOFTWARE LIBRARY in order to protect your investment in this product, 
-   for example in cases where the Author cannot fix a bug or cannot provide updated versions of the SOFTWARE 
-   LIBRARY in the future.
+1) You are given the source-code of the SOFTWARE LIBRARY in order to protect your investment in this 
+   product, for example in cases where the Author cannot fix a bug or cannot provide updated versions 
+   of the SOFTWARE LIBRARY in the future.
 
 2) You can use the SOFTWARE LIBRARY only as part of (embedded in) your software products.
 
-3) You cannot use the SOFTWARE LIBRARY to develop competing software products or services in the category field
-   of Analytics.
+3) You cannot use the SOFTWARE LIBRARY to develop competing software products or services in the category 
+   field of Analytics.
 
-4) You must take measures so that the source code is not leaked as a whole or in parts to other individuals or entities.
-   The source code must remain isolated from our product's source code (so that it is not accessible to all members of 
-   your developement team).
-   When needed, you must compile the source code and use the binary compiled file (.dll, .lib, .framework, .dylib) 
-   in your application.
+4) You must take measures so that the SOFTWARE LIBRARY's source code as a whole or in parts is not leaked 
+   to other individuals or entities.
+   The source code must remain isolated from our product's source code (so that it is not accessible to all
+   members of your developement team).
+   When needed, you must compile the source code and use the binary compiled file (.dll, .lib, .framework, 
+   .dylib) in your application.
 
-5) You can make modifications to the source code. If you do, it is recommended to send the modifications back to the
-   Author for possible inclusion in the master source code.
+5) You can make modifications to the source code.  
+   If you do, it is recommended to send the modifications back to the Author for possible inclusion in the
+   master source code.
    In this way, your modifications will be preserved if you get an updated release from the Author.
 
 6) You can use the SOFTWARE LIBRARY for an unlimited period of time.
 
-7) The source-code license is all your Google Analytics account numbers and all the "Properties" under those accounts.
+7) The source-code license is for all your Google Analytics account numbers and all the "Properties" under 
+   those accounts.
 
 8) The source-code license can be used by any number of your products (software applications).
 
 9) The cost of the source-code license depends on the number of operating systems covered.
 
 10) The cost consists of an initial fee and an optional annual maintenance fee.  
-   With the initial fee you will get the source code of the SOFTWARE LIBRARY and remote support in seting up your 
-   compilation environment and doing a successful first compilation.
-   With the annual maintenance fee you will get the updates in the source code of the SOFTWARE LIBRARY, including
-   possible adjustments or improvements that are of particular interest to you.
+   With the initial fee you will get the source code of the SOFTWARE LIBRARY and remote support in seting 
+   up your compilation environment and doing a successful first compilation.
+   With the annual maintenance fee you will get the updates in the source code of the SOFTWARE LIBRARY, 
+   including possible adjustments or improvements that are of particular interest to you.
 
 
