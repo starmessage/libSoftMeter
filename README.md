@@ -52,4 +52,4 @@ MacOS desktop software usage analytics
 Runtime usage statistics
 
 [![Github all releases](https://img.shields.io/github/downloads/starmessage/libSoftMeter/total.svg)](https://GitHub.com/starmessage/libSoftMeter/releases/)
-
+[![HitCount](http://hits.dwyl.io/starmessage/badges.svg)](http://hits.dwyl.io/starmessage/badges)
