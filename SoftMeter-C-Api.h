@@ -26,6 +26,7 @@
 // https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md
 
 // get the version string of the library. 
+// ToDo: convert it to take the string in the parameters, getVersion(TCHAR* ver, int nMaxLen);
 EXPORT_API const TCHAR* CALL_CONV getVersion(void);
 
 // Enable or disable the log file. The default is disabled.
@@ -39,6 +40,7 @@ EXPORT_API  void CALL_CONV enableLogfile(const TCHAR *appName, const TCHAR *macB
 EXPORT_API  void CALL_CONV disableLogfile(void);
 
 // get the full path name of the log file. 
+// ToDo: convert it to take the string in the parameters, getLogFilename(TCHAR* fn, int nMaxLen);
 EXPORT_API  const TCHAR* CALL_CONV getLogFilename(void);
 
 /* Use the setOptions() function to pass optional parameters to SoftMeter. 
@@ -150,6 +152,7 @@ EXPORT_API  bool CALL_CONV sendException(const TCHAR *exceptionDescription, cons
     // These are the same function names but appended with _stdcall
 	// They do not need the EXPORT declaration  because they are exported by a .DEF file 
     ///////////////////////////////////////////////////////////////////////
+ 
 
 	const TCHAR*	__stdcall getVersion_stdcall(void);
 	const TCHAR*	__stdcall getLogFilename_stdcall(void);
