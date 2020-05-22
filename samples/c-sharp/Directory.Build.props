@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>c:\tmp</OutputPath>
+    <BaseIntermediateOutputPath>$(temp)$(Configuration)-$(Platform)-charp-obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>c:\tmp</OutputPath>
+    <BaseIntermediateOutputPath>$(temp)$(Configuration)-$(Platform)-charp-obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+</Project>
