@@ -14,8 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 */
 
-// using System;
-// using System.Runtime.InteropServices;
+
+using System.Runtime.InteropServices;
 
 using System.Windows;
 
@@ -39,7 +39,8 @@ namespace Demo_WpfApp_win
             string appLicense = "pro";
             string appEdition = "ms store"; // the edition uploaded to the Microsoft store
 
-            string trackingID = "UA-1234-1"; // replace this with your own Google PropertyID
+            // string trackingID = "UA-1234-1"; // replace this with your own Google PropertyID
+            string trackingID = "UA-385839-13"; 
             SoftMeterDLL.enableLogfile(appName, "");
             SoftMeterDLL.start(appName, appVersion, appLicense, appEdition, trackingID, UserGaveConsent);
 
