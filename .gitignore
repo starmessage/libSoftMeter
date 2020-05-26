@@ -43,7 +43,7 @@ samples/Delphi-Pascal/pascal-console-demo/console_demo_delphi10.res
 SoftMeter PRO unlimited perpetual license.txt
 samples/cpp/cpp-console-demo/build-win/cpp-demo-win.vcxproj
 samples/cpp/cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/xcuserdata/cto.xcuserdatad/xcschemes/xcschememanagement.plist
-<<<<<<< HEAD
+
 
 ## 
 ## Ignore Visual Studio temporary files, build results, and
@@ -401,7 +401,5 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
-# Ionide (cross platform F# VS Code tools) working folder
-.ionide/
-=======
->>>>>>> b131aa3cab9009427ff35c284010e46459a6486f
+
+samples/IOS/source/dev-propertyID.h
