@@ -54,8 +54,9 @@ each one passing additional options.
 Passing the SoftMeter PRO subscription details.
     setOptions("subscriptionID=1234567");
     setOptions("subscriptionType=2");
-	subscriptionID must be your Google analytics account number, ie the xxxxx part of UA-xxxxx-y
-	and the subscriptionType must be 2
+	For the annual SoftMeter PRO subscription, 
+        subscriptionID must be your Google analytics account number, ie the xxxxx part of UA-xxxxx-y
+    	and the subscriptionType must be 2
 	Developers using the free edition of SoftMeter, you can also call this function
 	Doing so will allow them to activate the PRO features also for the already existing
 	installations, when ever they buy a PRO SoftMeter licence in the future.
