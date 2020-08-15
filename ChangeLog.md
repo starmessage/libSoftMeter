@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS.   
-[libSoftMeter website](https://www.starmessagesoftware.com/softmeter) [libSoftMeter on GitHub](https://github.com/starmessage/libSoftMeter).
+[[libSoftMeter website](https://www.starmessagesoftware.com/softmeter)] [[libSoftMeter on GitHub](https://github.com/starmessage/libSoftMeter)].
 
 ## [1.4] - (unpublished)
 
@@ -18,6 +18,7 @@ The customDimension will be sent together with the next pageView, Event, or Scre
     - CPU cores  
     - Total RAM memory  
     - Free RAM memory  
+
 To enable the collection of this information call the function:
 ``` 
 setOptions("ExtraInfo=7");  
