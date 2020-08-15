@@ -10,6 +10,7 @@ Shareware developers for desktop programs can now see via *one* free reporting p
 The library can also be used in InnoSetup scripts and other installation packages, (e.g. Installaware) to track Setups and Uninstalls of your desktop software applications.
 
 - [SoftMeter website](https://www.StarMessageSoftware.com/softmeter)
+- [SoftMeter on GitHub](https://github.com/starmessage/libSoftMeter)
 - [ChangeLog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 
 **How it works with Google Analytics**
