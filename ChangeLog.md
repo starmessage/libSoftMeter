@@ -9,21 +9,21 @@ SoftMeter is a free or low cost application analytics library for Windows, MacOS
 ### Added
 
 - New function to send custom dimensions to Google Analytics. 
-```
-bool setCustomDimension(const int dimensionIndex, const TCHAR* dimensionValue);  
-```
-The customDimension will be sent together with the next pageView, Event, or ScreenView hit.
+    ```
+    bool setCustomDimension(const int dimensionIndex, const TCHAR* dimensionValue);  
+    ```
+   The customDimension will be sent together with the next pageView, Event, or ScreenView hit.
 
 - SoftMeter can automatically collect extra system information:  
     - CPU cores  
     - Total RAM memory  
     - Free RAM memory  
 
-To enable the collection of this information call the function:
-``` 
-setOptions("ExtraInfo=7");  
-```
-before calling the start() function.
+    To enable the collection of this information call the function:
+    ``` 
+    setOptions("ExtraInfo=7");  
+    ```
+    before calling the start() function.
 
 
 ### Changed
@@ -41,7 +41,7 @@ before calling the start() function.
 
 ### Changed
 
-- Under MacOS, change in the installation directory of libSoftMeter.dylib
+- Under MacOS, change in the installation directory parameter of libSoftMeter.dylib
 
 ## [1.2.3] - 2019-08-17
 
