@@ -58,9 +58,3 @@
 #endif
 
 
-
-
-// define the EXPORT_API that will be added as prefix in the library's function declarations
-// #define EXPORT_API		C_EXPORT EXPORT_DIRECTIVE
-
-

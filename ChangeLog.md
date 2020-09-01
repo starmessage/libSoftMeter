@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS.   
 [[libSoftMeter website](https://www.starmessagesoftware.com/softmeter)] [[libSoftMeter on GitHub](https://github.com/starmessage/libSoftMeter)].
 
-## [1.4] - (unpublished)
+## [1.4] - 2020-09-01
 
 ### Added
 
@@ -18,12 +18,15 @@ SoftMeter is a free or low cost application analytics library for Windows, MacOS
     - CPU cores  
     - Total RAM memory  
     - Free RAM memory  
+    - Free RAM memory (The numbers are rounded so that they appear in the reporting in aggregated groups)
+    - CPU model, e.g. Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz
 
     To enable the collection of this information call the function:
     ``` 
-    setOptions("ExtraInfo=7");  
+    setOptions("ExtraInfo=15");  
     ```
     before calling the start() function.
+    Read more about the reporting for the hardware info at: https://www.starmessagesoftware.com/news/softmeter-v14-free-product-analytics-tool
 
 
 ### Changed
