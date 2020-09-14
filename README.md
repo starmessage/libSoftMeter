@@ -7,9 +7,10 @@ SoftMeter (former libAppTelemetry) is a Windows, MacOS and IOS library that allo
 It is ideal for shareware developers as it extends the website usage data with the applications usage data.  
 Shareware developers for desktop programs can now see via *one* free reporting platform (Google Analytics), 1) how people use their website, *and* 2) how they are converted to also use the software on their desktop computer or laptops.
 
-The library can also be used in InnoSetup scripts and other installation packages, (e.g. Installaware) to track Setups and Uninstalls.
+The library can also be used in InnoSetup scripts and other installation packages, (e.g. Installaware) to track Setups and Uninstalls of your desktop software applications.
 
 - [SoftMeter website](https://www.StarMessageSoftware.com/softmeter)
+- [SoftMeter on GitHub](https://github.com/starmessage/libSoftMeter)
 - [ChangeLog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 
 **How it works with Google Analytics**
