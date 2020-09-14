@@ -1,7 +1,52 @@
 # [libSoftMeter version history/Changelog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 All notable changes to this project will be documented in this file.
 
-SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS. Read more at the [libSoftMeter website](https://www.starmessagesoftware.com/softmeter).
+SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS.   
+[[libSoftMeter website](https://www.starmessagesoftware.com/softmeter)] [[libSoftMeter on GitHub](https://github.com/starmessage/libSoftMeter)].
+
+## [1.4.1] - (unpublished)
+
+### Fixed
+- In Windows DLL: undecorate _setCustomDimension@8 from the DLL so it can be linked with its simple function name
+
+### Added
+- AppEdition linked to the GA field of CampaignCode. It can be seen via GA reports as CampaignCode.
+- In Windows DLL: In order to call the SoftMeter DLL from desktop software made by VisualNEO Win, the __cdecl version of the all-in-one sendEvent() function was added:
+``` 
+aio_sendEvent_cdecl()
+``` 
+
+### Changed
+- In Windows DLL: Removed the xxxxxx_stdcall version of the functions as the plain function names are already using the stdcall calling convension.
+
+## [1.4] - 2020-09-01
+
+### Added
+
+- New function to send custom dimensions to Google Analytics. 
+    ```
+    bool setCustomDimension(const int dimensionIndex, const TCHAR* dimensionValue);  
+    ```
+   The customDimension will be sent together with the next pageView, Event, or ScreenView hit.
+
+- SoftMeter can automatically collect extra system information:  
+    - CPU cores  
+    - Total RAM memory  
+    - Free RAM memory  
+    - Free RAM memory (The numbers are rounded so that they appear in the reporting in aggregated groups)
+    - CPU model, e.g. Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz
+
+    To enable the collection of this information call the function:
+    ``` 
+    setOptions("ExtraInfo=15");  
+    ```
+    before calling the start() function.
+    Read more about the reporting for the hardware info at: https://www.starmessagesoftware.com/news/softmeter-v14-free-product-analytics-tool
+
+
+### Changed
+
+- Internal improvements
 
 ## [1.3] - 2020-01-22
 
@@ -14,7 +59,7 @@ SoftMeter is a free or low cost application analytics library for Windows, MacOS
 
 ### Changed
 
-- Under MacOS, change in the installation directory of libSoftMeter.dylib
+- Under MacOS, change in the installation directory parameter of libSoftMeter.dylib
 
 ## [1.2.3] - 2019-08-17
 
