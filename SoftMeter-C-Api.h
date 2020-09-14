@@ -1,6 +1,6 @@
 //
 //  SoftMeter-C-Api.h
-//  File version: 1.2.3
+//  File version: 1.3
 //  Copyright StarMessage software. All rights reserved.
 //	https://www.starmessagesoftware.com/softmeter
 //
@@ -43,52 +43,46 @@ EXPORT_API  void CALL_CONV disableLogfile(void);
 // ToDo: convert it to take the string in the parameters, getLogFilename(TCHAR* fn, int nMaxLen);
 EXPORT_API  const TCHAR* CALL_CONV getLogFilename(void);
 
-/* Use the setOptions() function to pass optional parameters to SoftMeter. 
-The parameters are passed as a string containing key=value pairs, 
-separated with a new line character "\n" (aka, line feed, chr(10)).
+/* Use the setOptions("ParameterName", "ParameterValue") function to pass optional parameters to SoftMeter.
+The parameters are passed as a string containing a name=value pair.
 
 You must call this function before the start() function.
-You can pack different options in one parameter string or call the function multiple times,
-each one passing additional options.
 
-Passing the SoftMeter PRO subscription details.
+1. Passing the SoftMeter PRO subscription details.
     setOptions("subscriptionID=1234567");
     setOptions("subscriptionType=2");
-	For the annual SoftMeter PRO subscription, 
-        subscriptionID must be your Google analytics account number, ie the xxxxx part of UA-xxxxx-y
-    	and the subscriptionType must be 2
-	Developers using the free edition of SoftMeter, you can also call this function
-	Doing so will allow them to activate the PRO features also for the already existing
-	installations, when ever they buy a PRO SoftMeter licence in the future.
- 
-    Alternatively, can pass these two parameters in one function call if you pack them together.
-    E.g.
+	Where 1234567 should be replaced with your Google analytics account number,
+    i.e. the xxxxx part of UA-xxxxx-y and the subscriptionType must be 2.
+    Alternatively, you can pass these two parameters packed in one function call E.g.
     setOptions("subscriptionID=1234567\nsubscriptionType=2\n");
-    // note the \n character that separates the two parameters.
- 
+    Note the \n character (aka, line feed, chr(10)) that separates the two parameters.
 
-Passing the Proxy parameters
+2. Enabling collection of extra system info.
+   setOptions("ExtraInfo=31")
+   Where the value (31) is a bit mask of extra pieces of information:
+   1 = When ON, use Screenviews. Otherwise use Pageviews to send this information.
+   2 = Total RAM memory
+   4 = Free RAM memory (The numbers are rounded so that they appear in the reporting in aggregated groups) 
+   8 = Number of CPU cores
+  16 = CPU model, e.g. Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz
+ 
+3. Passing the Proxy parameters
 	setOptions( "proxyAddress=192.1.127.123\n"
 				"proxyPort=808\n"
 				"proxyAuthScheme=2\n"
 				"proxyUsername=aUserName\n"
 				"proxyPassword=aPassword\n"
 				);
- Currently, the proxy support in "alpha" version and works for Windows only.
+ Currently, the proxy support is in "alpha" version and works for Windows only.
  Values for authScheme under Windows:
    0 = no authentication, 2 = NTLM, 4 = Passport, 8 = Digest, 16 = Negotiate
  If the proxy does not need authentication, do not pass the parameters authScheme, username and password
  
+ 
 */
 EXPORT_API  const bool CALL_CONV setOptions(const TCHAR *developerOptions);
 
-
-
-/* deprecated by setOptions():
-
-EXPORT_API void setSubscription(const TCHAR *subscriptionID, const int subscriptionType);
-EXPORT_API void setProxy(const TCHAR *address, const int port, const TCHAR *username , const TCHAR *password, const int authScheme);
-*/
+enum softMeterExtraInfo { eiUseScreenviews=1,  eiTotalRam=2, eiFreeRam=4, eiCPUcores=8, eiCPUmodel=16 };
 
 
 // initialize the library.
@@ -128,6 +122,9 @@ EXPORT_API  bool CALL_CONV sendEvent(const TCHAR *eventAction, const TCHAR *even
 // if isFatal = false, the incident will be logged in Google analtytics as Exception
 // if isFatal = true, the incident will be logged in Google analtytics as Crash
 EXPORT_API  bool CALL_CONV sendException(const TCHAR *exceptionDescription, const bool isFatal);
+
+EXPORT_API  bool CALL_CONV setCustomDimension(const int dimensionIndex, const TCHAR* dimensionValue);
+
 
 
 #ifdef _WIN32

@@ -77,9 +77,6 @@ private:
 	getLogFilename_t	getLogFilename_ptr = NULL;
 	enableLogfile_t		enableLogfile_ptr = NULL;
 	disableLogfile_t	disableLogfile_ptr = NULL;
-    // deprecated
-    //setProxy_t          setProxy_ptr = NULL;
-    //setSubscription_t   setSubscription_ptr = NULL;
     setOptions_t        setOptions_ptr = NULL;
 	start_t				start_ptr = NULL;
 	stop_t				stop_ptr = NULL;
@@ -202,6 +199,7 @@ public:
 		return false;
 	}
 
+    
 	bool		sendEvent(const char *eventAction, const char *eventLabel, const int eventValue)
 	{
 		if (sendEvent_ptr)
