@@ -123,6 +123,7 @@ EXPORT_API  bool CALL_CONV sendEvent(const TCHAR *eventAction, const TCHAR *even
 // if isFatal = true, the incident will be logged in Google analtytics as Crash
 EXPORT_API  bool CALL_CONV sendException(const TCHAR *exceptionDescription, const bool isFatal);
 
+// must be called after the call to start()
 EXPORT_API  bool CALL_CONV setCustomDimension(const int dimensionIndex, const TCHAR* dimensionValue);
 
 
@@ -151,7 +152,7 @@ EXPORT_API  bool CALL_CONV setCustomDimension(const int dimensionIndex, const TC
 	// They do not need the EXPORT declaration  because they are exported by a .DEF file 
     ///////////////////////////////////////////////////////////////////////
  
-
+    /* Not needed any more (removed in v1.4.1)
 	const TCHAR*	__stdcall getVersion_stdcall(void);
 	const TCHAR*	__stdcall getLogFilename_stdcall(void);
     void __stdcall enableLogfile_stdcall(const TCHAR *appName, const TCHAR *macBundleId);
@@ -166,7 +167,9 @@ EXPORT_API  bool CALL_CONV setCustomDimension(const int dimensionIndex, const TC
     bool __stdcall sendScreenview_stdcall(const TCHAR *screenName);
     bool __stdcall sendEvent_stdcall(const TCHAR *eventAction, const TCHAR *eventLabel, const int eventValue);
     bool __stdcall sendException_stdcall(const TCHAR *exceptionDescription, const bool isFatal);
-	
+
+    */
+
     /////////////////////////////////////////////////////////////////////////
     // __cdeclspec version of all the functions to be exported in the DLL
     // Not needed for the MacOS platforms.
@@ -174,6 +177,8 @@ EXPORT_API  bool CALL_CONV setCustomDimension(const int dimensionIndex, const TC
     /////////////////////////////////////////////////////////////////////////
 
     EXPORT_API const TCHAR* __cdecl	    getVersion_cdecl(void);
+    EXPORT_API void         __cdecl     enableLogfile_cdecl(const TCHAR* appName, const TCHAR* macBundleId);
+    EXPORT_API void         __cdecl     disableLogfile_cdecl(void);
     EXPORT_API const TCHAR* __cdecl 	getLogFilename_cdecl(void);
     EXPORT_API bool __cdecl setOptions_cdecl(const TCHAR *developerOptions);
     EXPORT_API bool __cdecl start_cdecl(const TCHAR *appName, const TCHAR *appVersion,
