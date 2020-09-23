@@ -28,10 +28,10 @@ typedef bool (CALL_CONV *aio_sendEvent_t) (const TCHAR *, const TCHAR*, const TC
 //  For its parameters, aio_sendEvent() combines the parameters of start() and sendEvent() 
 //  In the DLLs there also its counterpart, aio_sendEvent_stdcall()
 EXPORT_API bool CALL_CONV aio_sendEvent(const TCHAR*appName, const TCHAR*appVersion,
-                                                const TCHAR*appLicense, const TCHAR*appEdition,
-                                                const TCHAR*propertyID, const bool  userGaveConsent,
-                                                const TCHAR*eventAction, const TCHAR*eventLabel, const int eventValue
-                                                );
+                                        const TCHAR*appLicense, const TCHAR*appEdition,
+                                        const TCHAR*propertyID, const bool  userGaveConsent,
+                                        const TCHAR*eventAction, const TCHAR*eventLabel, const int eventValue
+                                        );
 
 
 #ifdef _WIN32		// __stdcall version of the functions 
@@ -47,5 +47,13 @@ EXPORT_API bool __stdcall aio_sendEvent_stdcall(const TCHAR *appName, const TCHA
 	const TCHAR *eventAction, const TCHAR *eventLabel, const int eventValue
 	);
 	*/
+
+// cdecl version of the functions
+typedef bool (__cdecl *aio_sendEvent_cdecl_t) (const TCHAR *, const TCHAR*, const TCHAR*, const TCHAR*, const TCHAR*, const bool, const TCHAR*, const TCHAR*, const int );
+
+EXPORT_API bool __cdecl aio_sendEvent_cdecl(const TCHAR*appName, const TCHAR*appVersion,
+                                            const TCHAR*appLicense, const TCHAR*appEdition,
+                                            const TCHAR*propertyID, const bool  userGaveConsent,
+                                            const TCHAR*eventAction, const TCHAR*eventLabel, const int eventValue );
 
 #endif
