@@ -22,8 +22,9 @@ The Google Analytics terms and the Google measurement protocol terms apply.
 EXCLUSIVITY, TRANSFERABILIY
 ---------------------------
 This is a non-exclusive license.
-This is a non-transferable license. It cannot be transferred to other software developers (either an individual
-or a single entity) or be shared or co-used with them.
+The license covers only the products of your company.
+This is a non-transferable license. You cannot transfer, sub-license, resell, co-use, share, lend to other parties
+(e.g other software developers, either an individual or a single entity).
 The copyright of the SOFTWARE LIBRARY remains at any time with the Author.
 
 
@@ -47,7 +48,7 @@ current of future systems.
 SCOPE AND PURPOSE OF THE LICENSE
 --------------------------------
 The SOFTWARE LIBRARY belongs to the category fields of Application Analytics, Software Analytics, In-App analytics, 
-Usage Analytics.
+Usage Analytics, software product analytics.
 You cannot use the SOFTWARE LIBRARY to create deriviate or possibly competing software or services in these 
 category fields.
 The SOFTWARE LIBRARY is meant to be included in your software for the sole purpose of measuring its usage.
@@ -148,12 +149,17 @@ TERMS OF THE SOFTMETER PRO PERPETUAL LICENSE
 1) Your PRO perpetual license is for one Google Analytics account number and all the "Properties" under that account.
    You cannot send hits to more than one Google Analytics account number.
 
-2) The PRO perpetual license can be used by any number of your products (software applications).
+2) You will be provided with proper codes, (e.g. a PIN code) that will enable the perpetual PRO license 
+   for one Google Account. If in the future you want to change your Google Account, you will receive another 
+   set of proper codes (e.g. a PIN code) for the new Google Account.
+
+3) The PRO perpetual license can be used by any number of your products (software applications).
    It covers all the operating system variants of the same applications (MacOS, IOS, Windows).
 
-3) The PRO perpetual license is a one-time fee. You can use the SOFTWARE LIBRARY for an unlimited period of time.
+4) The PRO perpetual license is a one-time fee. You can use the SOFTWARE LIBRARY for an unlimited period of time.
     
-4) You can get all version updates of the library without any extra cost. 
+5) You can get all version updates of the library without any extra cost. 
+   The activation of your perpetual PRO license will continue to be valid for them.
 
 
 TERMS OF THE SOFTMETER PRO SOURCE-CODE LICENSE
