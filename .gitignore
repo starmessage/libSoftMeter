@@ -15,7 +15,8 @@ pascal-console-demo/backup/main.pas
 pascal-console-demo/console_demo_delphi10.res
 pascal-console-demo/console_demo_lazarus.lpi
 pascal-console-demo/console_demo_lazarus.lpr
-*.user
+samples/IOS/source/dev-propertyID.h
+
 *.user
 sample-implementations/IOS/source/dev-propertyID.h
 sample-implementations/IOS/demo-IOS.xcodeproj/project.pbxproj
@@ -40,10 +41,8 @@ samples/Delphi-Pascal/pascal-console-demo/console_demo_delphi10.dof
 samples/Delphi-Pascal/pascal-console-demo/console_demo_delphi10.dpr
 samples/Delphi-Pascal/pascal-console-demo/console_demo_delphi10.dproj
 samples/Delphi-Pascal/pascal-console-demo/console_demo_delphi10.res
-SoftMeter PRO unlimited perpetual license.txt
 samples/cpp/cpp-console-demo/build-win/cpp-demo-win.vcxproj
 samples/cpp/cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/xcuserdata/cto.xcuserdatad/xcschemes/xcschememanagement.plist
-
 
 ## 
 ## Ignore Visual Studio temporary files, build results, and
@@ -402,6 +401,4 @@ healthchecksdb
 MigrationBackup/
 
 
-samples/IOS/source/dev-propertyID.h
-samples/IOS/source/dev-propertyID.h
-samples/IOS/source/dev-propertyID.h
+
