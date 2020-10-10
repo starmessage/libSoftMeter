@@ -4,20 +4,25 @@ All notable changes to this project will be documented in this file.
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS.   
 [[libSoftMeter website](https://www.starmessagesoftware.com/softmeter)] [[libSoftMeter on GitHub](https://github.com/starmessage/libSoftMeter)].
 
-## [1.4.1] - (unpublished)
+## [1.4.1] - 2020-10-10
 
 ### Fixed
 - In Windows DLL: undecorate _setCustomDimension@8 from the DLL so it can be linked with its simple function name
 
 ### Added
-- AppEdition linked to the GA field of CampaignCode. It can be seen via GA reports as CampaignCode.
+- AppEdition sent to the GA field of CampaignCode. It can be seen via GA reports as CampaignCode.
 - In Windows DLL: In order to call the SoftMeter DLL from desktop software made by VisualNEO Win, the __cdecl version of the all-in-one sendEvent() function was added:
 ``` 
 aio_sendEvent_cdecl()
 ``` 
+Reminder: the event hits are only supported by the PRO editions of SoftMeter.
+
+- MacOS: ARM64 architecture compatibility with a universal dylib.
 
 ### Changed
 - In Windows DLL: Removed the xxxxxx_stdcall version of the functions as the plain function names are already using the stdcall calling convension.
+
+- Windows: digitally signed dlls and cpp-demo-win executables.
 
 ## [1.4] - 2020-09-01
 
