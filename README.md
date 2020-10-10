@@ -1,5 +1,7 @@
 ﻿**SoftMeter application analytics SDK: Compiled library files and demo programs**
 
+Category of library: Product analytics for software applications
+
 > ![SoftMeter application analytics logo](https://www.starmessagesoftware.com/myfiles/softmeter-icon-128x155.png)  
 > Listen to the heartbeat of your software
 
