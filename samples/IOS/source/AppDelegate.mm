@@ -58,7 +58,7 @@ const char *appEdition = "IOS app";
     setOptions("subscriptionID=11111\nsubscriptionType=2");
     
     // call the start() function to initialize the SoftMeter library
-    start(appName, appVer, appLicense, appEdition, gaPropertyID, userGaveConsent);
+    start(appName, appVer, appLicense, appEdition, trackingID, userGaveConsent);
     
     // after start() you can send any number and any type of hits to Google Analytics
     sendPageview("IOS launching", "IOS launching");
