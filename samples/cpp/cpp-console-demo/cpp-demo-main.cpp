@@ -23,9 +23,9 @@
     #endif
 #endif
 
-const TCHAR 	*appVer = _T("106"),
-                *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
-			    *appEdition = _T("console");
+const TCHAR 	*appVer = _T("108"),
+            *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
+            *appEdition = _T("console");
 
 // If the user has opted-out from sending telemetry data, this variable must be false.
 // Save the user's consent in the app's settings and then read this variable every time your program starts.
@@ -91,7 +91,7 @@ bool testTheAllInOneFunctions(const TCHAR *appName, const TCHAR *aPropertyID)
 
 
 #ifdef _WIN32
-bool testTheSend_aio_Event_strcall(const TCHAR *appName, const TCHAR *aPropertyID)
+bool testTheSend_aio_Event_stdcall(const TCHAR *appName, const TCHAR *aPropertyID)
 {
 	// testing aio_sendEvent_stdcall()
 	HMODULE hDLL = LoadLibrary(softmeterLibFilename);
@@ -176,7 +176,7 @@ int main(int argc, const char * argv[])
             std::cerr << "Errors exist during the dynamic loading of softmeterLib\n";
             return 101;
         }
-        std::cout << "libAppTelemetry version:" << softmeterLib.getVersion() << std::endl;
+        std::cout << "libSoftMeter version:" << softmeterLib.getVersion() << std::endl;
 
         const bool testTheSubscription = false; // make this variable true if you want to test your subscription
         if (testTheSubscription)
@@ -279,21 +279,28 @@ int main(int argc, const char * argv[])
         softmeterLib.stop();
     }  // the end of this block frees the softmeterLib object.
     
-	std::cout << "Will send an event hit using the All-in-one function aio_sendEvent()" << std::endl;
+	
 
-    // The all-in-one functions include calls the start() and stop(), so do not call these functions yourself.
-    // Here, we cann the all-in-one functions after the start() and stop() section.
-    // test the All-in-one function(s)
-    if (!testTheAllInOneFunctions(appName, gaPropertyID.c_str()))
-        std::cout << "testTheAllInOneFunctions() returned False\n";
-                             
-	#ifdef _WIN32
-		// test the __stdcall function calling convention
-		std::cout << "Will send an event hit using the All-in-one function aio_sendEvent_stdcall() and the __stdcall convention" << std::endl;
-		if (!testTheSend_aio_Event_strcall(appName, gaPropertyID.c_str()))
-			std::cout << "testTheSend_aio_Event_strcall()  returned False\n";
-	#endif
+    // The all-in-one functions do not need to be called in the typical implementation cases.
+    // These functions exist only for some specific implementation cases, e.g. when calling SoftMeter 
+    // from a 3rd party software that allows 1 function call per library.
+    // Test the All-in-one function(s)
+    const bool config_TestAllInOne = false;
+    if (config_TestAllInOne)
+    {
+        std::cout << "Will send an event hit using the All-in-one function aio_sendEvent()" << std::endl;
 
+        if (!testTheAllInOneFunctions(appName, gaPropertyID.c_str()))
+            std::cout << "testTheAllInOneFunctions() returned False\n";
+
+        #ifdef _WIN32
+            // test the __stdcall function calling convention
+            std::cout << "Will send an event hit using the All-in-one function aio_sendEvent_stdcall() and the __stdcall convention" << std::endl;
+            if (!testTheSend_aio_Event_stdcall(appName, gaPropertyID.c_str()))
+                std::cout << "testTheSend_aio_Event_stdcall()  returned False\n";
+        #endif
+    }
+    
 
 	// will open the log file in a text editor
 	if (system(NULL)) // With a null pointer the function only checks whether a command processor is available, without invoking any command.
