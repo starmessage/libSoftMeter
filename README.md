@@ -22,7 +22,7 @@ The library can also be used in InnoSetup scripts and other installation package
 ![Example of reporting dashboard for application analytics](https://www.starmessagesoftware.com/myfiles/softmeter-application-analytics-dashboard.png)
 
 This repository contains 
-- Delphi/Pascal and C++ command line examples for Windows and MacOS X that show how to load the appTelemetry library and send page views from your shareware software to Google Analytics.
+- Delphi/Pascal, C++ and C# examples for Windows and MacOS X that show how to load the appTelemetry library and send page views from your shareware software to Google Analytics.
 - the distributable library (DLL for Windows or .dylib for MacOS X) 
 - Inno Setup add-on (Inno Setup extension) scripts. 
   The script allows you to track the number (and location and much more) of your software's installations, by using Inno setup and Google analytics.
