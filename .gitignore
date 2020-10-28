@@ -18,16 +18,6 @@ pascal-console-demo/console_demo_lazarus.lpr
 samples/IOS/source/dev-propertyID.h
 
 *.user
-sample-implementations/IOS/source/dev-propertyID.h
-sample-implementations/IOS/demo-IOS.xcodeproj/project.pbxproj
-sample-implementations/IOS/demo-IOS.xcodeproj/project.xcworkspace/contents.xcworkspacedata
-sample-implementations/IOS/demo-IOS.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
-sample-implementations/IOS/demo-IOS.xcodeproj/xcuserdata/cto.xcuserdatad/xcschemes/xcschememanagement.plist
-cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/xcuserdata/cto.xcuserdatad/xcschemes/xcschememanagement.plist
-cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/xcuserdata/cto.xcuserdatad/xcschemes/xcschememanagement.plist
-cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/project.pbxproj
-cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/xcuserdata/cto.xcuserdatad/xcschemes/xcschememanagement.plist
-cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/project.pbxproj
 *.~pas
 *.~dpr
 bin/create dumpbin file.bat
@@ -403,3 +393,5 @@ MigrationBackup/
 
 
 samples/IOS/source/dev-propertyID.h
+samples/cpp/cpp-console-demo/build-win/cpp-demo-win.vcxproj
+samples/cpp/cpp-console-demo/build-win/cpp-demo-win.vcxproj
