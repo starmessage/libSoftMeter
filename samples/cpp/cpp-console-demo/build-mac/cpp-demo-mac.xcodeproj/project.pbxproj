@@ -44,7 +44,7 @@
 		584CE9F21F5074DC002B1393 = {
 			isa = PBXGroup;
 			children = (
-				584CE9FD1F5074DC002B1393 /* source */,
+				584CE9FD1F5074DC002B1393 /* src */,
 				584CE9FC1F5074DC002B1393 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,7 +57,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		584CE9FD1F5074DC002B1393 /* source */ = {
+		584CE9FD1F5074DC002B1393 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				589EAF3D210B636E00CAEAD2 /* SoftMeter-C-Api-AIO.h */,
@@ -65,7 +65,7 @@
 				584CEA111F509C9F002B1393 /* SoftMeter-CPP-Api.h */,
 				584CEA0B1F5075B6002B1393 /* cpp-demo-main.cpp */,
 			);
-			name = source;
+			name = src;
 			path = "/Users/cto/Documents/work/C-Proj/appTelemetry/distrib";
 			sourceTree = "<absolute>";
 		};
@@ -95,7 +95,7 @@
 		584CE9F31F5074DC002B1393 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "StarMessage software";
 				TargetAttributes = {
 					584CE9FA1F5074DC002B1393 = {
@@ -106,10 +106,11 @@
 			};
 			buildConfigurationList = 584CE9F61F5074DC002B1393 /* Build configuration list for PBXProject "cpp-demo-mac" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 584CE9F21F5074DC002B1393;
 			productRefGroup = 584CE9FC1F5074DC002B1393 /* Products */;
@@ -158,6 +159,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -185,7 +187,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.14;
 			};
 			name = Debug;
 		};
@@ -214,6 +215,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -226,6 +228,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -234,13 +237,13 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx10.14;
 			};
 			name = Release;
 		};
 		584CEA031F5074DC002B1393 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -249,6 +252,7 @@
 		584CEA041F5074DC002B1393 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

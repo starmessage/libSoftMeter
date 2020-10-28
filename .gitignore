@@ -390,8 +390,6 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
-
-
 samples/IOS/source/dev-propertyID.h
 samples/cpp/cpp-console-demo/build-win/cpp-demo-win.vcxproj
-samples/cpp/cpp-console-demo/build-win/cpp-demo-win.vcxproj
+samples/cpp/cpp-console-demo/build-mac/cpp-demo-mac.xcodeproj/
