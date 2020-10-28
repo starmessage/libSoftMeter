@@ -3,7 +3,7 @@
 ///     unit softMeter_globalVar.pas
 ///     Example unit to offer a global object of softMeter
 ///
-///     Version of file: 2.4
+///     Version of file: 2.5
 ///     URL of repo:
 ///     https://github.com/starmessage/libSoftMeter
 ///     Copyright, StarMessage software
@@ -28,8 +28,11 @@ uses dialogs;
 var userGaveConsent:boolean;
 
 const
-  // put here your Google Analytics property ID and your application information
+  // put here your Google Analytics property ID as given to you 
+  // from your Google Analytics account.
+  // Or put the Matomo/Piwik tracking ID if you you are using Matomo
   GooglePropertyID =  'UA-123-1';
+  // put here your application information
   AppName = 'Demo Delphi GUI application';
   AppVersion = '1.1';
   AppLicense = 'Free';

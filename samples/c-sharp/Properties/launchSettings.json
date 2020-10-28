@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Demo-WpfApp-win": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -44,7 +44,7 @@ uses softMeter_globalVar;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   dllSoftMeter.sendEvent('Important events', 'Button 1 clicked', 1);
-  ShowMessage('Button clicked. An "event" hit should appear in your GA, under real-time reporting.');
+  ShowMessage('Button clicked. An "event" hit should appear in your GA. You can see it immediately under real-time reporting.');
 end;
 
 procedure TForm1.FormShow(Sender: TObject);

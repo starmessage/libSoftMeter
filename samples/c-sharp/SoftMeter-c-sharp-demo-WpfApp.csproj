@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>SoftMeter_demo</RootNamespace>
+    <UseWPF>true</UseWPF>
+    <Authors>StarMessage software</Authors>
+    <Product>Demo SoftMeter application</Product>
+    <PackageProjectUrl>https://www.StarMessageSoftware.com/softmeter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/starmessage/libSoftMeter</RepositoryUrl>
+    <PackageIconUrl />
+    <StartupObject>Demo_WpfApp_win.App</StartupObject>
+    <AssemblyName>SoftMeter-c-sharp-demo</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\bin\libSoftMeter.dll" Link="libSoftMeter.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\bin\libSoftMeter64.dll" Link="libSoftMeter64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
