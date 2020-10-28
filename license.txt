@@ -63,7 +63,7 @@ OBLIGATIONS AGAINST PERSONAL DATA PROCESSING AND PROTECTION
    you can include this (or similar) information into your software's "About" window and/or on your website.
 
 2) You must get consent from your end-users before starting to send data.
-   You must provide a way for your end-users to review their decision adn opt-in and out from the data collection 
+   You must provide a way for your end-users to review their decision and opt-in and out from the data collection 
    at any time.
 
 3) To operate in the EU and EEA, following the new GDPR law, the users of your software must opt-in before
@@ -101,8 +101,8 @@ LICENSE TERMS OF THE SOFTMETER FREE EDITION
    You can see them on the SoftMeter website, in the "Free vs Pro" comparison page.
    
 4) "Call home" functionality
-   The library has telemetry for its own purposes: A hit is sent to the Author's Google Analytics property for the 
-   purpose of monitoring the proper usage of the SOFTWARE LIBRARY. 
+   The library has telemetry for its own purposes: A hit is sent to the Author's Google Analytics property
+   for the purpose of monitoring the proper usage of the SOFTWARE LIBRARY. 
    The data sent comply with the rules above.
 
 5) The Author might contact you for matters related to the usage of the SOFTWARE LIBRARY.  
