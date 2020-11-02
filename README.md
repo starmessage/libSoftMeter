@@ -5,8 +5,8 @@ Category of library: Product analytics for software applications
 > ![SoftMeter application analytics logo](https://www.starmessagesoftware.com/myfiles/softmeter-icon-128x155.png)  
 > Listen to the heartbeat of your software
 
-SoftMeter (former libAppTelemetry) is a Windows, MacOS and IOS library that allows you to send usage statistics from your program to your Google Analytics property.  
-It is ideal for shareware developers as it extends the website usage data with the applications usage data.  
+SoftMeter is a Windows, MacOS and IOS product analytics library that allows you to send usage statistics from your program to your Google Analytics property.  
+It is ideal for shareware (free vs paid edition) developers as it extends the website usage data with the applications usage data.  
 Shareware developers for desktop programs can now see via *one* free reporting platform (Google Analytics), 1) how people use their website, *and* 2) how they are converted to also use the software on their desktop computer or laptops.
 
 The library can also be used in InnoSetup scripts and other installation packages, (e.g. Installaware) to track Setups and Uninstalls of your desktop software applications.
@@ -22,7 +22,7 @@ The library can also be used in InnoSetup scripts and other installation package
 ![Example of reporting dashboard for application analytics](https://www.starmessagesoftware.com/myfiles/softmeter-application-analytics-dashboard.png)
 
 This repository contains 
-- Delphi/Pascal, C++ and C# examples for Windows and MacOS X that show how to load the appTelemetry library and send page views from your shareware software to Google Analytics.
+- Delphi/Pascal, C++ and C# examples for Windows and MacOS X that show how to load the SoftMeter library and start tracking and monitoring your desktop software via Google Analytics.
 - the distributable library (DLL for Windows or .dylib for MacOS X) 
 - Inno Setup add-on (Inno Setup extension) scripts. 
   The script allows you to track the number (and location and much more) of your software's installations, by using Inno setup and Google analytics.
