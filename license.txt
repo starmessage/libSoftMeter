@@ -1,5 +1,5 @@
 ﻿======================================
-SoftMeter - License Agreement [v1.4.1]
+SoftMeter - License Agreement [v1.4.2]
 ======================================
 
 This License Agreement is a legal agreement between:
@@ -66,8 +66,8 @@ OBLIGATIONS AGAINST PERSONAL DATA PROCESSING AND PROTECTION
    You must provide a way for your end-users to review their decision and opt-in and out from the data collection 
    at any time.
 
-3) To operate in the EU and EEA, following the new GDPR law, the users of your software must opt-in before
-   the data collection starts.
+3) You must comply with all applicable laws  (e.g. GDPR) about the user consent to the collection of data and the 
+   protection of personal data.
 
 4) You can use the data only for monitoring your software's metrics (e.g. country distribution, number of installations,
    runtime executions, most used features, operating systems and versions, screen resolutions and similar anonymous data)
