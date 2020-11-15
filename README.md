@@ -39,13 +39,17 @@ This repository contains
  
 **Project Objectives:**
 
-Track the usage and instalations of your shareware program (and soon your mobile IOS app) via your existing Google Analytics account. 
+Track the usage and instalations of your Desktop software program and your mobile IOS app via your existing Google Analytics account or Matomo/Piwik installation, so that the website statitics do not stop after the download of your software. 
 
 **Operating system compatibility:**
 
 - Windows XP and later, 32/64 bit
-- MacOS 10.8 and later, 64 bit
+- MacOS 10.8 and later, Intel 64 bit, ARM64 M1 Apple silicon
 - IOS 8 and later
+
+**Compatibility per SoftMeter version**
+|Ver.|MacOS Min ver|MacOS architecture|Windows Min ver|Windows architecture|
+|1.4.1|10.7|x86 64bit|Windows XP|32,64 bit|
 
 **Keywords:**
 Application analytics
