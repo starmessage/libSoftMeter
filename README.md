@@ -49,6 +49,7 @@ Track the usage and instalations of your Desktop software program and your mobil
 
 **Compatibility per SoftMeter version**
 |Ver.|MacOS Min ver|MacOS architecture|Windows Min ver|Windows architecture|
+| --- | ---------- | ---------------- | ------------- | ------------------ |
 |1.4.1|10.7|x86 64bit|Windows XP|32,64 bit|
 
 **Keywords:**
