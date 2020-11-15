@@ -48,7 +48,7 @@ Track the usage and instalations of your Desktop software program and your mobil
 - IOS 8 and later
 
 **Compatibility per SoftMeter version**
-|Ver.|MacOS Min ver|MacOS architecture|Windows Min ver|Windows architecture|
+|SoftMeter Version|MacOS Min version|MacOS architecture|Windows Min version|Windows architecture|
 | --- | ---------- | ---------------- | ------------- | ------------------ |
 |1.4.1|10.7|x86 64bit|Windows XP|32,64 bit|
 
