@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS.   
 [[libSoftMeter website](https://www.starmessagesoftware.com/softmeter)] [[libSoftMeter on GitHub](https://github.com/starmessage/libSoftMeter)].
 
+## [1.4.2] - (unpublished)
+
+### Added
+- MacOS silicon (ARM64) support. Starting with v1.4.2, the dylib of SoftMeter will be distributed as "fat" universal file containing both architectures for intel's x86_64 and Apple's M1 processor, ARM64.
+To verify use the command:
+``` 
+lipo -info libSoftMeter.dylib
+```  
+The results should show:
+``` 
+Architectures in the fat file: libSoftMeter.dylib are: x86_64 arm64 
+```  
+
+### Changed
+- MacOS dylib: the minimum supported MacOS version had to change from 10.7 to MacOS 10.9.
+
 ## [1.4.1] - 2020-10-10
 
 ### Fixed
