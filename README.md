@@ -47,10 +47,11 @@ Track the usage and instalations of your Desktop software program and your mobil
 - MacOS 10.8 and later, Intel 64 bit, ARM64 M1 Apple silicon
 - IOS 8 and later
 
-**Compatibility per SoftMeter version**
+**Compatibility per SoftMeter version**  
+(Only versions that change the OS compatibily will be listed here)
 |SoftMeter Version|MacOS Min version|MacOS architecture|Windows Min version|Windows architecture|
 | --- | ---------- | ---------------- | ------------- | ------------------ |
-|1.4.1|10.7|x86 64bit|Windows XP|32,64 bit|
+|1.4.1 (latest)|10.7|x86 64bit|Windows XP|32,64 bit|
 
 **Keywords:**
 Application analytics
