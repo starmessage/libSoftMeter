@@ -7,7 +7,7 @@ SoftMeter is a free or low cost application analytics library for Windows, MacOS
 ## [1.4.2] - 2020-11-20
 
 ### Added
-- MacOS silicon (ARM64) support. Starting with v1.4.2, the dylib of SoftMeter will be distributed as "fat" universal file containing both architectures for intel's x86_64 and Apple's M1 processor, ARM64.
+- [MacOS silicon (ARM64) support](https://www.starmessagesoftware.com/blog/compile-macos-desktop-application-arm64-apple-silicon-m1-chip-cpu). Starting with v1.4.2, the dylib of SoftMeter will be distributed as "fat" universal file containing both architectures for intel's x86_64 and Apple's M1 processor, ARM64.
 To verify use the command:
 ``` 
 lipo -info libSoftMeter.dylib
