@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////
 //
 //  main.cpp
 //  SoftMeter test in C++
@@ -23,7 +23,7 @@
     #endif
 #endif
 
-const TCHAR 	*appVer = _T("108"),
+const TCHAR 	*appVer = _T("109"),
             *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
             *appEdition = _T("console");
 

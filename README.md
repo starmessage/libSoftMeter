@@ -51,7 +51,8 @@ Track the usage and instalations of your Desktop software program and your mobil
 (Only versions that change the OS compatibily will be listed here)
 |SoftMeter Version|MacOS Min version|MacOS architecture|Windows Min version|Windows architecture|
 | --- | ---------- | ---------------- | ------------- | ------------------ |
-|1.4.1 (latest)|10.7|x86 64bit|Windows XP|32,64 bit|
+|1.4.2 (latest)|10.9|x86-64bit, ARM64 (Apple silicon M1)|Windows XP|32,64 bit|
+|1.4.1|10.7|x86 64bit|Windows XP|32,64 bit|
 
 **Keywords:**
 Application analytics
