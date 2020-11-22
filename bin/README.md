@@ -5,14 +5,14 @@ SoftMeter is a Windows, MacOS and IOS library that allows you to monitor the usa
 
 ## Description of files
 
-|File|Description|
-|----------|-------------|
-|libSoftMeter.dll|Windows 32 bit DLL. Suitable for 32 and 64 bit of Windows.|
-|libSoftMeter64.dll|Windows 64 bit DLL. Suitable for 64 bit of Windows.|
-|libSoftMeter.dylib|MacOS dylib for 64 bit systems.|
-|libSoftMeter-IOS.framework|IOS framework.|
-|cpp-demo-mac|The MacOS sample executable.  Place it in the same folder with the dylib. You might need to run the command "chmod a+x cpp-demo-mac" after you download the file.|
-|cpp-demo-win.exe|The Windows sample executable. Place it in the same folder with the DLL.| 
+|File|Description|Old versions|
+|----------|-------------|-----|
+|libSoftMeter.dll|Windows 32 bit DLL. Suitable for 32 and 64 bit of Windows.| |
+|libSoftMeter64.dll|Windows 64 bit DLL. Suitable for 64 bit of Windows.| |
+|libSoftMeter.dylib|MacOS dylib for 64 bit systems.|[v1.4.1](https://github.com/starmessage/libSoftMeter/raw/9bd232970c7a531dcdf9f916cadbdb2f5084de41/bin/libSoftMeter.dylib)|
+|libSoftMeter-IOS.framework|IOS framework.| |
+|cpp-demo-mac|The MacOS sample executable.  Place it in the same folder with the dylib. You might need to run the command "chmod a+x cpp-demo-mac" after you download the file.|[v1.4.1](https://github.com/starmessage/libSoftMeter/raw/9bd232970c7a531dcdf9f916cadbdb2f5084de41/bin/cpp-demo-mac)|
+|cpp-demo-win.exe|The Windows sample executable. Place it in the same folder with the DLL.| |
  
 ## SoftMeter DLLs calling conventions for Windows
 To ease the life of the Windows applications developer, the SoftMeter DLLs have both __cdecl and __stdcall calling conventions.  
