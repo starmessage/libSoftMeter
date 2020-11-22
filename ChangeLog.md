@@ -18,7 +18,7 @@ Architectures in the fat file: libSoftMeter.dylib are: x86_64 arm64
 ```  
 
 ### Changed
-- MacOS dylib: the minimum supported MacOS version had to change from 10.7 to MacOS 10.9.
+- MacOS dylib: the minimum supported MacOS version had to change from OS X Lion 10.7 to OS X Mavericks 10.9.
 - Internal improvements
 
 ## [1.4.1] - 2020-10-10
