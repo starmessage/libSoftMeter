@@ -5,7 +5,7 @@ SoftMeter is a Windows, MacOS and IOS library that allows you to monitor the usa
 
 ## Description of files
 
-|File|Description|Old versions|
+|File|Description|Download old versions|
 |----------|-------------|-----|
 |libSoftMeter.dll|Windows 32 bit DLL. Suitable for 32 and 64 bit of Windows.| |
 |libSoftMeter64.dll|Windows 64 bit DLL. Suitable for 64 bit of Windows.| |
