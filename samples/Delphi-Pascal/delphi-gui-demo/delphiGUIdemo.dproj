@@ -92,8 +92,8 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="softMeter_globalVar.pas"/>
-        <DCCReference Include="..\pascal-console-demo\dll_loader.pas"/>
-        <DCCReference Include="..\pascal-console-demo\dll_loaderAppTelemetry.pas"/>
+        <DCCReference Include="..\dll_loader.pas"/>
+        <DCCReference Include="..\dll_loaderAppTelemetry.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

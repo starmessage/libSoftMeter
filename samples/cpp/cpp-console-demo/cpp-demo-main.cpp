@@ -91,6 +91,7 @@ bool testTheAllInOneFunctions(const TCHAR *appName, const TCHAR *aPropertyID)
 
 
 #ifdef _WIN32
+// Event hits are sent only by SoftMeter PRO 
 bool testTheSend_aio_Event_stdcall(const TCHAR *appName, const TCHAR *aPropertyID)
 {
 	// testing aio_sendEvent_stdcall()
@@ -234,6 +235,7 @@ int main(int argc, const char * argv[])
             std::cout << "sendPageview returned False\n";
 
         // 2nd hit
+        // Event hits are sent only by SoftMeter PRO 
         std::cout << "Will send a Event hit" << std::endl;
         if (!softmeterLib.sendEvent("AppLaunch", appName, 1))
             std::cout << "sendEvent returned False\n";

@@ -42,18 +42,28 @@ uses softMeter_globalVar;
 
 
 procedure TForm1.Button1Click(Sender: TObject);
+var success: BOOL;
 begin
-  dllSoftMeter.sendEvent('Important events', 'Button 1 clicked', 1);
+  // events are sent only by the PRO edition
+  success := dllSoftMeter.sendEvent('Important events', 'Button 1 clicked', 1);
+  if (not(success)) then
+    ShowMessage('sendEvent() returned false');
   ShowMessage('Button clicked. An "event" hit should appear in your GA. You can see it immediately under real-time reporting.');
 end;
 
+
 procedure TForm1.FormShow(Sender: TObject);
+var success: BOOL;
 begin
   // send a pageView hit on Form Show
-  dllSoftMeter.sendPageview( 'MainForm/' , 'MainForm' );
-  // or send screenView
-  dllSoftMeter.sendScreenView('MainForm');
+  success := dllSoftMeter.sendPageview( 'MainForm/' , 'MainForm' );
+  if (not(success)) then
+    ShowMessage('sendPageview() returned false');
 
+  // or send screenView
+  success := dllSoftMeter.sendScreenView('MainForm');
+  if (not(success)) then
+    ShowMessage('sendScreenView() returned false');
 end;
 
 

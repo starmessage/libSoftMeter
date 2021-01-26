@@ -1,0 +1,63 @@
+Microsoft (R) COFF/PE Dumper Version 14.27.29111.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file libSoftMeter64.dll
+
+File Type: DLL
+
+  Section contains the following exports for libSoftMeter64.dll
+
+    00000000 characteristics
+    FFFFFFFF time date stamp
+        0.00 version
+           1 ordinal base
+          34 number of functions
+          34 number of names
+
+    ordinal hint RVA      name
+
+         13    0 000012C0 aio_sendEvent
+          1    1 000012C0 aio_sendEvent_stdcall
+         14    2 0000A820 disableLogfile
+          2    3 0000A820 disableLogfile_stdcall
+         15    4 0000A830 enableLogfile
+          3    5 0000BC00 enableLogfile_stdcall
+          4    6 0000A790 getAnonymizedUserID
+         16    7 0000A7E0 getLogFilename
+         17    8 0000A7E0 getLogFilename_cdecl
+          5    9 0000A7E0 getLogFilename_stdcall
+         18    A 0000A780 getVersion
+         19    B 0000A780 getVersion_cdecl
+          6    C 0000A780 getVersion_stdcall
+         20    D 0000BB70 sendEvent
+         21    E 0000BB70 sendEvent_cdecl
+          7    F 0000BB70 sendEvent_stdcall
+         22   10 0000BBC0 sendException
+         23   11 0000BBC0 sendException_cdecl
+          8   12 0000BBC0 sendException_stdcall
+         24   13 0000BB40 sendPageview
+         25   14 0000BB40 sendPageview_cdecl
+          9   15 0000BB40 sendPageview_stdcall
+         26   16 0000BBA0 sendScreenview
+         27   17 0000BBA0 sendScreenview_cdecl
+         10   18 0000BBA0 sendScreenview_stdcall
+         28   19 0000BBE0 setCustomDimension
+         29   1A 0000ADE0 setOptions
+         30   1B 0000ADE0 setOptions_cdecl
+         31   1C 0000AFD0 start
+         32   1D 0000BC10 start_cdecl
+         11   1E 0000BC10 start_stdcall
+         33   1F 0000BA80 stop
+         34   20 0000BC20 stop_cdecl
+         12   21 0000BC20 stop_stdcall
+
+  Summary
+
+        7000 .data
+        8000 .pdata
+       2B000 .rdata
+        2000 .reloc
+        1000 .rsrc
+       96000 .text
+        1000 _RDATA
