@@ -90,6 +90,7 @@ enum softMeterExtraInfo { eiUseScreenviews=1,  eiTotalRam=2, eiFreeRam=4, eiCPUc
 // - appLicense examples: free/trial/full/paid/etc
 // - appEdition examples: Apple store/Special build/Standard/IOS/Mac/Win/etc
 // Must be called before any of the sendXXXX() functions
+// Returns true on success
 EXPORT_API  bool CALL_CONV start(const TCHAR *appName, const TCHAR *appVersion,
 							const TCHAR *appLicense, const TCHAR *appEdition,
 							const TCHAR *propertyID, const bool  userGaveConsent);

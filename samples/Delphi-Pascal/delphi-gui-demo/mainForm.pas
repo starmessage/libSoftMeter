@@ -44,11 +44,15 @@ uses softMeter_globalVar;
 procedure TForm1.Button1Click(Sender: TObject);
 var success: BOOL;
 begin
+  // The free edition has a limit also on the number of hits (2) that can be sent per program run.
+  // So the call to sendPageview() might be successful the first time but return false on the next times.
+
   // events are sent only by the PRO edition
-  success := dllSoftMeter.sendEvent('Important events', 'Button 1 clicked', 1);
+  // success := dllSoftMeter.sendEvent('Important events', 'Button 1 clicked', 1);
+  success := dllSoftMeter.sendPageview( 'MainForm/Btn1' , 'Button clicked' );
   if (not(success)) then
-    ShowMessage('sendEvent() returned false');
-  ShowMessage('Button clicked. An "event" hit should appear in your GA. You can see it immediately under real-time reporting.');
+    ShowMessage('sendPageview() returned false. Examine the error log.');
+  ShowMessage('Button clicked. A hit should appear in your GA. You can see it immediately under real-time reporting.');
 end;
 
 
@@ -61,9 +65,9 @@ begin
     ShowMessage('sendPageview() returned false');
 
   // or send screenView
-  success := dllSoftMeter.sendScreenView('MainForm');
-  if (not(success)) then
-    ShowMessage('sendScreenView() returned false');
+  // success := dllSoftMeter.sendScreenView('MainForm');
+  // if (not(success)) then
+  //  ShowMessage('sendScreenView() returned false');
 end;
 
 
