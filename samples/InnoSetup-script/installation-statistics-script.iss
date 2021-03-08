@@ -5,20 +5,20 @@
 Title:          Installation statistics via Google Analytics Add-on for Inno Setup
 Copyright:      (C) StarMessage software
 Web:            http://www.StarMessageSoftware.com/softmeter/
-Script Version: 1.2.3
+Script Version: 1.2.5
 Compatibility:  SoftMeter v1.1 and above
-Purpose:	      Monitor via the free Google Analytics platform important information about
+Purpose:	    Monitor via the free Google Analytics platform important information about
                 the distribution and installation of your shareware/software. E.g. number
                 of installations per month, countries of your user base, screen resolutions,
                 operating systems, versions of your software, etc.
                 You can even see real-time data from Google Analytics.
                 With SoftMeter and this InnoSetup script you can achieve to have this
                 information withing an hour or two of development effort.
-E-mail:			    sales -at- starmessage.info
-				        (For support and suggestions)
+E-mail:			sales -at- starmessage.info
+                (For support and suggestions)
 
 Information from Inno Setup about the use of DLLs in the innosetup scripts
-	http://www.jrsoftware.org/ishelp/index.php?topic=scriptdll
+    http://www.jrsoftware.org/ishelp/index.php?topic=scriptdll
 
 Usage:
  - Check that you have enabled the Inno Setup Preprocessor (ISPP)
@@ -26,13 +26,13 @@ Usage:
    The "Inno setup Quick start pack" installation prompts you to include it.
 
  - Download from our GitHub space https://github.com/starmessage/libSoftMeter
-	(a) installation-statistics-script.iss (this file)
-	(b) inno-statistics-config.iss,
-	(c) libSoftMeter.dll
-	There are two versions of the DLL available:
-	 		64bit: Runs on 64-bit versions of Windows.
-	 		32bit: Runs on all versions of Windows.
-	There is only a non-Unicode (aka Ansi) version of the DLL. If you want a Unicode version, please let us know.
+    (a) installation-statistics-script.iss (this file)
+    (b) inno-statistics-config.iss,
+    (c) libSoftMeter.dll
+    There are two versions of the DLL available:
+             64bit: Runs on 64-bit versions of Windows.
+             32bit: Runs on all versions of Windows.
+    There is only a non-Unicode (aka Ansi) version of the DLL. If you want a Unicode version, please let us know.
 
  - Copy these files to the same folder as your inno setup script
 
@@ -52,45 +52,45 @@ Usage:
     in your main .iss script, just above your [code] section
 
  - Decide which Google Analytics property you will use for the tracking.
-   	In GA there are two reporting view types "Website" and "Mobile App"
-	This installer script can work with any of them because it uses Event hits that are recorded by both types of views.
+       In GA there are two reporting view types "Website" and "Mobile App"
+    This installer script can work with any of them because it uses Event hits that are recorded by both types of views.
 
  - Edit the file "inno-statistics-config.iss" to add your PropertyID and the DLL filename name.
 
- - Decide on the variables: AppName, AppVersion, AppLicense, AppEdition.
-   	Some of these can be automatically taken from the constants of your main .iss script.
-	 	e.g. AppVersion is {AppVersion}
+ - Put values to the variables: AppName, AppVersion, AppLicense, AppEdition.
+       Some of these can be automatically taken from the constants of your main .iss script.
+         e.g. AppVersion is {AppVersion}, so that you have less maintainance when releasing new versions.
 
  - In your [code] section of your main script, call trackInstallation() during the installation
-   	e.g.
-		function InitializeSetup(): Boolean;
-		// Called during Setup's initialization. Return False to abort Setup, True otherwise.
-		begin
-			trackInstallation('StarMessage screensaver', '1.1', 'Trial', 'Windows', 'UA-1111-22');
-			result := true;
-		end;
+       e.g.
+        function InitializeSetup(): Boolean;
+        // Called during Setup's initialization. Return False to abort Setup, True otherwise.
+        begin
+            trackInstallation('StarMessage screensaver', '1.1', 'Trial', 'Windows', 'UA-1111-22');
+            result := true;
+        end;
 
  - call trackUninstall() during the uninstall
-		e.g.
-		function InitializeUninstall(): Boolean;
-		// Return False to abort Uninstall, True otherwise.
-		begin
-			trackUninstall('StarMessage screensaver', '1.1', 'Trial', 'Windows', 'UA-1111-22');
-			// Unload the dll, otherwise it will not be deleted by the uninstaller
-			UnloadDLL(ExpandConstant('{syswow64}\libSoftMeter.dll'));
-			result := true;
-		end;
+        e.g.
+        function InitializeUninstall(): Boolean;
+        // Return False to abort Uninstall, True otherwise.
+        begin
+            trackUninstall('StarMessage screensaver', '1.1', 'Trial', 'Windows', 'UA-1111-22');
+            // Unload the dll, otherwise it will not be deleted by the uninstaller
+            UnloadDLL(ExpandConstant('{syswow64}\libSoftMeter.dll'));
+            result := true;
+        end;
 
 Notes:
-	We recommend that you create a new Google property to track your software installations and
+    We recommend that you create a new Google property to track your software installations and
     not mix these figures with your website online traffic.
-	You can read more here: How to create and test a Mobile App reporting view in Google Analytics
-	https://www.starmessagesoftware.com/faq-page/how-to-create-mobile-app-reporting-view-google-analytics
+    You can read more here: How to create and test a Mobile App reporting view in Google Analytics
+    https://www.starmessagesoftware.com/faq-page/how-to-create-mobile-app-reporting-view-google-analytics
 
-	You must run the setup externally (not from inside the Inno Setup GUI).
-	The "Run" command of the inno setup GUI is a "sandboxed" command that will not extract the DLL and your tests will fail.
+    You must run the setup externally (not from inside the Inno Setup GUI).
+    The "Run" command of the inno setup GUI is a "sandboxed" command that will not extract the DLL and your tests will fail.
 
-	Contact me in case of questions or feedback.
+    Contact me in case of questions or feedback.
 
 *)
 
@@ -152,36 +152,43 @@ external 'stop@{app}\libSoftMeter.dll stdcall loadwithalteredsearchpath delayloa
 function uSendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
 external 'sendEvent@{app}\libSoftMeter.dll stdcall loadwithalteredsearchpath delayload uninstallonly';
 
-
+function uSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
+external 'sendPageview@{app}\libSoftMeter.dll stdcall loadwithalteredsearchpath delayload uninstallonly';
 
 
 procedure trackInstallation(appName, appVersion, appLicense, appEdition, PropertyID:PAnsiChar);
 var
-	eventAction: string;
+    hitText: string;
 begin
-	iStart(appName, appVersion, appLicense, appEdition, PropertyID, TRUE);
-	// Here we track the installation with a Google Analytics "Event" hit.
-	// Depending on the monitoring model you create for your software you can alternatively send PageViews or ScreenViews.
-	// In our model we decided that "Events" should be considered as milestones in the software's usage.
-	// E.g. Download, Installation, Registration, Uninstall.
-	// We send PageViews and  ScreenViews hits for the daily usage of the software.
-	// E.g. App launch, User went to settings screen, user created a new invoice, etc.
-	// With this separation we avoid having the important actions (e.g. installation)
-	// burried in the noise created by the high volume of PageViews or ScreenViews.
-	eventAction :=  appName + ' Install';
-	iSendEvent(PAnsiChar(eventAction), 'Install', 1);
+    iStart(appName, appVersion, appLicense, appEdition, PropertyID, TRUE);
+    // Here we track the installation with a Google Analytics "Event" hit.
+    // Depending on the monitoring model you create for your software you can alternatively send PageViews or ScreenViews.
+    // In our model we decided that "Events" should be considered as milestones in the software's usage.
+    // E.g. Download, Installation, Registration, Uninstall.
+    // We send PageViews and  ScreenViews hits for the daily usage of the software.
+    // E.g. App launch, User went to settings screen, user created a new invoice, etc.
+    // With this separation we avoid having the important actions (e.g. installation)
+    // burried in the noise created by the high volume of PageViews or ScreenViews.
+    hitText :=  appName + ' Install';
+    // event hits are available only in the SoftMeter PRO edition
+    // iSendEvent(PAnsiChar(hitText), 'Install', 1);
+    // So, for the free edition, you can send a pageView hit
+    iSendPageview(PAnsiChar(hitText), PAnsiChar(hitText));
     iStop;
 end;
 
 
 procedure trackUninstall(appName, appVersion, appLicense, appEdition, PropertyID:PAnsiChar);
 var
-	eventAction: string;
+    hitText: string;
 begin
-	uStart(appName, appVersion, appLicense, appEdition, PropertyID, TRUE);
-	eventAction :=  appName + ' Uninstall';
-	uSendEvent(PAnsiChar(eventAction), 'Uninstall', -1);
-	uStop;
+    uStart(appName, appVersion, appLicense, appEdition, PropertyID, TRUE);
+    hitText :=  appName + ' Uninstall';
+    // event hits are available only in the SoftMeter PRO edition
+    // uSendEvent(PAnsiChar(hitText), 'Uninstall', -1);
+    // So, for the free edition, you can send a pageView hit
+    uSendPageview(PAnsiChar(hitText), PAnsiChar(hitText));
+    uStop;
 end;
 
 

@@ -1,6 +1,6 @@
 [code]
 
-// define the filename of the DLL.
+// Define the filename of the DLL.
 // You can use the default filename libSoftMeter.dll or 
 // change the filename to include also your application's name.
 // e.g. MyApp-libSoftMeter.dll
