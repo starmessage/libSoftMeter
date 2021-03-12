@@ -5,9 +5,9 @@
 Title:          Installation statistics via Google Analytics Add-on for Inno Setup
 Copyright:      (C) StarMessage software
 Web:            http://www.StarMessageSoftware.com/softmeter/
-Script Version: 1.3.1
+Script Version: 1.3.2
 Compatibility:  SoftMeter v1.1 and above
-Purpose:	    Monitor via the free Google Analytics platform important information about
+Purpose:	      Monitor via the free Google Analytics platform important information about
                 the distribution and installation of your shareware/software. E.g. number
                 of installations per month, countries of your user base, screen resolutions,
                 operating systems, versions of your software, etc.
@@ -15,7 +15,7 @@ Purpose:	    Monitor via the free Google Analytics platform important informatio
                 With SoftMeter and this InnoSetup script you can achieve to have this
                 information withing an hour or two of development effort.
                 SoftMeter can also work with Matomo/Piwik instead of Google Analytics.
-E-mail:			sales -at- starmessage.info
+E-mail:			    sales -at- starmessage.info
                 (For support and suggestions)
 
 Information from Inno Setup about the use of DLLs in the innosetup scripts
@@ -50,8 +50,9 @@ Usage:
  - Add a [code] section in your main script (if you do not already have a [code] section)
 
  - In the [code] section of your main script add the following lines (in this order): 
-    #include "inno-statistics-config.iss"
-    #Include "inno-statistics.iss"
+   Prefix each line with the hash symbol (#) before the 'include'.
+    include "inno-statistics-config.iss"
+    Include "inno-statistics.iss"
     
  - Edit the file "inno-statistics-config.iss" to add your Google Analytics PropertyID and the rest of 
    your software parameters. If you have a SoftMeter PRO license you should also add your SubscriptionID.
