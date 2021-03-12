@@ -1,4 +1,6 @@
-## How to remotely monitor the Inno Setop installations and uninstalls of your Windows software
+## How to remotely monitor the Inno Setop installations and uninstalls of your Windows desktop software
+
+### Installation analytics
 
 With SoftMeter, you can get statistics on the number of installs and uninstalls of your software, even in real-time.  
 You can find here the code samples to embed SoftMeter in the Inno Setup package of your Windows software.  
