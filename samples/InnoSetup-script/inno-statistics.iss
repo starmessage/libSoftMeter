@@ -5,7 +5,7 @@
 Title:          Installation statistics via Google Analytics Add-on for Inno Setup
 Copyright:      (C) StarMessage software
 Web:            http://www.StarMessageSoftware.com/softmeter/
-Script Version: 1.3
+Script Version: 1.3.1
 Compatibility:  SoftMeter v1.1 and above
 Purpose:	    Monitor via the free Google Analytics platform important information about
                 the distribution and installation of your shareware/software. E.g. number
@@ -51,7 +51,7 @@ Usage:
 
  - In the [code] section of your main script add the following lines (in this order): 
     #include "inno-statistics-config.iss"
-    #Include 'inno-statistics.iss'
+    #Include "inno-statistics.iss"
     
  - Edit the file "inno-statistics-config.iss" to add your Google Analytics PropertyID and the rest of 
    your software parameters. If you have a SoftMeter PRO license you should also add your SubscriptionID.
