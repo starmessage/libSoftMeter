@@ -20,10 +20,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
 
-
   private
     { Private declarations }
-
 
   public
     { Public declarations }
@@ -52,6 +50,7 @@ begin
   success := dllSoftMeter.sendPageview( 'MainForm/Btn1' , 'Button clicked' );
   if (not(success)) then
     ShowMessage('sendPageview() returned false. Examine the error log.');
+    
   ShowMessage('Button clicked. A hit should appear in your GA. You can see it immediately under real-time reporting.');
 end;
 

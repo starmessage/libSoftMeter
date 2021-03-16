@@ -45,7 +45,7 @@
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <DCC_DcuOutput>$(temp)\$(Platform)\$(Config)</DCC_DcuOutput>
-        <DCC_ExeOutput>c:\tmp\DelphiGUIdemo\$(Platform)\$(Config)</DCC_ExeOutput>
+        <DCC_ExeOutput>c:\Τmp\DelphiGUIdemo\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
         <DCC_S>false</DCC_S>

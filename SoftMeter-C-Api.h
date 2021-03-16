@@ -17,15 +17,14 @@
     #endif
 #endif
  
-
+// See the API changeLog at
+// https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md
 
 // Q: Where are the all-in-one functions?
 // A: The "All-in-one" functions are defined in SoftMeter-C-Api-AIO.h
 
-// See the API changeLog at
-// https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md
 
-// get the version string of the library. 
+// get the version of the library. 
 // ToDo: convert it to take the string in the parameters, getVersion(TCHAR* ver, int nMaxLen);
 EXPORT_API const TCHAR* CALL_CONV getVersion(void);
 

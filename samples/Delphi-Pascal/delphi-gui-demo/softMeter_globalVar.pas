@@ -83,7 +83,7 @@ initialization
     try
         startResult := dllSoftMeter.start(AppName, AppVersion, AppLicense, AppEdition, GooglePropertyID, userGaveConsent );
     Except
-        ShowMessage('Exception while calling  dllSoftMeter.start');
+        ShowMessage('Exception while calling dllSoftMeter.start');
     end;
     if not startResult then
         ShowMessage('start() returned false');
