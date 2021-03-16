@@ -47,6 +47,7 @@ begin
 
   // events are sent only by the PRO edition
   // success := dllSoftMeter.sendEvent('Important events', 'Button 1 clicked', 1);
+  // So we send here a pageView that is ok for the Free edition
   success := dllSoftMeter.sendPageview( 'MainForm/Btn1' , 'Button clicked' );
   if (not(success)) then
     ShowMessage('sendPageview() returned false. Examine the error log.');
