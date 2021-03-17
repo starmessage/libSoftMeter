@@ -3,7 +3,7 @@
 
 // This is the SoftMeter configuration script for Inno setup.
 // Here you need to provide the information of your application and your google account propertyID.
-// Script Version: 1.3
+// Script Version: 1.3.1
 // Get the latest version from
 // https://github.com/starmessage/libSoftMeter/blob/master/samples/InnoSetup-script/inno-statistics-config.iss
 
@@ -27,7 +27,7 @@ const trackAppEdition = 'Windows';  // or whatever describes the installed appli
 // and fill in the ID and Type as described in the email with your license.
 const softMeterSubscription = FALSE;
 const softMeterSubscriptionID = '1234';  
-const softMeterSubscriptionType = '5';  
+const softMeterSubscriptionType = '2';  
 
 // During the debug you can enable the softMeter log file.
 const softMeterDebug_EnableLog = FALSE;
