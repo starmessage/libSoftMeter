@@ -26,8 +26,6 @@ const trackAppEdition = 'Windows';  // or whatever describes the installed appli
 // If you have a SoftMeter PRO subscription, set softMeterSubscription to TRUE 
 // and fill in the ID and Type as described in the email with your license.
 const softMeterSubscription = FALSE;
-// const softMeterSubscriptionIDparam = 'subscriptionID=199688';  
-// const softMeterSubscriptionTypeparam = 'subscriptionType=5';  
 const softMeterSubscriptionID = '1234';  
 const softMeterSubscriptionType = '5';  
 
