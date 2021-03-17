@@ -18,7 +18,7 @@ const googlePropertyID = 'UA-1111-2';
 const trackAppName = '{#SetupSetting("AppName")}';  // this standard variable comes from the main inno script of your application  
 const trackAppVer = '{#SetupSetting("AppVersion")}'; // this standard variable comes from the main inno script of your application 
 const trackAppLicense = 'Trial';    // or whatever describes the installed application's license
-const trackAppEdition = 'Windows';  // or whatever describes the installed application's edition
+const trackAppEdition = 'Standard';  // or whatever describes the installed application's edition
 
 
                                                                              
