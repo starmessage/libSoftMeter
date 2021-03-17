@@ -133,13 +133,13 @@ function uSendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
 external 'sendPageview@{app}\{#smDllName} stdcall loadwithalteredsearchpath delayload uninstallonly';
 
 procedure uEnableLogfile(appName, macBundleID:PAnsiChar);
-external 'enableLogfile@{app}:{#smDllName} stdcall loadwithalteredsearchpath delayload uninstallonly';
+external 'enableLogfile@{app}\{#smDllName} stdcall loadwithalteredsearchpath delayload uninstallonly';
 
 function uSetOptions(developerOptions:PAnsiChar): BOOL ;
-external 'setOptions@{app}:{#smDllName} stdcall loadwithalteredsearchpath delayload uninstallonly';
+external 'setOptions@{app}\{#smDllName} stdcall loadwithalteredsearchpath delayload uninstallonly';
 
 function uGetLogFilename: PAnsiChar;
-external 'getLogFilename@{app}:{#smDllName} stdcall loadwithalteredsearchpath delayload uninstallonly';
+external 'getLogFilename@{app}\{#smDllName} stdcall loadwithalteredsearchpath delayload uninstallonly';
 
 
 procedure trackInstallation(appName, appVersion, appLicense, appEdition, PropertyID:PAnsiChar);
