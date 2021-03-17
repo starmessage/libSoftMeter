@@ -3,13 +3,12 @@
 
 // This is the SoftMeter configuration script for Inno setup.
 // Here you need to provide the information of your application and your google account propertyID.
-// Script Version: 1.3.1
+// Script Version: 1.3.2
 // Get the latest version from
 // https://github.com/starmessage/libSoftMeter/blob/master/samples/InnoSetup-script/inno-statistics-config.iss
 
 
 // Define your google property ID that will be receiving the installation / uninstallation events
-// const googlePropertyID = 'PRO-3372-UA-385839-13';
 const googlePropertyID = 'UA-1111-2';
 
 // your application details 
