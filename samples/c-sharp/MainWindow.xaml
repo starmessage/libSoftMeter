@@ -10,7 +10,8 @@
         <Button Content="Send an event hit" HorizontalAlignment="Left" Margin="108,92,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.69,0.734" Width="128"/>
         <Button Content="Send a pageView hit" HorizontalAlignment="Left" Margin="258,92,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.609,0.637" Width="128"/>
         <Label Content="A screenView hit is sent when this window appears" HorizontalAlignment="Left" Margin="108,47,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblLibVer" Content="SoftMeter version:" HorizontalAlignment="Left" Margin="108,139,0,0" VerticalAlignment="Top" Width="150"/>
+        <Label x:Name="lblLibVer" Content="vX.XX" Margin="346,134,104,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblLibVer_label" Content="SoftMeter version as read from the DLL:" HorizontalAlignment="Left" Margin="108,134,0,0" VerticalAlignment="Top" Width="238"/>
 
     </Grid>
 </Window>
