@@ -36,6 +36,9 @@ public static class SoftMeterDLL
     internal static extern void disableLogfile();
 
     [DllImport(DLL_FILE_NAME)]
+    internal static extern bool setOptions([MarshalAs(UnmanagedType.LPStr)]string developerOptions);
+
+    [DllImport(DLL_FILE_NAME)]
     internal static extern bool start([MarshalAs(UnmanagedType.LPStr)]string appName, [MarshalAs(UnmanagedType.LPStr)]string appVersion,
                                         [MarshalAs(UnmanagedType.LPStr)]string appLicense, [MarshalAs(UnmanagedType.LPStr)]string appEdition,
                                         [MarshalAs(UnmanagedType.LPStr)]string propertyID, bool userGaveConsent);

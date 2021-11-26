@@ -111,10 +111,12 @@ EXPORT_API  bool CALL_CONV sendPageview(const TCHAR *pagePath, const TCHAR *page
 // It will process your request asynchronously.
 EXPORT_API  bool CALL_CONV sendScreenview(const TCHAR *screenName);
 
-// optionally call sendEvent() to log events in Google Analytics.
+// optionally, call sendEvent() to log events in Google Analytics.
 // With the events, you have an alternative way of tracking your program.
 // You can use events to mark some important milestones in the use of your program,
 // e.g. the user enters a registration code to convert the free trial to a full version.
+// Google Analytics suggests that before sending an event, you must send a pageView or screenView 
+//   so that the event is considered that took place on that page or screen.
 // It will process your request asynchronously
 EXPORT_API  bool CALL_CONV sendEvent(const TCHAR *eventAction, const TCHAR *eventLabel, const int eventValue );
 
