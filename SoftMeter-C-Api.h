@@ -97,7 +97,6 @@ EXPORT_API  bool CALL_CONV start(const TCHAR *appName, const TCHAR *appVersion,
 // stop the library. 
 // The function will wait for a maximum of 3 seconds for all pending async calls 
 // to gracefully finish.
-// After stopping the library, you can call again start() if you need to reuse it.
 EXPORT_API  void CALL_CONV stop(void);
 
 // Use sendPageview() if you are monitoring your app via a Google Analytics "Website" reporting view.
