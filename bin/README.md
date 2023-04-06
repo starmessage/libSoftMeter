@@ -1,6 +1,6 @@
 ﻿# SoftMeter libraries (.dll, .dylib, .framework)
 
-SoftMeter is a Windows, MacOS and IOS library that allows you to monitor the usage of your software program (installs, uninstalls, number of daily/monthly users, countries, OS, etc) via your Google Analytics property.  
+SoftMeter is a Windows, MacOS and IOS library that allows you to monitor the usage of your software program (installs, uninstalls, number of daily/monthly users, countries, OS, etc) via your Google Analytics 4 property (G-xxxxxxxxx).  
 - Go to [SoftMeter website](https://www.StarMessageSoftware.com/softmeter) for more information.  
 
 ## Description of files
@@ -11,8 +11,8 @@ SoftMeter is a Windows, MacOS and IOS library that allows you to monitor the usa
 |libSoftMeter64.dll|Windows 64 bit DLL. Suitable for 64 bit of Windows.| |
 |libSoftMeter.dylib|MacOS dylib for 64 bit systems.|[v1.4.1](https://github.com/starmessage/libSoftMeter/raw/9bd232970c7a531dcdf9f916cadbdb2f5084de41/bin/libSoftMeter.dylib)|
 |libSoftMeter-IOS.framework|IOS framework.| |
-|cpp-demo-mac|The MacOS sample command-line executable.  Place it in the same folder with the dylib. You might need to run the command "chmod a+x cpp-demo-mac" after you download the file.|[v1.4.1](https://github.com/starmessage/libSoftMeter/raw/9bd232970c7a531dcdf9f916cadbdb2f5084de41/bin/cpp-demo-mac)|
-|cpp-demo-win.exe|The Windows sample command-line executable. Place it in the same folder with the DLL.| |
+|cpp-demo-mac|The MacOS sample command-line executable. Place it in the same folder with the dylib. You might need to run the command "chmod a+x cpp-demo-mac" after you download the file.<br/>How to run:<br/>./cpp-demo-mac yourMeasurementID yourApiSecret|[v1.4.1](https://github.com/starmessage/libSoftMeter/raw/9bd232970c7a531dcdf9f916cadbdb2f5084de41/bin/cpp-demo-mac)|
+|cpp-demo-win.exe|The Windows sample command-line executable. Place it in the same folder with the DLL.<br/>How to run:<br/>cpp-demo-mac yourMeasurementID yourApiSecret| |
  
 ## How to send text hits to your Google Account (Universal Analytics) property
 Using the provided utilities, follow [these instructions](https://www.starmessagesoftware.com/faq-page/how-to-create-mobile-app-reporting-view-google-analytics) to configure your Google Analytics property and text it.
