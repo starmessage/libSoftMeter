@@ -16,6 +16,7 @@ The library can also be used in InnoSetup scripts and other installation package
 - [ChangeLog](https://github.com/starmessage/libSoftMeter/blob/master/ChangeLog.md)
 
 **How it works with Google Analytics**
+
 ![Application analytics / usage analytics](https://www.starmessagesoftware.com/myfiles/how-it-works-softmeter-usage-analytics.png)
 
 **Example of application analytics reporting dashboard**
