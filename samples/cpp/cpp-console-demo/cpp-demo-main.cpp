@@ -23,7 +23,7 @@
     #endif
 #endif
 
-const TCHAR 	*appVer = _T("109"),
+const TCHAR 	*appVer = _T("110"),
             *appLicense = _T("demo"), // e.g. free, trial, full, paid, etc.
             *appEdition = _T("console");
 
@@ -60,15 +60,29 @@ const bool userGaveConsent = true;
 #endif
 
 
+enum eCommandLineParameterIndexes
+{
+    idx_programName = 0,
+    idx_measurementID = 1,
+    idx_ApiSecret = 2,
+    idx_proxyAddress = 3,
+    idx_proxyPort = 4,
+    idx_proxyUsername = 5,
+    idx_proxyPassword = 6
+};
+
+
 bool checkCommandLineParams(int argc, const char * argv[])
 {
-	if ((argc!=2) // run with one parameter, the PropertyID
-        && (argc!=4) // run with 3 parameters, with Proxy Address and Proxy port
-        && (argc!=7) // run with 3 parameters, proxy username, proxy password, proxy auth schemeID
+    const int nParams = argc - 1;
+
+	if ((nParams != idx_ApiSecret) // run with two parameters, the PropertyID
+        && (nParams != idx_proxyPort) // run with 3 parameters, with Proxy Address and Proxy port
+        && (nParams != idx_proxyPassword) // run with 3 parameters, proxy username, proxy password, proxy auth schemeID
         )
 		return false;
 
-	return (strncmp(argv[1], "UA-", 3) == 0); // chech if the 1st parameter starts with UA-
+	return (strncmp(argv[1], "G-", 2) == 0); // chech if the 1st parameter starts with G-
 }
 
 
@@ -123,6 +137,8 @@ bool testTheSend_aio_Event_stdcall(const TCHAR *appName, const TCHAR *aPropertyI
 #endif
 
 
+
+
 int main(int argc, const char * argv[])
 {
 	// The filename of this program will be used as the program name submitted to G.A. reports.
@@ -137,24 +153,29 @@ int main(int argc, const char * argv[])
 		executableName.erase(0, positionOfSlash+1);
 	// std::cout << "EXE:" << executableName << std::endl;
 
+    std::cout << executableName << " v" << appVer << std::endl;
+    std::cout << "Since v110 this demo supports only GA4 properties" << std::endl;
+    std::cout << "www.StarMessageSoftware.com/softmeter" << std::endl;
+
 
 	if (!checkCommandLineParams(argc, argv))
 	{
-		std::cerr << "Error: the program must be called with a parameter specifying the google analytics property\nE.g.\n";
+		std::cerr << "Error: the program must be called with a parameter specifying the google analytics MeasurementID and then the secretKey\nE.g.\n";
 
         // std::cerr << argv[0] << " UA-1234-1\n";
         #ifdef _WIN32
-            std::cerr << "cpp-demo-win UA-1234-1\n";
+            std::cerr << "cpp-demo-win G-1234 mysectetkey\n";
         #else
-            std::cerr << "./cpp-demo-mac UA-1234-1\n";
+            std::cerr << "./cpp-demo-mac G-1234 mysectetkey\n";
         #endif
 		return 10;
 	}
 
-	if (!argv[1])
+	if (!argv[idx_ApiSecret])
 		return 11;
 
-    const std::string gaPropertyID(argv[1]);
+    const std::string gaPropertyID(argv[idx_measurementID]);
+    const std::string gaApiSecret(argv[idx_ApiSecret]);
 
     // fictional appName and appVersion for your testing
     const TCHAR *appName = executableName.c_str();
@@ -222,6 +243,9 @@ int main(int argc, const char * argv[])
         softmeterLib.enableLogfile(appName, "com.company.appname");
         logFilename = softmeterLib.getLogFilename();
         std::cout << "SoftMeter log filename:" << logFilename << std::endl;
+
+        // set the apiSecret
+        softmeterLib.setOptions(("ApiSecret=" + gaApiSecret).c_str());
 
         // initialize the library with your program's name, version and google propertyID
         if (!softmeterLib.start(appName, appVer, appLicense, appEdition, gaPropertyID.c_str(), userGaveConsent))

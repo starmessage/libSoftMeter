@@ -57,15 +57,21 @@ You must call this function before the start() function.
     Note the \n character (aka, line feed, chr(10)) that separates the two parameters.
 
 2. Enabling collection of extra system info.
-   setOptions("ExtraInfo=31")
-   Where the value (31) is a bit mask of extra pieces of information:
-   1 = When ON, use Screenviews. Otherwise use Pageviews to send this information.
-   2 = Total RAM memory
-   4 = Free RAM memory (The numbers are rounded so that they appear in the reporting in aggregated groups) 
-   8 = Number of CPU cores
-  16 = CPU model, e.g. Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz
+   2.1 For GA4 properties (measurement_ID in the form of G-xxxxxx) 
+       The extra parameters are sent by default and only by SoftMeter PRO.
+   2.2. For Universal analytics properties (measurement_ID in the form of G-xxxxxx) 
+      setOptions("ExtraInfo=31")
+       Where the value (31) is a bit mask of extra pieces of information:
+       1 = When ON, use Screenviews. Otherwise use Pageviews to send this information.
+       2 = Total RAM memory
+       4 = Free RAM memory (The numbers are rounded so that they appear in the reporting in aggregated groups) 
+       8 = Number of CPU cores
+      16 = CPU model, e.g. Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz
  
-3. Passing the Proxy parameters
+3. Passing the API secret for GA4 properties:
+    setOptions("ApiSecret=xxxxYYYYYzzzzIIII");
+
+4. Passing the Proxy parameters
 	setOptions( "proxyAddress=192.1.127.123\n"
 				"proxyPort=808\n"
 				"proxyAuthScheme=2\n"
@@ -125,6 +131,11 @@ EXPORT_API  bool CALL_CONV sendEvent(const TCHAR *eventAction, const TCHAR *even
 EXPORT_API  bool CALL_CONV sendException(const TCHAR *exceptionDescription, const bool isFatal);
 
 // must be called after the call to start()
+EXPORT_API  bool CALL_CONV sendGA4Event(const TCHAR* eventJsonPayload);
+
+
+// must be called after the call to start()
+// Deprecated since v2.0.2
 EXPORT_API  bool CALL_CONV setCustomDimension(const int dimensionIndex, const TCHAR* dimensionValue);
 
 

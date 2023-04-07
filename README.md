@@ -53,8 +53,8 @@ Track the usage and instalations of your Desktop software program and your mobil
 (Only versions that change the OS compatibily will be listed here)
 |SoftMeter Version|MacOS Min version|MacOS architecture|Windows Min version|Windows architecture|
 | --- | ---------- | ---------------- | ------------- | ------------------ |
-|2.0.2|10.13|   | |32,64 bit|
-|1.4.4|    |   |Windows XP|32,64 bit|
+|2.0.2|10.13|   |Windows XP|32,64 bit|
+|1.4.4|     |   |Windows XP|32,64 bit|
 |1.4.2|10.9|x86-64bit, ARM64 (Apple silicon M1)| Windows XP|32,64 bit|
 |1.4.1|10.7|x86 64bit|Windows XP|32,64 bit|
 

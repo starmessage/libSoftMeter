@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS.   
 [[libSoftMeter website](https://www.starmessagesoftware.com/softmeter)] [[libSoftMeter on GitHub](https://github.com/starmessage/libSoftMeter)].
 
+## [2.0.2] - 2023-04-07
+- Internal improvements.
+- remove debug flag
+- Drop API function setCustomDimension
+- cpp-demo programs v110 support only GA4 properties (dropped support for Universal analytics UA-)
+Usage: cpp-demo-win G-xxxxxxx YourApiSecret
+
+
 ## [2.0.1] - 2023-01-11
 - Internal improvements.
 - Screen resolution, user language, CPU model and cores, Total and free memory are sent to Google Analytics 4 as user properties.
