@@ -1,5 +1,8 @@
-﻿********************************************
+********************************************
 * SAMPLE EULA for software using SoftMeter *
+* If you improve this file while including *
+* it in your software, please send us back *
+* your improvements.                       *
 ********************************************
 
 =====================================================================
