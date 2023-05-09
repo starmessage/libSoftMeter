@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS.   
 [[libSoftMeter website](https://www.starmessagesoftware.com/softmeter)] [[libSoftMeter on GitHub](https://github.com/starmessage/libSoftMeter)].
 
+
+## [2.0.3] - 2023-05-09
+- Internal improvements.
+
+- to send your GA4 hits as debug hits (visible under Admin->debug view), 
+  call:
+    setOptions("debugHits=On");
+  Must be called before calling the start() function.
+
+- new function 
+    bool setGA4UserProperty(const char* aPropertyName, const char* aPropertyValue);
+  sets a GA4 user property. You can add in this way many user properties.
+  Must be called before calling the start() function.
+  The PropertyName must not contain spaces or other special characters because the whole hit will be rejected by Google Analytics 4.
+
+
 ## [2.0.2] - 2023-04-07
 - Internal improvements.
 - remove debug flag

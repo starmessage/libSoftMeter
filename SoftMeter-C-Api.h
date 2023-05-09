@@ -83,6 +83,8 @@ You must call this function before the start() function.
    0 = no authentication, 2 = NTLM, 4 = Passport, 8 = Digest, 16 = Negotiate
  If the proxy does not need authentication, do not pass the parameters authScheme, username and password
  
+ 5. Enable the debug hits view of Google Analytics 4 (GA4-xxxxx)
+    setOptions("debugHits=On");
  
 */
 EXPORT_API  const bool CALL_CONV setOptions(const TCHAR *developerOptions);
@@ -130,8 +132,12 @@ EXPORT_API  bool CALL_CONV sendEvent(const TCHAR *eventAction, const TCHAR *even
 // if isFatal = true, the incident will be logged in Google analtytics as Crash
 EXPORT_API  bool CALL_CONV sendException(const TCHAR *exceptionDescription, const bool isFatal);
 
+// must be called before the call to start() as these user properties should be stable during the running of the application
+// Property names should not contain spaces or other special characters
+EXPORT_API  bool CALL_CONV setGA4UserProperty(const char* aPropertyName, const char* aPropertyValue);
+
 // must be called after the call to start()
-EXPORT_API  bool CALL_CONV sendGA4Event(const TCHAR* eventJsonPayload);
+EXPORT_API  bool CALL_CONV sendGA4Event(const char* eventJsonPayload);
 
 
 // must be called after the call to start()

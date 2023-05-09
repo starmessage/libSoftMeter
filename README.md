@@ -46,14 +46,14 @@ Track the usage and instalations of your Desktop software program and your mobil
 **Operating system compatibility:**
 
 - Windows XP and later, 32/64 bit
-- MacOS 10.8 and later, Intel 64 bit, ARM64 M1 Apple silicon
+- MacOS 10.813 and later, Intel 64 bit, ARM64 M1 Apple silicon
 - IOS 8 and later
 
 **Compatibility per SoftMeter version**  
 (Only versions that change the OS compatibily will be listed here)
 |SoftMeter Version|MacOS Min version|MacOS architecture|Windows Min version|Windows architecture|
 | --- | ---------- | ---------------- | ------------- | ------------------ |
-|2.0.2|10.13|   |Windows XP|32,64 bit|
+|2.0.3|10.13|   |Windows XP|32,64 bit|
 |1.4.4|     |   |Windows XP|32,64 bit|
 |1.4.2|10.9|x86-64bit, ARM64 (Apple silicon M1)| Windows XP|32,64 bit|
 |1.4.1|10.7|x86 64bit|Windows XP|32,64 bit|
