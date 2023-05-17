@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 SoftMeter is a free or low cost application analytics library for Windows, MacOS and IOS.   
 [[libSoftMeter website](https://www.starmessagesoftware.com/softmeter)] [[libSoftMeter on GitHub](https://github.com/starmessage/libSoftMeter)].
 
+## [2.0.5] - 2023-05-17 - MacOS only release
+
+### Fixed: 
+- MacOS version does not properly send the sendGA4Event() hit
+
 
 ## [2.0.3] - 2023-05-09
 - Internal improvements.
