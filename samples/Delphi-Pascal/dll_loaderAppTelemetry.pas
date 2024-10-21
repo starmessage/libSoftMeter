@@ -46,10 +46,11 @@ type
     Tstart = function(appName, appVersion, appLicense, appEdition, propertyID:PAnsiChar; userGaveConsent:BOOL): BOOL ; stdcall;
     Tstop = procedure; stdcall;
 
-    TsendPageview = function(pagePath, pageTitle:PAnsiChar): BOOL ; stdcall;
-    TsendEvent = function(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ; stdcall;
+    TsendPageview   = function(pagePath, pageTitle:PAnsiChar): BOOL ; stdcall;
+    TsendEvent      = function(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ; stdcall;
+    TsendEventEx    = function(eventName, eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ; stdcall;
     TsendScreenview = function(screenName:PAnsiChar): BOOL ; stdcall;
-    TsendException = function(screenName:PAnsiChar; isFatal:BOOL): BOOL ; stdcall;
+    TsendException  = function(screenName:PAnsiChar; isFatal:BOOL): BOOL ; stdcall;
 
     TDllAppTelemetry = class(TDllLoader)
     private

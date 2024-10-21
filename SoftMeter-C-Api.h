@@ -120,6 +120,9 @@ EXPORT_API  bool CALL_CONV sendScreenview(const TCHAR *screenName);
 //   so that the event is considered that took place on that page or screen.
 // It will process your request asynchronously
 EXPORT_API  bool CALL_CONV sendEvent(const TCHAR *eventAction, const TCHAR *eventLabel, const int eventValue );
+// this function adds the eventName to the parameters of the standard sendEvent()
+EXPORT_API  bool CALL_CONV sendEventEx(const TCHAR *eventName, const TCHAR *eventAction, const TCHAR *eventLabel, const int eventValue );
+
 
 // If you catch exceptions in your program, you can send them to Google Analutics.
 // if isFatal = false, the incident will be logged in Google analtytics as Exception
@@ -152,7 +155,6 @@ EXPORT_API  const TCHAR* CALL_CONV  getAnonymizedUserID(void);
     E.g.
         start()     // this uses the __stdcall calling conventions (which is the WIN API default)
         start_cdecl() // this is the __cdecl function
-        start_stdcall() // this is the __stdcall function (deprecated because the start() has the same convention)
 
     From your Windows application you can call the set you prefer.
 
