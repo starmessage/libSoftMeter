@@ -3,7 +3,7 @@
 ///     unit dll_loaderAppTelemetry.pas
 ///     utility class to load the DLL and link its functions
 ///
-///     Version of file: 2.1
+///     Version of file: 2.3
 ///     URL of repo:
 ///     https://github.com/starmessage/libSoftMeter
 ///     Copyright, StarMessage software
@@ -65,6 +65,7 @@ type
 
         sendPageviewPtr: TsendPageview;
         sendEventPtr: TsendEvent;
+        sendEventExPtr: TsendEventEx;
         sendScreenviewPtr: TsendScreenview;
         sendExceptionPtr: TsendException;
 
@@ -83,6 +84,7 @@ type
 
         function sendPageview(pagePath, pageTitle:PAnsiChar): BOOL ;
         function sendEvent(eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
+        function sendEventEx(eventName, eventAction, eventLabel:PAnsiChar; eventValue:integer): BOOL ;
         function sendScreenView(screenName:PAnsiChar): BOOL ;
         function sendException(exceptionDesc: PAnsiChar; isFatal:BOOL): BOOL ;
   end;
@@ -146,6 +148,10 @@ begin
     if (@sendEventPtr=NIL) then
       addError('Failed to load function: sendEvent');
 
+    @sendEventExPtr := GetProcAddress(getHandle, 'sendEventEx');
+    if (@sendEventExPtr=NIL) then
+      addError('Failed to load function: sendEventEx');
+
     @sendScreenviewPtr := GetProcAddress(getHandle, 'sendScreenview');
     if (@sendScreenviewPtr=NIL) then
       addError('Failed to load function: sendScreenview');
@@ -196,7 +202,6 @@ begin
         result := string(getLogFilenamePtr);
 end;
 
-
 function TDllAppTelemetry.sendEvent(eventAction, eventLabel: PAnsiChar; eventValue: integer): BOOL ;
 begin
     result := false;
@@ -204,6 +209,14 @@ begin
         result := sendEventPtr(eventAction, eventLabel, eventValue);
 end;
 
+
+function TDllAppTelemetry.sendEventEx(eventName, eventAction,
+  eventLabel: PAnsiChar; eventValue: integer): BOOL;
+begin
+    result := false;
+    if @sendEventExPtr <> nil then
+        result := sendEventExPtr(eventName, eventAction, eventLabel, eventValue);
+end;
 
 function TDllAppTelemetry.sendPageview(pagePath, pageTitle: PAnsiChar): BOOL ;
 begin
